@@ -27,8 +27,7 @@ const TargetAudience: React.FC = () => {
         <div className="quote-section">
           <blockquote className="inspirational-quote">
             <p>
-              💬 « Les nombres sont les clés secrètes qui ouvrent les portes de
-              notre destinée. »
+              💬 « les nombres révèlent tes talents, ton énergie et tes cycles de vie »
             </p>
           </blockquote>
         </div>
