@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import "./Header.css";
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  onNavigate: (page: "home" | "signup") => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false); // État temporaire pour la démo
 
@@ -17,11 +21,23 @@ const Header: React.FC = () => {
     setIsLoggedIn(false);
   };
 
+  const handleSignup = () => {
+    onNavigate("signup");
+  };
+
+  const handleHome = () => {
+    onNavigate("home");
+  };
+
   return (
     <header className="header">
       <div className="header-container">
         {/* Logo */}
-        <div className="logo">
+        <div
+          className="logo"
+          onClick={handleHome}
+          style={{ cursor: "pointer" }}
+        >
           <span className="logo-icon">🌌</span>
           <span className="logo-text">Numora</span>
         </div>
@@ -67,7 +83,7 @@ const Header: React.FC = () => {
             </>
           ) : (
             <div className="auth-buttons">
-              <button className="btn-secondary" onClick={handleLogin}>
+              <button className="btn-secondary" onClick={handleSignup}>
                 S'inscrire
               </button>
               <button className="btn-primary" onClick={handleLogin}>
@@ -145,7 +161,7 @@ const Header: React.FC = () => {
             <div className="mobile-auth-buttons">
               <button
                 className="btn-secondary mobile-btn"
-                onClick={handleLogin}
+                onClick={handleSignup}
               >
                 S'inscrire
               </button>
