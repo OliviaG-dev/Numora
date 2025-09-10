@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Header.css";
 
 interface HeaderProps {
-  onNavigate: (page: "home" | "signup") => void;
+  onNavigate: (page: "home" | "signup" | "login") => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
@@ -13,7 +13,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const handleLogin = () => {
+  const handleLoginSuccess = () => {
     setIsLoggedIn(true);
   };
 
@@ -23,6 +23,10 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
 
   const handleSignup = () => {
     onNavigate("signup");
+  };
+
+  const handleLogin = () => {
+    onNavigate("login");
   };
 
   const handleHome = () => {

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./SignupSection.css";
 
 interface SignupSectionProps {
-  onNavigate: (page: "home" | "signup") => void;
+  onNavigate: (page: "home" | "signup" | "login") => void;
 }
 
 const SignupSection: React.FC<SignupSectionProps> = ({ onNavigate }) => {

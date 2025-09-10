@@ -7,7 +7,7 @@ import TargetAudience from "../../components/TargetAudience/TargetAudience";
 import "./Home.css";
 
 interface HomeProps {
-  onNavigate: (page: "home" | "signup") => void;
+  onNavigate: (page: "home" | "signup" | "login") => void;
 }
 
 const Home: React.FC<HomeProps> = ({ onNavigate }) => {
