@@ -4,7 +4,7 @@ import SignupSection from "../../components/SignupSection/SignupSection";
 import "./Signup.css";
 
 interface SignupProps {
-  onNavigate: (page: "home" | "signup" | "login") => void;
+  onNavigate: (page: "home" | "signup" | "login" | "newReading") => void;
 }
 
 const Signup: React.FC<SignupProps> = ({ onNavigate }) => {

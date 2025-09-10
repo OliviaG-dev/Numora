@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./SignupSection.css";
 
 interface SignupSectionProps {
-  onNavigate: (page: "home" | "signup" | "login") => void;
+  onNavigate: (page: "home" | "signup" | "login" | "newReading") => void;
 }
 
 const SignupSection: React.FC<SignupSectionProps> = ({ onNavigate }) => {
@@ -12,14 +12,6 @@ const SignupSection: React.FC<SignupSectionProps> = ({ onNavigate }) => {
     email: "",
     password: "",
     confirmPassword: "",
-    birthDate: "",
-    birthTime: "",
-    birthPlace: "",
-    // Données numérologiques détaillées
-    firstGivenName: "",
-    secondGivenName: "",
-    thirdGivenName: "",
-    familyName: "",
     acceptTerms: false,
   });
 
@@ -71,25 +63,6 @@ const SignupSection: React.FC<SignupSectionProps> = ({ onNavigate }) => {
 
     if (formData.password !== formData.confirmPassword) {
       newErrors.confirmPassword = "Les mots de passe ne correspondent pas";
-    }
-
-    if (!formData.birthDate) {
-      newErrors.birthDate = "La date de naissance est requise";
-    }
-
-    if (!formData.birthPlace.trim()) {
-      newErrors.birthPlace = "Le lieu de naissance est requis";
-    }
-
-    // Validation des données numérologiques détaillées
-    if (!formData.firstGivenName.trim()) {
-      newErrors.firstGivenName =
-        "Le premier prénom est requis pour l'analyse numérologique";
-    }
-
-    if (!formData.familyName.trim()) {
-      newErrors.familyName =
-        "Le nom de famille est requis pour l'analyse numérologique";
     }
 
     if (!formData.acceptTerms) {
@@ -279,145 +252,6 @@ const SignupSection: React.FC<SignupSectionProps> = ({ onNavigate }) => {
                     </span>
                   )}
                 </div>
-              </div>
-            </div>
-
-            <div className="form-section">
-              <h3 className="form-section-title">Données numérologiques</h3>
-              <p className="form-section-description">
-                Ces informations sont essentielles pour calculer ton profil
-                numérologique. Chaque prénom et le nom de famille ont une valeur
-                numérologique spécifique.
-              </p>
-
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="firstGivenName" className="form-label">
-                    Premier prénom *
-                  </label>
-                  <input
-                    type="text"
-                    id="firstGivenName"
-                    name="firstGivenName"
-                    value={formData.firstGivenName}
-                    onChange={handleInputChange}
-                    className={`form-input ${
-                      errors.firstGivenName ? "error" : ""
-                    }`}
-                    placeholder="Ton premier prénom"
-                  />
-                  {errors.firstGivenName && (
-                    <span className="error-message">
-                      {errors.firstGivenName}
-                    </span>
-                  )}
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="secondGivenName" className="form-label">
-                    Deuxième prénom
-                  </label>
-                  <input
-                    type="text"
-                    id="secondGivenName"
-                    name="secondGivenName"
-                    value={formData.secondGivenName}
-                    onChange={handleInputChange}
-                    className="form-input"
-                    placeholder="Ton deuxième prénom (optionnel)"
-                  />
-                  <span className="form-hint">Si tu en as un</span>
-                </div>
-              </div>
-
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="thirdGivenName" className="form-label">
-                    Troisième prénom
-                  </label>
-                  <input
-                    type="text"
-                    id="thirdGivenName"
-                    name="thirdGivenName"
-                    value={formData.thirdGivenName}
-                    onChange={handleInputChange}
-                    className="form-input"
-                    placeholder="Ton troisième prénom (optionnel)"
-                  />
-                  <span className="form-hint">Si tu en as un</span>
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="familyName" className="form-label">
-                    Nom de famille *
-                  </label>
-                  <input
-                    type="text"
-                    id="familyName"
-                    name="familyName"
-                    value={formData.familyName}
-                    onChange={handleInputChange}
-                    className={`form-input ${errors.familyName ? "error" : ""}`}
-                    placeholder="Ton nom de famille"
-                  />
-                  {errors.familyName && (
-                    <span className="error-message">{errors.familyName}</span>
-                  )}
-                </div>
-              </div>
-
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="birthDate" className="form-label">
-                    Date de naissance *
-                  </label>
-                  <input
-                    type="date"
-                    id="birthDate"
-                    name="birthDate"
-                    value={formData.birthDate}
-                    onChange={handleInputChange}
-                    className={`form-input ${errors.birthDate ? "error" : ""}`}
-                  />
-                  {errors.birthDate && (
-                    <span className="error-message">{errors.birthDate}</span>
-                  )}
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="birthTime" className="form-label">
-                    Heure de naissance
-                  </label>
-                  <input
-                    type="time"
-                    id="birthTime"
-                    name="birthTime"
-                    value={formData.birthTime}
-                    onChange={handleInputChange}
-                    className="form-input"
-                  />
-                  <span className="form-hint">
-                    Optionnel, mais améliore la précision
-                  </span>
-                </div>
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="birthPlace" className="form-label">
-                  Lieu de naissance *
-                </label>
-                <input
-                  type="text"
-                  id="birthPlace"
-                  name="birthPlace"
-                  value={formData.birthPlace}
-                  onChange={handleInputChange}
-                  className={`form-input ${errors.birthPlace ? "error" : ""}`}
-                  placeholder="Ville, Pays"
-                />
-                {errors.birthPlace && (
-                  <span className="error-message">{errors.birthPlace}</span>
-                )}
               </div>
             </div>
 

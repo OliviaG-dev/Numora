@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./LoginSection.css";
 
 interface LoginSectionProps {
-  onNavigate: (page: "home" | "signup" | "login") => void;
+  onNavigate: (page: "home" | "signup" | "login" | "newReading") => void;
 }
 
 const LoginSection: React.FC<LoginSectionProps> = ({ onNavigate }) => {
@@ -76,6 +76,11 @@ const LoginSection: React.FC<LoginSectionProps> = ({ onNavigate }) => {
         setIsLoading(false);
       }
     }
+  };
+
+  const handleQuickLogin = () => {
+    alert("Connexion rapide réussie ! Bienvenue dans l'univers de Numora 🌟");
+    onNavigate("home");
   };
 
   const handleForgotPassword = async (e: React.FormEvent) => {
@@ -310,6 +315,23 @@ const LoginSection: React.FC<LoginSectionProps> = ({ onNavigate }) => {
               </span>
               <span className="button-emoji">✨</span>
             </button>
+
+            <div className="quick-login-section">
+              <div className="divider">
+                <span>ou</span>
+              </div>
+              <button
+                type="button"
+                className="quick-login-button"
+                onClick={handleQuickLogin}
+              >
+                <span className="button-text">🚀 Connexion rapide</span>
+                <span className="button-emoji">⚡</span>
+              </button>
+              <p className="quick-login-hint">
+                Pour tester l'application sans formulaire
+              </p>
+            </div>
 
             <div className="login-footer">
               <p>

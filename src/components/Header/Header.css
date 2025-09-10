@@ -235,6 +235,24 @@
   transform: translateY(-1px);
 }
 
+.btn-quick-login {
+  background: var(--gradient-primary);
+  color: var(--text-primary);
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+  font-size: 0.85rem;
+  padding: 0.6rem 1.2rem;
+}
+
+.btn-quick-login:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+  background: linear-gradient(
+    135deg,
+    var(--primary-purple-light) 0%,
+    var(--primary-purple) 100%
+  );
+}
+
 /* Mobile Menu */
 .mobile-menu {
   display: none;

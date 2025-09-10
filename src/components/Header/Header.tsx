@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Header.css";
 
 interface HeaderProps {
-  onNavigate: (page: "home" | "signup" | "login") => void;
+  onNavigate: (page: "home" | "signup" | "login" | "newReading") => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
@@ -15,6 +15,11 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
 
   const handleLoginSuccess = () => {
     setIsLoggedIn(true);
+  };
+
+  const handleQuickLogin = () => {
+    setIsLoggedIn(true);
+    onNavigate("home");
   };
 
   const handleLogout = () => {
@@ -31,6 +36,10 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
 
   const handleHome = () => {
     onNavigate("home");
+  };
+
+  const handleNewReading = () => {
+    onNavigate("newReading");
   };
 
   return (
@@ -50,13 +59,27 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
         <nav className="nav-desktop">
           {isLoggedIn ? (
             <>
-              <a href="#accueil" className="nav-link">
+              <a
+                href="#"
+                className="nav-link"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleHome();
+                }}
+              >
                 Accueil
               </a>
               <a href="#lectures" className="nav-link">
                 Mes Lectures
               </a>
-              <a href="#nouvelle" className="nav-link">
+              <a
+                href="#"
+                className="nav-link"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNewReading();
+                }}
+              >
                 Nouvelle Lecture
               </a>
               <div className="user-menu">
@@ -93,6 +116,9 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
               <button className="btn-primary" onClick={handleLogin}>
                 Se connecter
               </button>
+              <button className="btn-quick-login" onClick={handleQuickLogin}>
+                🚀 Connexion rapide
+              </button>
             </div>
           )}
         </nav>
@@ -115,9 +141,13 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
           {isLoggedIn ? (
             <>
               <a
-                href="#accueil"
+                href="#"
                 className="mobile-nav-link"
-                onClick={toggleMenu}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleHome();
+                  toggleMenu();
+                }}
               >
                 Accueil
               </a>
@@ -129,9 +159,13 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                 Mes Lectures
               </a>
               <a
-                href="#nouvelle"
+                href="#"
                 className="mobile-nav-link"
-                onClick={toggleMenu}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNewReading();
+                  toggleMenu();
+                }}
               >
                 Nouvelle Lecture
               </a>
@@ -171,6 +205,12 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
               </button>
               <button className="btn-primary mobile-btn" onClick={handleLogin}>
                 Se connecter
+              </button>
+              <button
+                className="btn-quick-login mobile-btn"
+                onClick={handleQuickLogin}
+              >
+                🚀 Connexion rapide
               </button>
             </div>
           )}

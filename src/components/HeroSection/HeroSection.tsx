@@ -2,7 +2,7 @@ import React from "react";
 import "./HeroSection.css";
 
 interface HeroSectionProps {
-  onNavigate: (page: "home" | "signup" | "login") => void;
+  onNavigate: (page: "home" | "signup" | "login" | "newReading") => void;
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
