@@ -5,6 +5,7 @@
   position: relative;
   overflow-x: hidden;
   z-index: 1;
+  padding-top: 70px; /* Espace pour le header fixe */
 }
 
 /* Numerology Grid Background */
