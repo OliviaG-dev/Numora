@@ -1,4 +1,5 @@
 import React from "react";
+import "./TargetAudience.css";
 
 const TargetAudience: React.FC = () => {
   const audiences = [
@@ -27,7 +28,8 @@ const TargetAudience: React.FC = () => {
         <div className="quote-section">
           <blockquote className="inspirational-quote">
             <p>
-              💬 « les nombres révèlent tes talents, ton énergie et tes cycles de vie »
+              💬 « les nombres révèlent tes talents, ton énergie et tes cycles
+              de vie »
             </p>
           </blockquote>
         </div>

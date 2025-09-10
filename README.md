@@ -101,18 +101,39 @@ numora/
 ├── public/
 │   └── vite.svg
 ├── src/
+│   ├── pages/
+│   │   ├── Home.tsx             # Page d'accueil
+│   │   └── Home.css             # Styles de la page d'accueil
 │   ├── components/
-│   │   ├── HeroSection.tsx      # Section d'accueil
-│   │   ├── FeaturesSection.tsx  # Fonctionnalités
-│   │   ├── WhyNumora.tsx        # Avantages
-│   │   └── TargetAudience.tsx   # Public cible
-│   ├── App.tsx                  # Composant principal
-│   ├── App.css                  # Styles de l'app
-│   ├── index.css                # Styles globaux
-│   └── main.tsx                 # Point d'entrée
+│   │   ├── HeroSection/
+│   │   │   ├── HeroSection.tsx  # Section d'accueil
+│   │   │   └── HeroSection.css  # Styles de la section
+│   │   ├── FeaturesSection/
+│   │   │   ├── FeaturesSection.tsx  # Fonctionnalités
+│   │   │   └── FeaturesSection.css  # Styles de la section
+│   │   ├── WhyNumora/
+│   │   │   ├── WhyNumora.tsx    # Avantages
+│   │   │   └── WhyNumora.css    # Styles de la section
+│   │   └── TargetAudience/
+│   │       ├── TargetAudience.tsx   # Public cible
+│   │       └── TargetAudience.css   # Styles de la section
+│   ├── App.tsx                  # Point d'entrée de l'application
+│   ├── App.css                  # Styles globaux de l'app
+│   ├── index.css                # Styles de base
+│   └── main.tsx                 # Point d'entrée principal
 ├── package.json
 └── README.md
 ```
+
+### 🏗️ Architecture
+
+Le projet suit une architecture modulaire organisée :
+
+- **📁 `pages/`** - Pages de l'application (Home, About, etc.)
+- **📁 `components/`** - Composants réutilisables, chacun dans son propre dossier
+- **📁 `assets/`** - Images, icônes et autres ressources statiques
+
+Chaque composant est autonome avec ses propres fichiers TypeScript et CSS, facilitant la maintenance et la réutilisabilité.
 
 ## 🌟 Pourquoi Numora ?
 

@@ -1,19 +1,8 @@
 import React from "react";
-import HeroSection from "./components/HeroSection";
-import FeaturesSection from "./components/FeaturesSection";
-import WhyNumora from "./components/WhyNumora";
-import TargetAudience from "./components/TargetAudience";
-import "./App.css";
+import Home from "./pages/Home";
 
 function App() {
-  return (
-    <div className="app">
-      <HeroSection />
-      <FeaturesSection />
-      <WhyNumora />
-      <TargetAudience />
-    </div>
-  );
+  return <Home />;
 }
 
 export default App;

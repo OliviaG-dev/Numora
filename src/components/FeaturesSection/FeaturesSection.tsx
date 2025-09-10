@@ -1,4 +1,5 @@
 import React from "react";
+import "./FeaturesSection.css";
 
 const FeaturesSection: React.FC = () => {
   const features = [

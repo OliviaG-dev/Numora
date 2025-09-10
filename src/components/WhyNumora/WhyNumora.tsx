@@ -1,4 +1,5 @@
 import React from "react";
+import "./WhyNumora.css";
 
 const WhyNumora: React.FC = () => {
   const reasons = [
