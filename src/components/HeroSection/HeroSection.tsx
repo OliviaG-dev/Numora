@@ -1,7 +1,11 @@
 import React from "react";
 import "./HeroSection.css";
 
-const HeroSection: React.FC = () => {
+interface HeroSectionProps {
+  onNavigate: (page: "home" | "signup" | "login" | "newReading") => void;
+}
+
+const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
   return (
     <section className="hero">
       {/* Background numérologique */}
@@ -151,12 +155,11 @@ const HeroSection: React.FC = () => {
             ton énergie et tes cycles de vie. Une application simple, moderne et
             claire pour mieux te comprendre et avancer sereinement.
           </p>
-          <p className="hero-cta-text">
-            👉 Télécharge dès maintenant et commence ton voyage intérieur.
-          </p>
         </div>
 
-        <button className="cta-button">⚡ Découvrir Numora</button>
+        <button className="cta-button" onClick={() => onNavigate("signup")}>
+          Découvre toi
+        </button>
       </div>
     </section>
   );
