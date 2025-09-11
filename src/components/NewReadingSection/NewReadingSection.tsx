@@ -93,7 +93,7 @@ const NewReadingSection: React.FC<NewReadingSectionProps> = ({
 
         // Redirection vers l'accueil après création
         onNavigate("home");
-      } catch (error) {
+      } catch {
         setErrors({
           general:
             "Erreur lors de la création de la lecture. Veuillez réessayer.",
@@ -159,8 +159,21 @@ const NewReadingSection: React.FC<NewReadingSectionProps> = ({
       <div className="new-reading-content">
         <div className="new-reading-header">
           <h1 className="new-reading-title">
-            <span className="new-reading-emoji">🔮</span>
-            Nouvelle Lecture Numérologique
+            <span className="new-reading-text">
+              Nouvelle Lecture Numérologique
+            </span>
+            <span className="title-star">9</span>
+            <span className="title-number">7</span>
+            <span className="title-num-1">1</span>
+            <span className="title-num-2">3</span>
+            <span className="title-num-3">5</span>
+            <span className="title-num-4">2</span>
+            <span className="title-num-5">8</span>
+            <span className="title-num-6">4</span>
+            <span className="title-num-7">6</span>
+            <span className="title-num-8">1</span>
+            <span className="title-num-9">9</span>
+            <span className="title-num-10">3</span>
           </h1>
           <p className="new-reading-subtitle">
             Crée une nouvelle analyse numérologique personnalisée

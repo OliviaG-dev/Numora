@@ -158,7 +158,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
         </div>
 
         <button className="cta-button" onClick={() => onNavigate("signup")}>
-          Découvrir toi
+          Découvre toi
         </button>
       </div>
     </section>

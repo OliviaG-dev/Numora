@@ -220,11 +220,221 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  position: relative;
 }
 
 .new-reading-emoji {
   font-size: clamp(2.5rem, 5vw, 3.5rem);
   animation: float 3s ease-in-out infinite;
+}
+
+.new-reading-text {
+  display: inline-block;
+}
+
+.title-star {
+  position: absolute;
+  top: 78%;
+  left: calc(50% + 15rem);
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  opacity: 0.4;
+  animation: twinkle 2s ease-in-out infinite;
+  color: #ffd700;
+  text-shadow: 0 0 2px rgba(255, 215, 0, 0.4);
+  z-index: -1;
+  pointer-events: none;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+}
+
+.title-number {
+  position: absolute;
+  top: 45%;
+  left: calc(10% + 5rem);
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  opacity: 0.4;
+  animation: twinkle 2s ease-in-out infinite;
+  color: #ffd700;
+  text-shadow: 0 0 2px rgba(255, 215, 0, 0.4);
+  z-index: -1;
+  pointer-events: none;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+}
+
+/* Chiffres numérologiques supplémentaires */
+.title-num-1 {
+  position: absolute;
+  top: 30%;
+  left: calc(30% + 1rem);
+  transform: translateY(-50%) rotate(15deg);
+  font-size: 0.8rem;
+  opacity: 0.3;
+  animation: twinkle 3s ease-in-out infinite;
+  color: #ffd700;
+  text-shadow: 0 0 2px rgba(255, 215, 0, 0.3);
+  z-index: -1;
+  pointer-events: none;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+}
+
+.title-num-2 {
+  position: absolute;
+  top: 60%;
+  left: calc(70% - 1rem);
+  transform: translateY(-50%) rotate(-10deg);
+  font-size: 1.5rem;
+  opacity: 0.3;
+  animation: twinkle 2.5s ease-in-out infinite;
+  color: #ffd700;
+  text-shadow: 0 0 2px rgba(255, 215, 0, 0.3);
+  z-index: -1;
+  pointer-events: none;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+}
+
+.title-num-3 {
+  position: absolute;
+  top: 40%;
+  left: calc(60% + 1rem);
+  transform: translateY(-50%) rotate(25deg);
+  font-size: 1rem;
+  opacity: 0.3;
+  animation: twinkle 3.5s ease-in-out infinite;
+  color: #ffd700;
+  text-shadow: 0 0 2px rgba(255, 215, 0, 0.3);
+  z-index: -1;
+  pointer-events: none;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+}
+
+.title-num-4 {
+  position: absolute;
+  top: 70%;
+  left: calc(25% + 1rem);
+  transform: translateY(-50%) rotate(-20deg);
+  font-size: 0.9rem;
+  opacity: 0.3;
+  animation: twinkle 2.8s ease-in-out infinite;
+  color: #ffd700;
+  text-shadow: 0 0 2px rgba(255, 215, 0, 0.3);
+  z-index: -1;
+  pointer-events: none;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+}
+
+.title-num-5 {
+  position: absolute;
+  top: 25%;
+  left: calc(50% + 2rem);
+  transform: translateY(-50%) rotate(30deg);
+  font-size: 1.3rem;
+  opacity: 0.3;
+  animation: twinkle 4s ease-in-out infinite;
+  color: #ffd700;
+  text-shadow: 0 0 2px rgba(255, 215, 0, 0.3);
+  z-index: -1;
+  pointer-events: none;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+}
+
+.title-num-6 {
+  position: absolute;
+  top: 75%;
+  left: calc(50% + 3rem);
+  transform: translateY(-50%) rotate(-15deg);
+  font-size: 0.7rem;
+  opacity: 0.3;
+  animation: twinkle 2.2s ease-in-out infinite;
+  color: #ffd700;
+  text-shadow: 0 0 2px rgba(255, 215, 0, 0.3);
+  z-index: -1;
+  pointer-events: none;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+}
+
+.title-num-7 {
+  position: absolute;
+  top: 50%;
+  left: calc(20% + 1rem);
+  transform: translateY(-50%) rotate(45deg);
+  font-size: 1.1rem;
+  opacity: 0.3;
+  animation: twinkle 3.2s ease-in-out infinite;
+  color: #ffd700;
+  text-shadow: 0 0 2px rgba(255, 215, 0, 0.3);
+  z-index: -1;
+  pointer-events: none;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+}
+
+.title-num-8 {
+  position: absolute;
+  top: 55%;
+  left: calc(80% - 1rem);
+  transform: translateY(-50%) rotate(-35deg);
+  font-size: 0.6rem;
+  opacity: 0.3;
+  animation: twinkle 2.7s ease-in-out infinite;
+  color: #ffd700;
+  text-shadow: 0 0 2px rgba(255, 215, 0, 0.3);
+  z-index: -1;
+  pointer-events: none;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+}
+
+.title-num-9 {
+  position: absolute;
+  top: 35%;
+  left: calc(40% + 2rem);
+  transform: translateY(-50%) rotate(10deg);
+  font-size: 1.4rem;
+  opacity: 0.3;
+  animation: twinkle 3.8s ease-in-out infinite;
+  color: #ffd700;
+  text-shadow: 0 0 2px rgba(255, 215, 0, 0.3);
+  z-index: -1;
+  pointer-events: none;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+}
+
+.title-num-10 {
+  position: absolute;
+  top: 65%;
+  left: calc(35% + 1rem);
+  transform: translateY(-50%) rotate(-25deg);
+  font-size: 0.8rem;
+  opacity: 0.3;
+  animation: twinkle 2.9s ease-in-out infinite;
+  color: #ffd700;
+  text-shadow: 0 0 2px rgba(255, 215, 0, 0.3);
+  z-index: -1;
+  pointer-events: none;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
 }
 
 .new-reading-subtitle {
@@ -318,6 +528,18 @@
   border-color: var(--primary-purple-light);
   box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
   background: rgba(45, 45, 95, 0.8);
+}
+
+/* Styling for native date and time input icons */
+.form-input[type="date"]::-webkit-calendar-picker-indicator,
+.form-input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}
+
+.form-input[type="date"]::-webkit-calendar-picker-indicator:hover,
+.form-input[type="time"]::-webkit-calendar-picker-indicator:hover {
+  filter: invert(1) brightness(1.2);
 }
 
 .form-input.error {
