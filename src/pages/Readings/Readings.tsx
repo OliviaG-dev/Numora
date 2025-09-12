@@ -1,9 +1,9 @@
 import React from "react";
 import Header from "../../components/Header/Header";
-import ProfileSection from "../../components/ProfileSection/ProfileSection";
-import "./Profile.css";
+import ReadingsSection from "../../components/ReadingsSection/ReadingsSection";
+import "./Readings.css";
 
-interface ProfileProps {
+interface ReadingsProps {
   onNavigate: (
     page:
       | "home"
@@ -16,13 +16,13 @@ interface ProfileProps {
   ) => void;
 }
 
-const Profile: React.FC<ProfileProps> = ({ onNavigate }) => {
+const Readings: React.FC<ReadingsProps> = ({ onNavigate }) => {
   return (
-    <div className="profile-page">
+    <div className="readings-page">
       <Header onNavigate={onNavigate} />
-      <ProfileSection onNavigate={onNavigate} />
+      <ReadingsSection onNavigate={onNavigate} />
     </div>
   );
 };
 
-export default Profile;
+export default Readings;

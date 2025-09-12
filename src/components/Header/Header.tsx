@@ -3,7 +3,14 @@ import "./Header.css";
 
 interface HeaderProps {
   onNavigate: (
-    page: "home" | "signup" | "login" | "newReading" | "profile" | "settings"
+    page:
+      | "home"
+      | "signup"
+      | "login"
+      | "newReading"
+      | "profile"
+      | "settings"
+      | "readings"
   ) => void;
 }
 
@@ -52,6 +59,10 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
     onNavigate("settings");
   };
 
+  const handleReadings = () => {
+    onNavigate("readings");
+  };
+
   return (
     <header className="header">
       <div className="header-container">
@@ -83,7 +94,14 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
               >
                 Accueil
               </a>
-              <a href="#lectures" className="nav-link">
+              <a
+                href="#"
+                className="nav-link"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleReadings();
+                }}
+              >
                 Mes Lectures
               </a>
               <a
@@ -180,9 +198,13 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                 Accueil
               </a>
               <a
-                href="#lectures"
+                href="#"
                 className="mobile-nav-link"
-                onClick={toggleMenu}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleReadings();
+                  toggleMenu();
+                }}
               >
                 Mes Lectures
               </a>

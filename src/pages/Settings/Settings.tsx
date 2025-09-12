@@ -5,7 +5,14 @@ import "./Settings.css";
 
 interface SettingsProps {
   onNavigate: (
-    page: "home" | "signup" | "login" | "newReading" | "profile" | "settings"
+    page:
+      | "home"
+      | "signup"
+      | "login"
+      | "newReading"
+      | "profile"
+      | "settings"
+      | "readings"
   ) => void;
 }
 

@@ -5,7 +5,14 @@ import "./Home.css";
 
 interface HomeProps {
   onNavigate: (
-    page: "home" | "signup" | "login" | "newReading" | "profile" | "settings"
+    page:
+      | "home"
+      | "signup"
+      | "login"
+      | "newReading"
+      | "profile"
+      | "settings"
+      | "readings"
   ) => void;
 }
 

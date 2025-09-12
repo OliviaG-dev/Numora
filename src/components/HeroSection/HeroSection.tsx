@@ -3,7 +3,14 @@ import "./HeroSection.css";
 
 interface HeroSectionProps {
   onNavigate: (
-    page: "home" | "signup" | "login" | "newReading" | "profile" | "settings"
+    page:
+      | "home"
+      | "signup"
+      | "login"
+      | "newReading"
+      | "profile"
+      | "settings"
+      | "readings"
   ) => void;
 }
 

@@ -5,7 +5,14 @@ import "./NewReading.css";
 
 interface NewReadingProps {
   onNavigate: (
-    page: "home" | "signup" | "login" | "newReading" | "profile" | "settings"
+    page:
+      | "home"
+      | "signup"
+      | "login"
+      | "newReading"
+      | "profile"
+      | "settings"
+      | "readings"
   ) => void;
 }
 

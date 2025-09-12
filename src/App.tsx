@@ -5,14 +5,28 @@ import Login from "./pages/Login/Login";
 import NewReading from "./pages/NewReading/NewReading";
 import Profile from "./pages/Profile/Profile";
 import Settings from "./pages/Settings/Settings";
+import Readings from "./pages/Readings/Readings";
 
 function App() {
   const [currentPage, setCurrentPage] = useState<
-    "home" | "signup" | "login" | "newReading" | "profile" | "settings"
+    | "home"
+    | "signup"
+    | "login"
+    | "newReading"
+    | "profile"
+    | "settings"
+    | "readings"
   >("home");
 
   const navigateToPage = (
-    page: "home" | "signup" | "login" | "newReading" | "profile" | "settings"
+    page:
+      | "home"
+      | "signup"
+      | "login"
+      | "newReading"
+      | "profile"
+      | "settings"
+      | "readings"
   ) => {
     setCurrentPage(page);
   };
@@ -27,6 +41,7 @@ function App() {
       )}
       {currentPage === "profile" && <Profile onNavigate={navigateToPage} />}
       {currentPage === "settings" && <Settings onNavigate={navigateToPage} />}
+      {currentPage === "readings" && <Readings onNavigate={navigateToPage} />}
     </>
   );
 }
