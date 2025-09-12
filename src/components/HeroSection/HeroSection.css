@@ -418,6 +418,25 @@
   gap: 1rem;
 }
 
+.hero-logo {
+  width: clamp(3rem, 6vw, 5rem);
+  height: clamp(3rem, 6vw, 5rem);
+  object-fit: contain;
+  vertical-align: middle;
+  align-self: center;
+  filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.4))
+    drop-shadow(0 0 30px rgba(139, 92, 246, 0.2));
+  transition: all 0.3s ease;
+  opacity: 0.9;
+}
+
+.hero-logo:hover {
+  opacity: 1;
+  filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.6))
+    drop-shadow(0 0 40px rgba(139, 92, 246, 0.3))
+    drop-shadow(0 0 60px rgba(245, 158, 11, 0.2));
+}
+
 .hero-emoji {
   font-size: clamp(3rem, 6vw, 5rem);
   animation: float 3s ease-in-out infinite;
@@ -435,6 +454,44 @@
   font-size: clamp(1.5rem, 4vw, 2.5rem);
   margin-bottom: 1.5rem;
   color: var(--text-primary);
+  position: relative;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.hero-description h2::before {
+  content: "✨";
+  position: absolute;
+  left: -2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  opacity: 0.7;
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+.hero-description h2::after {
+  content: "✨";
+  position: absolute;
+  right: -2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  opacity: 0.7;
+  animation: sparkle 2s ease-in-out infinite 1s;
+}
+
+@keyframes sparkle {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: translateY(-50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.2);
+  }
 }
 
 .hero-description p {
@@ -443,6 +500,9 @@
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
+  padding-top: 1rem;
+  border-top: 2px solid var(--primary-purple-light);
 }
 
 .hero-cta-text {
@@ -485,6 +545,11 @@
 
   .cta-button {
     padding: 0.8rem 2rem;
+  }
+
+  .hero-description h2::before,
+  .hero-description h2::after {
+    display: none;
   }
 }
 

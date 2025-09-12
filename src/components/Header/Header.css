@@ -38,8 +38,9 @@
 }
 
 .logo-icon {
-  font-size: 2rem;
-  animation: float 3s ease-in-out infinite;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
 }
 
 .logo-text {
@@ -412,7 +413,8 @@
   }
 
   .logo-icon {
-    font-size: 1.8rem;
+    width: 36px;
+    height: 36px;
   }
 }
 

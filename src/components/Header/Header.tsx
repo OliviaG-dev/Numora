@@ -61,7 +61,11 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
           onClick={handleHome}
           style={{ cursor: "pointer" }}
         >
-          <span className="logo-icon">🌌</span>
+          <img
+            src="/src/assets/logo.png"
+            alt="Numora Logo"
+            className="logo-icon"
+          />
           <span className="logo-text">Numora</span>
         </div>
 

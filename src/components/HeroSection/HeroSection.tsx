@@ -144,13 +144,18 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
       </div>
 
       <div className="hero-content">
-        <h1 className="hero-title">       
+        <h1 className="hero-title">
+          <img
+            src="/src/assets/logo.png"
+            alt="Numora Logo"
+            className="hero-logo"
+          />
           Numora
         </h1>
         <p className="hero-subtitle">Chaque nombre raconte ton histoire.</p>
 
         <div className="hero-description">
-          <h2>✨ Ton compagnon numérique de numérologie</h2>
+          <h2>Ton compagnon numérique de numérologie</h2>
           <p>
             Découvre comment les nombres de ta naissance révèlent tes talents,
             ton énergie et tes cycles de vie. Une application simple, moderne et
