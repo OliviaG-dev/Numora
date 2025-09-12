@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import "./SignupSection.css";
 
 interface SignupSectionProps {
-  onNavigate: (page: "home" | "signup" | "login" | "newReading") => void;
+  onNavigate: (
+    page: "home" | "signup" | "login" | "newReading" | "profile" | "settings"
+  ) => void;
 }
 
 const SignupSection: React.FC<SignupSectionProps> = ({ onNavigate }) => {
@@ -138,10 +140,7 @@ const SignupSection: React.FC<SignupSectionProps> = ({ onNavigate }) => {
 
       <div className="signup-content">
         <div className="signup-header">
-          <h1 className="signup-title">
-            <span className="signup-emoji">🌌</span>
-            Rejoins l'univers Numora
-          </h1>
+          <h1 className="signup-title">Rejoins l'univers Numora</h1>
           <p className="signup-subtitle">
             Découvre les secrets de ta personnalité à travers les nombres
           </p>
@@ -286,23 +285,19 @@ const SignupSection: React.FC<SignupSectionProps> = ({ onNavigate }) => {
 
             <button type="submit" className="signup-button">
               <span className="button-text">Créer mon compte</span>
-              <span className="button-emoji">✨</span>
             </button>
 
             <div className="signup-footer">
               <p>
                 Déjà un compte ?{" "}
-                <a href="#" className="link">
+                <button
+                  type="button"
+                  className="link"
+                  onClick={() => onNavigate("login")}
+                >
                   Se connecter
-                </a>
+                </button>
               </p>
-              <button
-                className="back-button"
-                onClick={() => onNavigate("home")}
-                type="button"
-              >
-                ← Retour à l'accueil
-              </button>
             </div>
           </form>
         </div>

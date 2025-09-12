@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import "./Header.css";
 
 interface HeaderProps {
-  onNavigate: (page: "home" | "signup" | "login" | "newReading") => void;
+  onNavigate: (
+    page: "home" | "signup" | "login" | "newReading" | "profile" | "settings"
+  ) => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
@@ -40,6 +42,14 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
 
   const handleNewReading = () => {
     onNavigate("newReading");
+  };
+
+  const handleProfile = () => {
+    onNavigate("profile");
+  };
+
+  const handleSettings = () => {
+    onNavigate("settings");
   };
 
   return (
@@ -89,10 +99,24 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                   <span className="dropdown-arrow">▼</span>
                 </button>
                 <div className="user-dropdown">
-                  <a href="#profil" className="dropdown-link">
+                  <a
+                    href="#profil"
+                    className="dropdown-link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleProfile();
+                    }}
+                  >
                     Mon Profil
                   </a>
-                  <a href="#parametres" className="dropdown-link">
+                  <a
+                    href="#parametres"
+                    className="dropdown-link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleSettings();
+                    }}
+                  >
                     Paramètres
                   </a>
                   <a
@@ -172,14 +196,22 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
               <a
                 href="#profil"
                 className="mobile-nav-link"
-                onClick={toggleMenu}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleProfile();
+                  toggleMenu();
+                }}
               >
                 Mon Profil
               </a>
               <a
                 href="#parametres"
                 className="mobile-nav-link"
-                onClick={toggleMenu}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleSettings();
+                  toggleMenu();
+                }}
               >
                 Paramètres
               </a>

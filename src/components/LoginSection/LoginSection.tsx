@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import "./LoginSection.css";
 
 interface LoginSectionProps {
-  onNavigate: (page: "home" | "signup" | "login" | "newReading") => void;
+  onNavigate: (
+    page: "home" | "signup" | "login" | "newReading" | "profile" | "settings"
+  ) => void;
 }
 
 const LoginSection: React.FC<LoginSectionProps> = ({ onNavigate }) => {
@@ -78,11 +80,6 @@ const LoginSection: React.FC<LoginSectionProps> = ({ onNavigate }) => {
     }
   };
 
-  const handleQuickLogin = () => {
-    alert("Connexion rapide réussie ! Bienvenue dans l'univers de Numora 🌟");
-    onNavigate("home");
-  };
-
   const handleForgotPassword = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -143,10 +140,7 @@ const LoginSection: React.FC<LoginSectionProps> = ({ onNavigate }) => {
 
         <div className="login-content">
           <div className="login-header">
-            <h1 className="login-title">
-              <span className="login-emoji">🔐</span>
-              Mot de passe oublié
-            </h1>
+            <h1 className="login-title">Mot de passe oublié</h1>
             <p className="login-subtitle">
               Entrez votre email pour recevoir un lien de réinitialisation
             </p>
@@ -182,7 +176,6 @@ const LoginSection: React.FC<LoginSectionProps> = ({ onNavigate }) => {
                 <span className="button-text">
                   {isLoading ? "Envoi en cours..." : "Envoyer le lien"}
                 </span>
-                <span className="button-emoji">📧</span>
               </button>
 
               <div className="login-footer">
@@ -231,10 +224,7 @@ const LoginSection: React.FC<LoginSectionProps> = ({ onNavigate }) => {
 
       <div className="login-content">
         <div className="login-header">
-          <h1 className="login-title">
-            <span className="login-emoji">🌌</span>
-            Bienvenue dans Numora
-          </h1>
+          <h1 className="login-title">Bienvenue dans Numora</h1>
           <p className="login-subtitle">
             Connecte-toi pour découvrir ton profil numérologique
           </p>
@@ -313,25 +303,7 @@ const LoginSection: React.FC<LoginSectionProps> = ({ onNavigate }) => {
               <span className="button-text">
                 {isLoading ? "Connexion..." : "Se connecter"}
               </span>
-              <span className="button-emoji">✨</span>
             </button>
-
-            <div className="quick-login-section">
-              <div className="divider">
-                <span>ou</span>
-              </div>
-              <button
-                type="button"
-                className="quick-login-button"
-                onClick={handleQuickLogin}
-              >
-                <span className="button-text">🚀 Connexion rapide</span>
-                <span className="button-emoji">⚡</span>
-              </button>
-              <p className="quick-login-hint">
-                Pour tester l'application sans formulaire
-              </p>
-            </div>
 
             <div className="login-footer">
               <p>

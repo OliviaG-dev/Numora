@@ -4,7 +4,9 @@ import NewReadingSection from "../../components/NewReadingSection/NewReadingSect
 import "./NewReading.css";
 
 interface NewReadingProps {
-  onNavigate: (page: "home" | "signup" | "login" | "newReading") => void;
+  onNavigate: (
+    page: "home" | "signup" | "login" | "newReading" | "profile" | "settings"
+  ) => void;
 }
 
 const NewReading: React.FC<NewReadingProps> = ({ onNavigate }) => {

@@ -4,7 +4,9 @@ import LoginSection from "../../components/LoginSection/LoginSection";
 import "./Login.css";
 
 interface LoginProps {
-  onNavigate: (page: "home" | "signup" | "login" | "newReading") => void;
+  onNavigate: (
+    page: "home" | "signup" | "login" | "newReading" | "profile" | "settings"
+  ) => void;
 }
 
 const Login: React.FC<LoginProps> = ({ onNavigate }) => {

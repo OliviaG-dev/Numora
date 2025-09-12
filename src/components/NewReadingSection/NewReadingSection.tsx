@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import "./NewReadingSection.css";
 
 interface NewReadingSectionProps {
-  onNavigate: (page: "home" | "signup" | "login" | "newReading") => void;
+  onNavigate: (
+    page: "home" | "signup" | "login" | "newReading" | "profile" | "settings"
+  ) => void;
 }
 
 const NewReadingSection: React.FC<NewReadingSectionProps> = ({
@@ -363,18 +365,7 @@ const NewReadingSection: React.FC<NewReadingSectionProps> = ({
               <span className="button-text">
                 {isLoading ? "Création en cours..." : "Créer la lecture"}
               </span>
-              <span className="button-emoji">🔮</span>
             </button>
-
-            <div className="new-reading-footer">
-              <button
-                className="back-button"
-                onClick={() => onNavigate("home")}
-                type="button"
-              >
-                ← Retour à l'accueil
-              </button>
-            </div>
           </form>
         </div>
       </div>

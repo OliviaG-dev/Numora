@@ -2,7 +2,9 @@ import React from "react";
 import "./HeroSection.css";
 
 interface HeroSectionProps {
-  onNavigate: (page: "home" | "signup" | "login" | "newReading") => void;
+  onNavigate: (
+    page: "home" | "signup" | "login" | "newReading" | "profile" | "settings"
+  ) => void;
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
@@ -142,8 +144,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
       </div>
 
       <div className="hero-content">
-        <h1 className="hero-title">
-          <span className="hero-emoji">🌌</span>
+        <h1 className="hero-title">       
           Numora
         </h1>
         <p className="hero-subtitle">Chaque nombre raconte ton histoire.</p>

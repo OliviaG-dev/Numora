@@ -3,13 +3,17 @@ import Home from "./pages/Home/Home";
 import Signup from "./pages/Signup/Signup";
 import Login from "./pages/Login/Login";
 import NewReading from "./pages/NewReading/NewReading";
+import Profile from "./pages/Profile/Profile";
+import Settings from "./pages/Settings/Settings";
 
 function App() {
   const [currentPage, setCurrentPage] = useState<
-    "home" | "signup" | "login" | "newReading"
+    "home" | "signup" | "login" | "newReading" | "profile" | "settings"
   >("home");
 
-  const navigateToPage = (page: "home" | "signup" | "login" | "newReading") => {
+  const navigateToPage = (
+    page: "home" | "signup" | "login" | "newReading" | "profile" | "settings"
+  ) => {
     setCurrentPage(page);
   };
 
@@ -21,6 +25,8 @@ function App() {
       {currentPage === "newReading" && (
         <NewReading onNavigate={navigateToPage} />
       )}
+      {currentPage === "profile" && <Profile onNavigate={navigateToPage} />}
+      {currentPage === "settings" && <Settings onNavigate={navigateToPage} />}
     </>
   );
 }
