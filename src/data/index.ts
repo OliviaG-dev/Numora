@@ -1,8 +1,10 @@
 // Export des données numérologiques
 import lifePathData from "./numerology/LifePathData.json";
 import expressionData from "./numerology/ExpressionNumberData.json";
+import challengeData from "./numerology/ChallengeData.json";
 
-export { lifePathData, expressionData };
+// Exports principaux
+export { lifePathData, expressionData, challengeData };
 
 // Alias pour compatibilité
 export { lifePathData as numbersData };
@@ -35,6 +37,16 @@ export interface ExpressionDetail {
   mission: string;
 }
 
+export interface ChallengeData {
+  [key: string]: ChallengeDetail;
+}
+
+export interface ChallengeDetail {
+  description: string;
+}
+
 // Alias pour les types (compatibilité)
 export type ExpressionNumberData = ExpressionData;
 export type ExpressionNumberDetail = ExpressionDetail;
+export type ChallengeNumbersData = ChallengeData;
+export type ChallengeNumberDetail = ChallengeDetail;

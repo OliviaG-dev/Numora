@@ -2,11 +2,11 @@
 
 ## 📖 Guide de Numérologie
 
-- **[Guide de Numérologie](./numerology-guide.md)** - Explication complète des concepts numérologiques, différences entre Chemin de Vie et Nombre d'Expression
+- **[Guide de Numérologie](./numerology-guide.md)** - Explication complète des 6 calculs numérologiques principaux avec exemples et applications pratiques
 
 ## 🔧 Documentation Technique
 
-- **[API Documentation](./numerology-api.md)** - Documentation technique des fonctions de calcul numérologique
+- **[API Documentation](./numerology-api.md)** - Documentation technique complète des 6 fonctions de calcul numérologique avec intégration des données JSON
 
 ## 🎯 Utilisation
 
@@ -14,19 +14,23 @@
 
 Consultez le [Guide de Numérologie](./numerology-guide.md) pour comprendre :
 
-- Qu'est-ce que le Chemin de Vie
-- Qu'est-ce que le Nombre d'Expression
-- Les différences entre les deux
-- Comment interpréter vos résultats
+- **🛤️ Chemin de Vie** - Mission de vie et destinée
+- **🎭 Nombre d'Expression** - Talents et potentiel
+- **💫 Nombre de l'Âme** - Motivations profondes
+- **🎭 Nombre de Personnalité** - Image extérieure
+- **🎂 Jour de Naissance** - Talents naturels
+- **⚔️ Nombres de Défi** - Leçons de vie par périodes
+- Comment interpréter vos résultats complets
 
 ### Pour les Développeurs
 
 Consultez l'[API Documentation](./numerology-api.md) pour :
 
-- Utiliser les fonctions de calcul
-- Comprendre la logique de calcul
-- Gérer les erreurs
-- Intégrer avec les données
+- Utiliser les 6 fonctions de calcul numérologique
+- Comprendre la logique de calcul pour chaque nombre
+- Gérer les erreurs et validation
+- Intégrer avec les données JSON (LifePathData, ExpressionData, ChallengeData)
+- Utiliser les descriptions enrichies des défis
 
 ## 🔮 Concepts Clés
 
@@ -69,16 +73,23 @@ Résultat : 9 (L'Humaniste)
 import {
   calculateLifePathNumber,
   calculateExpressionNumber,
+  calculateSoulUrgeNumber,
+  calculatePersonalityNumber,
+  calculateBirthdayNumber,
+  calculateChallengeNumbers,
 } from "../utils/numerology";
-import { lifePathData, expressionData } from "../data";
+import { lifePathData, expressionData, challengeData } from "../data";
 
-// Calculer
+// Calculer tous les nombres
 const lifePath = calculateLifePathNumber("1990-03-15");
 const expression = calculateExpressionNumber("Marie Dupont");
+const soulUrge = calculateSoulUrgeNumber("Marie Dupont");
+const challenges = calculateChallengeNumbers(15, 3, 1990);
 
-// Récupérer les informations
+// Récupérer les informations (descriptions de défis automatiquement enrichies)
 const lifePathInfo = lifePathData[lifePath.toString()];
 const expressionInfo = expressionData[expression.toString()];
+const challengeInfo = challengeData[challenges.fourth.number.toString()];
 ```
 
 ---
