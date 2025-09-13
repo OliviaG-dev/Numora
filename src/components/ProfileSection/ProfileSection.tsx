@@ -38,21 +38,9 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ onNavigate }) => {
       <div className="profile-container">
         <div className="profile-header">
           <h1>Mon Profil</h1>
-          <button className="edit-btn" onClick={() => setIsEditing(!isEditing)}>
-            {isEditing ? "Annuler" : "Modifier"}
-          </button>
         </div>
 
         <div className="profile-content">
-          <div className="profile-avatar">
-            <div className="avatar-placeholder">
-              <span>{profileData.name.charAt(0)}</span>
-            </div>
-            {isEditing && (
-              <button className="change-avatar-btn">Changer la photo</button>
-            )}
-          </div>
-
           <div className="profile-form">
             <div className="form-group">
               <label htmlFor="name">Nom complet</label>
@@ -133,24 +121,18 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ onNavigate }) => {
                 rows={4}
               />
             </div>
-
-            {isEditing && (
-              <div className="form-actions">
-                <button className="save-btn" onClick={handleSave}>
-                  Sauvegarder
-                </button>
-              </div>
-            )}
           </div>
         </div>
 
         <div className="profile-actions">
-          <button
-            className="settings-btn"
-            onClick={() => onNavigate("settings")}
-          >
-            Paramètres
+          <button className="edit-btn" onClick={() => setIsEditing(!isEditing)}>
+            {isEditing ? "Annuler" : "Modifier"}
           </button>
+          {isEditing && (
+            <button className="save-btn" onClick={handleSave}>
+              Sauvegarder
+            </button>
+          )}
         </div>
       </div>
     </div>
@@ -158,4 +140,3 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ onNavigate }) => {
 };
 
 export default ProfileSection;
-

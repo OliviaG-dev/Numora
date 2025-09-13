@@ -72,7 +72,7 @@ const LoginSection: React.FC<LoginSectionProps> = ({ onNavigate }) => {
 
         // Redirection vers l'accueil après connexion
         onNavigate("home");
-      } catch (error) {
+      } catch {
         setErrors({ general: "Erreur de connexion. Veuillez réessayer." });
       } finally {
         setIsLoading(false);
@@ -102,7 +102,7 @@ const LoginSection: React.FC<LoginSectionProps> = ({ onNavigate }) => {
       );
       setShowForgotPassword(false);
       setForgotPasswordEmail("");
-    } catch (error) {
+    } catch {
       setErrors({ forgotPassword: "Erreur lors de l'envoi de l'email" });
     } finally {
       setIsLoading(false);
@@ -112,32 +112,6 @@ const LoginSection: React.FC<LoginSectionProps> = ({ onNavigate }) => {
   if (showForgotPassword) {
     return (
       <section className="login">
-        {/* Background numérologique */}
-        <div className="numerology-bg">
-          <div className="numerology-pattern numerology-large">1</div>
-          <div className="numerology-pattern numerology-medium">7</div>
-          <div className="numerology-pattern numerology-small">3</div>
-          <div className="numerology-pattern numerology-large numerology-rotated">
-            9
-          </div>
-          <div className="numerology-pattern numerology-medium numerology-tilted">
-            5
-          </div>
-          <div className="numerology-pattern numerology-small numerology-rotated">
-            2
-          </div>
-          <div className="numerology-pattern numerology-medium numerology-tilted">
-            8
-          </div>
-          <div className="numerology-pattern numerology-small">1</div>
-          <div className="numerology-pattern numerology-large numerology-rotated">
-            6
-          </div>
-          <div className="numerology-pattern numerology-medium numerology-tilted">
-            7
-          </div>
-        </div>
-
         <div className="login-content">
           <div className="login-header">
             <h1 className="login-title">Mot de passe oublié</h1>
@@ -196,32 +170,6 @@ const LoginSection: React.FC<LoginSectionProps> = ({ onNavigate }) => {
 
   return (
     <section className="login">
-      {/* Background numérologique */}
-      <div className="numerology-bg">
-        <div className="numerology-pattern numerology-large">1</div>
-        <div className="numerology-pattern numerology-medium">7</div>
-        <div className="numerology-pattern numerology-small">3</div>
-        <div className="numerology-pattern numerology-large numerology-rotated">
-          9
-        </div>
-        <div className="numerology-pattern numerology-medium numerology-tilted">
-          5
-        </div>
-        <div className="numerology-pattern numerology-small numerology-rotated">
-          2
-        </div>
-        <div className="numerology-pattern numerology-medium numerology-tilted">
-          8
-        </div>
-        <div className="numerology-pattern numerology-small">1</div>
-        <div className="numerology-pattern numerology-large numerology-rotated">
-          6
-        </div>
-        <div className="numerology-pattern numerology-medium numerology-tilted">
-          7
-        </div>
-      </div>
-
       <div className="login-content">
         <div className="login-header">
           <h1 className="login-title">Bienvenue dans Numora</h1>

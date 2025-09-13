@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../../components/Header/Header";
 import SettingsSection from "../../components/SettingsSection/SettingsSection";
+import NumerologyBackground from "../../components/NumerologyBackground/NumerologyBackground";
 import "./Settings.css";
 
 interface SettingsProps {
@@ -19,6 +20,7 @@ interface SettingsProps {
 const Settings: React.FC<SettingsProps> = ({ onNavigate }) => {
   return (
     <div className="settings-page">
+      <NumerologyBackground />
       <Header onNavigate={onNavigate} />
       <SettingsSection onNavigate={onNavigate} />
     </div>

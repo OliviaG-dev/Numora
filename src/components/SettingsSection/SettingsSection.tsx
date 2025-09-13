@@ -49,9 +49,6 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({ onNavigate }) => {
       <div className="settings-container">
         <div className="settings-header">
           <h1>Mes Paramètres</h1>
-          <button className="save-settings-btn" onClick={handleSaveSettings}>
-            Sauvegarder
-          </button>
         </div>
 
         <div className="settings-content">
@@ -144,8 +141,8 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({ onNavigate }) => {
         </div>
 
         <div className="settings-actions">
-          <button className="profile-btn" onClick={() => onNavigate("profile")}>
-            Mon Profil
+          <button className="save-settings-btn" onClick={handleSaveSettings}>
+            Sauvegarder
           </button>
         </div>
       </div>

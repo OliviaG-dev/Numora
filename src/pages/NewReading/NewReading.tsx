@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../../components/Header/Header";
 import NewReadingSection from "../../components/NewReadingSection/NewReadingSection";
+import NumerologyBackground from "../../components/NumerologyBackground/NumerologyBackground";
 import "./NewReading.css";
 
 interface NewReadingProps {
@@ -19,6 +20,7 @@ interface NewReadingProps {
 const NewReading: React.FC<NewReadingProps> = ({ onNavigate }) => {
   return (
     <div className="new-reading-page">
+      <NumerologyBackground />
       <Header onNavigate={onNavigate} />
       <NewReadingSection onNavigate={onNavigate} />
     </div>

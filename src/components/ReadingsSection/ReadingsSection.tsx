@@ -109,8 +109,6 @@ const ReadingsSection: React.FC<ReadingsSectionProps> = ({ onNavigate }) => {
 
   return (
     <div className="readings-section">
-      <div className="numerology-grid"></div>
-
       <div className="readings-container">
         <div className="readings-header">
           <h1 className="readings-title">Mes Lectures</h1>
