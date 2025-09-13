@@ -1,0 +1,98 @@
+{
+    "1": {
+      "title": "L’Initiateur",
+      "keywords": ["Indépendance", "Leadership", "Innovation"],
+      "description": "Le nombre d’Expression 1 révèle une personnalité forte, indépendante et pionnière. Vous êtes fait pour être un leader, un innovateur, et inspirer les autres en prenant des initiatives. Vos talents naturels résident dans l’originalité, la détermination et la capacité à tracer votre propre chemin. Les personnes portant cette vibration ressentent souvent l’appel à créer quelque chose de nouveau ou à se démarquer dans leur domaine.",
+      "strengths": "Volonté, créativité, courage, capacité à inspirer et diriger.",
+      "challenges": "Impatience, égoïsme, entêtement ou tendances autoritaires.",
+      "mission": "Apprendre à diriger sans dominer les autres et utiliser votre indépendance comme une force constructive."
+    },
+    "2": {
+      "title": "Le Diplomate",
+      "keywords": ["Coopération", "Sensibilité", "Harmonie"],
+      "description": "Le nombre d’Expression 2 indique une âme qui s’épanouit dans l’harmonie, la coopération et le partenariat. Vous possédez un talent naturel pour la diplomatie, la médiation et la création d’équilibre dans vos relations. Vous vous exprimez le mieux dans les environnements collaboratifs et sensibles aux besoins des autres.",
+      "strengths": "Gentillesse, patience, intuition, diplomatie, intelligence émotionnelle.",
+      "challenges": "Timidité, indécision, peur des conflits, dépendance aux autres.",
+      "mission": "Exprimer votre sensibilité comme une force, collaborer sans vous perdre et apporter la paix tout en affirmant votre voix."
+    },
+    "3": {
+      "title": "Le Créatif",
+      "keywords": ["Expression", "Joie", "Communication"],
+      "description": "Le nombre d’Expression 3 reflète une personnalité expressive, joyeuse et artistique. Vous êtes doué pour la communication, que ce soit par les mots, l’art ou la performance. Votre rôle est d’inspirer les autres grâce à votre créativité, votre optimisme et votre enthousiasme. Votre charisme attire naturellement les gens.",
+      "strengths": "Charisme, créativité, optimisme, sociabilité, talents artistiques.",
+      "challenges": "Superficialité, dispersion, évitement des responsabilités.",
+      "mission": "Canaliser vos talents expressifs pour créer de manière durable et inspirer avec votre voix unique."
+    },
+    "4": {
+      "title": "Le Bâtisseur",
+      "keywords": ["Stabilité", "Discipline", "Structure"],
+      "description": "Le nombre d’Expression 4 révèle une personnalité ancrée dans la discipline, la responsabilité et le pragmatisme. Vous êtes un organisateur né et un travailleur rigoureux, destiné à construire des bases solides. Les autres comptent sur votre persévérance et votre capacité à transformer les idées en réalités concrètes.",
+      "strengths": "Fiabilité, persévérance, sens du devoir, organisation.",
+      "challenges": "Rigidité, pessimisme, obsession de la routine, peur du changement.",
+      "mission": "Créer stabilité et sécurité tout en apprenant la flexibilité, et utiliser votre discipline pour faire grandir vos projets."
+    },
+    "5": {
+      "title": "L’Aventurier",
+      "keywords": ["Liberté", "Changement", "Polyvalence"],
+      "description": "Le nombre d’Expression 5 symbolise la liberté, la curiosité et l’adaptabilité. Vous êtes avide de découvertes et de nouveautés, et vous avez un besoin profond de mouvement et de diversité. Votre talent réside dans votre capacité à vous adapter et à motiver les autres à embrasser le changement.",
+      "strengths": "Adaptabilité, enthousiasme, communication, ouverture d’esprit, courage.",
+      "challenges": "Instabilité, impulsivité, excès, difficulté à s’engager.",
+      "mission": "Utiliser votre soif de liberté comme un moteur de croissance, sans disperser votre énergie ou perdre votre cap."
+    },
+    "6": {
+      "title": "Le Protecteur",
+      "keywords": ["Responsabilité", "Amour", "Harmonie"],
+      "description": "Le nombre d’Expression 6 montre une forte sensibilité aux responsabilités et au service des autres. Vous êtes naturellement tourné vers la famille, l’amour, la justice et l’équilibre. Vous cherchez à créer un environnement chaleureux et harmonieux autour de vous.",
+      "strengths": "Bienveillance, loyauté, sens du devoir, générosité.",
+      "challenges": "Sacrifice excessif, perfectionnisme, besoin de contrôler.",
+      "mission": "Apprendre à protéger et à aimer sans vous oublier, et équilibrer service aux autres et respect de vous-même."
+    },
+    "7": {
+      "title": "Le Sage",
+      "keywords": ["Introspection", "Connaissance", "Spiritualité"],
+      "description": "Le nombre d’Expression 7 est lié à l’analyse, la réflexion et la quête de vérité. Vous possédez une grande intuition et un esprit profond, attiré par la philosophie, la recherche ou la spiritualité. Vous cherchez à comprendre le sens caché des choses et à partager cette sagesse.",
+      "strengths": "Sagesse, esprit analytique, intuition, profondeur.",
+      "challenges": "Isolement, froideur émotionnelle, scepticisme excessif.",
+      "mission": "Partager vos connaissances sans vous couper des autres et unir la logique à l’intuition pour évoluer harmonieusement."
+    },
+    "8": {
+      "title": "Le Stratège",
+      "keywords": ["Pouvoir", "Succès", "Ambition"],
+      "description": "Le nombre d’Expression 8 reflète une ambition puissante et une aptitude naturelle à diriger et réussir. Vous êtes attiré par la gestion, les affaires ou toute forme de pouvoir matériel et organisationnel. Votre talent réside dans votre capacité à concrétiser vos objectifs et à inspirer confiance.",
+      "strengths": "Leadership, efficacité, endurance, sens de la gestion.",
+      "challenges": "Obsession du succès, autoritarisme, rigidité.",
+      "mission": "Utiliser votre pouvoir et votre réussite au service du bien collectif, et non uniquement pour des objectifs personnels."
+    },
+    "9": {
+      "title": "L’Humaniste",
+      "keywords": ["Générosité", "Idéalisme", "Compassion"],
+      "description": "Le nombre d’Expression 9 traduit une personnalité tournée vers l’altruisme, l’art et l’universel. Vous êtes porté par l’idée de servir l’humanité, de partager et d’apporter inspiration. Votre expression se fait souvent par la créativité et l’aide aux autres.",
+      "strengths": "Compassion, créativité, ouverture d’esprit, humanisme.",
+      "challenges": "Désillusion, excès d’émotions, tendance au sacrifice.",
+      "mission": "Incarner la générosité et la sagesse tout en apprenant à poser des limites pour préserver votre équilibre personnel."
+    },
+    "11": {
+      "title": "Le Visionnaire Spirituel",
+      "keywords": ["Intuition", "Inspiration", "Éveil"],
+      "description": "Le nombre d’Expression 11 est un maître nombre lié à une énergie spirituelle très élevée. Vous êtes appelé à éveiller, enseigner ou guider par votre inspiration et votre intuition exceptionnelles. Votre magnétisme attire et élève ceux qui croisent votre chemin.",
+      "strengths": "Grande intuition, créativité inspirée, rayonnement spirituel.",
+      "challenges": "Nervosité, instabilité émotionnelle, difficultés à canaliser votre énergie.",
+      "mission": "Canaliser votre énergie spirituelle pour devenir une source de lumière et d’inspiration pour les autres."
+    },
+    "22": {
+      "title": "Le Maître Bâtisseur",
+      "keywords": ["Vision", "Concrétisation", "Ambition universelle"],
+      "description": "Le nombre d’Expression 22 est le maître nombre du bâtisseur. Vous possédez une vision claire et la capacité rare de la concrétiser dans la matière. Vous êtes destiné à réaliser de grands projets qui touchent durablement les autres et contribuent à un objectif collectif.",
+      "strengths": "Organisation, vision, puissance de réalisation.",
+      "challenges": "Pression, perfectionnisme, peur de l’échec.",
+      "mission": "Construire des projets d’envergure au service du bien commun, tout en respectant vos propres limites personnelles."
+    },
+    "33": {
+      "title": "Le Maître Guérisseur",
+      "keywords": ["Compassion", "Altruisme", "Amour universel"],
+      "description": "Le nombre d’Expression 33 traduit une énergie d’amour inconditionnel et de guérison. Vous êtes un guide et un enseignant spirituel, attiré par le service et le soutien aux autres. Votre force est d’inspirer par l’exemple et d’apporter réconfort par votre présence.",
+      "strengths": "Compassion, générosité, capacité à apaiser et inspirer.",
+      "challenges": "Sacrifice de soi, excès de responsabilités, idéalisme excessif.",
+      "mission": "Aimer et guider sans vous perdre, et canaliser votre don de guérison au service du monde."
+    }
+}
