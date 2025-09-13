@@ -1,10 +1,10 @@
 import React from "react";
 import Header from "../../components/Header/Header";
-import HeroSection from "../../components/HeroSection/HeroSection";
+import SettingsSection from "../../components/SettingsSection/SettingsSection";
 import NumerologyBackground from "../../components/NumerologyBackground/NumerologyBackground";
-import "./Home.css";
+import "./Settings.css";
 
-interface HomeProps {
+interface SettingsProps {
   onNavigate: (
     page:
       | "home"
@@ -17,14 +17,14 @@ interface HomeProps {
   ) => void;
 }
 
-const Home: React.FC<HomeProps> = ({ onNavigate }) => {
+const Settings: React.FC<SettingsProps> = ({ onNavigate }) => {
   return (
-    <div className="home">
+    <div className="settings-page">
       <NumerologyBackground />
       <Header onNavigate={onNavigate} />
-      <HeroSection onNavigate={onNavigate} />
+      <SettingsSection onNavigate={onNavigate} />
     </div>
   );
 };
 
-export default Home;
+export default Settings;

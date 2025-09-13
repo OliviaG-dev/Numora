@@ -2,7 +2,16 @@ import React, { useState } from "react";
 import "./Header.css";
 
 interface HeaderProps {
-  onNavigate: (page: "home" | "signup" | "login" | "newReading") => void;
+  onNavigate: (
+    page:
+      | "home"
+      | "signup"
+      | "login"
+      | "newReading"
+      | "profile"
+      | "settings"
+      | "readings"
+  ) => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
@@ -42,6 +51,18 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
     onNavigate("newReading");
   };
 
+  const handleProfile = () => {
+    onNavigate("profile");
+  };
+
+  const handleSettings = () => {
+    onNavigate("settings");
+  };
+
+  const handleReadings = () => {
+    onNavigate("readings");
+  };
+
   return (
     <header className="header">
       <div className="header-container">
@@ -51,7 +72,11 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
           onClick={handleHome}
           style={{ cursor: "pointer" }}
         >
-          <span className="logo-icon">🌌</span>
+          <img
+            src="/src/assets/logo.png"
+            alt="Numora Logo"
+            className="logo-icon"
+          />
           <span className="logo-text">Numora</span>
         </div>
 
@@ -69,7 +94,14 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
               >
                 Accueil
               </a>
-              <a href="#lectures" className="nav-link">
+              <a
+                href="#"
+                className="nav-link"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleReadings();
+                }}
+              >
                 Mes Lectures
               </a>
               <a
@@ -89,10 +121,24 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                   <span className="dropdown-arrow">▼</span>
                 </button>
                 <div className="user-dropdown">
-                  <a href="#profil" className="dropdown-link">
+                  <a
+                    href="#profil"
+                    className="dropdown-link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleProfile();
+                    }}
+                  >
                     Mon Profil
                   </a>
-                  <a href="#parametres" className="dropdown-link">
+                  <a
+                    href="#parametres"
+                    className="dropdown-link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleSettings();
+                    }}
+                  >
                     Paramètres
                   </a>
                   <a
@@ -152,9 +198,13 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                 Accueil
               </a>
               <a
-                href="#lectures"
+                href="#"
                 className="mobile-nav-link"
-                onClick={toggleMenu}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleReadings();
+                  toggleMenu();
+                }}
               >
                 Mes Lectures
               </a>
@@ -172,14 +222,22 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
               <a
                 href="#profil"
                 className="mobile-nav-link"
-                onClick={toggleMenu}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleProfile();
+                  toggleMenu();
+                }}
               >
                 Mon Profil
               </a>
               <a
                 href="#parametres"
                 className="mobile-nav-link"
-                onClick={toggleMenu}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleSettings();
+                  toggleMenu();
+                }}
               >
                 Paramètres
               </a>

@@ -1,8 +1,9 @@
-.new-reading-page {
+.readings-page {
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
   z-index: 1;
   padding-top: 70px; /* Espace pour le header fixe */
+  box-sizing: border-box;
 }

@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import "./SignupSection.css";
 
 interface SignupSectionProps {
-  onNavigate: (page: "home" | "signup" | "login" | "newReading") => void;
+  onNavigate: (
+    page: "home" | "signup" | "login" | "newReading" | "profile" | "settings"
+  ) => void;
 }
 
 const SignupSection: React.FC<SignupSectionProps> = ({ onNavigate }) => {
@@ -86,62 +88,9 @@ const SignupSection: React.FC<SignupSectionProps> = ({ onNavigate }) => {
 
   return (
     <section className="signup">
-      {/* Background numérologique */}
-      <div className="numerology-bg">
-        <div className="numerology-pattern numerology-large">1</div>
-        <div className="numerology-pattern numerology-medium">7</div>
-        <div className="numerology-pattern numerology-small">3</div>
-        <div className="numerology-pattern numerology-large numerology-rotated">
-          9
-        </div>
-        <div className="numerology-pattern numerology-medium numerology-tilted">
-          5
-        </div>
-        <div className="numerology-pattern numerology-small numerology-rotated">
-          2
-        </div>
-        <div className="numerology-pattern numerology-medium numerology-tilted">
-          8
-        </div>
-        <div className="numerology-pattern numerology-small">1</div>
-        <div className="numerology-pattern numerology-large numerology-rotated">
-          6
-        </div>
-        <div className="numerology-pattern numerology-medium numerology-tilted">
-          7
-        </div>
-        <div className="numerology-pattern numerology-small numerology-rotated">
-          1
-        </div>
-        <div className="numerology-pattern numerology-medium">3</div>
-        <div className="numerology-pattern numerology-small numerology-tilted">
-          7
-        </div>
-        <div className="numerology-pattern numerology-large numerology-rotated">
-          5
-        </div>
-        <div className="numerology-pattern numerology-medium numerology-tilted">
-          9
-        </div>
-        <div className="numerology-pattern numerology-small">2</div>
-        <div className="numerology-pattern numerology-large numerology-rotated">
-          1
-        </div>
-        <div className="numerology-pattern numerology-medium numerology-tilted">
-          8
-        </div>
-        <div className="numerology-pattern numerology-small numerology-rotated">
-          6
-        </div>
-        <div className="numerology-pattern numerology-medium">3</div>
-      </div>
-
       <div className="signup-content">
         <div className="signup-header">
-          <h1 className="signup-title">
-            <span className="signup-emoji">🌌</span>
-            Rejoins l'univers Numora
-          </h1>
+          <h1 className="signup-title">Rejoins l'univers Numora</h1>
           <p className="signup-subtitle">
             Découvre les secrets de ta personnalité à travers les nombres
           </p>
@@ -286,23 +235,19 @@ const SignupSection: React.FC<SignupSectionProps> = ({ onNavigate }) => {
 
             <button type="submit" className="signup-button">
               <span className="button-text">Créer mon compte</span>
-              <span className="button-emoji">✨</span>
             </button>
 
             <div className="signup-footer">
               <p>
                 Déjà un compte ?{" "}
-                <a href="#" className="link">
+                <button
+                  type="button"
+                  className="link"
+                  onClick={() => onNavigate("login")}
+                >
                   Se connecter
-                </a>
+                </button>
               </p>
-              <button
-                className="back-button"
-                onClick={() => onNavigate("home")}
-                type="button"
-              >
-                ← Retour à l'accueil
-              </button>
             </div>
           </form>
         </div>
