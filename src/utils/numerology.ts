@@ -39,9 +39,14 @@ export function calculateExpressionNumber(fullName: string): number {
     throw new Error("Le nom ne peut pas être vide");
   }
 
+  // Normalisation des caractères accentués
+  const normalizedName = fullName
+    .normalize("NFD") // Décompose les caractères accentués
+    .replace(/[\u0300-\u036f]/g, "") // Supprime les diacritiques
+    .toUpperCase();
+
   // Conversion du nom en chiffres
-  const nameDigits = fullName
-    .toUpperCase()
+  const nameDigits = normalizedName
     .replace(/[^A-Z]/g, "") // Supprimer tout sauf les lettres
     .split("")
     .map((letter) => getLetterValue(letter))
@@ -133,9 +138,14 @@ export function calculateSoulUrgeNumber(fullName: string): number {
     throw new Error("Le nom ne peut pas être vide");
   }
 
+  // Normalisation des caractères accentués
+  const normalizedName = fullName
+    .normalize("NFD") // Décompose les caractères accentués
+    .replace(/[\u0300-\u036f]/g, "") // Supprime les diacritiques
+    .toUpperCase();
+
   // Extraction des voyelles
-  const vowels = fullName
-    .toUpperCase()
+  const vowels = normalizedName
     .replace(/[^AEIOU]/g, "") // Garder seulement les voyelles
     .split("")
     .map((letter) => getLetterValue(letter))
@@ -159,9 +169,14 @@ export function calculatePersonalityNumber(fullName: string): number {
     throw new Error("Le nom ne peut pas être vide");
   }
 
+  // Normalisation des caractères accentués
+  const normalizedName = fullName
+    .normalize("NFD") // Décompose les caractères accentués
+    .replace(/[\u0300-\u036f]/g, "") // Supprime les diacritiques
+    .toUpperCase();
+
   // Extraction des consonnes
-  const consonants = fullName
-    .toUpperCase()
+  const consonants = normalizedName
     .replace(/[AEIOU]/g, "") // Supprimer les voyelles
     .replace(/[^A-Z]/g, "") // Supprimer tout sauf les lettres
     .split("")
@@ -231,25 +246,19 @@ export function calculateChallengeNumbers(
   return {
     first: {
       number: numbers[0],
-      description: `Défi de jeunesse (0-30 ans): ${getChallengeDescription(
-        numbers[0]
-      )}`,
+      description: `${getChallengeDescription(numbers[0])}`,
     },
     second: {
       number: numbers[1],
-      description: `Défi de maturité (30-60 ans): ${getChallengeDescription(
-        numbers[1]
-      )}`,
+      description: `${getChallengeDescription(numbers[1])}`,
     },
     third: {
       number: numbers[2],
-      description: `Défi de sagesse (60+ ans): ${getChallengeDescription(
-        numbers[2]
-      )}`,
+      description: `${getChallengeDescription(numbers[2])}`,
     },
     fourth: {
       number: numbers[3],
-      description: `Défi principal: ${getChallengeDescription(numbers[3])}`,
+      description: `${getChallengeDescription(numbers[3])}`,
     },
   };
 }

@@ -1,5 +1,7 @@
 import React from "react";
+import Header from "../../components/Header/Header";
 import ReadingDetailSection from "../../components/ReadingDetailSection/ReadingDetailSection";
+import NumerologyBackground from "../../components/NumerologyBackground/NumerologyBackground";
 
 interface ReadingData {
   readingName: string;
@@ -33,7 +35,11 @@ const ReadingDetail: React.FC<ReadingDetailProps> = ({
   readingData,
 }) => {
   return (
-    <ReadingDetailSection onNavigate={onNavigate} readingData={readingData} />
+    <div className="reading-detail-page">
+      <NumerologyBackground />
+      <Header onNavigate={onNavigate} />
+      <ReadingDetailSection onNavigate={onNavigate} readingData={readingData} />
+    </div>
   );
 };
 

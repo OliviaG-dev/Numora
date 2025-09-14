@@ -171,9 +171,6 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
   return (
     <div className="reading-detail">
       <div className="reading-detail-header">
-        <button onClick={() => onNavigate("readings")} className="back-button">
-          ← Retour aux lectures
-        </button>
         <h1 className="reading-title">
           {readingData?.readingName || "Lecture Numérologique"}
         </h1>
@@ -304,78 +301,88 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
           )}
         </section>
 
-        {/* Nombre de l'Âme */}
-        <section className="numerology-section soul-urge">
-          <div className="section-header">
-            <h2>Nombre de l'Âme</h2>
-            <div className="number-badge soul-badge">
-              {numerologyResults.soulUrge.number}
-            </div>
-          </div>
-          {numerologyResults.soulUrge.info && (
-            <div className="section-content">
-              <p className="description">
-                Vos motivations profondes et vos désirs intérieurs
-              </p>
-              <div className="keywords">
-                {numerologyResults.soulUrge.info.map(
-                  (keyword: string, index: number) => (
-                    <span key={index} className="keyword-tag">
-                      {keyword}
-                    </span>
-                  )
-                )}
+        {/* Nombres Personnels */}
+        <section className="numerology-section personal-numbers">
+          <h2>Nombres Personnels</h2>
+          <div className="personal-numbers-grid">
+            {/* Nombre de l'Âme */}
+            <div className="personal-number-card soul-urge">
+              <div className="section-header">
+                <h3>Nombre de l'Âme</h3>
+                <div className="number-badge soul-badge">
+                  {numerologyResults.soulUrge.number}
+                </div>
               </div>
+              {numerologyResults.soulUrge.info && (
+                <div className="section-content">
+                  <p className="description">
+                    Vos motivations profondes et vos désirs intérieurs
+                  </p>
+                  <div className="keywords">
+                    {numerologyResults.soulUrge.info.map(
+                      (keyword: string, index: number) => (
+                        <span key={index} className="keyword-tag">
+                          {keyword}
+                        </span>
+                      )
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
-          )}
-        </section>
 
-        {/* Nombre de Personnalité */}
-        <section className="numerology-section personality">
-          <div className="section-header">
-            <h2>Nombre de Personnalité</h2>
-            <div className="number-badge personality-badge">
-              {numerologyResults.personality.number}
-            </div>
-          </div>
-          {numerologyResults.personality.info && (
-            <div className="section-content">
-              <p className="description">Comment vous apparaissez aux autres</p>
-              <div className="keywords">
-                {numerologyResults.personality.info.map(
-                  (keyword: string, index: number) => (
-                    <span key={index} className="keyword-tag">
-                      {keyword}
-                    </span>
-                  )
-                )}
+            {/* Nombre de Personnalité */}
+            <div className="personal-number-card personality">
+              <div className="section-header">
+                <h3>Nombre de Personnalité</h3>
+                <div className="number-badge personality-badge">
+                  {numerologyResults.personality.number}
+                </div>
               </div>
+              {numerologyResults.personality.info && (
+                <div className="section-content">
+                  <p className="description">
+                    Comment vous apparaissez aux autres
+                  </p>
+                  <div className="keywords">
+                    {numerologyResults.personality.info.map(
+                      (keyword: string, index: number) => (
+                        <span key={index} className="keyword-tag">
+                          {keyword}
+                        </span>
+                      )
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
-          )}
-        </section>
 
-        {/* Nombre du Jour */}
-        <section className="numerology-section birthday">
-          <div className="section-header">
-            <h2>Nombre du Jour</h2>
-            <div className="number-badge birthday-badge">
-              {numerologyResults.birthday.number}
+            {/* Nombre du Jour */}
+            <div className="personal-number-card birthday">
+              <div className="section-header">
+                <h3>Nombre du Jour</h3>
+                <div className="number-badge birthday-badge">
+                  {numerologyResults.birthday.number}
+                </div>
+              </div>
+              {numerologyResults.birthday.info && (
+                <div className="section-content">
+                  <p className="description">
+                    Vos talents naturels et capacités
+                  </p>
+                  <div className="keywords">
+                    {numerologyResults.birthday.info.map(
+                      (keyword: string, index: number) => (
+                        <span key={index} className="keyword-tag">
+                          {keyword}
+                        </span>
+                      )
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
-          {numerologyResults.birthday.info && (
-            <div className="section-content">
-              <p className="description">Vos talents naturels et capacités</p>
-              <div className="keywords">
-                {numerologyResults.birthday.info.map(
-                  (keyword: string, index: number) => (
-                    <span key={index} className="keyword-tag">
-                      {keyword}
-                    </span>
-                  )
-                )}
-              </div>
-            </div>
-          )}
         </section>
 
         {/* Nombres de Défi */}
@@ -383,28 +390,40 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
           <h2>Nombres de Défi</h2>
           <div className="challenges-grid">
             <div className="challenge-card">
-              <h3>Défi de jeunesse</h3>
+              <h3>
+                <span className="challenge-title">Défi de jeunesse</span>
+                <span className="challenge-period">(0-30 ans)</span>
+              </h3>
               <div className="number-badge challenge-badge">
                 {numerologyResults.challenges.first.number}
               </div>
               <p>{numerologyResults.challenges.first.description}</p>
             </div>
             <div className="challenge-card">
-              <h3>Défi de maturité</h3>
+              <h3>
+                <span className="challenge-title">Défi de maturité</span>
+                <span className="challenge-period">(31-60 ans)</span>
+              </h3>
               <div className="number-badge challenge-badge">
                 {numerologyResults.challenges.second.number}
               </div>
               <p>{numerologyResults.challenges.second.description}</p>
             </div>
             <div className="challenge-card">
-              <h3>Défi de sagesse</h3>
+              <h3>
+                <span className="challenge-title">Défi de sagesse</span>
+                <span className="challenge-period">(61+ ans)</span>
+              </h3>
               <div className="number-badge challenge-badge">
                 {numerologyResults.challenges.third.number}
               </div>
               <p>{numerologyResults.challenges.third.description}</p>
             </div>
             <div className="challenge-card">
-              <h3>Défi principal</h3>
+              <h3>
+                <span className="challenge-title">Défi principal</span>
+                <span className="challenge-period">(toute la vie)</span>
+              </h3>
               <div className="number-badge challenge-badge">
                 {numerologyResults.challenges.fourth.number}
               </div>
