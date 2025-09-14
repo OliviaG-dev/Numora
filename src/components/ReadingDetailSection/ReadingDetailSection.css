@@ -1,0 +1,362 @@
+/* ReadingDetailSection.css */
+.reading-detail {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem;
+  color: #333;
+}
+
+/* Header */
+.reading-detail-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.back-button {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--primary-purple-light);
+  transform: translateX(-5px);
+}
+
+.reading-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 0.5rem 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.reading-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+/* Content */
+.reading-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Personal Info Section */
+.personal-info-section {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.personal-info-section h2 {
+  color: #4a5568;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.info-label {
+  font-weight: 600;
+  color: #718096;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-value {
+  color: #2d3748;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+/* Numerology Sections */
+.numerology-section {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease;
+}
+
+.numerology-section:hover {
+  transform: translateY(-5px);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.section-header h2 {
+  color: #4a5568;
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+/* Number Badges */
+.number-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.life-path-badge {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.expression-badge {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.soul-badge {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.personality-badge {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.birthday-badge {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+.challenge-badge {
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+  color: #4a5568;
+}
+
+/* Section Content */
+.section-content h3 {
+  color: #2d3748;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.description {
+  color: #4a5568;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+/* Keywords */
+.keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.keyword-tag {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Details Grid */
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.detail-item h4 {
+  color: #2d3748;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.detail-item p {
+  color: #4a5568;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Challenges Section */
+.challenges h2 {
+  color: #4a5568;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.challenges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.challenge-card {
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.challenge-card:hover {
+  background: rgba(255, 255, 255, 0.8);
+  transform: translateY(-3px);
+}
+
+.challenge-card h3 {
+  color: #4a5568;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.challenge-card p {
+  color: #718096;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Actions */
+.reading-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+}
+
+/* Loading */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  color: white;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Error */
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  color: white;
+  text-align: center;
+}
+
+.error-container h2 {
+  margin-bottom: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .reading-detail {
+    padding: 1rem;
+  }
+
+  .reading-title {
+    font-size: 2rem;
+  }
+
+  .back-button {
+    position: relative;
+    margin-bottom: 1rem;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .challenges-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .reading-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+}

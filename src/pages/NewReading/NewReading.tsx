@@ -4,6 +4,17 @@ import NewReadingSection from "../../components/NewReadingSection/NewReadingSect
 import NumerologyBackground from "../../components/NumerologyBackground/NumerologyBackground";
 import "./NewReading.css";
 
+interface ReadingData {
+  readingName: string;
+  category: string;
+  firstGivenName: string;
+  secondGivenName: string;
+  thirdGivenName: string;
+  familyName: string;
+  birthDate: string;
+  birthTime: string;
+}
+
 interface NewReadingProps {
   onNavigate: (
     page:
@@ -14,6 +25,8 @@ interface NewReadingProps {
       | "profile"
       | "settings"
       | "readings"
+      | "readingDetail",
+    readingData?: ReadingData
   ) => void;
 }
 

@@ -2,13 +2,26 @@
 import lifePathData from "./numerology/LifePathData.json";
 import expressionData from "./numerology/ExpressionNumberData.json";
 import challengeData from "./numerology/ChallengeData.json";
+import soulUrgeData from "./numerology/SoulUrgeData.json";
+import personalityData from "./numerology/PersonalityData.json";
+import birthdayData from "./numerology/BirthdayData.json";
 
 // Exports principaux
-export { lifePathData, expressionData, challengeData };
+export {
+  lifePathData,
+  expressionData,
+  challengeData,
+  soulUrgeData,
+  personalityData,
+  birthdayData,
+};
 
 // Alias pour compatibilité
 export { lifePathData as numbersData };
 export { expressionData as expressionNumberData };
+export { soulUrgeData as soulUrgeNumberData };
+export { personalityData as personalityNumberData };
+export { birthdayData as birthdayNumberData };
 
 // Types TypeScript pour les données
 export interface LifePathData {
@@ -43,6 +56,18 @@ export interface ChallengeData {
 
 export interface ChallengeDetail {
   description: string;
+}
+
+export interface SoulUrgeData {
+  [key: string]: string[];
+}
+
+export interface PersonalityData {
+  [key: string]: string[];
+}
+
+export interface BirthdayData {
+  [key: string]: string[];
 }
 
 // Alias pour les types (compatibilité)
