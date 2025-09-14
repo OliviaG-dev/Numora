@@ -264,13 +264,6 @@ const LoginSection: React.FC<LoginSectionProps> = ({ onNavigate }) => {
                   S'inscrire
                 </button>
               </p>
-              <button
-                className="back-button"
-                onClick={() => onNavigate("home")}
-                type="button"
-              >
-                ← Retour à l'accueil
-              </button>
             </div>
           </form>
         </div>

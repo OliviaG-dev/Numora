@@ -1,8 +1,7 @@
 import React from "react";
 import Header from "../../components/Header/Header";
-import NewReadingSection from "../../components/NewReadingSection/NewReadingSection";
+import ReadingDetailSection from "../../components/ReadingDetailSection/ReadingDetailSection";
 import NumerologyBackground from "../../components/NumerologyBackground/NumerologyBackground";
-import "./NewReading.css";
 
 interface ReadingData {
   readingName: string;
@@ -15,7 +14,7 @@ interface ReadingData {
   birthTime: string;
 }
 
-interface NewReadingProps {
+interface ReadingDetailProps {
   onNavigate: (
     page:
       | "home"
@@ -28,16 +27,20 @@ interface NewReadingProps {
       | "readingDetail",
     readingData?: ReadingData
   ) => void;
+  readingData?: ReadingData;
 }
 
-const NewReading: React.FC<NewReadingProps> = ({ onNavigate }) => {
+const ReadingDetail: React.FC<ReadingDetailProps> = ({
+  onNavigate,
+  readingData,
+}) => {
   return (
-    <div className="new-reading-page">
+    <div className="reading-detail-page">
       <NumerologyBackground />
       <Header onNavigate={onNavigate} />
-      <NewReadingSection onNavigate={onNavigate} />
+      <ReadingDetailSection onNavigate={onNavigate} readingData={readingData} />
     </div>
   );
 };
 
-export default NewReading;
+export default ReadingDetail;

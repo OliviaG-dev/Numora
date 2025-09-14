@@ -1,15 +1,38 @@
 import React, { useState } from "react";
 import "./NewReadingSection.css";
 
+interface ReadingData {
+  readingName: string;
+  category: string;
+  firstGivenName: string;
+  secondGivenName: string;
+  thirdGivenName: string;
+  familyName: string;
+  birthDate: string;
+  birthTime: string;
+}
+
 interface NewReadingSectionProps {
   onNavigate: (
-    page: "home" | "signup" | "login" | "newReading" | "profile" | "settings"
+    page:
+      | "home"
+      | "signup"
+      | "login"
+      | "newReading"
+      | "profile"
+      | "settings"
+      | "readings"
+      | "readingDetail",
+    readingData?: ReadingData
   ) => void;
 }
 
 const NewReadingSection: React.FC<NewReadingSectionProps> = ({
   onNavigate,
 }) => {
+  // Simulation de l'état de connexion (à remplacer par votre logique d'authentification)
+  const [isLoggedIn] = useState(false); // Changez à true pour tester l'état connecté
+
   const [formData, setFormData] = useState({
     // Informations de la lecture
     readingName: "",
@@ -54,8 +77,8 @@ const NewReadingSection: React.FC<NewReadingSectionProps> = ({
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
 
-    // Validation des informations de la lecture
-    if (!formData.readingName.trim()) {
+    // Validation des informations de la lecture (seulement si connecté)
+    if (isLoggedIn && !formData.readingName.trim()) {
       newErrors.readingName = "Le nom de la lecture est requis";
     }
 
@@ -89,12 +112,9 @@ const NewReadingSection: React.FC<NewReadingSectionProps> = ({
         await new Promise((resolve) => setTimeout(resolve, 2000));
 
         console.log("Données de lecture numérologique:", formData);
-        alert(
-          "Lecture numérologique créée avec succès ! 🔮✨\n\nVotre analyse personnalisée est en cours de génération..."
-        );
 
-        // Redirection vers l'accueil après création
-        onNavigate("home");
+        // Redirection vers la page de détail de la lecture avec les données
+        onNavigate("readingDetail", formData);
       } catch {
         setErrors({
           general:
@@ -125,50 +145,72 @@ const NewReadingSection: React.FC<NewReadingSectionProps> = ({
               </div>
             )}
 
-            <div className="form-section">
-              <h3 className="form-section-title">Informations de la lecture</h3>
+            {isLoggedIn ? (
+              <div className="form-section">
+                <h3 className="form-section-title">
+                  Informations de la lecture
+                </h3>
 
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="readingName" className="form-label">
-                    Nom de la lecture *
-                  </label>
-                  <input
-                    type="text"
-                    id="readingName"
-                    name="readingName"
-                    value={formData.readingName}
-                    onChange={handleInputChange}
-                    className={`form-input ${
-                      errors.readingName ? "error" : ""
-                    }`}
-                    placeholder="Ex: Lecture de Marie, Analyse de Jean..."
-                  />
-                  {errors.readingName && (
-                    <span className="error-message">{errors.readingName}</span>
-                  )}
-                </div>
+                <div className="form-row">
+                  <div className="form-group">
+                    <label htmlFor="readingName" className="form-label">
+                      Nom de la lecture *
+                    </label>
+                    <input
+                      type="text"
+                      id="readingName"
+                      name="readingName"
+                      value={formData.readingName}
+                      onChange={handleInputChange}
+                      className={`form-input ${
+                        errors.readingName ? "error" : ""
+                      }`}
+                      placeholder="Ex: Lecture de Marie, Analyse de Jean..."
+                    />
+                    {errors.readingName && (
+                      <span className="error-message">
+                        {errors.readingName}
+                      </span>
+                    )}
+                  </div>
 
-                <div className="form-group">
-                  <label htmlFor="category" className="form-label">
-                    Catégorie *
-                  </label>
-                  <select
-                    id="category"
-                    name="category"
-                    value={formData.category}
-                    onChange={handleInputChange}
-                    className="form-input"
-                  >
-                    <option value="personnelle">Personnelle</option>
-                    <option value="amie">Amie</option>
-                    <option value="connaissance">Connaissance</option>
-                    <option value="famille">Famille</option>
-                    <option value="collegue">Collègue</option>
-                  </select>
+                  <div className="form-group">
+                    <label htmlFor="category" className="form-label">
+                      Catégorie *
+                    </label>
+                    <select
+                      id="category"
+                      name="category"
+                      value={formData.category}
+                      onChange={handleInputChange}
+                      className="form-input"
+                    >
+                      <option value="personnelle">Personnelle</option>
+                      <option value="amie">Amie</option>
+                      <option value="connaissance">Connaissance</option>
+                      <option value="famille">Famille</option>
+                      <option value="collegue">Collègue</option>
+                    </select>
+                  </div>
                 </div>
               </div>
-            </div>
+            ) : (
+              <div className="form-section auth-warning">
+                <div className="warning-content">
+                  <p className="warning-message">
+                    Pour garder vos lectures sous la main et accéder à toutes
+                    les fonctionnalités,{" "}
+                    <span
+                      className="highlight-text"
+                      onClick={() => onNavigate("login")}
+                    >
+                      connectez-vous
+                    </span>
+                    .
+                  </p>
+                </div>
+              </div>
+            )}
 
             <div className="form-section">
               <h3 className="form-section-title">Données numérologiques</h3>

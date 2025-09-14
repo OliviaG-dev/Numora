@@ -6,6 +6,18 @@ import NewReading from "./pages/NewReading/NewReading";
 import Profile from "./pages/Profile/Profile";
 import Settings from "./pages/Settings/Settings";
 import Readings from "./pages/Readings/Readings";
+import ReadingDetail from "./pages/ReadingDetail/ReadingDetail";
+
+interface ReadingData {
+  readingName: string;
+  category: string;
+  firstGivenName: string;
+  secondGivenName: string;
+  thirdGivenName: string;
+  familyName: string;
+  birthDate: string;
+  birthTime: string;
+}
 
 function App() {
   const [currentPage, setCurrentPage] = useState<
@@ -16,7 +28,11 @@ function App() {
     | "profile"
     | "settings"
     | "readings"
+    | "readingDetail"
   >("home");
+
+  const [currentReadingData, setCurrentReadingData] =
+    useState<ReadingData | null>(null);
 
   const navigateToPage = (
     page:
@@ -27,8 +43,13 @@ function App() {
       | "profile"
       | "settings"
       | "readings"
+      | "readingDetail",
+    readingData?: ReadingData
   ) => {
     setCurrentPage(page);
+    if (readingData) {
+      setCurrentReadingData(readingData);
+    }
   };
 
   return (
@@ -42,6 +63,12 @@ function App() {
       {currentPage === "profile" && <Profile onNavigate={navigateToPage} />}
       {currentPage === "settings" && <Settings onNavigate={navigateToPage} />}
       {currentPage === "readings" && <Readings onNavigate={navigateToPage} />}
+      {currentPage === "readingDetail" && (
+        <ReadingDetail
+          onNavigate={navigateToPage}
+          readingData={currentReadingData}
+        />
+      )}
     </>
   );
 }
