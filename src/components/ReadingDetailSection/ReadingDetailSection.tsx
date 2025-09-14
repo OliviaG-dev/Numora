@@ -222,7 +222,26 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
         {/* Chemin de Vie */}
         <section className="numerology-section life-path">
           <div className="section-header">
-            <h2>Chemin de Vie</h2>
+            <div className="title-with-tooltip">
+              <h2>Chemin de Vie</h2>
+              <div className="tooltip">
+                <span className="tooltip-icon">ℹ️</span>
+                <div className="tooltip-content">
+                  <p>
+                    Le chemin de vie est le chiffre central en numérologie qui
+                    révèle la mission principale de ton existence.
+                  </p>
+                  <p>
+                    Il indique les forces à développer, les défis à surmonter et
+                    les leçons de vie que ton âme est venue expérimenter.
+                  </p>
+                  <p>
+                    C'est comme une boussole intérieure qui guide tes choix et
+                    ton évolution tout au long de ta vie.
+                  </p>
+                </div>
+              </div>
+            </div>
             <div className="number-badge life-path-badge">
               {numerologyResults.lifePath.number}
             </div>
@@ -263,7 +282,26 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
         {/* Nombre d'Expression */}
         <section className="numerology-section expression">
           <div className="section-header">
-            <h2>Nombre d'Expression</h2>
+            <div className="title-with-tooltip">
+              <h2>Nombre d'Expression</h2>
+              <div className="tooltip">
+                <span className="tooltip-icon">ℹ️</span>
+                <div className="tooltip-content">
+                  <p>
+                    Le nombre d'expression révèle tes talents naturels et tes
+                    capacités innées.
+                  </p>
+                  <p>
+                    Il indique comment tu t'exprimes dans le monde, tes dons
+                    créatifs et tes aptitudes professionnelles.
+                  </p>
+                  <p>
+                    C'est la façon dont tu utilises tes compétences pour
+                    accomplir ta mission de vie.
+                  </p>
+                </div>
+              </div>
+            </div>
             <div className="number-badge expression-badge">
               {numerologyResults.expression.number}
             </div>
@@ -308,7 +346,26 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
             {/* Nombre de l'Âme */}
             <div className="personal-number-card soul-urge">
               <div className="section-header">
-                <h3>Nombre de l'Âme</h3>
+                <div className="title-with-tooltip">
+                  <h3>Nombre de l'Âme</h3>
+                  <div className="tooltip">
+                    <span className="tooltip-icon">ℹ️</span>
+                    <div className="tooltip-content">
+                      <p>
+                        Le nombre de l'âme révèle tes motivations profondes et
+                        tes désirs intérieurs.
+                      </p>
+                      <p>
+                        Il indique ce qui te pousse vraiment à agir, tes
+                        aspirations secrètes et tes besoins spirituels.
+                      </p>
+                      <p>
+                        C'est la voix de ton âme qui guide tes choix les plus
+                        authentiques.
+                      </p>
+                    </div>
+                  </div>
+                </div>
                 <div className="number-badge soul-badge">
                   {numerologyResults.soulUrge.number}
                 </div>
@@ -334,7 +391,26 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
             {/* Nombre de Personnalité */}
             <div className="personal-number-card personality">
               <div className="section-header">
-                <h3>Nombre de Personnalité</h3>
+                <div className="title-with-tooltip">
+                  <h3>Nombre de Personnalité</h3>
+                  <div className="tooltip">
+                    <span className="tooltip-icon">ℹ️</span>
+                    <div className="tooltip-content">
+                      <p>
+                        Le nombre de personnalité révèle comment tu apparais aux
+                        autres.
+                      </p>
+                      <p>
+                        Il indique l'image que tu projettes, ton style de
+                        communication et ton charisme naturel.
+                      </p>
+                      <p>
+                        C'est la façade que tu présentes au monde et qui
+                        influence les premières impressions.
+                      </p>
+                    </div>
+                  </div>
+                </div>
                 <div className="number-badge personality-badge">
                   {numerologyResults.personality.number}
                 </div>
@@ -360,7 +436,26 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
             {/* Nombre du Jour */}
             <div className="personal-number-card birthday">
               <div className="section-header">
-                <h3>Nombre du Jour</h3>
+                <div className="title-with-tooltip">
+                  <h3>Nombre du Jour</h3>
+                  <div className="tooltip">
+                    <span className="tooltip-icon">ℹ️</span>
+                    <div className="tooltip-content">
+                      <p>
+                        Le nombre du jour révèle tes talents naturels et tes
+                        capacités innées.
+                      </p>
+                      <p>
+                        Il indique tes dons particuliers, tes aptitudes
+                        spéciales et tes compétences naturelles.
+                      </p>
+                      <p>
+                        C'est l'énergie créative que tu portes en toi depuis ta
+                        naissance.
+                      </p>
+                    </div>
+                  </div>
+                </div>
                 <div className="number-badge birthday-badge">
                   {numerologyResults.birthday.number}
                 </div>
@@ -387,7 +482,26 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
 
         {/* Nombres de Défi */}
         <section className="numerology-section challenges">
-          <h2>Nombres de Défi</h2>
+          <div className="title-with-tooltip">
+            <h2>Nombres de Défi</h2>
+            <div className="tooltip">
+              <span className="tooltip-icon">ℹ️</span>
+              <div className="tooltip-content">
+                <p>
+                  Les nombres de défi révèlent les obstacles et les leçons que
+                  tu dois surmonter.
+                </p>
+                <p>
+                  Ils indiquent les défis spécifiques à chaque période de ta vie
+                  et les compétences à développer.
+                </p>
+                <p>
+                  C'est un guide pour transformer tes difficultés en forces et
+                  grandir spirituellement.
+                </p>
+              </div>
+            </div>
+          </div>
           <div className="challenges-grid">
             <div className="challenge-card">
               <h3>
