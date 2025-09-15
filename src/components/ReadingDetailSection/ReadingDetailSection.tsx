@@ -48,6 +48,27 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
   onNavigate,
   readingData,
 }) => {
+  // État pour vérifier si l'utilisateur est connecté
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Vérifier l'état de connexion au chargement du composant
+  useEffect(() => {
+    // Vérifier si l'utilisateur est connecté (exemple avec localStorage)
+    const checkAuthStatus = () => {
+      const userToken = localStorage.getItem("userToken");
+      const isAuthenticated = userToken !== null && userToken !== "";
+      setIsLoggedIn(isAuthenticated);
+    };
+
+    checkAuthStatus();
+
+    // Écouter les changements d'état de connexion
+    window.addEventListener("storage", checkAuthStatus);
+
+    return () => {
+      window.removeEventListener("storage", checkAuthStatus);
+    };
+  }, []);
   const [numerologyResults, setNumerologyResults] = useState<{
     lifePath: { number: number; info: LifePathDetail | undefined };
     expression: { number: number; info: ExpressionDetail | undefined };
@@ -225,7 +246,31 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
             <div className="title-with-tooltip">
               <h2>Chemin de Vie</h2>
               <div className="tooltip">
-                <span className="tooltip-icon">ℹ️</span>
+                <span className="tooltip-icon">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      fill="none"
+                    />
+                    <path
+                      d="M12 16V12"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                    <circle cx="12" cy="8" r="1" fill="currentColor" />
+                  </svg>
+                </span>
                 <div className="tooltip-content">
                   <p>
                     Le chemin de vie est le chiffre central en numérologie qui
@@ -285,7 +330,31 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
             <div className="title-with-tooltip">
               <h2>Nombre d'Expression</h2>
               <div className="tooltip">
-                <span className="tooltip-icon">ℹ️</span>
+                <span className="tooltip-icon">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      fill="none"
+                    />
+                    <path
+                      d="M12 16V12"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                    <circle cx="12" cy="8" r="1" fill="currentColor" />
+                  </svg>
+                </span>
                 <div className="tooltip-content">
                   <p>
                     Le nombre d'expression révèle tes talents naturels et tes
@@ -349,7 +418,31 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
                 <div className="title-with-tooltip">
                   <h3>Nombre de l'Âme</h3>
                   <div className="tooltip">
-                    <span className="tooltip-icon">ℹ️</span>
+                    <span className="tooltip-icon">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <circle
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          fill="none"
+                        />
+                        <path
+                          d="M12 16V12"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                        />
+                        <circle cx="12" cy="8" r="1" fill="currentColor" />
+                      </svg>
+                    </span>
                     <div className="tooltip-content">
                       <p>
                         Le nombre de l'âme révèle tes motivations profondes et
@@ -394,7 +487,31 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
                 <div className="title-with-tooltip">
                   <h3>Nombre de Personnalité</h3>
                   <div className="tooltip">
-                    <span className="tooltip-icon">ℹ️</span>
+                    <span className="tooltip-icon">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <circle
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          fill="none"
+                        />
+                        <path
+                          d="M12 16V12"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                        />
+                        <circle cx="12" cy="8" r="1" fill="currentColor" />
+                      </svg>
+                    </span>
                     <div className="tooltip-content">
                       <p>
                         Le nombre de personnalité révèle comment tu apparais aux
@@ -439,7 +556,31 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
                 <div className="title-with-tooltip">
                   <h3>Nombre du Jour</h3>
                   <div className="tooltip">
-                    <span className="tooltip-icon">ℹ️</span>
+                    <span className="tooltip-icon">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <circle
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          fill="none"
+                        />
+                        <path
+                          d="M12 16V12"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                        />
+                        <circle cx="12" cy="8" r="1" fill="currentColor" />
+                      </svg>
+                    </span>
                     <div className="tooltip-content">
                       <p>
                         Le nombre du jour révèle tes talents naturels et tes
@@ -485,7 +626,31 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
           <div className="title-with-tooltip">
             <h2>Nombres de Défi</h2>
             <div className="tooltip">
-              <span className="tooltip-icon">ℹ️</span>
+              <span className="tooltip-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <path
+                    d="M12 16V12"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                  <circle cx="12" cy="8" r="1" fill="currentColor" />
+                </svg>
+              </span>
               <div className="tooltip-content">
                 <p>
                   Les nombres de défi révèlent les obstacles et les leçons que
@@ -548,12 +713,14 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
       </div>
 
       <div className="reading-actions">
-        <button
-          onClick={() => onNavigate("readings")}
-          className="btn-secondary"
-        >
-          Retour aux lectures
-        </button>
+        {isLoggedIn && (
+          <button
+            onClick={() => onNavigate("readings")}
+            className="btn-secondary"
+          >
+            Retour aux lectures
+          </button>
+        )}
         <button
           onClick={() => onNavigate("newReading")}
           className="btn-primary"

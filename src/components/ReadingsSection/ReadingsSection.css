@@ -29,7 +29,6 @@
 }
 
 .readings-title {
-  font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
   background: var(--gradient-primary);
   -webkit-background-clip: text;
