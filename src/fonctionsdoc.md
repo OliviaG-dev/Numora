@@ -5,11 +5,35 @@
 ```
 src/
 ├── components/          # Composants React
+│   ├── Header/         # En-tête de navigation
+│   ├── HeroSection/    # Section d'accueil
+│   ├── LoginSection/   # Formulaire de connexion
+│   ├── SignupSection/  # Formulaire d'inscription
+│   ├── NewReadingSection/ # Création de nouvelles lectures
+│   ├── ReadingDetailSection/ # Affichage détaillé des lectures
+│   ├── ReadingsSection/ # Liste des lectures
+│   ├── ProfileSection/ # Profil utilisateur
+│   ├── SettingsSection/ # Paramètres
+│   └── NumerologyBackground/ # Arrière-plan numérologique
 ├── pages/              # Pages de l'application
+│   ├── Home/           # Page d'accueil
+│   ├── Login/          # Page de connexion
+│   ├── Signup/         # Page d'inscription
+│   ├── NewReading/     # Page de création de lecture
+│   ├── ReadingDetail/  # Page de détail de lecture
+│   ├── Readings/       # Page des lectures
+│   ├── Profile/        # Page de profil
+│   └── Settings/       # Page des paramètres
 ├── utils/              # Fonctions utilitaires
 │   └── numerology.ts   # Calculs numérologiques
 ├── data/               # Données JSON
 │   ├── numerology/     # Données numérologiques
+│   │   ├── LifePathData.json
+│   │   ├── ExpressionNumberData.json
+│   │   ├── ChallengeData.json
+│   │   ├── SoulUrgeData.json
+│   │   ├── PersonalityData.json
+│   │   └── BirthdayData.json
 │   └── index.ts        # Exports centralisés
 ├── docs/               # Documentation
 │   ├── numerology-guide.md    # Guide utilisateur
@@ -37,7 +61,7 @@ const lifePath = calculateLifePathNumber("1990-03-15"); // Retourne 1
 
 ### `calculateExpressionNumber(fullName: string): number`
 
-Calcule le Nombre d'Expression à partir du nom complet.
+Calcule le Nombre d'Expression à partir du nom complet. **Mise à jour :** Normalise automatiquement les caractères accentués.
 
 **Exemple :**
 
@@ -45,7 +69,89 @@ Calcule le Nombre d'Expression à partir du nom complet.
 import { calculateExpressionNumber } from "./utils/numerology";
 
 const expression = calculateExpressionNumber("Marie Dupont"); // Retourne 9
+const expression2 = calculateExpressionNumber("Marie Désiré"); // Même résultat que "Marie Desire"
 ```
+
+### `calculateSoulUrgeNumber(fullName: string): number`
+
+Calcule le Nombre de l'Âme (voyelles du nom complet).
+
+**Exemple :**
+
+```typescript
+import { calculateSoulUrgeNumber } from "./utils/numerology";
+
+const soulUrge = calculateSoulUrgeNumber("Marie Dupont"); // Retourne 5
+```
+
+### `calculatePersonalityNumber(fullName: string): number`
+
+Calcule le Nombre de Personnalité (consonnes du nom complet).
+
+**Exemple :**
+
+```typescript
+import { calculatePersonalityNumber } from "./utils/numerology";
+
+const personality = calculatePersonalityNumber("Marie Dupont"); // Retourne 4
+```
+
+### `calculateBirthdayNumber(day: number): number`
+
+Calcule le Nombre du Jour de Naissance.
+
+**Exemple :**
+
+```typescript
+import { calculateBirthdayNumber } from "./utils/numerology";
+
+const birthday = calculateBirthdayNumber(15); // Retourne 6
+```
+
+### `calculateChallengeNumbers(day: number, month: number, year: number): ChallengeNumbersResult`
+
+Calcule les quatre nombres de défi (jeunesse, maturité, sagesse, principal).
+
+**Exemple :**
+
+```typescript
+import { calculateChallengeNumbers } from "./utils/numerology";
+
+const challenges = calculateChallengeNumbers(15, 3, 1990);
+// Retourne { first: {...}, second: {...}, third: {...}, fourth: {...} }
+```
+
+## 🎨 Composants Principaux
+
+### `ReadingDetailSection`
+
+Composant principal pour l'affichage détaillé des lectures numérologiques.
+
+**Fonctionnalités :**
+
+- Affichage des informations personnelles
+- Calculs automatiques de tous les nombres
+- Tooltips explicatifs pour chaque section
+- Design responsive et harmonieux
+- Animations et effets visuels
+
+**Sections incluses :**
+
+- Chemin de Vie (avec tooltip)
+- Nombre d'Expression (avec tooltip)
+- Nombres Personnels (Âme, Personnalité, Jour)
+- Nombres de Défi (avec tooltips)
+
+### `NewReadingSection`
+
+Composant pour la création de nouvelles lectures.
+
+**Fonctionnalités :**
+
+- Formulaire de saisie des données
+- Validation des champs
+- Gestion des états de connexion
+- Messages d'avertissement pour les utilisateurs non connectés
 
 ## 📊 Données Disponibles
 
@@ -95,6 +201,41 @@ console.log(`Expression ${expression}: ${expressionInfo.title}`);
 - **[API Documentation](./docs/numerology-api.md)** - Documentation technique
 - **[Exemples d'Utilisation](./examples/README.md)** - Exemples pratiques
 
+## 🆕 Nouvelles Fonctionnalités
+
+### Normalisation des Caractères Accentués
+
+**Problème résolu :** Les caractères accentués (é, è, à, etc.) sont maintenant normalisés automatiquement dans tous les calculs numérologiques.
+
+**Impact :** "Désiré" et "desire" donnent maintenant le même résultat.
+
+### Tooltips Explicatifs
+
+**Ajouté :** Des tooltips informatifs pour toutes les sections principales :
+
+- Chemin de Vie
+- Nombre d'Expression
+- Nombres Personnels (Âme, Personnalité, Jour)
+- Nombres de Défi
+
+### Design Harmonisé
+
+**Améliorations :**
+
+- Layout horizontal pour les Nombres Personnels
+- Cartes de défis avec design cohérent
+- Couleurs harmonisées (doré, violet, ambre)
+- Suppression des effets hover pour un design plus sobre
+
+### Page ReadingDetail
+
+**Nouvelle page :** Affichage complet des lectures numérologiques avec :
+
+- Informations personnelles
+- Tous les calculs numérologiques
+- Design responsive et élégant
+- Navigation fluide
+
 ## 🧪 Tests
 
 ```typescript
@@ -131,6 +272,25 @@ interface ExpressionNumberDetail {
   strengths: string;
   challenges: string;
   mission: string;
+}
+
+interface SoulUrgeData {
+  [key: string]: string[];
+}
+
+interface PersonalityData {
+  [key: string]: string[];
+}
+
+interface BirthdayData {
+  [key: string]: string[];
+}
+
+interface ChallengeNumbersResult {
+  first: { number: number; description: string };
+  second: { number: number; description: string };
+  third: { number: number; description: string };
+  fourth: { number: number; description: string };
 }
 ```
 

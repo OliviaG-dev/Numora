@@ -146,7 +146,7 @@ const ReadingsSection: React.FC<ReadingsSectionProps> = ({ onNavigate }) => {
         {filteredReadings.length === 0 ? (
           <div className="empty-state">
             <div className="empty-icon">📊</div>
-            <h3>Aucune lecture pour le moment</h3>
+            <span>Aucune lecture pour le moment</span>
             <p>
               Commencez votre voyage numérologique en créant votre première
               lecture.
@@ -171,7 +171,7 @@ const ReadingsSection: React.FC<ReadingsSectionProps> = ({ onNavigate }) => {
                     {reading.type}
                   </div>
                 </div>
-                <h3 className="reading-title">{reading.title}</h3>
+                <span className="reading-title">{reading.title}</span>
                 <div className="reading-actions">
                   <button className="view-more-btn">Voir plus</button>
                   <button className="delete-btn">Supprimer</button>

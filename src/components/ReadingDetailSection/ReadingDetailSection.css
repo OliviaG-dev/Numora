@@ -123,6 +123,8 @@
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
   border: 1px solid var(--bg-tertiary);
   transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
 }
 
 .numerology-section:hover {
@@ -144,6 +146,117 @@
   font-size: 1.8rem;
   font-weight: 700;
   text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+}
+
+/* Tooltip Styles */
+.title-with-tooltip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: help;
+  z-index: 99998;
+}
+
+.tooltip-icon {
+  font-size: 1.2rem;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-purple-light);
+}
+
+.tooltip:hover .tooltip-icon {
+  opacity: 1;
+  color: var(--secondary-gold);
+  transform: scale(1.1);
+}
+
+.tooltip-content {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  z-index: 99999;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--primary-purple);
+  backdrop-filter: blur(20px);
+  width: 300px;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Centrage vertical pour les tooltips des sections principales */
+.challenges .title-with-tooltip,
+.expression .title-with-tooltip,
+.life-path .title-with-tooltip,
+.life-cycles .title-with-tooltip,
+.realization-periods .title-with-tooltip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.challenges .title-with-tooltip h2,
+.expression .title-with-tooltip h2,
+.life-path .title-with-tooltip h2,
+.life-cycles .title-with-tooltip h2,
+.realization-periods .title-with-tooltip h2 {
+  margin: 0;
+  line-height: 1;
+}
+
+.challenges .tooltip-icon,
+.expression .tooltip-icon,
+.life-path .tooltip-icon,
+.life-cycles .tooltip-icon,
+.realization-periods .tooltip-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.8rem;
+  width: 1.8rem;
+  font-size: 1.2rem;
+}
+
+.tooltip-content::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--primary-purple) transparent transparent transparent;
+}
+
+.tooltip:hover .tooltip-content {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.tooltip-content p {
+  margin: 0 0 0.5rem 0;
+  color: var(--text-primary);
+}
+
+.tooltip-content p:last-child {
+  margin-bottom: 0;
 }
 
 /* Number Badges */
@@ -182,8 +295,8 @@
 }
 
 .challenge-badge {
-  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
-  color: #4a5568;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
   margin: 1rem auto;
 }
 
@@ -254,12 +367,6 @@
   border: 1px solid var(--bg-tertiary);
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
-}
-
-.personal-number-card:hover {
-  background: var(--bg-primary);
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 .personal-number-card .section-header {
@@ -342,25 +449,41 @@
   text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
 }
 
+/* Life Cycles Section */
+.life-cycles h2 {
+  color: var(--primary-purple);
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+}
+
+/* Realization Periods Section */
+.realization-periods h2 {
+  color: var(--primary-purple);
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+}
+
 .challenges-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
+  margin-top: 2rem;
 }
 
 .challenge-card {
-  text-align: center;
+  background: rgba(139, 92, 246, 0.1);
+  border-radius: 12px;
   padding: 1.5rem;
-  background: var(--bg-primary);
-  border-radius: 15px;
-  border: 1px solid var(--bg-tertiary);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--primary-purple);
+  border-left: 4px solid var(--primary-purple);
   transition: all 0.3s ease;
-}
-
-.challenge-card:hover {
-  background: var(--bg-secondary);
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  text-align: center;
 }
 
 .challenge-card h3 {
@@ -371,7 +494,7 @@
 }
 
 .challenge-title {
-  color: #7c3aed;
+  color: var(--secondary-gold);
   font-weight: 800;
   font-size: 1.1rem;
   display: block;
@@ -379,18 +502,17 @@
 }
 
 .challenge-period {
-  color: var(--secondary-gold);
+  color: #f59e0b;
   font-weight: 600;
   font-size: 0.9rem;
   opacity: 0.8;
 }
 
 .challenge-card p {
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-  line-height: 1.5;
+  color: var(--text-primary);
+  line-height: 1.6;
   margin: 0;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 /* Actions */
@@ -457,6 +579,130 @@
   margin-bottom: 1rem;
 }
 
+/* Cycles de Vie */
+.life-cycles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.cycle-card {
+  background: rgba(139, 92, 246, 0.1);
+  border-radius: 15px;
+  padding: 1.5rem;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.cycle-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+.cycle-title {
+  display: block;
+  color: var(--secondary-gold);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.cycle-period {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.cycle-badge {
+  background: var(--gradient-primary);
+  color: white;
+  margin: 1rem auto;
+}
+
+.cycle-summary {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  border-left: 4px solid var(--secondary-gold);
+}
+
+.cycle-details {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* Périodes de Réalisation */
+.realization-periods-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.period-card {
+  background: rgba(245, 158, 11, 0.1);
+  border-radius: 15px;
+  padding: 1.5rem;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.period-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(245, 158, 11, 0.2);
+  border-color: rgba(245, 158, 11, 0.5);
+}
+
+.period-title {
+  display: block;
+  color: var(--secondary-gold);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.period-duration {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.period-badge {
+  background: var(--gradient-secondary);
+  color: var(--bg-primary);
+  margin: 1rem auto;
+}
+
+.period-summary {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  padding: 0.8rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  border-left: 4px solid var(--secondary-gold);
+}
+
+.period-details {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .reading-detail {
@@ -485,6 +731,12 @@
     gap: 0.5rem;
   }
 
+  .tooltip-content {
+    width: 250px;
+    font-size: 0.85rem;
+    padding: 0.8rem;
+  }
+
   .info-grid {
     grid-template-columns: 1fr;
   }
@@ -495,6 +747,31 @@
 
   .challenges-grid {
     grid-template-columns: 1fr;
+  }
+
+  .life-cycles-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .realization-periods-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .cycle-card,
+  .period-card {
+    padding: 1rem;
+  }
+
+  .cycle-title,
+  .period-title {
+    font-size: 1.1rem;
+  }
+
+  .cycle-period,
+  .period-duration {
+    font-size: 0.8rem;
   }
 
   .reading-actions {

@@ -1,4 +1,12 @@
 /**
+ * @fileoverview Utilitaires pour les calculs numérologiques
+ * Ce fichier contient toutes les fonctions nécessaires pour calculer les différents nombres en numérologie
+ */
+
+// Import des données de défi
+import challengeData from "../data/numerology/ChallengeData.json";
+
+/**
  * Calcule le Chemin de Vie en numérologie
  * @param dateString - Date de naissance au format "YYYY-MM-DD"
  * @returns Le nombre du Chemin de Vie (1-9, 11, 22, ou 33)
@@ -263,9 +271,6 @@ export function calculateChallengeNumbers(
   };
 }
 
-// Import des données de défi
-import challengeData from "../data/numerology/ChallengeData.json";
-
 /**
  * Fonction utilitaire pour obtenir la description d'un défi
  * @param challengeNumber - Numéro du défi (1-9)
@@ -275,4 +280,62 @@ function getChallengeDescription(challengeNumber: number): string {
   const challengeInfo =
     challengeData[challengeNumber.toString() as keyof typeof challengeData];
   return challengeInfo?.description || "Défi inconnu";
+}
+
+/**
+ * Calcule les cycles de vie numérologiques
+ * @param day - Jour de naissance
+ * @param month - Mois de naissance
+ * @param year - Année de naissance
+ * @returns Les 3 cycles de vie avec leurs nombres
+ */
+export function calculateLifeCycles(day: number, month: number, year: number) {
+  const monthReduced = reduceToSingleDigit(month);
+  const dayReduced = reduceToSingleDigit(day);
+  const yearReduced = reduceToSingleDigit(
+    year
+      .toString()
+      .split("")
+      .reduce((acc, d) => acc + parseInt(d), 0)
+  );
+
+  return {
+    firstCycle: monthReduced, // Naissance → ~28 ans
+    secondCycle: dayReduced, // 29 → ~56 ans
+    thirdCycle: yearReduced, // 57 ans → fin de vie
+  };
+}
+
+/**
+ * Calcule les périodes de réalisation (pinacles) numérologiques
+ * @param day - Jour de naissance
+ * @param month - Mois de naissance
+ * @param year - Année de naissance
+ * @returns Les 4 périodes de réalisation avec leurs nombres
+ */
+export function calculateRealizationPeriods(
+  day: number,
+  month: number,
+  year: number
+) {
+  const dayReduced = reduceToSingleDigit(day);
+  const monthReduced = reduceToSingleDigit(month);
+  const yearReduced = reduceToSingleDigit(
+    year
+      .toString()
+      .split("")
+      .reduce((acc, d) => acc + parseInt(d), 0)
+  );
+
+  const firstPeriod = reduceToSingleDigit(dayReduced + monthReduced); // jusqu'à ~30 ans
+  const secondPeriod = reduceToSingleDigit(dayReduced + yearReduced); // 30 → 39 ans
+  const thirdPeriod = reduceToSingleDigit(firstPeriod + secondPeriod); // 39 → 48 ans
+  const fourthPeriod = reduceToSingleDigit(monthReduced + yearReduced); // 48 ans → fin de vie
+
+  return {
+    firstPeriod,
+    secondPeriod,
+    thirdPeriod,
+    fourthPeriod,
+  };
 }
