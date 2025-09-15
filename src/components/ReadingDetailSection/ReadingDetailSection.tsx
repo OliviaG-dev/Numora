@@ -7,6 +7,8 @@ import {
   calculatePersonalityNumber,
   calculateBirthdayNumber,
   calculateChallengeNumbers,
+  calculateLifeCycles,
+  calculateRealizationPeriods,
 } from "../../utils/numerology";
 import {
   lifePathData,
@@ -14,8 +16,15 @@ import {
   soulUrgeData,
   personalityData,
   birthdayData,
+  lifeCycleData,
+  realizationPeriodData,
 } from "../../data";
-import type { LifePathDetail, ExpressionDetail } from "../../data";
+import type {
+  LifePathDetail,
+  ExpressionDetail,
+  LifeCycleDetail,
+  RealizationPeriodDetail,
+} from "../../data";
 
 interface ReadingData {
   readingName: string;
@@ -81,6 +90,29 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
       third: { number: number; description: string };
       fourth: { number: number; description: string };
     };
+    lifeCycles: {
+      firstCycle: { number: number; info: LifeCycleDetail | undefined };
+      secondCycle: { number: number; info: LifeCycleDetail | undefined };
+      thirdCycle: { number: number; info: LifeCycleDetail | undefined };
+    };
+    realizationPeriods: {
+      firstPeriod: {
+        number: number;
+        info: RealizationPeriodDetail | undefined;
+      };
+      secondPeriod: {
+        number: number;
+        info: RealizationPeriodDetail | undefined;
+      };
+      thirdPeriod: {
+        number: number;
+        info: RealizationPeriodDetail | undefined;
+      };
+      fourthPeriod: {
+        number: number;
+        info: RealizationPeriodDetail | undefined;
+      };
+    };
   } | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -108,6 +140,12 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
       const personalityNumber = calculatePersonalityNumber(fullName);
       const birthdayNumber = calculateBirthdayNumber(day);
       const challengeNumbers = calculateChallengeNumbers(day, month, year);
+      const lifeCyclesNumbers = calculateLifeCycles(day, month, year);
+      const realizationPeriodsNumbers = calculateRealizationPeriods(
+        day,
+        month,
+        year
+      );
 
       // Récupération des données détaillées
       const lifePathInfo =
@@ -124,6 +162,38 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
         ];
       const birthdayInfo =
         birthdayData[birthdayNumber.toString() as keyof typeof birthdayData];
+
+      // Récupération des données détaillées pour les cycles de vie
+      const firstCycleInfo =
+        lifeCycleData[
+          lifeCyclesNumbers.firstCycle.toString() as keyof typeof lifeCycleData
+        ];
+      const secondCycleInfo =
+        lifeCycleData[
+          lifeCyclesNumbers.secondCycle.toString() as keyof typeof lifeCycleData
+        ];
+      const thirdCycleInfo =
+        lifeCycleData[
+          lifeCyclesNumbers.thirdCycle.toString() as keyof typeof lifeCycleData
+        ];
+
+      // Récupération des données détaillées pour les périodes de réalisation
+      const firstPeriodInfo =
+        realizationPeriodData[
+          realizationPeriodsNumbers.firstPeriod.toString() as keyof typeof realizationPeriodData
+        ];
+      const secondPeriodInfo =
+        realizationPeriodData[
+          realizationPeriodsNumbers.secondPeriod.toString() as keyof typeof realizationPeriodData
+        ];
+      const thirdPeriodInfo =
+        realizationPeriodData[
+          realizationPeriodsNumbers.thirdPeriod.toString() as keyof typeof realizationPeriodData
+        ];
+      const fourthPeriodInfo =
+        realizationPeriodData[
+          realizationPeriodsNumbers.fourthPeriod.toString() as keyof typeof realizationPeriodData
+        ];
 
       setNumerologyResults({
         lifePath: {
@@ -147,6 +217,38 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
           info: birthdayInfo,
         },
         challenges: challengeNumbers,
+        lifeCycles: {
+          firstCycle: {
+            number: lifeCyclesNumbers.firstCycle,
+            info: firstCycleInfo,
+          },
+          secondCycle: {
+            number: lifeCyclesNumbers.secondCycle,
+            info: secondCycleInfo,
+          },
+          thirdCycle: {
+            number: lifeCyclesNumbers.thirdCycle,
+            info: thirdCycleInfo,
+          },
+        },
+        realizationPeriods: {
+          firstPeriod: {
+            number: realizationPeriodsNumbers.firstPeriod,
+            info: firstPeriodInfo,
+          },
+          secondPeriod: {
+            number: realizationPeriodsNumbers.secondPeriod,
+            info: secondPeriodInfo,
+          },
+          thirdPeriod: {
+            number: realizationPeriodsNumbers.thirdPeriod,
+            info: thirdPeriodInfo,
+          },
+          fourthPeriod: {
+            number: realizationPeriodsNumbers.fourthPeriod,
+            info: fourthPeriodInfo,
+          },
+        },
       });
     } catch (error) {
       console.error("Erreur lors du calcul numérologique:", error);
@@ -707,6 +809,277 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
                 {numerologyResults.challenges.fourth.number}
               </div>
               <p>{numerologyResults.challenges.fourth.description}</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Cycles de Vie */}
+        <section className="numerology-section life-cycles">
+          <div className="title-with-tooltip">
+            <h2>Cycles de Vie</h2>
+            <div className="tooltip">
+              <span className="tooltip-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <path
+                    d="M12 16V12"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                  <circle cx="12" cy="8" r="1" fill="currentColor" />
+                </svg>
+              </span>
+              <div className="tooltip-content">
+                <p>
+                  Les cycles de vie décrivent les trois grandes périodes de ton
+                  existence.
+                </p>
+                <p>
+                  Chaque cycle apporte ses propres leçons, défis et opportunités
+                  de croissance.
+                </p>
+                <p>
+                  C'est une carte temporelle qui guide ton évolution spirituelle
+                  et personnelle.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="life-cycles-grid">
+            <div className="cycle-card">
+              <h3>
+                <span className="cycle-title">Premier Cycle</span>
+                <span className="cycle-period">(Naissance → ~28 ans)</span>
+              </h3>
+              <div className="number-badge cycle-badge">
+                {numerologyResults.lifeCycles.firstCycle.number}
+              </div>
+              {numerologyResults.lifeCycles.firstCycle.info && (
+                <>
+                  <p className="cycle-summary">
+                    {numerologyResults.lifeCycles.firstCycle.info.summary}
+                  </p>
+                  <div className="cycle-details">
+                    <p>
+                      {numerologyResults.lifeCycles.firstCycle.info.details}
+                    </p>
+                  </div>
+                </>
+              )}
+            </div>
+            <div className="cycle-card">
+              <h3>
+                <span className="cycle-title">Deuxième Cycle</span>
+                <span className="cycle-period">(29 → ~56 ans)</span>
+              </h3>
+              <div className="number-badge cycle-badge">
+                {numerologyResults.lifeCycles.secondCycle.number}
+              </div>
+              {numerologyResults.lifeCycles.secondCycle.info && (
+                <>
+                  <p className="cycle-summary">
+                    {numerologyResults.lifeCycles.secondCycle.info.summary}
+                  </p>
+                  <div className="cycle-details">
+                    <p>
+                      {numerologyResults.lifeCycles.secondCycle.info.details}
+                    </p>
+                  </div>
+                </>
+              )}
+            </div>
+            <div className="cycle-card">
+              <h3>
+                <span className="cycle-title">Troisième Cycle</span>
+                <span className="cycle-period">(57 ans → fin de vie)</span>
+              </h3>
+              <div className="number-badge cycle-badge">
+                {numerologyResults.lifeCycles.thirdCycle.number}
+              </div>
+              {numerologyResults.lifeCycles.thirdCycle.info && (
+                <>
+                  <p className="cycle-summary">
+                    {numerologyResults.lifeCycles.thirdCycle.info.summary}
+                  </p>
+                  <div className="cycle-details">
+                    <p>
+                      {numerologyResults.lifeCycles.thirdCycle.info.details}
+                    </p>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        </section>
+
+        {/* Périodes de Réalisation */}
+        <section className="numerology-section realization-periods">
+          <div className="title-with-tooltip">
+            <h2>Périodes de Réalisation</h2>
+            <div className="tooltip">
+              <span className="tooltip-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <path
+                    d="M12 16V12"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                  <circle cx="12" cy="8" r="1" fill="currentColor" />
+                </svg>
+              </span>
+              <div className="tooltip-content">
+                <p>
+                  Les périodes de réalisation (ou pinacles) révèlent les
+                  opportunités de réussite.
+                </p>
+                <p>
+                  Chaque période offre des conditions favorables pour accomplir
+                  tes objectifs.
+                </p>
+                <p>
+                  C'est un calendrier spirituel qui indique les meilleurs
+                  moments pour agir.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="realization-periods-grid">
+            <div className="period-card">
+              <h3>
+                <span className="period-title">Première Période</span>
+                <span className="period-duration">(jusqu'à ~30 ans)</span>
+              </h3>
+              <div className="number-badge period-badge">
+                {numerologyResults.realizationPeriods.firstPeriod.number}
+              </div>
+              {numerologyResults.realizationPeriods.firstPeriod.info && (
+                <>
+                  <p className="period-summary">
+                    {
+                      numerologyResults.realizationPeriods.firstPeriod.info
+                        .summary
+                    }
+                  </p>
+                  <div className="period-details">
+                    <p>
+                      {
+                        numerologyResults.realizationPeriods.firstPeriod.info
+                          .details
+                      }
+                    </p>
+                  </div>
+                </>
+              )}
+            </div>
+            <div className="period-card">
+              <h3>
+                <span className="period-title">Deuxième Période</span>
+                <span className="period-duration">(30 → 39 ans)</span>
+              </h3>
+              <div className="number-badge period-badge">
+                {numerologyResults.realizationPeriods.secondPeriod.number}
+              </div>
+              {numerologyResults.realizationPeriods.secondPeriod.info && (
+                <>
+                  <p className="period-summary">
+                    {
+                      numerologyResults.realizationPeriods.secondPeriod.info
+                        .summary
+                    }
+                  </p>
+                  <div className="period-details">
+                    <p>
+                      {
+                        numerologyResults.realizationPeriods.secondPeriod.info
+                          .details
+                      }
+                    </p>
+                  </div>
+                </>
+              )}
+            </div>
+            <div className="period-card">
+              <h3>
+                <span className="period-title">Troisième Période</span>
+                <span className="period-duration">(39 → 48 ans)</span>
+              </h3>
+              <div className="number-badge period-badge">
+                {numerologyResults.realizationPeriods.thirdPeriod.number}
+              </div>
+              {numerologyResults.realizationPeriods.thirdPeriod.info && (
+                <>
+                  <p className="period-summary">
+                    {
+                      numerologyResults.realizationPeriods.thirdPeriod.info
+                        .summary
+                    }
+                  </p>
+                  <div className="period-details">
+                    <p>
+                      {
+                        numerologyResults.realizationPeriods.thirdPeriod.info
+                          .details
+                      }
+                    </p>
+                  </div>
+                </>
+              )}
+            </div>
+            <div className="period-card">
+              <h3>
+                <span className="period-title">Quatrième Période</span>
+                <span className="period-duration">(48 ans → fin de vie)</span>
+              </h3>
+              <div className="number-badge period-badge">
+                {numerologyResults.realizationPeriods.fourthPeriod.number}
+              </div>
+              {numerologyResults.realizationPeriods.fourthPeriod.info && (
+                <>
+                  <p className="period-summary">
+                    {
+                      numerologyResults.realizationPeriods.fourthPeriod.info
+                        .summary
+                    }
+                  </p>
+                  <div className="period-details">
+                    <p>
+                      {
+                        numerologyResults.realizationPeriods.fourthPeriod.info
+                          .details
+                      }
+                    </p>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </section>

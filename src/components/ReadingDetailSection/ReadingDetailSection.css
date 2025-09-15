@@ -203,7 +203,9 @@
 /* Centrage vertical pour les tooltips des sections principales */
 .challenges .title-with-tooltip,
 .expression .title-with-tooltip,
-.life-path .title-with-tooltip {
+.life-path .title-with-tooltip,
+.life-cycles .title-with-tooltip,
+.realization-periods .title-with-tooltip {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -211,14 +213,18 @@
 
 .challenges .title-with-tooltip h2,
 .expression .title-with-tooltip h2,
-.life-path .title-with-tooltip h2 {
+.life-path .title-with-tooltip h2,
+.life-cycles .title-with-tooltip h2,
+.realization-periods .title-with-tooltip h2 {
   margin: 0;
   line-height: 1;
 }
 
 .challenges .tooltip-icon,
 .expression .tooltip-icon,
-.life-path .tooltip-icon {
+.life-path .tooltip-icon,
+.life-cycles .tooltip-icon,
+.realization-periods .tooltip-icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -443,6 +449,24 @@
   text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
 }
 
+/* Life Cycles Section */
+.life-cycles h2 {
+  color: var(--primary-purple);
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+}
+
+/* Realization Periods Section */
+.realization-periods h2 {
+  color: var(--primary-purple);
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+}
+
 .challenges-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -555,6 +579,130 @@
   margin-bottom: 1rem;
 }
 
+/* Cycles de Vie */
+.life-cycles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.cycle-card {
+  background: rgba(139, 92, 246, 0.1);
+  border-radius: 15px;
+  padding: 1.5rem;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.cycle-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+.cycle-title {
+  display: block;
+  color: var(--secondary-gold);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.cycle-period {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.cycle-badge {
+  background: var(--gradient-primary);
+  color: white;
+  margin: 1rem auto;
+}
+
+.cycle-summary {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  border-left: 4px solid var(--secondary-gold);
+}
+
+.cycle-details {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* Périodes de Réalisation */
+.realization-periods-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.period-card {
+  background: rgba(245, 158, 11, 0.1);
+  border-radius: 15px;
+  padding: 1.5rem;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.period-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(245, 158, 11, 0.2);
+  border-color: rgba(245, 158, 11, 0.5);
+}
+
+.period-title {
+  display: block;
+  color: var(--secondary-gold);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.period-duration {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.period-badge {
+  background: var(--gradient-secondary);
+  color: var(--bg-primary);
+  margin: 1rem auto;
+}
+
+.period-summary {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  padding: 0.8rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  border-left: 4px solid var(--secondary-gold);
+}
+
+.period-details {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .reading-detail {
@@ -599,6 +747,31 @@
 
   .challenges-grid {
     grid-template-columns: 1fr;
+  }
+
+  .life-cycles-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .realization-periods-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .cycle-card,
+  .period-card {
+    padding: 1rem;
+  }
+
+  .cycle-title,
+  .period-title {
+    font-size: 1.1rem;
+  }
+
+  .cycle-period,
+  .period-duration {
+    font-size: 0.8rem;
   }
 
   .reading-actions {
