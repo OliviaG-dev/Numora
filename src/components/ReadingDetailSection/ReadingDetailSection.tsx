@@ -9,6 +9,7 @@ import {
   calculateChallengeNumbers,
   calculateLifeCycles,
   calculateRealizationPeriods,
+  calculatePersonalNumbers,
 } from "../../utils/numerology";
 import {
   lifePathData,
@@ -18,12 +19,14 @@ import {
   birthdayData,
   lifeCycleData,
   realizationPeriodData,
+  personelCycleData,
 } from "../../data";
 import type {
   LifePathDetail,
   ExpressionDetail,
   LifeCycleDetail,
   RealizationPeriodDetail,
+  PersonelCycleDetail,
 } from "../../data";
 
 interface ReadingData {
@@ -113,6 +116,20 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
         info: RealizationPeriodDetail | undefined;
       };
     };
+    personalNumbers: {
+      year: {
+        number: number;
+        info: PersonelCycleDetail | undefined;
+      };
+      month: {
+        number: number;
+        info: PersonelCycleDetail | undefined;
+      };
+      day: {
+        number: number;
+        info: PersonelCycleDetail | undefined;
+      };
+    };
   } | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -146,6 +163,9 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
         month,
         year
       );
+
+      // Calcul des nombres personnels
+      const personalNumbers = calculatePersonalNumbers(day, month);
 
       // Récupération des données détaillées
       const lifePathInfo =
@@ -193,6 +213,20 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
       const fourthPeriodInfo =
         realizationPeriodData[
           realizationPeriodsNumbers.fourthPeriod.toString() as keyof typeof realizationPeriodData
+        ];
+
+      // Récupération des données détaillées pour les nombres personnels
+      const personalYearInfo =
+        personelCycleData[
+          personalNumbers.year.number.toString() as keyof typeof personelCycleData
+        ];
+      const personalMonthInfo =
+        personelCycleData[
+          personalNumbers.month.number.toString() as keyof typeof personelCycleData
+        ];
+      const personalDayInfo =
+        personelCycleData[
+          personalNumbers.day.number.toString() as keyof typeof personelCycleData
         ];
 
       setNumerologyResults({
@@ -247,6 +281,20 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
           fourthPeriod: {
             number: realizationPeriodsNumbers.fourthPeriod,
             info: fourthPeriodInfo,
+          },
+        },
+        personalNumbers: {
+          year: {
+            number: personalNumbers.year.number,
+            info: personalYearInfo,
+          },
+          month: {
+            number: personalNumbers.month.number,
+            info: personalMonthInfo,
+          },
+          day: {
+            number: personalNumbers.day.number,
+            info: personalDayInfo,
           },
         },
       });
@@ -1077,6 +1125,125 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
                           .details
                       }
                     </p>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        </section>
+
+        {/* Nombres Personnels */}
+        <section className="numerology-section personal-numbers">
+          <div className="title-with-tooltip">
+            <h2>Nombres Personnels</h2>
+            <div className="tooltip">
+              <span className="tooltip-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <path
+                    d="M12 16V12"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                  <circle cx="12" cy="8" r="1" fill="currentColor" />
+                </svg>
+              </span>
+              <div className="tooltip-content">
+                <p>
+                  Les nombres personnels indiquent les influences numérologiques
+                  pour l'année, le mois et le jour actuels, basés sur votre date
+                  de naissance.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="personal-numbers-grid">
+            <div className="personal-card">
+              <h3>
+                <span className="personal-title">Année Personnelle</span>
+                <span className="personal-period">
+                  (Janvier → Décembre {new Date().getFullYear()})
+                </span>
+              </h3>
+              <div className="number-badge personal-badge">
+                {numerologyResults.personalNumbers.year.number}
+              </div>
+              {numerologyResults.personalNumbers.year.info && (
+                <>
+                  <p className="personal-summary">
+                    {numerologyResults.personalNumbers.year.info.summary}
+                  </p>
+                  <div className="personal-details">
+                    <p>{numerologyResults.personalNumbers.year.info.details}</p>
+                  </div>
+                </>
+              )}
+            </div>
+            <div className="personal-card">
+              <h3>
+                <span className="personal-title">Mois Personnel</span>
+                <span className="personal-period">
+                  (
+                  {new Date().toLocaleDateString("fr-FR", {
+                    month: "long",
+                    year: "numeric",
+                  })}
+                  )
+                </span>
+              </h3>
+              <div className="number-badge personal-badge">
+                {numerologyResults.personalNumbers.month.number}
+              </div>
+              {numerologyResults.personalNumbers.month.info && (
+                <>
+                  <p className="personal-summary">
+                    {numerologyResults.personalNumbers.month.info.summary}
+                  </p>
+                  <div className="personal-details">
+                    <p>
+                      {numerologyResults.personalNumbers.month.info.details}
+                    </p>
+                  </div>
+                </>
+              )}
+            </div>
+            <div className="personal-card">
+              <h3>
+                <span className="personal-title">Jour Personnel</span>
+                <span className="personal-period">
+                  (
+                  {new Date().toLocaleDateString("fr-FR", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                  })}
+                  )
+                </span>
+              </h3>
+              <div className="number-badge personal-badge">
+                {numerologyResults.personalNumbers.day.number}
+              </div>
+              {numerologyResults.personalNumbers.day.info && (
+                <>
+                  <p className="personal-summary">
+                    {numerologyResults.personalNumbers.day.info.summary}
+                  </p>
+                  <div className="personal-details">
+                    <p>{numerologyResults.personalNumbers.day.info.details}</p>
                   </div>
                 </>
               )}

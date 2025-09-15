@@ -12,6 +12,7 @@ import personalityData from "./numerology/PersonalityData.json";
 import birthdayData from "./numerology/BirthdayData.json";
 import lifeCycleData from "./numerology/LifeCycleData.json";
 import realizationPeriodData from "./numerology/RealizationPeriodData.json";
+import personelCycleData from "./numerology/PersonelCycleData.json";
 
 // ===== EXPORTS PRINCIPAUX =====
 export {
@@ -23,6 +24,7 @@ export {
   birthdayData,
   lifeCycleData,
   realizationPeriodData,
+  personelCycleData,
 };
 
 // ===== ALIAS POUR COMPATIBILITÉ =====
@@ -118,6 +120,12 @@ export interface RealizationPeriodData {
 }
 
 export type RealizationPeriodDetail = BaseSummaryDetail;
+
+export interface PersonelCycleData {
+  [key: string]: PersonelCycleDetail;
+}
+
+export type PersonelCycleDetail = BaseSummaryDetail;
 
 // ===== ALIAS POUR COMPATIBILITÉ =====
 export type ExpressionNumberData = ExpressionData;

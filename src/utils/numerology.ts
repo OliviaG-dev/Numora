@@ -339,3 +339,104 @@ export function calculateRealizationPeriods(
     fourthPeriod,
   };
 }
+
+/**
+ * Calcule l'année personnelle
+ * @param day - Jour de naissance
+ * @param month - Mois de naissance
+ * @param year - Année en cours
+ * @returns Le nombre de l'année personnelle (1-9)
+ */
+export function calculatePersonalYear(
+  day: number,
+  month: number,
+  year: number
+): number {
+  // Validation des paramètres
+  if (day < 1 || day > 31) {
+    throw new Error("Le jour doit être entre 1 et 31");
+  }
+  if (month < 1 || month > 12) {
+    throw new Error("Le mois doit être entre 1 et 12");
+  }
+
+  // Réduction de l'année à un chiffre
+  const yearReduced = reduceToSingleDigit(year);
+
+  // Calcul de l'année personnelle
+  const sum = day + month + yearReduced;
+  return reduceToSingleDigit(sum);
+}
+
+/**
+ * Calcule le mois personnel
+ * @param personalYear - Année personnelle
+ * @param month - Mois en cours
+ * @returns Le nombre du mois personnel (1-9)
+ */
+export function calculatePersonalMonth(
+  personalYear: number,
+  month: number
+): number {
+  if (month < 1 || month > 12) {
+    throw new Error("Le mois doit être entre 1 et 12");
+  }
+
+  const sum = personalYear + month;
+  return reduceToSingleDigit(sum);
+}
+
+/**
+ * Calcule le jour personnel
+ * @param personalMonth - Mois personnel
+ * @param day - Jour en cours
+ * @returns Le nombre du jour personnel (1-9)
+ */
+export function calculatePersonalDay(
+  personalMonth: number,
+  day: number
+): number {
+  if (day < 1 || day > 31) {
+    throw new Error("Le jour doit être entre 1 et 31");
+  }
+
+  const sum = personalMonth + day;
+  return reduceToSingleDigit(sum);
+}
+
+/**
+ * Calcule tous les nombres personnels (année, mois, jour)
+ * @param birthDay - Jour de naissance
+ * @param birthMonth - Mois de naissance
+ * @param currentDate - Date actuelle (optionnelle, utilise la date du jour par défaut)
+ * @returns Les nombres personnels avec les données associées
+ */
+export function calculatePersonalNumbers(
+  birthDay: number,
+  birthMonth: number,
+  currentDate?: Date
+) {
+  const today = currentDate || new Date();
+  const currentYear = today.getFullYear();
+  const currentMonth = today.getMonth() + 1; // JS months: 0-11
+  const currentDay = today.getDate();
+
+  const personalYear = calculatePersonalYear(birthDay, birthMonth, currentYear);
+  const personalMonth = calculatePersonalMonth(personalYear, currentMonth);
+  const personalDay = calculatePersonalDay(personalMonth, currentDay);
+
+  return {
+    year: {
+      number: personalYear,
+      description: `Année personnelle ${personalYear}`,
+    },
+    month: {
+      number: personalMonth,
+      description: `Mois personnel ${personalMonth}`,
+    },
+    day: {
+      number: personalDay,
+      description: `Jour personnel ${personalDay}`,
+    },
+  };
+}

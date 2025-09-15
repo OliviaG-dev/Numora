@@ -205,7 +205,8 @@
 .expression .title-with-tooltip,
 .life-path .title-with-tooltip,
 .life-cycles .title-with-tooltip,
-.realization-periods .title-with-tooltip {
+.realization-periods .title-with-tooltip,
+.personal-numbers .title-with-tooltip {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -215,7 +216,8 @@
 .expression .title-with-tooltip h2,
 .life-path .title-with-tooltip h2,
 .life-cycles .title-with-tooltip h2,
-.realization-periods .title-with-tooltip h2 {
+.realization-periods .title-with-tooltip h2,
+.personal-numbers .title-with-tooltip h2 {
   margin: 0;
   line-height: 1;
 }
@@ -224,7 +226,8 @@
 .expression .tooltip-icon,
 .life-path .tooltip-icon,
 .life-cycles .tooltip-icon,
-.realization-periods .tooltip-icon {
+.realization-periods .tooltip-icon,
+.personal-numbers .tooltip-icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -467,6 +470,15 @@
   text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
 }
 
+/* Personal Numbers Section */
+.personal-numbers h2 {
+  color: var(--primary-purple);
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+}
+
 .challenges-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -619,9 +631,11 @@
 }
 
 .cycle-badge {
-  background: var(--gradient-primary);
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
   color: white;
   margin: 1rem auto;
+  font-weight: 800;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .cycle-summary {
@@ -644,30 +658,31 @@
 /* Périodes de Réalisation */
 .realization-periods-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
   margin-top: 2rem;
 }
 
 .period-card {
-  background: rgba(245, 158, 11, 0.1);
+  background: rgba(139, 92, 246, 0.1);
   border-radius: 15px;
   padding: 1.5rem;
-  border: 1px solid rgba(245, 158, 11, 0.3);
+  border: 1px solid rgba(139, 92, 246, 0.3);
   transition: all 0.3s ease;
   text-align: center;
+  backdrop-filter: blur(10px);
 }
 
 .period-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(245, 158, 11, 0.2);
-  border-color: rgba(245, 158, 11, 0.5);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.5);
 }
 
 .period-title {
   display: block;
   color: var(--secondary-gold);
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
 }
@@ -675,23 +690,25 @@
 .period-duration {
   display: block;
   color: var(--text-secondary);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-style: italic;
   margin-bottom: 1rem;
 }
 
 .period-badge {
-  background: var(--gradient-secondary);
-  color: var(--bg-primary);
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
   margin: 1rem auto;
+  font-weight: 800;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .period-summary {
   color: var(--text-primary);
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 1rem;
   margin-bottom: 1rem;
-  padding: 0.8rem;
+  padding: 1rem;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 10px;
   border-left: 4px solid var(--secondary-gold);
@@ -700,7 +717,72 @@
 .period-details {
   color: var(--text-secondary);
   line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* Nombres Personnels */
+.personal-numbers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.personal-card {
+  background: rgba(139, 92, 246, 0.1);
+  border-radius: 15px;
+  padding: 1.5rem;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  transition: all 0.3s ease;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.personal-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+.personal-title {
+  display: block;
+  color: var(--secondary-gold);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.personal-period {
+  display: block;
+  color: var(--text-secondary);
   font-size: 0.9rem;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.personal-badge {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  margin: 1rem auto;
+  font-weight: 800;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.personal-summary {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  border-left: 4px solid var(--secondary-gold);
+}
+
+.personal-details {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 0.95rem;
 }
 
 /* Responsive */
@@ -759,18 +841,26 @@
     gap: 1.5rem;
   }
 
+  .personal-numbers-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
   .cycle-card,
-  .period-card {
+  .period-card,
+  .personal-card {
     padding: 1rem;
   }
 
   .cycle-title,
-  .period-title {
+  .period-title,
+  .personal-title {
     font-size: 1.1rem;
   }
 
   .cycle-period,
-  .period-duration {
+  .period-duration,
+  .personal-period {
     font-size: 0.8rem;
   }
 
