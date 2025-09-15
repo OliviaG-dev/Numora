@@ -75,6 +75,15 @@ export interface BaseSummaryDetail {
 }
 
 /**
+ * Interface de base pour les détails numérologiques avec description et défi
+ */
+export interface BaseCycleDetail {
+  summary: string;
+  description: string;
+  challenge: string;
+}
+
+/**
  * Types spécifiques pour chaque catégorie numérologique
  */
 export interface LifePathData {
@@ -113,19 +122,19 @@ export interface LifeCycleData {
   [key: string]: LifeCycleDetail;
 }
 
-export type LifeCycleDetail = BaseSummaryDetail;
+export type LifeCycleDetail = BaseCycleDetail;
 
 export interface RealizationPeriodData {
   [key: string]: RealizationPeriodDetail;
 }
 
-export type RealizationPeriodDetail = BaseSummaryDetail;
+export type RealizationPeriodDetail = BaseCycleDetail;
 
 export interface PersonelCycleData {
   [key: string]: PersonelCycleDetail;
 }
 
-export type PersonelCycleDetail = BaseSummaryDetail;
+export type PersonelCycleDetail = BaseCycleDetail;
 
 // ===== ALIAS POUR COMPATIBILITÉ =====
 export type ExpressionNumberData = ExpressionData;

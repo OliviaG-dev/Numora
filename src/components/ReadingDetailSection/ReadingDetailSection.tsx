@@ -917,16 +917,22 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
                 {numerologyResults.lifeCycles.firstCycle.number}
               </div>
               {numerologyResults.lifeCycles.firstCycle.info && (
-                <>
+                <div className="cycle-content">
                   <p className="cycle-summary">
                     {numerologyResults.lifeCycles.firstCycle.info.summary}
                   </p>
                   <div className="cycle-details">
                     <p>
-                      {numerologyResults.lifeCycles.firstCycle.info.details}
+                      {numerologyResults.lifeCycles.firstCycle.info.description}
                     </p>
                   </div>
-                </>
+                  <div className="cycle-challenge">
+                    <h4>Défi à relever</h4>
+                    <p>
+                      {numerologyResults.lifeCycles.firstCycle.info.challenge}
+                    </p>
+                  </div>
+                </div>
               )}
             </div>
             <div className="cycle-card">
@@ -938,16 +944,25 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
                 {numerologyResults.lifeCycles.secondCycle.number}
               </div>
               {numerologyResults.lifeCycles.secondCycle.info && (
-                <>
+                <div className="cycle-content">
                   <p className="cycle-summary">
                     {numerologyResults.lifeCycles.secondCycle.info.summary}
                   </p>
                   <div className="cycle-details">
                     <p>
-                      {numerologyResults.lifeCycles.secondCycle.info.details}
+                      {
+                        numerologyResults.lifeCycles.secondCycle.info
+                          .description
+                      }
                     </p>
                   </div>
-                </>
+                  <div className="cycle-challenge">
+                    <h4>Défi à relever</h4>
+                    <p>
+                      {numerologyResults.lifeCycles.secondCycle.info.challenge}
+                    </p>
+                  </div>
+                </div>
               )}
             </div>
             <div className="cycle-card">
@@ -959,16 +974,22 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
                 {numerologyResults.lifeCycles.thirdCycle.number}
               </div>
               {numerologyResults.lifeCycles.thirdCycle.info && (
-                <>
+                <div className="cycle-content">
                   <p className="cycle-summary">
                     {numerologyResults.lifeCycles.thirdCycle.info.summary}
                   </p>
                   <div className="cycle-details">
                     <p>
-                      {numerologyResults.lifeCycles.thirdCycle.info.details}
+                      {numerologyResults.lifeCycles.thirdCycle.info.description}
                     </p>
                   </div>
-                </>
+                  <div className="cycle-challenge">
+                    <h4>Défi à relever</h4>
+                    <p>
+                      {numerologyResults.lifeCycles.thirdCycle.info.challenge}
+                    </p>
+                  </div>
+                </div>
               )}
             </div>
           </div>
@@ -1030,7 +1051,7 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
                 {numerologyResults.realizationPeriods.firstPeriod.number}
               </div>
               {numerologyResults.realizationPeriods.firstPeriod.info && (
-                <>
+                <div className="period-content">
                   <p className="period-summary">
                     {
                       numerologyResults.realizationPeriods.firstPeriod.info
@@ -1041,11 +1062,20 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
                     <p>
                       {
                         numerologyResults.realizationPeriods.firstPeriod.info
-                          .details
+                          .description
                       }
                     </p>
                   </div>
-                </>
+                  <div className="period-challenge">
+                    <h4>Défi à relever</h4>
+                    <p>
+                      {
+                        numerologyResults.realizationPeriods.firstPeriod.info
+                          .challenge
+                      }
+                    </p>
+                  </div>
+                </div>
               )}
             </div>
             <div className="period-card">
@@ -1057,7 +1087,7 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
                 {numerologyResults.realizationPeriods.secondPeriod.number}
               </div>
               {numerologyResults.realizationPeriods.secondPeriod.info && (
-                <>
+                <div className="period-content">
                   <p className="period-summary">
                     {
                       numerologyResults.realizationPeriods.secondPeriod.info
@@ -1068,11 +1098,20 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
                     <p>
                       {
                         numerologyResults.realizationPeriods.secondPeriod.info
-                          .details
+                          .description
                       }
                     </p>
                   </div>
-                </>
+                  <div className="period-challenge">
+                    <h4>Défi à relever</h4>
+                    <p>
+                      {
+                        numerologyResults.realizationPeriods.secondPeriod.info
+                          .challenge
+                      }
+                    </p>
+                  </div>
+                </div>
               )}
             </div>
             <div className="period-card">
@@ -1084,7 +1123,7 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
                 {numerologyResults.realizationPeriods.thirdPeriod.number}
               </div>
               {numerologyResults.realizationPeriods.thirdPeriod.info && (
-                <>
+                <div className="period-content">
                   <p className="period-summary">
                     {
                       numerologyResults.realizationPeriods.thirdPeriod.info
@@ -1095,11 +1134,20 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
                     <p>
                       {
                         numerologyResults.realizationPeriods.thirdPeriod.info
-                          .details
+                          .description
                       }
                     </p>
                   </div>
-                </>
+                  <div className="period-challenge">
+                    <h4>Défi à relever</h4>
+                    <p>
+                      {
+                        numerologyResults.realizationPeriods.thirdPeriod.info
+                          .challenge
+                      }
+                    </p>
+                  </div>
+                </div>
               )}
             </div>
             <div className="period-card">
@@ -1111,7 +1159,7 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
                 {numerologyResults.realizationPeriods.fourthPeriod.number}
               </div>
               {numerologyResults.realizationPeriods.fourthPeriod.info && (
-                <>
+                <div className="period-content">
                   <p className="period-summary">
                     {
                       numerologyResults.realizationPeriods.fourthPeriod.info
@@ -1122,11 +1170,20 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
                     <p>
                       {
                         numerologyResults.realizationPeriods.fourthPeriod.info
-                          .details
+                          .description
                       }
                     </p>
                   </div>
-                </>
+                  <div className="period-challenge">
+                    <h4>Défi à relever</h4>
+                    <p>
+                      {
+                        numerologyResults.realizationPeriods.fourthPeriod.info
+                          .challenge
+                      }
+                    </p>
+                  </div>
+                </div>
               )}
             </div>
           </div>
@@ -1183,14 +1240,22 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
                 {numerologyResults.personalNumbers.year.number}
               </div>
               {numerologyResults.personalNumbers.year.info && (
-                <>
+                <div className="personal-content">
                   <p className="personal-summary">
                     {numerologyResults.personalNumbers.year.info.summary}
                   </p>
                   <div className="personal-details">
-                    <p>{numerologyResults.personalNumbers.year.info.details}</p>
+                    <p>
+                      {numerologyResults.personalNumbers.year.info.description}
+                    </p>
                   </div>
-                </>
+                  <div className="personal-challenge">
+                    <h4>Défi à relever</h4>
+                    <p>
+                      {numerologyResults.personalNumbers.year.info.challenge}
+                    </p>
+                  </div>
+                </div>
               )}
             </div>
             <div className="personal-card">
@@ -1209,16 +1274,22 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
                 {numerologyResults.personalNumbers.month.number}
               </div>
               {numerologyResults.personalNumbers.month.info && (
-                <>
+                <div className="personal-content">
                   <p className="personal-summary">
                     {numerologyResults.personalNumbers.month.info.summary}
                   </p>
                   <div className="personal-details">
                     <p>
-                      {numerologyResults.personalNumbers.month.info.details}
+                      {numerologyResults.personalNumbers.month.info.description}
                     </p>
                   </div>
-                </>
+                  <div className="personal-challenge">
+                    <h4>Défi à relever</h4>
+                    <p>
+                      {numerologyResults.personalNumbers.month.info.challenge}
+                    </p>
+                  </div>
+                </div>
               )}
             </div>
             <div className="personal-card">
@@ -1238,14 +1309,22 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
                 {numerologyResults.personalNumbers.day.number}
               </div>
               {numerologyResults.personalNumbers.day.info && (
-                <>
+                <div className="personal-content">
                   <p className="personal-summary">
                     {numerologyResults.personalNumbers.day.info.summary}
                   </p>
                   <div className="personal-details">
-                    <p>{numerologyResults.personalNumbers.day.info.details}</p>
+                    <p>
+                      {numerologyResults.personalNumbers.day.info.description}
+                    </p>
                   </div>
-                </>
+                  <div className="personal-challenge">
+                    <h4>Défi à relever</h4>
+                    <p>
+                      {numerologyResults.personalNumbers.day.info.challenge}
+                    </p>
+                  </div>
+                </div>
               )}
             </div>
           </div>

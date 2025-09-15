@@ -597,6 +597,7 @@
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
+  align-items: stretch;
 }
 
 .cycle-card {
@@ -606,6 +607,9 @@
   border: 1px solid rgba(139, 92, 246, 0.3);
   transition: all 0.3s ease;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .cycle-card:hover {
@@ -647,12 +651,47 @@
   background: rgba(255, 255, 255, 0.05);
   border-radius: 10px;
   border-left: 4px solid var(--secondary-gold);
+  flex-grow: 1;
 }
 
 .cycle-details {
   color: var(--text-secondary);
   line-height: 1.6;
   font-size: 0.95rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.cycle-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 1rem;
+}
+
+.cycle-challenge {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  background: rgba(245, 158, 11, 0.05);
+  border-radius: 8px;
+  border-left: 3px solid var(--secondary-gold);
+}
+
+.cycle-challenge h4 {
+  color: var(--secondary-gold);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cycle-challenge p {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin: 0;
+  line-height: 1.5;
 }
 
 /* Périodes de Réalisation */
@@ -661,6 +700,7 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
   margin-top: 2rem;
+  align-items: stretch;
 }
 
 .period-card {
@@ -671,6 +711,9 @@
   transition: all 0.3s ease;
   text-align: center;
   backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .period-card:hover {
@@ -712,12 +755,47 @@
   background: rgba(255, 255, 255, 0.05);
   border-radius: 10px;
   border-left: 4px solid var(--secondary-gold);
+  flex-grow: 1;
 }
 
 .period-details {
   color: var(--text-secondary);
   line-height: 1.6;
   font-size: 0.95rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.period-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 1rem;
+}
+
+.period-challenge {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  background: rgba(245, 158, 11, 0.05);
+  border-radius: 8px;
+  border-left: 3px solid var(--secondary-gold);
+}
+
+.period-challenge h4 {
+  color: var(--secondary-gold);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.period-challenge p {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin: 0;
+  line-height: 1.5;
 }
 
 /* Nombres Personnels */
@@ -726,6 +804,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   margin-top: 2rem;
+  align-items: stretch;
 }
 
 .personal-card {
@@ -736,6 +815,9 @@
   transition: all 0.3s ease;
   text-align: center;
   backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .personal-card:hover {
@@ -777,12 +859,47 @@
   background: rgba(255, 255, 255, 0.05);
   border-radius: 10px;
   border-left: 4px solid var(--secondary-gold);
+  flex-grow: 1;
 }
 
 .personal-details {
   color: var(--text-secondary);
   line-height: 1.6;
   font-size: 0.95rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.personal-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 1rem;
+}
+
+.personal-challenge {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  background: rgba(245, 158, 11, 0.05);
+  border-radius: 8px;
+  border-left: 3px solid var(--secondary-gold);
+}
+
+.personal-challenge h4 {
+  color: var(--secondary-gold);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.personal-challenge p {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin: 0;
+  line-height: 1.5;
 }
 
 /* Responsive */
