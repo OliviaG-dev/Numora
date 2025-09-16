@@ -5,6 +5,7 @@
 
 // Import des données de défi
 import challengeData from "../data/numerology/ChallengeData.json";
+import karmicNumberData from "../data/numerology/KarmicNumberData.json";
 
 /**
  * Calcule le Chemin de Vie en numérologie
@@ -75,6 +76,21 @@ export interface ChallengeNumbersResult {
   second: { number: number; description: string };
   third: { number: number; description: string };
   fourth: { number: number; description: string };
+}
+
+export interface KarmicNumberResult {
+  number: number;
+  summary: string;
+  challenge: string;
+  details: string;
+  keywords: string[];
+}
+
+export interface KarmicNumbersResult {
+  fullName: string;
+  presentNumbers: number[];
+  missingNumbers: number[];
+  karmicDefinitions: KarmicNumberResult[];
 }
 
 // Constantes
@@ -438,5 +454,68 @@ export function calculatePersonalNumbers(
       number: personalDay,
       description: `Jour personnel ${personalDay}`,
     },
+  };
+}
+
+/**
+ * Calcule les nombres karmiques (nombres manquants dans le nom)
+ * @param fullName - Nom complet
+ * @returns Les nombres karmiques avec leurs définitions
+ */
+export function calculateKarmicNumbers(fullName: string): KarmicNumbersResult {
+  // Validation du nom
+  if (!fullName || fullName.trim().length === 0) {
+    throw new Error("Le nom ne peut pas être vide");
+  }
+
+  // Nettoyer le nom (majuscules et sans accents)
+  const cleanName = fullName
+    .toUpperCase()
+    .normalize("NFD") // retire accents
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^A-Z]/g, ""); // garde seulement les lettres
+
+  if (cleanName.length === 0) {
+    throw new Error("Aucune lettre valide trouvée dans le nom");
+  }
+
+  // Conversion lettre -> nombre (A=1, B=2, ... I=9, J=1, etc.)
+  const letterToNumber = (letter: string): number => {
+    const charCode = letter.charCodeAt(0) - 64; // A=1
+    return ((charCode - 1) % 9) + 1; // cycle de 1 à 9
+  };
+
+  // Liste des nombres présents dans le nom
+  const presentNumbers = new Set<number>();
+  for (const letter of cleanName) {
+    presentNumbers.add(letterToNumber(letter));
+  }
+
+  // Identifier les manquants
+  const missingNumbers = [];
+  for (let i = 1; i <= 9; i++) {
+    if (!presentNumbers.has(i)) {
+      missingNumbers.push(i);
+    }
+  }
+
+  // Associer aux définitions JSON
+  const karmicDefinitions: KarmicNumberResult[] = missingNumbers.map((num) => {
+    const karmicData =
+      karmicNumberData[num.toString() as keyof typeof karmicNumberData];
+    return {
+      number: num,
+      summary: karmicData?.summary || "",
+      challenge: karmicData?.challenge || "",
+      details: karmicData?.details || "",
+      keywords: karmicData?.keywords || [],
+    };
+  });
+
+  return {
+    fullName,
+    presentNumbers: Array.from(presentNumbers).sort(),
+    missingNumbers,
+    karmicDefinitions,
   };
 }

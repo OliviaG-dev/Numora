@@ -10,6 +10,7 @@ import {
   calculateLifeCycles,
   calculateRealizationPeriods,
   calculatePersonalNumbers,
+  calculateKarmicNumbers,
 } from "../../utils/numerology";
 import {
   lifePathData,
@@ -130,6 +131,18 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
         info: PersonelCycleDetail | undefined;
       };
     };
+    karmicNumbers: {
+      fullName: string;
+      presentNumbers: number[];
+      missingNumbers: number[];
+      karmicDefinitions: Array<{
+        number: number;
+        summary: string;
+        challenge: string;
+        details: string;
+        keywords: string[];
+      }>;
+    };
   } | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -166,6 +179,9 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
 
       // Calcul des nombres personnels
       const personalNumbers = calculatePersonalNumbers(day, month);
+
+      // Calcul des nombres karmiques
+      const karmicNumbers = calculateKarmicNumbers(fullName);
 
       // Récupération des données détaillées
       const lifePathInfo =
@@ -297,6 +313,7 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
             info: personalDayInfo,
           },
         },
+        karmicNumbers: karmicNumbers,
       });
     } catch (error) {
       console.error("Erreur lors du calcul numérologique:", error);
@@ -1327,6 +1344,134 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
                 </div>
               )}
             </div>
+          </div>
+        </section>
+
+        {/* Section des Nombres Karmiques */}
+        <section className="numerology-section karmic-section">
+          <div className="section-header">
+            <div className="title-with-tooltip">
+              <h2>Nombres Karmiques</h2>
+              <div className="tooltip">
+                <span className="tooltip-icon">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      fill="none"
+                    />
+                    <path
+                      d="M12 16V12"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                    <circle cx="12" cy="8" r="1" fill="currentColor" />
+                  </svg>
+                </span>
+                <div className="tooltip-content">
+                  <p>
+                    Les nombres karmiques révèlent les défis que vous devez
+                    relever dans cette vie.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="karmic-overview">
+            <div className="karmic-stats">
+              <div className="stat-item">
+                <span className="stat-number">
+                  {numerologyResults.karmicNumbers.presentNumbers.length}
+                </span>
+                <span className="stat-label">Nombres présents</span>
+              </div>
+              <div className="stat-item">
+                <span className="stat-number">
+                  {numerologyResults.karmicNumbers.missingNumbers.length}
+                </span>
+                <span className="stat-label">Défis karmiques</span>
+              </div>
+            </div>
+
+            <div className="present-numbers">
+              <h4>Nombres présents dans votre nom :</h4>
+              <div className="number-list">
+                {numerologyResults.karmicNumbers.presentNumbers.map((num) => (
+                  <span key={num} className="number-tag present">
+                    {num}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="karmic-definitions">
+            {numerologyResults.karmicNumbers.karmicDefinitions.length > 0 ? (
+              numerologyResults.karmicNumbers.karmicDefinitions.map(
+                (karmic) => (
+                  <div key={karmic.number} className="karmic-card">
+                    <div className="karmic-header">
+                      <h3>
+                        Défi Karmique {karmic.number}
+                        <span className="karmic-period">(Nombre manquant)</span>
+                      </h3>
+                      <div className="number-badge karmic-badge">
+                        {karmic.number}
+                      </div>
+                    </div>
+
+                    <div className="karmic-content">
+                      <div className="karmic-summary">
+                        <h4>Résumé</h4>
+                        <p>{karmic.summary}</p>
+                      </div>
+
+                      <div className="karmic-challenge">
+                        <h4>Défi à relever</h4>
+                        <p>{karmic.challenge}</p>
+                      </div>
+
+                      <div className="karmic-details">
+                        <h4>Détails</h4>
+                        <p>{karmic.details}</p>
+                      </div>
+
+                      {karmic.keywords.length > 0 && (
+                        <div className="karmic-keywords">
+                          <h4>Mots-clés</h4>
+                          <div className="keywords-list">
+                            {karmic.keywords.map((keyword, index) => (
+                              <span key={index} className="keyword-tag">
+                                {keyword}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )
+              )
+            ) : (
+              <div className="no-karmic-challenges">
+                <h3>Félicitations !</h3>
+                <p>
+                  Tous les nombres de 1 à 9 sont présents dans votre nom. Vous
+                  n'avez pas de défis karmiques spécifiques à relever.
+                </p>
+              </div>
+            )}
           </div>
         </section>
       </div>

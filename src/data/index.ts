@@ -13,6 +13,7 @@ import birthdayData from "./numerology/BirthdayData.json";
 import lifeCycleData from "./numerology/LifeCycleData.json";
 import realizationPeriodData from "./numerology/RealizationPeriodData.json";
 import personelCycleData from "./numerology/PersonelCycleData.json";
+import karmicNumberData from "./numerology/KarmicNumberData.json";
 
 // ===== EXPORTS PRINCIPAUX =====
 export {
@@ -25,6 +26,7 @@ export {
   lifeCycleData,
   realizationPeriodData,
   personelCycleData,
+  karmicNumberData,
 };
 
 // ===== ALIAS POUR COMPATIBILITÉ =====
@@ -135,6 +137,17 @@ export interface PersonelCycleData {
 }
 
 export type PersonelCycleDetail = BaseCycleDetail;
+
+export interface KarmicNumberData {
+  [key: string]: KarmicNumberDetail;
+}
+
+export interface KarmicNumberDetail {
+  summary: string;
+  challenge: string;
+  details: string;
+  keywords: string[];
+}
 
 // ===== ALIAS POUR COMPATIBILITÉ =====
 export type ExpressionNumberData = ExpressionData;
