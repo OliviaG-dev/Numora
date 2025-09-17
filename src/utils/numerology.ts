@@ -6,6 +6,7 @@
 // Import des données de défi
 import challengeData from "../data/numerology/ChallengeData.json";
 import karmicNumberData from "../data/numerology/KarmicNumberData.json";
+import cycleKarmicData from "../data/numerology/CycleKarmicData.json";
 
 /**
  * Calcule le Chemin de Vie en numérologie
@@ -91,6 +92,21 @@ export interface KarmicNumbersResult {
   presentNumbers: number[];
   missingNumbers: number[];
   karmicDefinitions: KarmicNumberResult[];
+}
+
+export interface CycleKarmicResult {
+  number: number;
+  summary: string;
+  challenge: string;
+  details: string;
+  keywords: string[];
+}
+
+export interface CycleKarmicNumbersResult {
+  fullName: string;
+  presentNumbers: number[];
+  missingNumbers: number[];
+  cycleKarmicDefinitions: CycleKarmicResult[];
 }
 
 // Constantes
@@ -458,17 +474,77 @@ export function calculatePersonalNumbers(
 }
 
 /**
- * Calcule les nombres karmiques (nombres manquants dans le nom)
- * @param fullName - Nom complet
+ * Calcule les nombres karmiques (chiffres manquants dans la date de naissance)
+ * @param dateString - Date de naissance au format "YYYY-MM-DD"
  * @returns Les nombres karmiques avec leurs définitions
  */
-export function calculateKarmicNumbers(fullName: string): KarmicNumbersResult {
+export function calculateKarmicNumbers(
+  dateString: string
+): KarmicNumbersResult {
+  // Validation du format de date
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(dateString)) {
+    throw new Error('Format de date invalide. Utilisez "YYYY-MM-DD"');
+  }
+
+  // Extraction des chiffres (suppression des tirets)
+  const digits = dateString.replace(/-/g, "").split("").map(Number);
+
+  // Vérification que tous les caractères sont des chiffres
+  if (digits.some(isNaN)) {
+    throw new Error("La date ne doit contenir que des chiffres et des tirets");
+  }
+
+  // Liste des chiffres présents dans la date
+  const presentNumbers = new Set<number>();
+  for (const digit of digits) {
+    if (digit >= 1 && digit <= 9) {
+      presentNumbers.add(digit);
+    }
+  }
+
+  // Identifier les chiffres manquants (1-9)
+  const missingNumbers = [];
+  for (let i = 1; i <= 9; i++) {
+    if (!presentNumbers.has(i)) {
+      missingNumbers.push(i);
+    }
+  }
+
+  // Associer aux définitions JSON
+  const karmicDefinitions: KarmicNumberResult[] = missingNumbers.map((num) => {
+    const karmicData =
+      karmicNumberData[num.toString() as keyof typeof karmicNumberData];
+    return {
+      number: num,
+      summary: karmicData?.summary || "",
+      challenge: karmicData?.challenge || "",
+      details: karmicData?.details || "",
+      keywords: karmicData?.keywords || [],
+    };
+  });
+
+  return {
+    fullName: dateString,
+    presentNumbers: Array.from(presentNumbers).sort(),
+    missingNumbers,
+    karmicDefinitions,
+  };
+}
+
+/**
+ * Calcule les cycles karmiques (lettres manquantes dans le nom complet)
+ * @param fullName - Nom complet
+ * @returns Les cycles karmiques avec leurs définitions
+ */
+export function calculateCycleKarmicNumbers(
+  fullName: string
+): CycleKarmicNumbersResult {
   // Validation du nom
   if (!fullName || fullName.trim().length === 0) {
     throw new Error("Le nom ne peut pas être vide");
   }
 
-  // Nettoyer le nom (majuscules et sans accents)
+  // Nettoyer le nom complet (majuscules et sans accents)
   const cleanName = fullName
     .toUpperCase()
     .normalize("NFD") // retire accents
@@ -500,22 +576,24 @@ export function calculateKarmicNumbers(fullName: string): KarmicNumbersResult {
   }
 
   // Associer aux définitions JSON
-  const karmicDefinitions: KarmicNumberResult[] = missingNumbers.map((num) => {
-    const karmicData =
-      karmicNumberData[num.toString() as keyof typeof karmicNumberData];
-    return {
-      number: num,
-      summary: karmicData?.summary || "",
-      challenge: karmicData?.challenge || "",
-      details: karmicData?.details || "",
-      keywords: karmicData?.keywords || [],
-    };
-  });
+  const cycleKarmicDefinitions: CycleKarmicResult[] = missingNumbers.map(
+    (num) => {
+      const cycleData =
+        cycleKarmicData[num.toString() as keyof typeof cycleKarmicData];
+      return {
+        number: num,
+        summary: cycleData?.summary || "",
+        challenge: cycleData?.challenge || "",
+        details: cycleData?.details || "",
+        keywords: cycleData?.keywords || [],
+      };
+    }
+  );
 
   return {
     fullName,
     presentNumbers: Array.from(presentNumbers).sort(),
     missingNumbers,
-    karmicDefinitions,
+    cycleKarmicDefinitions,
   };
 }
