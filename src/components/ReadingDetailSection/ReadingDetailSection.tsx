@@ -86,6 +86,42 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
   // État pour la navigation par onglets
   const [activeTab, setActiveTab] = useState<string>("basiques");
 
+  // État pour gérer l'ouverture/fermeture des accordéons karmiques
+  const [openKarmicAccordions, setOpenKarmicAccordions] = useState<Set<number>>(
+    new Set()
+  );
+
+  // État pour gérer l'ouverture/fermeture des accordéons des cycles karmiques
+  const [openCycleKarmicAccordions, setOpenCycleKarmicAccordions] = useState<
+    Set<number>
+  >(new Set());
+
+  // Fonction pour gérer l'ouverture/fermeture des accordéons karmiques
+  const toggleKarmicAccordion = (number: number) => {
+    setOpenKarmicAccordions((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(number)) {
+        newSet.delete(number);
+      } else {
+        newSet.add(number);
+      }
+      return newSet;
+    });
+  };
+
+  // Fonction pour gérer l'ouverture/fermeture des accordéons des cycles karmiques
+  const toggleCycleKarmicAccordion = (number: number) => {
+    setOpenCycleKarmicAccordions((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(number)) {
+        newSet.delete(number);
+      } else {
+        newSet.add(number);
+      }
+      return newSet;
+    });
+  };
+
   const [numerologyResults, setNumerologyResults] = useState<{
     lifePath: { number: number; info: LifePathDetail | undefined };
     expression: { number: number; info: ExpressionDetail | undefined };
@@ -1445,47 +1481,77 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
                   numerologyResults.karmicNumbers.karmicDefinitions.map(
                     (karmic) => (
                       <div key={karmic.number} className="karmic-card">
-                        <div className="karmic-header">
+                        <div
+                          className="karmic-header accordion-header"
+                          onClick={() => toggleKarmicAccordion(karmic.number)}
+                        >
                           <h3>
                             Défi Karmique {karmic.number}
                             <span className="karmic-period">
                               (Chiffre manquant)
                             </span>
                           </h3>
-                          <div className="number-badge karmic-badge">
-                            {karmic.number}
-                          </div>
-                        </div>
-
-                        <div className="karmic-content">
-                          <div className="karmic-summary">
-                            <h4>Résumé</h4>
-                            <p>{karmic.summary}</p>
-                          </div>
-
-                          <div className="karmic-challenge">
-                            <h4>Défi à relever</h4>
-                            <p>{karmic.challenge}</p>
-                          </div>
-
-                          <div className="karmic-details">
-                            <h4>Détails</h4>
-                            <p>{karmic.details}</p>
-                          </div>
-
-                          {karmic.keywords.length > 0 && (
-                            <div className="karmic-keywords">
-                              <h4>Mots-clés</h4>
-                              <div className="keywords-list">
-                                {karmic.keywords.map((keyword, index) => (
-                                  <span key={index} className="keyword-tag">
-                                    {keyword}
-                                  </span>
-                                ))}
-                              </div>
+                          <div className="header-right">
+                            <div className="number-badge karmic-badge">
+                              {karmic.number}
                             </div>
-                          )}
+                            <div
+                              className={`accordion-arrow ${
+                                openKarmicAccordions.has(karmic.number)
+                                  ? "open"
+                                  : ""
+                              }`}
+                            >
+                              <svg
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M6 9L12 15L18 9"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                />
+                              </svg>
+                            </div>
+                          </div>
                         </div>
+
+                        {openKarmicAccordions.has(karmic.number) && (
+                          <div className="karmic-content accordion-content">
+                            <div className="karmic-summary">
+                              <h4>Résumé</h4>
+                              <p>{karmic.summary}</p>
+                            </div>
+
+                            <div className="karmic-challenge">
+                              <h4>Défi à relever</h4>
+                              <p>{karmic.challenge}</p>
+                            </div>
+
+                            <div className="karmic-details">
+                              <h4>Détails</h4>
+                              <p>{karmic.details}</p>
+                            </div>
+
+                            {karmic.keywords.length > 0 && (
+                              <div className="karmic-keywords">
+                                <h4>Mots-clés</h4>
+                                <div className="keywords-list">
+                                  {karmic.keywords.map((keyword, index) => (
+                                    <span key={index} className="keyword-tag">
+                                      {keyword}
+                                    </span>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        )}
                       </div>
                     )
                   )
@@ -1590,47 +1656,83 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
                         key={cycleKarmic.number}
                         className="cycle-karmic-card"
                       >
-                        <div className="cycle-karmic-header">
+                        <div
+                          className="cycle-karmic-header accordion-header"
+                          onClick={() =>
+                            toggleCycleKarmicAccordion(cycleKarmic.number)
+                          }
+                        >
                           <h3>
                             Cycle Karmique {cycleKarmic.number}
                             <span className="cycle-karmic-period">
                               (Lettre manquante)
                             </span>
                           </h3>
-                          <div className="number-badge cycle-karmic-badge">
-                            {cycleKarmic.number}
-                          </div>
-                        </div>
-
-                        <div className="cycle-karmic-content">
-                          <div className="cycle-karmic-summary">
-                            <h4>Résumé</h4>
-                            <p>{cycleKarmic.summary}</p>
-                          </div>
-
-                          <div className="cycle-karmic-challenge">
-                            <h4>Défi à relever</h4>
-                            <p>{cycleKarmic.challenge}</p>
-                          </div>
-
-                          <div className="cycle-karmic-details">
-                            <h4>Détails</h4>
-                            <p>{cycleKarmic.details}</p>
-                          </div>
-
-                          {cycleKarmic.keywords.length > 0 && (
-                            <div className="cycle-karmic-keywords">
-                              <h4>Mots-clés</h4>
-                              <div className="keywords-list">
-                                {cycleKarmic.keywords.map((keyword, index) => (
-                                  <span key={index} className="keyword-tag">
-                                    {keyword}
-                                  </span>
-                                ))}
-                              </div>
+                          <div className="header-right">
+                            <div className="number-badge cycle-karmic-badge">
+                              {cycleKarmic.number}
                             </div>
-                          )}
+                            <div
+                              className={`accordion-arrow ${
+                                openCycleKarmicAccordions.has(
+                                  cycleKarmic.number
+                                )
+                                  ? "open"
+                                  : ""
+                              }`}
+                            >
+                              <svg
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M6 9L12 15L18 9"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                />
+                              </svg>
+                            </div>
+                          </div>
                         </div>
+
+                        {openCycleKarmicAccordions.has(cycleKarmic.number) && (
+                          <div className="cycle-karmic-content accordion-content">
+                            <div className="cycle-karmic-summary">
+                              <h4>Résumé</h4>
+                              <p>{cycleKarmic.summary}</p>
+                            </div>
+
+                            <div className="cycle-karmic-challenge">
+                              <h4>Défi à relever</h4>
+                              <p>{cycleKarmic.challenge}</p>
+                            </div>
+
+                            <div className="cycle-karmic-details">
+                              <h4>Détails</h4>
+                              <p>{cycleKarmic.details}</p>
+                            </div>
+
+                            {cycleKarmic.keywords.length > 0 && (
+                              <div className="cycle-karmic-keywords">
+                                <h4>Mots-clés</h4>
+                                <div className="keywords-list">
+                                  {cycleKarmic.keywords.map(
+                                    (keyword, index) => (
+                                      <span key={index} className="keyword-tag">
+                                        {keyword}
+                                      </span>
+                                    )
+                                  )}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        )}
                       </div>
                     )
                   )
