@@ -5,6 +5,8 @@
 
 // Import des données de défi
 import challengeData from "../data/numerology/ChallengeData.json";
+import karmicNumberData from "../data/numerology/KarmicNumberData.json";
+import cycleKarmicData from "../data/numerology/CycleKarmicData.json";
 
 /**
  * Calcule le Chemin de Vie en numérologie
@@ -75,6 +77,36 @@ export interface ChallengeNumbersResult {
   second: { number: number; description: string };
   third: { number: number; description: string };
   fourth: { number: number; description: string };
+}
+
+export interface KarmicNumberResult {
+  number: number;
+  summary: string;
+  challenge: string;
+  details: string;
+  keywords: string[];
+}
+
+export interface KarmicNumbersResult {
+  fullName: string;
+  presentNumbers: number[];
+  missingNumbers: number[];
+  karmicDefinitions: KarmicNumberResult[];
+}
+
+export interface CycleKarmicResult {
+  number: number;
+  summary: string;
+  challenge: string;
+  details: string;
+  keywords: string[];
+}
+
+export interface CycleKarmicNumbersResult {
+  fullName: string;
+  presentNumbers: number[];
+  missingNumbers: number[];
+  cycleKarmicDefinitions: CycleKarmicResult[];
 }
 
 // Constantes
@@ -337,5 +369,231 @@ export function calculateRealizationPeriods(
     secondPeriod,
     thirdPeriod,
     fourthPeriod,
+  };
+}
+
+/**
+ * Calcule l'année personnelle
+ * @param day - Jour de naissance
+ * @param month - Mois de naissance
+ * @param year - Année en cours
+ * @returns Le nombre de l'année personnelle (1-9)
+ */
+export function calculatePersonalYear(
+  day: number,
+  month: number,
+  year: number
+): number {
+  // Validation des paramètres
+  if (day < 1 || day > 31) {
+    throw new Error("Le jour doit être entre 1 et 31");
+  }
+  if (month < 1 || month > 12) {
+    throw new Error("Le mois doit être entre 1 et 12");
+  }
+
+  // Réduction de l'année à un chiffre
+  const yearReduced = reduceToSingleDigit(year);
+
+  // Calcul de l'année personnelle
+  const sum = day + month + yearReduced;
+  return reduceToSingleDigit(sum);
+}
+
+/**
+ * Calcule le mois personnel
+ * @param personalYear - Année personnelle
+ * @param month - Mois en cours
+ * @returns Le nombre du mois personnel (1-9)
+ */
+export function calculatePersonalMonth(
+  personalYear: number,
+  month: number
+): number {
+  if (month < 1 || month > 12) {
+    throw new Error("Le mois doit être entre 1 et 12");
+  }
+
+  const sum = personalYear + month;
+  return reduceToSingleDigit(sum);
+}
+
+/**
+ * Calcule le jour personnel
+ * @param personalMonth - Mois personnel
+ * @param day - Jour en cours
+ * @returns Le nombre du jour personnel (1-9)
+ */
+export function calculatePersonalDay(
+  personalMonth: number,
+  day: number
+): number {
+  if (day < 1 || day > 31) {
+    throw new Error("Le jour doit être entre 1 et 31");
+  }
+
+  const sum = personalMonth + day;
+  return reduceToSingleDigit(sum);
+}
+
+/**
+ * Calcule tous les nombres personnels (année, mois, jour)
+ * @param birthDay - Jour de naissance
+ * @param birthMonth - Mois de naissance
+ * @param currentDate - Date actuelle (optionnelle, utilise la date du jour par défaut)
+ * @returns Les nombres personnels avec les données associées
+ */
+export function calculatePersonalNumbers(
+  birthDay: number,
+  birthMonth: number,
+  currentDate?: Date
+) {
+  const today = currentDate || new Date();
+  const currentYear = today.getFullYear();
+  const currentMonth = today.getMonth() + 1; // JS months: 0-11
+  const currentDay = today.getDate();
+
+  const personalYear = calculatePersonalYear(birthDay, birthMonth, currentYear);
+  const personalMonth = calculatePersonalMonth(personalYear, currentMonth);
+  const personalDay = calculatePersonalDay(personalMonth, currentDay);
+
+  return {
+    year: {
+      number: personalYear,
+      description: `Année personnelle ${personalYear}`,
+    },
+    month: {
+      number: personalMonth,
+      description: `Mois personnel ${personalMonth}`,
+    },
+    day: {
+      number: personalDay,
+      description: `Jour personnel ${personalDay}`,
+    },
+  };
+}
+
+/**
+ * Calcule les nombres karmiques (chiffres manquants dans la date de naissance)
+ * @param dateString - Date de naissance au format "YYYY-MM-DD"
+ * @returns Les nombres karmiques avec leurs définitions
+ */
+export function calculateKarmicNumbers(
+  dateString: string
+): KarmicNumbersResult {
+  // Validation du format de date
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(dateString)) {
+    throw new Error('Format de date invalide. Utilisez "YYYY-MM-DD"');
+  }
+
+  // Extraction des chiffres (suppression des tirets)
+  const digits = dateString.replace(/-/g, "").split("").map(Number);
+
+  // Vérification que tous les caractères sont des chiffres
+  if (digits.some(isNaN)) {
+    throw new Error("La date ne doit contenir que des chiffres et des tirets");
+  }
+
+  // Liste des chiffres présents dans la date
+  const presentNumbers = new Set<number>();
+  for (const digit of digits) {
+    if (digit >= 1 && digit <= 9) {
+      presentNumbers.add(digit);
+    }
+  }
+
+  // Identifier les chiffres manquants (1-9)
+  const missingNumbers = [];
+  for (let i = 1; i <= 9; i++) {
+    if (!presentNumbers.has(i)) {
+      missingNumbers.push(i);
+    }
+  }
+
+  // Associer aux définitions JSON
+  const karmicDefinitions: KarmicNumberResult[] = missingNumbers.map((num) => {
+    const karmicData =
+      karmicNumberData[num.toString() as keyof typeof karmicNumberData];
+    return {
+      number: num,
+      summary: karmicData?.summary || "",
+      challenge: karmicData?.challenge || "",
+      details: karmicData?.details || "",
+      keywords: karmicData?.keywords || [],
+    };
+  });
+
+  return {
+    fullName: dateString,
+    presentNumbers: Array.from(presentNumbers).sort(),
+    missingNumbers,
+    karmicDefinitions,
+  };
+}
+
+/**
+ * Calcule les cycles karmiques (lettres manquantes dans le nom complet)
+ * @param fullName - Nom complet
+ * @returns Les cycles karmiques avec leurs définitions
+ */
+export function calculateCycleKarmicNumbers(
+  fullName: string
+): CycleKarmicNumbersResult {
+  // Validation du nom
+  if (!fullName || fullName.trim().length === 0) {
+    throw new Error("Le nom ne peut pas être vide");
+  }
+
+  // Nettoyer le nom complet (majuscules et sans accents)
+  const cleanName = fullName
+    .toUpperCase()
+    .normalize("NFD") // retire accents
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^A-Z]/g, ""); // garde seulement les lettres
+
+  if (cleanName.length === 0) {
+    throw new Error("Aucune lettre valide trouvée dans le nom");
+  }
+
+  // Conversion lettre -> nombre (A=1, B=2, ... I=9, J=1, etc.)
+  const letterToNumber = (letter: string): number => {
+    const charCode = letter.charCodeAt(0) - 64; // A=1
+    return ((charCode - 1) % 9) + 1; // cycle de 1 à 9
+  };
+
+  // Liste des nombres présents dans le nom
+  const presentNumbers = new Set<number>();
+  for (const letter of cleanName) {
+    presentNumbers.add(letterToNumber(letter));
+  }
+
+  // Identifier les manquants
+  const missingNumbers = [];
+  for (let i = 1; i <= 9; i++) {
+    if (!presentNumbers.has(i)) {
+      missingNumbers.push(i);
+    }
+  }
+
+  // Associer aux définitions JSON
+  const cycleKarmicDefinitions: CycleKarmicResult[] = missingNumbers.map(
+    (num) => {
+      const cycleData =
+        cycleKarmicData[num.toString() as keyof typeof cycleKarmicData];
+      return {
+        number: num,
+        summary: cycleData?.summary || "",
+        challenge: cycleData?.challenge || "",
+        details: cycleData?.details || "",
+        keywords: cycleData?.keywords || [],
+      };
+    }
+  );
+
+  return {
+    fullName,
+    presentNumbers: Array.from(presentNumbers).sort(),
+    missingNumbers,
+    cycleKarmicDefinitions,
   };
 }

@@ -205,7 +205,9 @@
 .expression .title-with-tooltip,
 .life-path .title-with-tooltip,
 .life-cycles .title-with-tooltip,
-.realization-periods .title-with-tooltip {
+.realization-periods .title-with-tooltip,
+.personal-numbers .title-with-tooltip,
+.karmic-section .title-with-tooltip {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -215,7 +217,9 @@
 .expression .title-with-tooltip h2,
 .life-path .title-with-tooltip h2,
 .life-cycles .title-with-tooltip h2,
-.realization-periods .title-with-tooltip h2 {
+.realization-periods .title-with-tooltip h2,
+.personal-numbers .title-with-tooltip h2,
+.karmic-section .title-with-tooltip h2 {
   margin: 0;
   line-height: 1;
 }
@@ -224,7 +228,9 @@
 .expression .tooltip-icon,
 .life-path .tooltip-icon,
 .life-cycles .tooltip-icon,
-.realization-periods .tooltip-icon {
+.realization-periods .tooltip-icon,
+.personal-numbers .tooltip-icon,
+.karmic-section .tooltip-icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -467,6 +473,15 @@
   text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
 }
 
+/* Personal Numbers Section */
+.personal-numbers h2 {
+  color: var(--primary-purple);
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+}
+
 .challenges-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -585,6 +600,7 @@
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
+  align-items: stretch;
 }
 
 .cycle-card {
@@ -594,6 +610,9 @@
   border: 1px solid rgba(139, 92, 246, 0.3);
   transition: all 0.3s ease;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .cycle-card:hover {
@@ -619,9 +638,11 @@
 }
 
 .cycle-badge {
-  background: var(--gradient-primary);
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
   color: white;
   margin: 1rem auto;
+  font-weight: 800;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .cycle-summary {
@@ -633,41 +654,81 @@
   background: rgba(255, 255, 255, 0.05);
   border-radius: 10px;
   border-left: 4px solid var(--secondary-gold);
+  flex-grow: 1;
 }
 
 .cycle-details {
   color: var(--text-secondary);
   line-height: 1.6;
   font-size: 0.95rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.cycle-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 1rem;
+}
+
+.cycle-challenge {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  background: rgba(245, 158, 11, 0.05);
+  border-radius: 8px;
+  border-left: 3px solid var(--secondary-gold);
+}
+
+.cycle-challenge h4 {
+  color: var(--secondary-gold);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cycle-challenge p {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin: 0;
+  line-height: 1.5;
 }
 
 /* Périodes de Réalisation */
 .realization-periods-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
   margin-top: 2rem;
+  align-items: stretch;
 }
 
 .period-card {
-  background: rgba(245, 158, 11, 0.1);
+  background: rgba(139, 92, 246, 0.1);
   border-radius: 15px;
   padding: 1.5rem;
-  border: 1px solid rgba(245, 158, 11, 0.3);
+  border: 1px solid rgba(139, 92, 246, 0.3);
   transition: all 0.3s ease;
   text-align: center;
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .period-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(245, 158, 11, 0.2);
-  border-color: rgba(245, 158, 11, 0.5);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.5);
 }
 
 .period-title {
   display: block;
   color: var(--secondary-gold);
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
 }
@@ -675,32 +736,173 @@
 .period-duration {
   display: block;
   color: var(--text-secondary);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-style: italic;
   margin-bottom: 1rem;
 }
 
 .period-badge {
-  background: var(--gradient-secondary);
-  color: var(--bg-primary);
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
   margin: 1rem auto;
+  font-weight: 800;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .period-summary {
   color: var(--text-primary);
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 1rem;
   margin-bottom: 1rem;
-  padding: 0.8rem;
+  padding: 1rem;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 10px;
   border-left: 4px solid var(--secondary-gold);
+  flex-grow: 1;
 }
 
 .period-details {
   color: var(--text-secondary);
   line-height: 1.6;
+  font-size: 0.95rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.period-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 1rem;
+}
+
+.period-challenge {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  background: rgba(245, 158, 11, 0.05);
+  border-radius: 8px;
+  border-left: 3px solid var(--secondary-gold);
+}
+
+.period-challenge h4 {
+  color: var(--secondary-gold);
   font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.period-challenge p {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Nombres Personnels */
+.personal-numbers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+  align-items: stretch;
+}
+
+.personal-card {
+  background: rgba(139, 92, 246, 0.1);
+  border-radius: 15px;
+  padding: 1.5rem;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  transition: all 0.3s ease;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.personal-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+.personal-title {
+  display: block;
+  color: var(--secondary-gold);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.personal-period {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.personal-badge {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  margin: 1rem auto;
+  font-weight: 800;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.personal-summary {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  border-left: 4px solid var(--secondary-gold);
+  flex-grow: 1;
+}
+
+.personal-details {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 0.95rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.personal-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 1rem;
+}
+
+.personal-challenge {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  background: rgba(245, 158, 11, 0.05);
+  border-radius: 8px;
+  border-left: 3px solid var(--secondary-gold);
+}
+
+.personal-challenge h4 {
+  color: var(--secondary-gold);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.personal-challenge p {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin: 0;
+  line-height: 1.5;
 }
 
 /* Responsive */
@@ -759,23 +961,852 @@
     gap: 1.5rem;
   }
 
+  .personal-numbers-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
   .cycle-card,
-  .period-card {
+  .period-card,
+  .personal-card {
     padding: 1rem;
   }
 
   .cycle-title,
-  .period-title {
+  .period-title,
+  .personal-title {
     font-size: 1.1rem;
   }
 
   .cycle-period,
-  .period-duration {
+  .period-duration,
+  .personal-period {
     font-size: 0.8rem;
   }
 
   .reading-actions {
     flex-direction: column;
     align-items: center;
+  }
+}
+
+/* ===== STYLES POUR LES NOMBRES KARMIQUES ===== */
+
+.karmic-section {
+  background: var(--bg-secondary);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--bg-tertiary);
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.karmic-section:hover {
+  transform: translateY(-5px);
+}
+
+.karmic-section h2 {
+  color: var(--primary-purple);
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+}
+
+.karmic-overview {
+  margin-bottom: 2rem;
+  background: var(--bg-tertiary);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid rgba(139, 92, 246, 0.1);
+}
+
+.karmic-stats {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 1.5rem;
+  background: var(--bg-secondary);
+  border-radius: 20px;
+  border: 1px solid var(--bg-tertiary);
+  min-width: 140px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.stat-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.2);
+  border-color: var(--primary-purple-light);
+}
+
+.stat-number {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: var(--gradient-secondary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(245, 158, 11, 0.3);
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.present-numbers {
+  text-align: center;
+  background: rgba(139, 92, 246, 0.05);
+  border-radius: 20px;
+  padding: 1.5rem;
+  border: 1px solid rgba(139, 92, 246, 0.1);
+}
+
+.present-numbers h4 {
+  color: var(--secondary-gold);
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(245, 158, 11, 0.3);
+}
+
+.number-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.number-tag {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 1rem;
+  border: 2px solid;
+}
+
+.number-tag.present {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  border-color: #f093fb;
+  color: white;
+}
+
+.karmic-definitions {
+  display: grid;
+  gap: 2rem;
+}
+
+.karmic-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--bg-tertiary);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  position: relative;
+}
+
+.karmic-card:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--primary-purple-light);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.karmic-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.karmic-header h3 {
+  color: var(--secondary-gold);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0;
+  flex: 1;
+  min-width: 200px;
+  text-shadow: 0 1px 2px rgba(245, 158, 11, 0.3);
+}
+
+.karmic-period {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  display: block;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+.karmic-badge {
+  background: linear-gradient(135deg, #c54343, #b91c1c);
+  color: white;
+  border: 1px solid #dc2626;
+  font-size: 1.3rem;
+  font-weight: 700;
+  min-width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+
+  transition: all 0.3s ease;
+}
+
+.karmic-content {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.karmic-summary,
+.karmic-challenge,
+.karmic-details {
+  padding: 1.5rem;
+  background: var(--bg-primary);
+  border-radius: 15px;
+  border-left: 4px solid;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.karmic-summary {
+  border-left-color: var(--secondary-gold);
+  background: linear-gradient(
+    135deg,
+    rgba(245, 158, 11, 0.05),
+    rgba(245, 158, 11, 0.02)
+  );
+}
+
+.karmic-challenge {
+  border-left-color: #dc2626;
+  background: linear-gradient(
+    135deg,
+    rgba(220, 38, 38, 0.05),
+    rgba(220, 38, 38, 0.02)
+  );
+}
+
+.karmic-details {
+  border-left-color: var(--primary-purple-light);
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.05),
+    rgba(139, 92, 246, 0.02)
+  );
+}
+
+.karmic-summary:hover,
+.karmic-challenge:hover,
+.karmic-details:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.karmic-summary h4,
+.karmic-challenge h4,
+.karmic-details h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.karmic-summary h4 {
+  color: var(--secondary-gold);
+  text-shadow: 0 1px 2px rgba(245, 158, 11, 0.3);
+}
+
+.karmic-challenge h4 {
+  color: #dc2626;
+  text-shadow: 0 1px 2px rgba(220, 38, 38, 0.3);
+}
+
+.karmic-details h4 {
+  color: var(--primary-purple-light);
+  text-shadow: 0 1px 2px rgba(139, 92, 246, 0.3);
+}
+
+.karmic-summary p,
+.karmic-challenge p,
+.karmic-details p {
+  color: var(--text-primary);
+  line-height: 1.7;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.karmic-keywords {
+  padding: 1.5rem;
+  background: var(--bg-primary);
+  border-radius: 15px;
+  border: 1px solid rgba(139, 92, 246, 0.1);
+}
+
+.karmic-keywords h4 {
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.keywords-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.keyword-tag {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: var(--gradient-secondary);
+  color: var(--bg-primary);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 3px 10px rgba(245, 158, 11, 0.3);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.keyword-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(245, 158, 11, 0.4);
+  background: linear-gradient(
+    135deg,
+    var(--secondary-gold-light),
+    var(--secondary-gold)
+  );
+}
+
+.no-karmic-challenges {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(
+    135deg,
+    rgba(16, 185, 129, 0.05),
+    rgba(16, 185, 129, 0.02)
+  );
+  border: 2px solid rgba(16, 185, 129, 0.2);
+  border-radius: 20px;
+}
+
+.no-karmic-challenges h3 {
+  color: #10b981;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
+}
+
+.no-karmic-challenges p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  max-width: 500px;
+  margin: 0 auto;
+  font-weight: 500;
+}
+
+/* Responsive pour les nombres karmiques */
+@media (max-width: 768px) {
+  .karmic-section {
+    padding: 1.5rem;
+  }
+
+  .karmic-overview {
+    padding: 1.5rem;
+  }
+
+  .karmic-stats {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .stat-item {
+    min-width: auto;
+  }
+
+  .karmic-header {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .karmic-header h3 {
+    min-width: auto;
+  }
+
+  .karmic-badge {
+    align-self: center;
+  }
+
+  .keywords-list {
+    justify-content: center;
+  }
+
+  .karmic-card {
+    padding: 1.5rem;
+  }
+}
+
+/* ===== STYLES POUR LA NAVIGATION PAR ONGLETS ===== */
+
+.navigation-tabs {
+  max-width: 1200px;
+  margin: 0 auto 2rem auto;
+  background: var(--bg-secondary);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--bg-tertiary);
+}
+
+.tabs-container {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.tab-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--bg-primary);
+  border-radius: 15px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  min-width: 120px;
+  justify-content: center;
+}
+
+.tab-button:hover {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.tab-button.active {
+  background: linear-gradient(
+    135deg,
+    var(--primary-purple),
+    var(--primary-purple-light)
+  );
+  color: white;
+  border-color: var(--primary-purple);
+  box-shadow: 0 5px 20px rgba(139, 92, 246, 0.3);
+}
+
+.tab-button.active:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+}
+
+.tab-icon {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.tab-label {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Styles pour les sections placeholder */
+.placeholder-content {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.05),
+    rgba(139, 92, 246, 0.02)
+  );
+  border: 2px solid rgba(139, 92, 246, 0.2);
+  border-radius: 20px;
+}
+
+.placeholder-content p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  max-width: 500px;
+  margin: 0 auto;
+  font-weight: 500;
+}
+
+/* Responsive pour la navigation */
+@media (max-width: 768px) {
+  .navigation-tabs {
+    padding: 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .tabs-container {
+    gap: 0.3rem;
+  }
+
+  .tab-button {
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+    min-width: 100px;
+  }
+
+  .tab-icon {
+    font-size: 1rem;
+  }
+
+  .tab-label {
+    display: none;
+  }
+
+  .tab-button .tab-icon {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .tabs-container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .tab-button {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .tab-label {
+    display: block;
+  }
+}
+
+/* ===== STYLES POUR LES CYCLES KARMIQUES ===== */
+
+/* Section des cycles karmiques */
+.cycle-karmic-section {
+  background: var(--bg-secondary);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--bg-tertiary);
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.cycle-karmic-section:hover {
+  transform: translateY(-5px);
+}
+
+.cycle-karmic-section h2 {
+  color: var(--primary-purple);
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+}
+
+.cycle-karmic-section .title-with-tooltip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cycle-karmic-section .title-with-tooltip h2 {
+  margin: 0;
+  line-height: 1;
+}
+
+.cycle-karmic-section .tooltip-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.8rem;
+  width: 1.8rem;
+  font-size: 1.2rem;
+}
+
+.cycle-karmic-overview {
+  margin-bottom: 2rem;
+  background: var(--bg-tertiary);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid var(--bg-primary);
+}
+
+.cycle-karmic-stats {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Cartes des cycles karmiques */
+.cycle-karmic-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--bg-tertiary);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.cycle-karmic-card:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--primary-purple-light);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.cycle-karmic-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.cycle-karmic-header h3 {
+  color: var(--secondary-gold);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(251, 191, 36, 0.2);
+  min-width: 200px;
+}
+
+.cycle-karmic-period {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-left: 0.5rem;
+}
+
+.cycle-karmic-badge {
+  background: linear-gradient(
+    135deg,
+    var(--primary-purple),
+    var(--primary-purple-light)
+  );
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 0.8rem 1.2rem;
+  border-radius: 50%;
+  min-width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.cycle-karmic-content {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.cycle-karmic-summary,
+.cycle-karmic-challenge,
+.cycle-karmic-details {
+  background: var(--bg-tertiary);
+  padding: 1.5rem;
+  border-radius: 15px;
+  border: 1px solid var(--bg-primary);
+}
+
+.cycle-karmic-summary h4,
+.cycle-karmic-challenge h4,
+.cycle-karmic-details h4 {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cycle-karmic-summary h4::before {
+  content: "📋";
+  font-size: 1.2rem;
+}
+
+.cycle-karmic-challenge h4::before {
+  content: "⚡";
+  font-size: 1.2rem;
+}
+
+.cycle-karmic-details h4::before {
+  content: "🔍";
+  font-size: 1.2rem;
+}
+
+.cycle-karmic-summary p,
+.cycle-karmic-challenge p,
+.cycle-karmic-details p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  font-weight: 500;
+}
+
+.cycle-karmic-keywords {
+  background: var(--bg-tertiary);
+  padding: 1.5rem;
+  border-radius: 15px;
+  border: 1px solid var(--bg-primary);
+}
+
+.cycle-karmic-keywords h4 {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cycle-karmic-keywords h4::before {
+  content: "🏷️";
+  font-size: 1.2rem;
+}
+
+.keywords-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: flex-start;
+}
+
+.keyword-tag {
+  background: linear-gradient(135deg, var(--secondary-gold), #f59e0b);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 8px rgba(251, 191, 36, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.keyword-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(251, 191, 36, 0.4);
+}
+
+/* Message quand pas de cycles karmiques */
+.no-cycle-karmic-challenges {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(
+    135deg,
+    rgba(16, 185, 129, 0.05),
+    rgba(16, 185, 129, 0.02)
+  );
+  border: 2px solid rgba(16, 185, 129, 0.2);
+  border-radius: 20px;
+}
+
+.no-cycle-karmic-challenges h3 {
+  color: #10b981;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
+}
+
+.no-cycle-karmic-challenges p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  max-width: 500px;
+  margin: 0 auto;
+  font-weight: 500;
+}
+
+/* Responsive pour les cycles karmiques */
+@media (max-width: 768px) {
+  .cycle-karmic-section {
+    padding: 1.5rem;
+  }
+
+  .cycle-karmic-overview {
+    padding: 1.5rem;
+  }
+
+  .cycle-karmic-stats {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .stat-item {
+    min-width: auto;
+  }
+
+  .cycle-karmic-header {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .cycle-karmic-header h3 {
+    min-width: auto;
+  }
+
+  .cycle-karmic-badge {
+    align-self: center;
+  }
+
+  .keywords-list {
+    justify-content: center;
+  }
+
+  .cycle-karmic-card {
+    padding: 1.5rem;
   }
 }

@@ -9,6 +9,9 @@ import {
   calculateChallengeNumbers,
   calculateLifeCycles,
   calculateRealizationPeriods,
+  calculatePersonalNumbers,
+  calculateKarmicNumbers,
+  calculateCycleKarmicNumbers,
 } from "../../utils/numerology";
 import {
   lifePathData,
@@ -18,12 +21,14 @@ import {
   birthdayData,
   lifeCycleData,
   realizationPeriodData,
+  personelCycleData,
 } from "../../data";
 import type {
   LifePathDetail,
   ExpressionDetail,
   LifeCycleDetail,
   RealizationPeriodDetail,
+  PersonelCycleDetail,
 } from "../../data";
 
 interface ReadingData {
@@ -78,6 +83,9 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
       window.removeEventListener("storage", checkAuthStatus);
     };
   }, []);
+  // État pour la navigation par onglets
+  const [activeTab, setActiveTab] = useState<string>("basiques");
+
   const [numerologyResults, setNumerologyResults] = useState<{
     lifePath: { number: number; info: LifePathDetail | undefined };
     expression: { number: number; info: ExpressionDetail | undefined };
@@ -113,6 +121,44 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
         info: RealizationPeriodDetail | undefined;
       };
     };
+    personalNumbers: {
+      year: {
+        number: number;
+        info: PersonelCycleDetail | undefined;
+      };
+      month: {
+        number: number;
+        info: PersonelCycleDetail | undefined;
+      };
+      day: {
+        number: number;
+        info: PersonelCycleDetail | undefined;
+      };
+    };
+    karmicNumbers: {
+      fullName: string;
+      presentNumbers: number[];
+      missingNumbers: number[];
+      karmicDefinitions: Array<{
+        number: number;
+        summary: string;
+        challenge: string;
+        details: string;
+        keywords: string[];
+      }>;
+    };
+    cycleKarmicNumbers: {
+      fullName: string;
+      presentNumbers: number[];
+      missingNumbers: number[];
+      cycleKarmicDefinitions: Array<{
+        number: number;
+        summary: string;
+        challenge: string;
+        details: string;
+        keywords: string[];
+      }>;
+    };
   } | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -146,6 +192,15 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
         month,
         year
       );
+
+      // Calcul des nombres personnels
+      const personalNumbers = calculatePersonalNumbers(day, month);
+
+      // Calcul des nombres karmiques (basés sur la date de naissance)
+      const karmicNumbers = calculateKarmicNumbers(readingData.birthDate);
+
+      // Calcul des cycles karmiques (basés sur le nom complet)
+      const cycleKarmicNumbers = calculateCycleKarmicNumbers(fullName);
 
       // Récupération des données détaillées
       const lifePathInfo =
@@ -193,6 +248,20 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
       const fourthPeriodInfo =
         realizationPeriodData[
           realizationPeriodsNumbers.fourthPeriod.toString() as keyof typeof realizationPeriodData
+        ];
+
+      // Récupération des données détaillées pour les nombres personnels
+      const personalYearInfo =
+        personelCycleData[
+          personalNumbers.year.number.toString() as keyof typeof personelCycleData
+        ];
+      const personalMonthInfo =
+        personelCycleData[
+          personalNumbers.month.number.toString() as keyof typeof personelCycleData
+        ];
+      const personalDayInfo =
+        personelCycleData[
+          personalNumbers.day.number.toString() as keyof typeof personelCycleData
         ];
 
       setNumerologyResults({
@@ -249,6 +318,22 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
             info: fourthPeriodInfo,
           },
         },
+        personalNumbers: {
+          year: {
+            number: personalNumbers.year.number,
+            info: personalYearInfo,
+          },
+          month: {
+            number: personalNumbers.month.number,
+            info: personalMonthInfo,
+          },
+          day: {
+            number: personalNumbers.day.number,
+            info: personalDayInfo,
+          },
+        },
+        karmicNumbers: karmicNumbers,
+        cycleKarmicNumbers: cycleKarmicNumbers,
       });
     } catch (error) {
       console.error("Erreur lors du calcul numérologique:", error);
@@ -302,6 +387,47 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
         </p>
       </div>
 
+      {/* Navigation par onglets */}
+      <div className="navigation-tabs">
+        <div className="tabs-container">
+          <button
+            className={`tab-button ${activeTab === "basiques" ? "active" : ""}`}
+            onClick={() => setActiveTab("basiques")}
+          >
+            <span className="tab-icon">🔢</span>
+            <span className="tab-label">Basiques</span>
+          </button>
+          <button
+            className={`tab-button ${activeTab === "dates" ? "active" : ""}`}
+            onClick={() => setActiveTab("dates")}
+          >
+            <span className="tab-icon">📅</span>
+            <span className="tab-label">Dates</span>
+          </button>
+          <button
+            className={`tab-button ${activeTab === "karmique" ? "active" : ""}`}
+            onClick={() => setActiveTab("karmique")}
+          >
+            <span className="tab-icon">⚖️</span>
+            <span className="tab-label">Karmique</span>
+          </button>
+          <button
+            className={`tab-button ${activeTab === "matrix" ? "active" : ""}`}
+            onClick={() => setActiveTab("matrix")}
+          >
+            <span className="tab-icon">🔮</span>
+            <span className="tab-label">Matrix Destiny</span>
+          </button>
+          <button
+            className={`tab-button ${activeTab === "arbre" ? "active" : ""}`}
+            onClick={() => setActiveTab("arbre")}
+          >
+            <span className="tab-icon">🌳</span>
+            <span className="tab-label">Arbre de Vie</span>
+          </button>
+        </div>
+      </div>
+
       <div className="reading-content">
         {/* Informations personnelles */}
         <section className="personal-info-section">
@@ -342,747 +468,1222 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
           </div>
         </section>
 
-        {/* Chemin de Vie */}
-        <section className="numerology-section life-path">
-          <div className="section-header">
-            <div className="title-with-tooltip">
-              <h2>Chemin de Vie</h2>
-              <div className="tooltip">
-                <span className="tooltip-icon">
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <circle
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      fill="none"
-                    />
-                    <path
-                      d="M12 16V12"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                    />
-                    <circle cx="12" cy="8" r="1" fill="currentColor" />
-                  </svg>
-                </span>
-                <div className="tooltip-content">
-                  <p>
-                    Le chemin de vie est le chiffre central en numérologie qui
-                    révèle la mission principale de ton existence.
-                  </p>
-                  <p>
-                    Il indique les forces à développer, les défis à surmonter et
-                    les leçons de vie que ton âme est venue expérimenter.
-                  </p>
-                  <p>
-                    C'est comme une boussole intérieure qui guide tes choix et
-                    ton évolution tout au long de ta vie.
-                  </p>
+        {/* ONGLET BASIQUES */}
+        {activeTab === "basiques" && (
+          <>
+            {/* Chemin de Vie */}
+            <section className="numerology-section life-path">
+              <div className="section-header">
+                <div className="title-with-tooltip">
+                  <h2>Chemin de Vie</h2>
+                  <div className="tooltip">
+                    <span className="tooltip-icon">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <circle
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          fill="none"
+                        />
+                        <path
+                          d="M12 16V12"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                        />
+                        <circle cx="12" cy="8" r="1" fill="currentColor" />
+                      </svg>
+                    </span>
+                    <div className="tooltip-content">
+                      <p>
+                        Le chemin de vie est le chiffre central en numérologie
+                        qui révèle la mission principale de ton existence.
+                      </p>
+                      <p>
+                        Il indique les forces à développer, les défis à
+                        surmonter et les leçons de vie que ton âme est venue
+                        expérimenter.
+                      </p>
+                      <p>
+                        C'est comme une boussole intérieure qui guide tes choix
+                        et ton évolution tout au long de ta vie.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="number-badge life-path-badge">
+                  {numerologyResults.lifePath.number}
                 </div>
               </div>
-            </div>
-            <div className="number-badge life-path-badge">
-              {numerologyResults.lifePath.number}
-            </div>
-          </div>
-          {numerologyResults.lifePath.info && (
-            <div className="section-content">
-              <h3>{numerologyResults.lifePath.info.title}</h3>
-              <p className="description">
-                {numerologyResults.lifePath.info.description}
-              </p>
-              <div className="keywords">
-                {numerologyResults.lifePath.info.keywords.map(
-                  (keyword: string, index: number) => (
-                    <span key={index} className="keyword-tag">
-                      {keyword}
+              {numerologyResults.lifePath.info && (
+                <div className="section-content">
+                  <h3>{numerologyResults.lifePath.info.title}</h3>
+                  <p className="description">
+                    {numerologyResults.lifePath.info.description}
+                  </p>
+                  <div className="keywords">
+                    {numerologyResults.lifePath.info.keywords.map(
+                      (keyword: string, index: number) => (
+                        <span key={index} className="keyword-tag">
+                          {keyword}
+                        </span>
+                      )
+                    )}
+                  </div>
+                  <div className="details-grid">
+                    <div className="detail-item">
+                      <h4>Forces</h4>
+                      <p>{numerologyResults.lifePath.info.strengths}</p>
+                    </div>
+                    <div className="detail-item">
+                      <h4>Défis</h4>
+                      <p>{numerologyResults.lifePath.info.challenges}</p>
+                    </div>
+                    <div className="detail-item">
+                      <h4>Mission</h4>
+                      <p>{numerologyResults.lifePath.info.mission}</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </section>
+
+            {/* Nombre d'Expression */}
+            <section className="numerology-section expression">
+              <div className="section-header">
+                <div className="title-with-tooltip">
+                  <h2>Nombre d'Expression</h2>
+                  <div className="tooltip">
+                    <span className="tooltip-icon">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <circle
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          fill="none"
+                        />
+                        <path
+                          d="M12 16V12"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                        />
+                        <circle cx="12" cy="8" r="1" fill="currentColor" />
+                      </svg>
                     </span>
+                    <div className="tooltip-content">
+                      <p>
+                        Le nombre d'expression révèle tes talents naturels et
+                        tes capacités innées.
+                      </p>
+                      <p>
+                        Il indique comment tu t'exprimes dans le monde, tes dons
+                        créatifs et tes aptitudes professionnelles.
+                      </p>
+                      <p>
+                        C'est la façon dont tu utilises tes compétences pour
+                        accomplir ta mission de vie.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="number-badge expression-badge">
+                  {numerologyResults.expression.number}
+                </div>
+              </div>
+              {numerologyResults.expression.info && (
+                <div className="section-content">
+                  <h3>{numerologyResults.expression.info.title}</h3>
+                  <p className="description">
+                    {numerologyResults.expression.info.description}
+                  </p>
+                  <div className="keywords">
+                    {numerologyResults.expression.info.keywords.map(
+                      (keyword: string, index: number) => (
+                        <span key={index} className="keyword-tag">
+                          {keyword}
+                        </span>
+                      )
+                    )}
+                  </div>
+                  <div className="details-grid">
+                    <div className="detail-item">
+                      <h4>Forces</h4>
+                      <p>{numerologyResults.expression.info.strengths}</p>
+                    </div>
+                    <div className="detail-item">
+                      <h4>Défis</h4>
+                      <p>{numerologyResults.expression.info.challenges}</p>
+                    </div>
+                    <div className="detail-item">
+                      <h4>Mission</h4>
+                      <p>{numerologyResults.expression.info.mission}</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </section>
+
+            {/* Nombres de l'Âme, Personnalité et Jour */}
+            <section className="numerology-section personal-numbers">
+              <h2>Nombres de l'Âme, Personnalité et Jour</h2>
+              <div className="personal-numbers-grid">
+                {/* Nombre de l'Âme */}
+                <div className="personal-number-card soul-urge">
+                  <div className="section-header">
+                    <div className="title-with-tooltip">
+                      <h3>Nombre de l'Âme</h3>
+                      <div className="tooltip">
+                        <span className="tooltip-icon">
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <circle
+                              cx="12"
+                              cy="12"
+                              r="10"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              fill="none"
+                            />
+                            <path
+                              d="M12 16V12"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                            />
+                            <circle cx="12" cy="8" r="1" fill="currentColor" />
+                          </svg>
+                        </span>
+                        <div className="tooltip-content">
+                          <p>
+                            Le nombre de l'âme révèle tes motivations profondes
+                            et tes désirs intérieurs.
+                          </p>
+                          <p>
+                            Il indique ce qui te pousse vraiment à agir, tes
+                            aspirations secrètes et tes besoins spirituels.
+                          </p>
+                          <p>
+                            C'est la voix de ton âme qui guide tes choix les
+                            plus authentiques.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="number-badge soul-badge">
+                      {numerologyResults.soulUrge.number}
+                    </div>
+                  </div>
+                  {numerologyResults.soulUrge.info && (
+                    <div className="section-content">
+                      <p className="description">
+                        Vos motivations profondes et vos désirs intérieurs
+                      </p>
+                      <div className="keywords">
+                        {numerologyResults.soulUrge.info.map(
+                          (keyword: string, index: number) => (
+                            <span key={index} className="keyword-tag">
+                              {keyword}
+                            </span>
+                          )
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Nombre de Personnalité */}
+                <div className="personal-number-card personality">
+                  <div className="section-header">
+                    <div className="title-with-tooltip">
+                      <h3>Nombre de Personnalité</h3>
+                      <div className="tooltip">
+                        <span className="tooltip-icon">
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <circle
+                              cx="12"
+                              cy="12"
+                              r="10"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              fill="none"
+                            />
+                            <path
+                              d="M12 16V12"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                            />
+                            <circle cx="12" cy="8" r="1" fill="currentColor" />
+                          </svg>
+                        </span>
+                        <div className="tooltip-content">
+                          <p>
+                            Le nombre de personnalité révèle comment tu apparais
+                            aux autres.
+                          </p>
+                          <p>
+                            Il indique l'image que tu projettes, ton style de
+                            communication et ton charisme naturel.
+                          </p>
+                          <p>
+                            C'est la façade que tu présentes au monde et qui
+                            influence les premières impressions.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="number-badge personality-badge">
+                      {numerologyResults.personality.number}
+                    </div>
+                  </div>
+                  {numerologyResults.personality.info && (
+                    <div className="section-content">
+                      <p className="description">
+                        Comment vous apparaissez aux autres
+                      </p>
+                      <div className="keywords">
+                        {numerologyResults.personality.info.map(
+                          (keyword: string, index: number) => (
+                            <span key={index} className="keyword-tag">
+                              {keyword}
+                            </span>
+                          )
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Nombre du Jour */}
+                <div className="personal-number-card birthday">
+                  <div className="section-header">
+                    <div className="title-with-tooltip">
+                      <h3>Nombre du Jour</h3>
+                      <div className="tooltip">
+                        <span className="tooltip-icon">
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <circle
+                              cx="12"
+                              cy="12"
+                              r="10"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              fill="none"
+                            />
+                            <path
+                              d="M12 16V12"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                            />
+                            <circle cx="12" cy="8" r="1" fill="currentColor" />
+                          </svg>
+                        </span>
+                        <div className="tooltip-content">
+                          <p>
+                            Le nombre du jour révèle tes talents naturels et tes
+                            capacités innées.
+                          </p>
+                          <p>
+                            Il indique tes dons particuliers, tes aptitudes
+                            spéciales et tes compétences naturelles.
+                          </p>
+                          <p>
+                            C'est l'énergie créative que tu portes en toi depuis
+                            ta naissance.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="number-badge birthday-badge">
+                      {numerologyResults.birthday.number}
+                    </div>
+                  </div>
+                  {numerologyResults.birthday.info && (
+                    <div className="section-content">
+                      <p className="description">
+                        Vos talents naturels et capacités
+                      </p>
+                      <div className="keywords">
+                        {numerologyResults.birthday.info.map(
+                          (keyword: string, index: number) => (
+                            <span key={index} className="keyword-tag">
+                              {keyword}
+                            </span>
+                          )
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </section>
+          </>
+        )}
+
+        {/* ONGLET DATES */}
+        {activeTab === "dates" && (
+          <>
+            {/* Cycles de Vie */}
+            <section className="numerology-section life-cycles">
+              <div className="title-with-tooltip">
+                <h2>Cycles de Vie</h2>
+                <div className="tooltip">
+                  <span className="tooltip-icon">
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        fill="none"
+                      />
+                      <path
+                        d="M12 16V12"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                      <circle cx="12" cy="8" r="1" fill="currentColor" />
+                    </svg>
+                  </span>
+                  <div className="tooltip-content">
+                    <p>
+                      Les cycles de vie décrivent les trois grandes périodes de
+                      ton existence.
+                    </p>
+                    <p>
+                      Chaque cycle apporte ses propres leçons, défis et
+                      opportunités de croissance.
+                    </p>
+                    <p>
+                      C'est une carte temporelle qui guide ton évolution
+                      spirituelle et personnelle.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="life-cycles-grid">
+                <div className="cycle-card">
+                  <h3>
+                    <span className="cycle-title">Premier Cycle</span>
+                    <span className="cycle-period">(Naissance → ~28 ans)</span>
+                  </h3>
+                  <div className="number-badge cycle-badge">
+                    {numerologyResults.lifeCycles.firstCycle.number}
+                  </div>
+                  {numerologyResults.lifeCycles.firstCycle.info && (
+                    <div className="cycle-content">
+                      <p className="cycle-summary">
+                        {numerologyResults.lifeCycles.firstCycle.info.summary}
+                      </p>
+                      <div className="cycle-details">
+                        <p>
+                          {
+                            numerologyResults.lifeCycles.firstCycle.info
+                              .description
+                          }
+                        </p>
+                      </div>
+                      <div className="cycle-challenge">
+                        <h4>Défi à relever</h4>
+                        <p>
+                          {
+                            numerologyResults.lifeCycles.firstCycle.info
+                              .challenge
+                          }
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <div className="cycle-card">
+                  <h3>
+                    <span className="cycle-title">Deuxième Cycle</span>
+                    <span className="cycle-period">(29 → ~56 ans)</span>
+                  </h3>
+                  <div className="number-badge cycle-badge">
+                    {numerologyResults.lifeCycles.secondCycle.number}
+                  </div>
+                  {numerologyResults.lifeCycles.secondCycle.info && (
+                    <div className="cycle-content">
+                      <p className="cycle-summary">
+                        {numerologyResults.lifeCycles.secondCycle.info.summary}
+                      </p>
+                      <div className="cycle-details">
+                        <p>
+                          {
+                            numerologyResults.lifeCycles.secondCycle.info
+                              .description
+                          }
+                        </p>
+                      </div>
+                      <div className="cycle-challenge">
+                        <h4>Défi à relever</h4>
+                        <p>
+                          {
+                            numerologyResults.lifeCycles.secondCycle.info
+                              .challenge
+                          }
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <div className="cycle-card">
+                  <h3>
+                    <span className="cycle-title">Troisième Cycle</span>
+                    <span className="cycle-period">(57 ans → fin de vie)</span>
+                  </h3>
+                  <div className="number-badge cycle-badge">
+                    {numerologyResults.lifeCycles.thirdCycle.number}
+                  </div>
+                  {numerologyResults.lifeCycles.thirdCycle.info && (
+                    <div className="cycle-content">
+                      <p className="cycle-summary">
+                        {numerologyResults.lifeCycles.thirdCycle.info.summary}
+                      </p>
+                      <div className="cycle-details">
+                        <p>
+                          {
+                            numerologyResults.lifeCycles.thirdCycle.info
+                              .description
+                          }
+                        </p>
+                      </div>
+                      <div className="cycle-challenge">
+                        <h4>Défi à relever</h4>
+                        <p>
+                          {
+                            numerologyResults.lifeCycles.thirdCycle.info
+                              .challenge
+                          }
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </section>
+
+            {/* Périodes de Réalisation */}
+            <section className="numerology-section realization-periods">
+              <div className="title-with-tooltip">
+                <h2>Périodes de Réalisation</h2>
+                <div className="tooltip">
+                  <span className="tooltip-icon">
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        fill="none"
+                      />
+                      <path
+                        d="M12 16V12"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                      <circle cx="12" cy="8" r="1" fill="currentColor" />
+                    </svg>
+                  </span>
+                  <div className="tooltip-content">
+                    <p>
+                      Les périodes de réalisation (ou pinacles) révèlent les
+                      opportunités de réussite.
+                    </p>
+                    <p>
+                      Chaque période offre des conditions favorables pour
+                      accomplir tes objectifs.
+                    </p>
+                    <p>
+                      C'est un calendrier spirituel qui indique les meilleurs
+                      moments pour agir.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="realization-periods-grid">
+                <div className="period-card">
+                  <h3>
+                    <span className="period-title">Première Période</span>
+                    <span className="period-duration">(jusqu'à ~30 ans)</span>
+                  </h3>
+                  <div className="number-badge period-badge">
+                    {numerologyResults.realizationPeriods.firstPeriod.number}
+                  </div>
+                  {numerologyResults.realizationPeriods.firstPeriod.info && (
+                    <div className="period-content">
+                      <p className="period-summary">
+                        {
+                          numerologyResults.realizationPeriods.firstPeriod.info
+                            .summary
+                        }
+                      </p>
+                      <div className="period-details">
+                        <p>
+                          {
+                            numerologyResults.realizationPeriods.firstPeriod
+                              .info.description
+                          }
+                        </p>
+                      </div>
+                      <div className="period-challenge">
+                        <h4>Défi à relever</h4>
+                        <p>
+                          {
+                            numerologyResults.realizationPeriods.firstPeriod
+                              .info.challenge
+                          }
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <div className="period-card">
+                  <h3>
+                    <span className="period-title">Deuxième Période</span>
+                    <span className="period-duration">(30 → 39 ans)</span>
+                  </h3>
+                  <div className="number-badge period-badge">
+                    {numerologyResults.realizationPeriods.secondPeriod.number}
+                  </div>
+                  {numerologyResults.realizationPeriods.secondPeriod.info && (
+                    <div className="period-content">
+                      <p className="period-summary">
+                        {
+                          numerologyResults.realizationPeriods.secondPeriod.info
+                            .summary
+                        }
+                      </p>
+                      <div className="period-details">
+                        <p>
+                          {
+                            numerologyResults.realizationPeriods.secondPeriod
+                              .info.description
+                          }
+                        </p>
+                      </div>
+                      <div className="period-challenge">
+                        <h4>Défi à relever</h4>
+                        <p>
+                          {
+                            numerologyResults.realizationPeriods.secondPeriod
+                              .info.challenge
+                          }
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <div className="period-card">
+                  <h3>
+                    <span className="period-title">Troisième Période</span>
+                    <span className="period-duration">(39 → 48 ans)</span>
+                  </h3>
+                  <div className="number-badge period-badge">
+                    {numerologyResults.realizationPeriods.thirdPeriod.number}
+                  </div>
+                  {numerologyResults.realizationPeriods.thirdPeriod.info && (
+                    <div className="period-content">
+                      <p className="period-summary">
+                        {
+                          numerologyResults.realizationPeriods.thirdPeriod.info
+                            .summary
+                        }
+                      </p>
+                      <div className="period-details">
+                        <p>
+                          {
+                            numerologyResults.realizationPeriods.thirdPeriod
+                              .info.description
+                          }
+                        </p>
+                      </div>
+                      <div className="period-challenge">
+                        <h4>Défi à relever</h4>
+                        <p>
+                          {
+                            numerologyResults.realizationPeriods.thirdPeriod
+                              .info.challenge
+                          }
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <div className="period-card">
+                  <h3>
+                    <span className="period-title">Quatrième Période</span>
+                    <span className="period-duration">
+                      (48 ans → fin de vie)
+                    </span>
+                  </h3>
+                  <div className="number-badge period-badge">
+                    {numerologyResults.realizationPeriods.fourthPeriod.number}
+                  </div>
+                  {numerologyResults.realizationPeriods.fourthPeriod.info && (
+                    <div className="period-content">
+                      <p className="period-summary">
+                        {
+                          numerologyResults.realizationPeriods.fourthPeriod.info
+                            .summary
+                        }
+                      </p>
+                      <div className="period-details">
+                        <p>
+                          {
+                            numerologyResults.realizationPeriods.fourthPeriod
+                              .info.description
+                          }
+                        </p>
+                      </div>
+                      <div className="period-challenge">
+                        <h4>Défi à relever</h4>
+                        <p>
+                          {
+                            numerologyResults.realizationPeriods.fourthPeriod
+                              .info.challenge
+                          }
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </section>
+
+            {/* Nombres Personnels (Année, Mois, Jour) */}
+            <section className="numerology-section personal-numbers">
+              <div className="title-with-tooltip">
+                <h2>Nombres Personnels</h2>
+                <div className="tooltip">
+                  <span className="tooltip-icon">
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        fill="none"
+                      />
+                      <path
+                        d="M12 16V12"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                      <circle cx="12" cy="8" r="1" fill="currentColor" />
+                    </svg>
+                  </span>
+                  <div className="tooltip-content">
+                    <p>
+                      Les nombres personnels (année, mois, jour) vous donnent
+                      des indications sur les énergies qui vous accompagnent au
+                      cours de l'année, du mois et du jour en cours.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="personal-numbers-grid">
+                <div className="personal-card">
+                  <h3>
+                    <span className="personal-title">Année Personnelle</span>
+                    <span className="personal-period">
+                      (Janvier → Décembre {new Date().getFullYear()})
+                    </span>
+                  </h3>
+                  <div className="number-badge personal-badge">
+                    {numerologyResults.personalNumbers.year.number}
+                  </div>
+                  {numerologyResults.personalNumbers.year.info && (
+                    <div className="personal-content">
+                      <p className="personal-summary">
+                        {numerologyResults.personalNumbers.year.info.summary}
+                      </p>
+                      <div className="personal-details">
+                        <p>
+                          {
+                            numerologyResults.personalNumbers.year.info
+                              .description
+                          }
+                        </p>
+                      </div>
+                      <div className="personal-challenge">
+                        <h4>Défi à relever</h4>
+                        <p>
+                          {
+                            numerologyResults.personalNumbers.year.info
+                              .challenge
+                          }
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                <div className="personal-card">
+                  <h3>
+                    <span className="personal-title">Mois Personnel</span>
+                    <span className="personal-period">
+                      (
+                      {new Date().toLocaleDateString("fr-FR", {
+                        month: "long",
+                        year: "numeric",
+                      })}
+                      )
+                    </span>
+                  </h3>
+                  <div className="number-badge personal-badge">
+                    {numerologyResults.personalNumbers.month.number}
+                  </div>
+                  {numerologyResults.personalNumbers.month.info && (
+                    <div className="personal-content">
+                      <p className="personal-summary">
+                        {numerologyResults.personalNumbers.month.info.summary}
+                      </p>
+                      <div className="personal-details">
+                        <p>
+                          {
+                            numerologyResults.personalNumbers.month.info
+                              .description
+                          }
+                        </p>
+                      </div>
+                      <div className="personal-challenge">
+                        <h4>Défi à relever</h4>
+                        <p>
+                          {
+                            numerologyResults.personalNumbers.month.info
+                              .challenge
+                          }
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                <div className="personal-card">
+                  <h3>
+                    <span className="personal-title">Jour Personnel</span>
+                    <span className="personal-period">
+                      (
+                      {new Date().toLocaleDateString("fr-FR", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                      })}
+                      )
+                    </span>
+                  </h3>
+                  <div className="number-badge personal-badge">
+                    {numerologyResults.personalNumbers.day.number}
+                  </div>
+                  {numerologyResults.personalNumbers.day.info && (
+                    <div className="personal-content">
+                      <p className="personal-summary">
+                        {numerologyResults.personalNumbers.day.info.summary}
+                      </p>
+                      <div className="personal-details">
+                        <p>
+                          {
+                            numerologyResults.personalNumbers.day.info
+                              .description
+                          }
+                        </p>
+                      </div>
+                      <div className="personal-challenge">
+                        <h4>Défi à relever</h4>
+                        <p>
+                          {numerologyResults.personalNumbers.day.info.challenge}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </section>
+          </>
+        )}
+
+        {/* ONGLET KARMIQUE */}
+        {activeTab === "karmique" && (
+          <>
+            {/* Section des Nombres Karmiques */}
+            <section className="numerology-section karmic-section">
+              <div className="section-header">
+                <div className="title-with-tooltip">
+                  <h2>Nombres Karmiques</h2>
+                  <div className="tooltip">
+                    <span className="tooltip-icon">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <circle
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          fill="none"
+                        />
+                        <path
+                          d="M12 16V12"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                        />
+                        <circle cx="12" cy="8" r="1" fill="currentColor" />
+                      </svg>
+                    </span>
+                    <div className="tooltip-content">
+                      <p>
+                        Les nombres karmiques révèlent les leçons profondes
+                        d'âme basées sur votre date de naissance. Ils indiquent
+                        les chiffres manquants dans votre date de naissance qui
+                        révèlent des faiblesses intérieures à travailler.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="karmic-overview">
+                <div className="karmic-stats">
+                  <div className="stat-item">
+                    <span className="stat-number">
+                      {numerologyResults.karmicNumbers.presentNumbers.length}
+                    </span>
+                    <span className="stat-label">Nombres présents</span>
+                  </div>
+                  <div className="stat-item">
+                    <span className="stat-number">
+                      {numerologyResults.karmicNumbers.missingNumbers.length}
+                    </span>
+                    <span className="stat-label">Défis karmiques</span>
+                  </div>
+                </div>
+
+                <div className="present-numbers">
+                  <h4>Chiffres présents dans votre date de naissance :</h4>
+                  <div className="number-list">
+                    {numerologyResults.karmicNumbers.presentNumbers.map(
+                      (num) => (
+                        <span key={num} className="number-tag present">
+                          {num}
+                        </span>
+                      )
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              <div className="karmic-definitions">
+                {numerologyResults.karmicNumbers.karmicDefinitions.length >
+                0 ? (
+                  numerologyResults.karmicNumbers.karmicDefinitions.map(
+                    (karmic) => (
+                      <div key={karmic.number} className="karmic-card">
+                        <div className="karmic-header">
+                          <h3>
+                            Défi Karmique {karmic.number}
+                            <span className="karmic-period">
+                              (Chiffre manquant)
+                            </span>
+                          </h3>
+                          <div className="number-badge karmic-badge">
+                            {karmic.number}
+                          </div>
+                        </div>
+
+                        <div className="karmic-content">
+                          <div className="karmic-summary">
+                            <h4>Résumé</h4>
+                            <p>{karmic.summary}</p>
+                          </div>
+
+                          <div className="karmic-challenge">
+                            <h4>Défi à relever</h4>
+                            <p>{karmic.challenge}</p>
+                          </div>
+
+                          <div className="karmic-details">
+                            <h4>Détails</h4>
+                            <p>{karmic.details}</p>
+                          </div>
+
+                          {karmic.keywords.length > 0 && (
+                            <div className="karmic-keywords">
+                              <h4>Mots-clés</h4>
+                              <div className="keywords-list">
+                                {karmic.keywords.map((keyword, index) => (
+                                  <span key={index} className="keyword-tag">
+                                    {keyword}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )
                   )
+                ) : (
+                  <div className="no-karmic-challenges">
+                    <h3>Félicitations !</h3>
+                    <p>
+                      Tous les chiffres de 1 à 9 sont présents dans votre date
+                      de naissance. Vous n'avez pas de défis karmiques
+                      spécifiques à relever.
+                    </p>
+                  </div>
                 )}
               </div>
-              <div className="details-grid">
-                <div className="detail-item">
-                  <h4>Forces</h4>
-                  <p>{numerologyResults.lifePath.info.strengths}</p>
-                </div>
-                <div className="detail-item">
-                  <h4>Défis</h4>
-                  <p>{numerologyResults.lifePath.info.challenges}</p>
-                </div>
-                <div className="detail-item">
-                  <h4>Mission</h4>
-                  <p>{numerologyResults.lifePath.info.mission}</p>
-                </div>
-              </div>
-            </div>
-          )}
-        </section>
+            </section>
 
-        {/* Nombre d'Expression */}
-        <section className="numerology-section expression">
-          <div className="section-header">
-            <div className="title-with-tooltip">
-              <h2>Nombre d'Expression</h2>
-              <div className="tooltip">
-                <span className="tooltip-icon">
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <circle
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      fill="none"
-                    />
-                    <path
-                      d="M12 16V12"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                    />
-                    <circle cx="12" cy="8" r="1" fill="currentColor" />
-                  </svg>
-                </span>
-                <div className="tooltip-content">
-                  <p>
-                    Le nombre d'expression révèle tes talents naturels et tes
-                    capacités innées.
-                  </p>
-                  <p>
-                    Il indique comment tu t'exprimes dans le monde, tes dons
-                    créatifs et tes aptitudes professionnelles.
-                  </p>
-                  <p>
-                    C'est la façon dont tu utilises tes compétences pour
-                    accomplir ta mission de vie.
-                  </p>
+            {/* Section des Cycles Karmiques */}
+            <section className="numerology-section cycle-karmic-section">
+              <div className="section-header">
+                <div className="title-with-tooltip">
+                  <h2>Cycles Karmiques</h2>
+                  <div className="tooltip">
+                    <span className="tooltip-icon">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <circle
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          fill="none"
+                        />
+                        <path
+                          d="M12 16V12"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                        />
+                        <circle cx="12" cy="8" r="1" fill="currentColor" />
+                      </svg>
+                    </span>
+                    <div className="tooltip-content">
+                      <p>
+                        Les cycles karmiques représentent les expériences que
+                        vous devez intégrer dans votre rapport au monde et votre
+                        identité sociale. Ils sont basés sur les lettres
+                        manquantes dans votre nom complet.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="number-badge expression-badge">
-              {numerologyResults.expression.number}
-            </div>
-          </div>
-          {numerologyResults.expression.info && (
-            <div className="section-content">
-              <h3>{numerologyResults.expression.info.title}</h3>
-              <p className="description">
-                {numerologyResults.expression.info.description}
-              </p>
-              <div className="keywords">
-                {numerologyResults.expression.info.keywords.map(
-                  (keyword: string, index: number) => (
-                    <span key={index} className="keyword-tag">
-                      {keyword}
+
+              <div className="cycle-karmic-overview">
+                <div className="cycle-karmic-stats">
+                  <div className="stat-item">
+                    <span className="stat-number">
+                      {
+                        numerologyResults.cycleKarmicNumbers.presentNumbers
+                          .length
+                      }
                     </span>
+                    <span className="stat-label">Nombres présents</span>
+                  </div>
+                  <div className="stat-item">
+                    <span className="stat-number">
+                      {
+                        numerologyResults.cycleKarmicNumbers.missingNumbers
+                          .length
+                      }
+                    </span>
+                    <span className="stat-label">Cycles karmiques</span>
+                  </div>
+                </div>
+
+                <div className="present-numbers">
+                  <h4>Nombres présents dans votre nom complet :</h4>
+                  <div className="number-list">
+                    {numerologyResults.cycleKarmicNumbers.presentNumbers.map(
+                      (num) => (
+                        <span key={num} className="number-tag present">
+                          {num}
+                        </span>
+                      )
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              <div className="cycle-karmic-definitions">
+                {numerologyResults.cycleKarmicNumbers.cycleKarmicDefinitions
+                  .length > 0 ? (
+                  numerologyResults.cycleKarmicNumbers.cycleKarmicDefinitions.map(
+                    (cycleKarmic) => (
+                      <div
+                        key={cycleKarmic.number}
+                        className="cycle-karmic-card"
+                      >
+                        <div className="cycle-karmic-header">
+                          <h3>
+                            Cycle Karmique {cycleKarmic.number}
+                            <span className="cycle-karmic-period">
+                              (Lettre manquante)
+                            </span>
+                          </h3>
+                          <div className="number-badge cycle-karmic-badge">
+                            {cycleKarmic.number}
+                          </div>
+                        </div>
+
+                        <div className="cycle-karmic-content">
+                          <div className="cycle-karmic-summary">
+                            <h4>Résumé</h4>
+                            <p>{cycleKarmic.summary}</p>
+                          </div>
+
+                          <div className="cycle-karmic-challenge">
+                            <h4>Défi à relever</h4>
+                            <p>{cycleKarmic.challenge}</p>
+                          </div>
+
+                          <div className="cycle-karmic-details">
+                            <h4>Détails</h4>
+                            <p>{cycleKarmic.details}</p>
+                          </div>
+
+                          {cycleKarmic.keywords.length > 0 && (
+                            <div className="cycle-karmic-keywords">
+                              <h4>Mots-clés</h4>
+                              <div className="keywords-list">
+                                {cycleKarmic.keywords.map((keyword, index) => (
+                                  <span key={index} className="keyword-tag">
+                                    {keyword}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )
                   )
+                ) : (
+                  <div className="no-cycle-karmic-challenges">
+                    <h3>Félicitations !</h3>
+                    <p>
+                      Tous les nombres de 1 à 9 sont présents dans votre nom
+                      complet. Vous n'avez pas de cycles karmiques spécifiques à
+                      relever.
+                    </p>
+                  </div>
                 )}
               </div>
-              <div className="details-grid">
-                <div className="detail-item">
-                  <h4>Forces</h4>
-                  <p>{numerologyResults.expression.info.strengths}</p>
-                </div>
-                <div className="detail-item">
-                  <h4>Défis</h4>
-                  <p>{numerologyResults.expression.info.challenges}</p>
-                </div>
-                <div className="detail-item">
-                  <h4>Mission</h4>
-                  <p>{numerologyResults.expression.info.mission}</p>
-                </div>
-              </div>
-            </div>
-          )}
-        </section>
+            </section>
+          </>
+        )}
 
-        {/* Nombres Personnels */}
-        <section className="numerology-section personal-numbers">
-          <h2>Nombres Personnels</h2>
-          <div className="personal-numbers-grid">
-            {/* Nombre de l'Âme */}
-            <div className="personal-number-card soul-urge">
+        {/* ONGLET MATRIX DESTINY */}
+        {activeTab === "matrix" && (
+          <>
+            <section className="numerology-section matrix-section">
               <div className="section-header">
-                <div className="title-with-tooltip">
-                  <h3>Nombre de l'Âme</h3>
-                  <div className="tooltip">
-                    <span className="tooltip-icon">
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <circle
-                          cx="12"
-                          cy="12"
-                          r="10"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          fill="none"
-                        />
-                        <path
-                          d="M12 16V12"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                        />
-                        <circle cx="12" cy="8" r="1" fill="currentColor" />
-                      </svg>
-                    </span>
-                    <div className="tooltip-content">
-                      <p>
-                        Le nombre de l'âme révèle tes motivations profondes et
-                        tes désirs intérieurs.
-                      </p>
-                      <p>
-                        Il indique ce qui te pousse vraiment à agir, tes
-                        aspirations secrètes et tes besoins spirituels.
-                      </p>
-                      <p>
-                        C'est la voix de ton âme qui guide tes choix les plus
-                        authentiques.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="number-badge soul-badge">
-                  {numerologyResults.soulUrge.number}
-                </div>
+                <h2>Matrix Destiny</h2>
+                <p>Section en développement...</p>
               </div>
-              {numerologyResults.soulUrge.info && (
-                <div className="section-content">
-                  <p className="description">
-                    Vos motivations profondes et vos désirs intérieurs
-                  </p>
-                  <div className="keywords">
-                    {numerologyResults.soulUrge.info.map(
-                      (keyword: string, index: number) => (
-                        <span key={index} className="keyword-tag">
-                          {keyword}
-                        </span>
-                      )
-                    )}
-                  </div>
-                </div>
-              )}
-            </div>
+              <div className="placeholder-content">
+                <p>
+                  Cette section sera bientôt disponible avec l'analyse Matrix
+                  Destiny.
+                </p>
+              </div>
+            </section>
+          </>
+        )}
 
-            {/* Nombre de Personnalité */}
-            <div className="personal-number-card personality">
+        {/* ONGLET ARBRE DE VIE */}
+        {activeTab === "arbre" && (
+          <>
+            <section className="numerology-section arbre-section">
               <div className="section-header">
-                <div className="title-with-tooltip">
-                  <h3>Nombre de Personnalité</h3>
-                  <div className="tooltip">
-                    <span className="tooltip-icon">
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <circle
-                          cx="12"
-                          cy="12"
-                          r="10"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          fill="none"
-                        />
-                        <path
-                          d="M12 16V12"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                        />
-                        <circle cx="12" cy="8" r="1" fill="currentColor" />
-                      </svg>
-                    </span>
-                    <div className="tooltip-content">
-                      <p>
-                        Le nombre de personnalité révèle comment tu apparais aux
-                        autres.
-                      </p>
-                      <p>
-                        Il indique l'image que tu projettes, ton style de
-                        communication et ton charisme naturel.
-                      </p>
-                      <p>
-                        C'est la façade que tu présentes au monde et qui
-                        influence les premières impressions.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="number-badge personality-badge">
-                  {numerologyResults.personality.number}
-                </div>
+                <h2>Arbre de Vie</h2>
+                <p>Section en développement...</p>
               </div>
-              {numerologyResults.personality.info && (
-                <div className="section-content">
-                  <p className="description">
-                    Comment vous apparaissez aux autres
-                  </p>
-                  <div className="keywords">
-                    {numerologyResults.personality.info.map(
-                      (keyword: string, index: number) => (
-                        <span key={index} className="keyword-tag">
-                          {keyword}
-                        </span>
-                      )
-                    )}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Nombre du Jour */}
-            <div className="personal-number-card birthday">
-              <div className="section-header">
-                <div className="title-with-tooltip">
-                  <h3>Nombre du Jour</h3>
-                  <div className="tooltip">
-                    <span className="tooltip-icon">
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <circle
-                          cx="12"
-                          cy="12"
-                          r="10"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          fill="none"
-                        />
-                        <path
-                          d="M12 16V12"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                        />
-                        <circle cx="12" cy="8" r="1" fill="currentColor" />
-                      </svg>
-                    </span>
-                    <div className="tooltip-content">
-                      <p>
-                        Le nombre du jour révèle tes talents naturels et tes
-                        capacités innées.
-                      </p>
-                      <p>
-                        Il indique tes dons particuliers, tes aptitudes
-                        spéciales et tes compétences naturelles.
-                      </p>
-                      <p>
-                        C'est l'énergie créative que tu portes en toi depuis ta
-                        naissance.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="number-badge birthday-badge">
-                  {numerologyResults.birthday.number}
-                </div>
-              </div>
-              {numerologyResults.birthday.info && (
-                <div className="section-content">
-                  <p className="description">
-                    Vos talents naturels et capacités
-                  </p>
-                  <div className="keywords">
-                    {numerologyResults.birthday.info.map(
-                      (keyword: string, index: number) => (
-                        <span key={index} className="keyword-tag">
-                          {keyword}
-                        </span>
-                      )
-                    )}
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </section>
-
-        {/* Nombres de Défi */}
-        <section className="numerology-section challenges">
-          <div className="title-with-tooltip">
-            <h2>Nombres de Défi</h2>
-            <div className="tooltip">
-              <span className="tooltip-icon">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <circle
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-                  <path
-                    d="M12 16V12"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  />
-                  <circle cx="12" cy="8" r="1" fill="currentColor" />
-                </svg>
-              </span>
-              <div className="tooltip-content">
+              <div className="placeholder-content">
                 <p>
-                  Les nombres de défi révèlent les obstacles et les leçons que
-                  tu dois surmonter.
-                </p>
-                <p>
-                  Ils indiquent les défis spécifiques à chaque période de ta vie
-                  et les compétences à développer.
-                </p>
-                <p>
-                  C'est un guide pour transformer tes difficultés en forces et
-                  grandir spirituellement.
+                  Cette section sera bientôt disponible avec l'analyse de
+                  l'Arbre de Vie.
                 </p>
               </div>
-            </div>
-          </div>
-          <div className="challenges-grid">
-            <div className="challenge-card">
-              <h3>
-                <span className="challenge-title">Défi de jeunesse</span>
-                <span className="challenge-period">(0-30 ans)</span>
-              </h3>
-              <div className="number-badge challenge-badge">
-                {numerologyResults.challenges.first.number}
-              </div>
-              <p>{numerologyResults.challenges.first.description}</p>
-            </div>
-            <div className="challenge-card">
-              <h3>
-                <span className="challenge-title">Défi de maturité</span>
-                <span className="challenge-period">(31-60 ans)</span>
-              </h3>
-              <div className="number-badge challenge-badge">
-                {numerologyResults.challenges.second.number}
-              </div>
-              <p>{numerologyResults.challenges.second.description}</p>
-            </div>
-            <div className="challenge-card">
-              <h3>
-                <span className="challenge-title">Défi de sagesse</span>
-                <span className="challenge-period">(61+ ans)</span>
-              </h3>
-              <div className="number-badge challenge-badge">
-                {numerologyResults.challenges.third.number}
-              </div>
-              <p>{numerologyResults.challenges.third.description}</p>
-            </div>
-            <div className="challenge-card">
-              <h3>
-                <span className="challenge-title">Défi principal</span>
-                <span className="challenge-period">(toute la vie)</span>
-              </h3>
-              <div className="number-badge challenge-badge">
-                {numerologyResults.challenges.fourth.number}
-              </div>
-              <p>{numerologyResults.challenges.fourth.description}</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Cycles de Vie */}
-        <section className="numerology-section life-cycles">
-          <div className="title-with-tooltip">
-            <h2>Cycles de Vie</h2>
-            <div className="tooltip">
-              <span className="tooltip-icon">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <circle
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-                  <path
-                    d="M12 16V12"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  />
-                  <circle cx="12" cy="8" r="1" fill="currentColor" />
-                </svg>
-              </span>
-              <div className="tooltip-content">
-                <p>
-                  Les cycles de vie décrivent les trois grandes périodes de ton
-                  existence.
-                </p>
-                <p>
-                  Chaque cycle apporte ses propres leçons, défis et opportunités
-                  de croissance.
-                </p>
-                <p>
-                  C'est une carte temporelle qui guide ton évolution spirituelle
-                  et personnelle.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="life-cycles-grid">
-            <div className="cycle-card">
-              <h3>
-                <span className="cycle-title">Premier Cycle</span>
-                <span className="cycle-period">(Naissance → ~28 ans)</span>
-              </h3>
-              <div className="number-badge cycle-badge">
-                {numerologyResults.lifeCycles.firstCycle.number}
-              </div>
-              {numerologyResults.lifeCycles.firstCycle.info && (
-                <>
-                  <p className="cycle-summary">
-                    {numerologyResults.lifeCycles.firstCycle.info.summary}
-                  </p>
-                  <div className="cycle-details">
-                    <p>
-                      {numerologyResults.lifeCycles.firstCycle.info.details}
-                    </p>
-                  </div>
-                </>
-              )}
-            </div>
-            <div className="cycle-card">
-              <h3>
-                <span className="cycle-title">Deuxième Cycle</span>
-                <span className="cycle-period">(29 → ~56 ans)</span>
-              </h3>
-              <div className="number-badge cycle-badge">
-                {numerologyResults.lifeCycles.secondCycle.number}
-              </div>
-              {numerologyResults.lifeCycles.secondCycle.info && (
-                <>
-                  <p className="cycle-summary">
-                    {numerologyResults.lifeCycles.secondCycle.info.summary}
-                  </p>
-                  <div className="cycle-details">
-                    <p>
-                      {numerologyResults.lifeCycles.secondCycle.info.details}
-                    </p>
-                  </div>
-                </>
-              )}
-            </div>
-            <div className="cycle-card">
-              <h3>
-                <span className="cycle-title">Troisième Cycle</span>
-                <span className="cycle-period">(57 ans → fin de vie)</span>
-              </h3>
-              <div className="number-badge cycle-badge">
-                {numerologyResults.lifeCycles.thirdCycle.number}
-              </div>
-              {numerologyResults.lifeCycles.thirdCycle.info && (
-                <>
-                  <p className="cycle-summary">
-                    {numerologyResults.lifeCycles.thirdCycle.info.summary}
-                  </p>
-                  <div className="cycle-details">
-                    <p>
-                      {numerologyResults.lifeCycles.thirdCycle.info.details}
-                    </p>
-                  </div>
-                </>
-              )}
-            </div>
-          </div>
-        </section>
-
-        {/* Périodes de Réalisation */}
-        <section className="numerology-section realization-periods">
-          <div className="title-with-tooltip">
-            <h2>Périodes de Réalisation</h2>
-            <div className="tooltip">
-              <span className="tooltip-icon">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <circle
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-                  <path
-                    d="M12 16V12"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  />
-                  <circle cx="12" cy="8" r="1" fill="currentColor" />
-                </svg>
-              </span>
-              <div className="tooltip-content">
-                <p>
-                  Les périodes de réalisation (ou pinacles) révèlent les
-                  opportunités de réussite.
-                </p>
-                <p>
-                  Chaque période offre des conditions favorables pour accomplir
-                  tes objectifs.
-                </p>
-                <p>
-                  C'est un calendrier spirituel qui indique les meilleurs
-                  moments pour agir.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="realization-periods-grid">
-            <div className="period-card">
-              <h3>
-                <span className="period-title">Première Période</span>
-                <span className="period-duration">(jusqu'à ~30 ans)</span>
-              </h3>
-              <div className="number-badge period-badge">
-                {numerologyResults.realizationPeriods.firstPeriod.number}
-              </div>
-              {numerologyResults.realizationPeriods.firstPeriod.info && (
-                <>
-                  <p className="period-summary">
-                    {
-                      numerologyResults.realizationPeriods.firstPeriod.info
-                        .summary
-                    }
-                  </p>
-                  <div className="period-details">
-                    <p>
-                      {
-                        numerologyResults.realizationPeriods.firstPeriod.info
-                          .details
-                      }
-                    </p>
-                  </div>
-                </>
-              )}
-            </div>
-            <div className="period-card">
-              <h3>
-                <span className="period-title">Deuxième Période</span>
-                <span className="period-duration">(30 → 39 ans)</span>
-              </h3>
-              <div className="number-badge period-badge">
-                {numerologyResults.realizationPeriods.secondPeriod.number}
-              </div>
-              {numerologyResults.realizationPeriods.secondPeriod.info && (
-                <>
-                  <p className="period-summary">
-                    {
-                      numerologyResults.realizationPeriods.secondPeriod.info
-                        .summary
-                    }
-                  </p>
-                  <div className="period-details">
-                    <p>
-                      {
-                        numerologyResults.realizationPeriods.secondPeriod.info
-                          .details
-                      }
-                    </p>
-                  </div>
-                </>
-              )}
-            </div>
-            <div className="period-card">
-              <h3>
-                <span className="period-title">Troisième Période</span>
-                <span className="period-duration">(39 → 48 ans)</span>
-              </h3>
-              <div className="number-badge period-badge">
-                {numerologyResults.realizationPeriods.thirdPeriod.number}
-              </div>
-              {numerologyResults.realizationPeriods.thirdPeriod.info && (
-                <>
-                  <p className="period-summary">
-                    {
-                      numerologyResults.realizationPeriods.thirdPeriod.info
-                        .summary
-                    }
-                  </p>
-                  <div className="period-details">
-                    <p>
-                      {
-                        numerologyResults.realizationPeriods.thirdPeriod.info
-                          .details
-                      }
-                    </p>
-                  </div>
-                </>
-              )}
-            </div>
-            <div className="period-card">
-              <h3>
-                <span className="period-title">Quatrième Période</span>
-                <span className="period-duration">(48 ans → fin de vie)</span>
-              </h3>
-              <div className="number-badge period-badge">
-                {numerologyResults.realizationPeriods.fourthPeriod.number}
-              </div>
-              {numerologyResults.realizationPeriods.fourthPeriod.info && (
-                <>
-                  <p className="period-summary">
-                    {
-                      numerologyResults.realizationPeriods.fourthPeriod.info
-                        .summary
-                    }
-                  </p>
-                  <div className="period-details">
-                    <p>
-                      {
-                        numerologyResults.realizationPeriods.fourthPeriod.info
-                          .details
-                      }
-                    </p>
-                  </div>
-                </>
-              )}
-            </div>
-          </div>
-        </section>
+            </section>
+          </>
+        )}
       </div>
 
       <div className="reading-actions">

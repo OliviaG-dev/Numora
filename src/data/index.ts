@@ -12,6 +12,9 @@ import personalityData from "./numerology/PersonalityData.json";
 import birthdayData from "./numerology/BirthdayData.json";
 import lifeCycleData from "./numerology/LifeCycleData.json";
 import realizationPeriodData from "./numerology/RealizationPeriodData.json";
+import personelCycleData from "./numerology/PersonelCycleData.json";
+import karmicNumberData from "./numerology/KarmicNumberData.json";
+import cycleKarmicData from "./numerology/CycleKarmicData.json";
 
 // ===== EXPORTS PRINCIPAUX =====
 export {
@@ -23,6 +26,9 @@ export {
   birthdayData,
   lifeCycleData,
   realizationPeriodData,
+  personelCycleData,
+  karmicNumberData,
+  cycleKarmicData,
 };
 
 // ===== ALIAS POUR COMPATIBILITÉ =====
@@ -73,6 +79,15 @@ export interface BaseSummaryDetail {
 }
 
 /**
+ * Interface de base pour les détails numérologiques avec description et défi
+ */
+export interface BaseCycleDetail {
+  summary: string;
+  description: string;
+  challenge: string;
+}
+
+/**
  * Types spécifiques pour chaque catégorie numérologique
  */
 export interface LifePathData {
@@ -111,13 +126,41 @@ export interface LifeCycleData {
   [key: string]: LifeCycleDetail;
 }
 
-export type LifeCycleDetail = BaseSummaryDetail;
+export type LifeCycleDetail = BaseCycleDetail;
 
 export interface RealizationPeriodData {
   [key: string]: RealizationPeriodDetail;
 }
 
-export type RealizationPeriodDetail = BaseSummaryDetail;
+export type RealizationPeriodDetail = BaseCycleDetail;
+
+export interface PersonelCycleData {
+  [key: string]: PersonelCycleDetail;
+}
+
+export type PersonelCycleDetail = BaseCycleDetail;
+
+export interface KarmicNumberData {
+  [key: string]: KarmicNumberDetail;
+}
+
+export interface KarmicNumberDetail {
+  summary: string;
+  challenge: string;
+  details: string;
+  keywords: string[];
+}
+
+export interface CycleKarmicData {
+  [key: string]: CycleKarmicDetail;
+}
+
+export interface CycleKarmicDetail {
+  summary: string;
+  challenge: string;
+  details: string;
+  keywords: string[];
+}
 
 // ===== ALIAS POUR COMPATIBILITÉ =====
 export type ExpressionNumberData = ExpressionData;
