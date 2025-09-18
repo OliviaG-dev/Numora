@@ -171,7 +171,7 @@ const ReadingsSection: React.FC<ReadingsSectionProps> = ({ onNavigate }) => {
                     {reading.type}
                   </div>
                 </div>
-                <span className="reading-title">{reading.title}</span>
+                <span className="reading-title-card">{reading.title}</span>
                 <div className="reading-actions">
                   <button className="view-more-btn">Voir plus</button>
                   <button className="delete-btn">Supprimer</button>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import "./ReadingDetailSection.css";
+import { useAuth } from "../../hooks/useAuth";
 import {
   calculateLifePathNumber,
   calculateExpressionNumber,
@@ -65,27 +66,8 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
   onNavigate,
   readingData,
 }) => {
-  // État pour vérifier si l'utilisateur est connecté
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  // Vérifier l'état de connexion au chargement du composant
-  useEffect(() => {
-    // Vérifier si l'utilisateur est connecté (exemple avec localStorage)
-    const checkAuthStatus = () => {
-      const userToken = localStorage.getItem("userToken");
-      const isAuthenticated = userToken !== null && userToken !== "";
-      setIsLoggedIn(isAuthenticated);
-    };
-
-    checkAuthStatus();
-
-    // Écouter les changements d'état de connexion
-    window.addEventListener("storage", checkAuthStatus);
-
-    return () => {
-      window.removeEventListener("storage", checkAuthStatus);
-    };
-  }, []);
+  // Utiliser le contexte d'authentification Supabase
+  const { isAuthenticated } = useAuth();
   // État pour la navigation par onglets
   const [activeTab, setActiveTab] = useState<string>("basiques");
 
@@ -2051,7 +2033,7 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
       </div>
 
       <div className="reading-actions">
-        {isLoggedIn && (
+        {isAuthenticated && (
           <button
             onClick={() => onNavigate("readings")}
             className="btn-secondary"

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./SignupSection.css";
+import { useAuth } from "../../hooks/useAuth";
 
 interface SignupSectionProps {
   onNavigate: (
@@ -8,6 +9,8 @@ interface SignupSectionProps {
 }
 
 const SignupSection: React.FC<SignupSectionProps> = ({ onNavigate }) => {
+  const { signUp, loading: authLoading } = useAuth();
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -18,6 +21,7 @@ const SignupSection: React.FC<SignupSectionProps> = ({ onNavigate }) => {
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -76,13 +80,37 @@ const SignupSection: React.FC<SignupSectionProps> = ({ onNavigate }) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (validateForm()) {
-      // Ici vous pouvez ajouter la logique d'inscription
-      console.log("Données d'inscription:", formData);
-      alert("Inscription réussie ! Bienvenue dans l'univers de Numora 🌟");
+      setIsLoading(true);
+      setErrors({});
+
+      try {
+        const fullName = `${formData.firstName} ${formData.lastName}`.trim();
+        const { data, error } = await signUp(
+          formData.email,
+          formData.password,
+          { full_name: fullName }
+        );
+
+        if (error) {
+          setErrors({ general: error.message });
+        } else {
+          // Inscription réussie
+          console.log("Inscription réussie:", data);
+          alert("Inscription réussie ! Bienvenue dans l'univers de Numora 🌟");
+
+          // Redirection vers la page de connexion
+          onNavigate("login");
+        }
+      } catch (error: unknown) {
+        setErrors({ general: "Erreur d'inscription. Veuillez réessayer." });
+        console.error("Erreur d'inscription:", error);
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
 
@@ -98,6 +126,13 @@ const SignupSection: React.FC<SignupSectionProps> = ({ onNavigate }) => {
 
         <div className="signup-form-container">
           <form className="signup-form" onSubmit={handleSubmit}>
+            {errors.general && (
+              <div className="error-banner">
+                <span className="error-icon">⚠️</span>
+                {errors.general}
+              </div>
+            )}
+
             <div className="form-section">
               <h3 className="form-section-title">Informations personnelles</h3>
 
@@ -233,8 +268,16 @@ const SignupSection: React.FC<SignupSectionProps> = ({ onNavigate }) => {
               </div>
             </div>
 
-            <button type="submit" className="signup-button">
-              <span className="button-text">Créer mon compte</span>
+            <button
+              type="submit"
+              className="signup-button"
+              disabled={isLoading || authLoading}
+            >
+              <span className="button-text">
+                {isLoading || authLoading
+                  ? "Création en cours..."
+                  : "Créer mon compte"}
+              </span>
             </button>
 
             <div className="signup-footer">

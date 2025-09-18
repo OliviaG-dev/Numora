@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Header.css";
+import { useAuth } from "../../hooks/useAuth";
 
 interface HeaderProps {
   onNavigate: (
@@ -15,24 +16,20 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
+  const { isAuthenticated, user, signOut } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // État temporaire pour la démo
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const handleLoginSuccess = () => {
-    setIsLoggedIn(true);
-  };
-
-  const handleQuickLogin = () => {
-    setIsLoggedIn(true);
-    onNavigate("home");
-  };
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
+  const handleLogout = async () => {
+    try {
+      await signOut();
+      onNavigate("home");
+    } catch (error) {
+      console.error("Erreur lors de la déconnexion:", error);
+    }
   };
 
   const handleSignup = () => {
@@ -82,7 +79,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
 
         {/* Navigation Desktop */}
         <nav className="nav-desktop">
-          {isLoggedIn ? (
+          {isAuthenticated ? (
             <>
               <a
                 href="#"
@@ -162,9 +159,6 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
               <button className="btn-primary" onClick={handleLogin}>
                 Se connecter
               </button>
-              <button className="btn-quick-login" onClick={handleQuickLogin}>
-                🚀 Connexion rapide
-              </button>
             </div>
           )}
         </nav>
@@ -184,7 +178,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
       {/* Navigation Mobile */}
       <nav className={`nav-mobile ${isMenuOpen ? "open" : ""}`}>
         <div className="mobile-nav-content">
-          {isLoggedIn ? (
+          {isAuthenticated ? (
             <>
               <a
                 href="#"
@@ -263,12 +257,6 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
               </button>
               <button className="btn-primary mobile-btn" onClick={handleLogin}>
                 Se connecter
-              </button>
-              <button
-                className="btn-quick-login mobile-btn"
-                onClick={handleQuickLogin}
-              >
-                🚀 Connexion rapide
               </button>
             </div>
           )}
