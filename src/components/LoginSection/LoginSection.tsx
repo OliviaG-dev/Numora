@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./LoginSection.css";
+import { useAuth } from "../../hooks/useAuth";
 
 interface LoginSectionProps {
   onNavigate: (
@@ -8,6 +9,8 @@ interface LoginSectionProps {
 }
 
 const LoginSection: React.FC<LoginSectionProps> = ({ onNavigate }) => {
+  const { signIn, loading: authLoading } = useAuth();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -61,19 +64,24 @@ const LoginSection: React.FC<LoginSectionProps> = ({ onNavigate }) => {
 
     if (validateForm()) {
       setIsLoading(true);
+      setErrors({});
 
-      // Simulation d'une requête de connexion
       try {
-        await new Promise((resolve) => setTimeout(resolve, 1500)); // Simulation délai
+        const { data, error } = await signIn(formData.email, formData.password);
 
-        // Ici vous pouvez ajouter la logique de connexion réelle
-        console.log("Données de connexion:", formData);
-        alert("Connexion réussie ! Bienvenue dans l'univers de Numora 🌟");
+        if (error) {
+          setErrors({ general: error.message });
+        } else {
+          // Connexion réussie
+          console.log("Connexion réussie:", data);
+          alert("Connexion réussie ! Bienvenue dans l'univers de Numora 🌟");
 
-        // Redirection vers l'accueil après connexion
-        onNavigate("home");
-      } catch {
+          // Redirection vers l'accueil après connexion
+          onNavigate("home");
+        }
+      } catch (error: unknown) {
         setErrors({ general: "Erreur de connexion. Veuillez réessayer." });
+        console.error("Erreur de connexion:", error);
       } finally {
         setIsLoading(false);
       }
@@ -247,9 +255,13 @@ const LoginSection: React.FC<LoginSectionProps> = ({ onNavigate }) => {
               </button>
             </div>
 
-            <button type="submit" className="login-button" disabled={isLoading}>
+            <button
+              type="submit"
+              className="login-button"
+              disabled={isLoading || authLoading}
+            >
               <span className="button-text">
-                {isLoading ? "Connexion..." : "Se connecter"}
+                {isLoading || authLoading ? "Connexion..." : "Se connecter"}
               </span>
             </button>
 

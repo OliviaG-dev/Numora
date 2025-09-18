@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import "./ReadingDetailSection.css";
+import { useAuth } from "../../hooks/useAuth";
 import {
   calculateLifePathNumber,
   calculateExpressionNumber,
@@ -12,6 +13,8 @@ import {
   calculatePersonalNumbers,
   calculateKarmicNumbers,
   calculateCycleKarmicNumbers,
+  calculateKarmicDebts,
+  type KarmicDebtResult,
 } from "../../utils/numerology";
 import {
   lifePathData,
@@ -22,6 +25,7 @@ import {
   lifeCycleData,
   realizationPeriodData,
   personelCycleData,
+  karmicDebtsData,
 } from "../../data";
 import type {
   LifePathDetail,
@@ -62,29 +66,52 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
   onNavigate,
   readingData,
 }) => {
-  // État pour vérifier si l'utilisateur est connecté
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  // Vérifier l'état de connexion au chargement du composant
-  useEffect(() => {
-    // Vérifier si l'utilisateur est connecté (exemple avec localStorage)
-    const checkAuthStatus = () => {
-      const userToken = localStorage.getItem("userToken");
-      const isAuthenticated = userToken !== null && userToken !== "";
-      setIsLoggedIn(isAuthenticated);
-    };
-
-    checkAuthStatus();
-
-    // Écouter les changements d'état de connexion
-    window.addEventListener("storage", checkAuthStatus);
-
-    return () => {
-      window.removeEventListener("storage", checkAuthStatus);
-    };
-  }, []);
+  // Utiliser le contexte d'authentification Supabase
+  const { isAuthenticated } = useAuth();
   // État pour la navigation par onglets
   const [activeTab, setActiveTab] = useState<string>("basiques");
+
+  // État pour gérer l'ouverture/fermeture des accordéons karmiques
+  const [openKarmicAccordions, setOpenKarmicAccordions] = useState<Set<number>>(
+    new Set()
+  );
+
+  // État pour gérer l'ouverture/fermeture des accordéons des cycles karmiques
+  const [openCycleKarmicAccordions, setOpenCycleKarmicAccordions] = useState<
+    Set<number>
+  >(new Set());
+
+  // Fonction pour gérer l'ouverture/fermeture des accordéons karmiques
+  const toggleKarmicAccordion = (number: number) => {
+    setOpenKarmicAccordions((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(number)) {
+        // Si l'accordéon est déjà ouvert, on le ferme
+        newSet.delete(number);
+      } else {
+        // Si l'accordéon est fermé, on ferme tous les autres et on ouvre celui-ci
+        newSet.clear();
+        newSet.add(number);
+      }
+      return newSet;
+    });
+  };
+
+  // Fonction pour gérer l'ouverture/fermeture des accordéons des cycles karmiques
+  const toggleCycleKarmicAccordion = (number: number) => {
+    setOpenCycleKarmicAccordions((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(number)) {
+        // Si l'accordéon est déjà ouvert, on le ferme
+        newSet.delete(number);
+      } else {
+        // Si l'accordéon est fermé, on ferme tous les autres et on ouvre celui-ci
+        newSet.clear();
+        newSet.add(number);
+      }
+      return newSet;
+    });
+  };
 
   const [numerologyResults, setNumerologyResults] = useState<{
     lifePath: { number: number; info: LifePathDetail | undefined };
@@ -159,6 +186,14 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
         keywords: string[];
       }>;
     };
+    karmicDebts: {
+      lifePathDebt: KarmicDebtResult;
+      expressionDebt: KarmicDebtResult;
+      soulUrgeDebt: KarmicDebtResult;
+      personalityDebt: KarmicDebtResult;
+      birthdayDebt: KarmicDebtResult;
+      allDebts: KarmicDebtResult[];
+    };
   } | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -201,6 +236,9 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
 
       // Calcul des cycles karmiques (basés sur le nom complet)
       const cycleKarmicNumbers = calculateCycleKarmicNumbers(fullName);
+
+      // Calcul des dettes karmiques
+      const karmicDebts = calculateKarmicDebts(readingData.birthDate, fullName);
 
       // Récupération des données détaillées
       const lifePathInfo =
@@ -334,6 +372,7 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
         },
         karmicNumbers: karmicNumbers,
         cycleKarmicNumbers: cycleKarmicNumbers,
+        karmicDebts: karmicDebts,
       });
     } catch (error) {
       console.error("Erreur lors du calcul numérologique:", error);
@@ -1445,47 +1484,77 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
                   numerologyResults.karmicNumbers.karmicDefinitions.map(
                     (karmic) => (
                       <div key={karmic.number} className="karmic-card">
-                        <div className="karmic-header">
+                        <div
+                          className="karmic-header accordion-header"
+                          onClick={() => toggleKarmicAccordion(karmic.number)}
+                        >
                           <h3>
                             Défi Karmique {karmic.number}
                             <span className="karmic-period">
                               (Chiffre manquant)
                             </span>
                           </h3>
-                          <div className="number-badge karmic-badge">
-                            {karmic.number}
-                          </div>
-                        </div>
-
-                        <div className="karmic-content">
-                          <div className="karmic-summary">
-                            <h4>Résumé</h4>
-                            <p>{karmic.summary}</p>
-                          </div>
-
-                          <div className="karmic-challenge">
-                            <h4>Défi à relever</h4>
-                            <p>{karmic.challenge}</p>
-                          </div>
-
-                          <div className="karmic-details">
-                            <h4>Détails</h4>
-                            <p>{karmic.details}</p>
-                          </div>
-
-                          {karmic.keywords.length > 0 && (
-                            <div className="karmic-keywords">
-                              <h4>Mots-clés</h4>
-                              <div className="keywords-list">
-                                {karmic.keywords.map((keyword, index) => (
-                                  <span key={index} className="keyword-tag">
-                                    {keyword}
-                                  </span>
-                                ))}
-                              </div>
+                          <div className="header-right">
+                            <div className="number-badge karmic-badge">
+                              {karmic.number}
                             </div>
-                          )}
+                            <div
+                              className={`accordion-arrow ${
+                                openKarmicAccordions.has(karmic.number)
+                                  ? "open"
+                                  : ""
+                              }`}
+                            >
+                              <svg
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M6 9L12 15L18 9"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                />
+                              </svg>
+                            </div>
+                          </div>
                         </div>
+
+                        {openKarmicAccordions.has(karmic.number) && (
+                          <div className="karmic-content accordion-content">
+                            <div className="karmic-summary">
+                              <h4>Résumé</h4>
+                              <p>{karmic.summary}</p>
+                            </div>
+
+                            <div className="karmic-challenge">
+                              <h4>Défi à relever</h4>
+                              <p>{karmic.challenge}</p>
+                            </div>
+
+                            <div className="karmic-details">
+                              <h4>Détails</h4>
+                              <p>{karmic.details}</p>
+                            </div>
+
+                            {karmic.keywords.length > 0 && (
+                              <div className="karmic-keywords">
+                                <h4>Mots-clés</h4>
+                                <div className="keywords-list">
+                                  {karmic.keywords.map((keyword, index) => (
+                                    <span key={index} className="keyword-tag">
+                                      {keyword}
+                                    </span>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        )}
                       </div>
                     )
                   )
@@ -1590,47 +1659,83 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
                         key={cycleKarmic.number}
                         className="cycle-karmic-card"
                       >
-                        <div className="cycle-karmic-header">
+                        <div
+                          className="cycle-karmic-header accordion-header"
+                          onClick={() =>
+                            toggleCycleKarmicAccordion(cycleKarmic.number)
+                          }
+                        >
                           <h3>
                             Cycle Karmique {cycleKarmic.number}
                             <span className="cycle-karmic-period">
                               (Lettre manquante)
                             </span>
                           </h3>
-                          <div className="number-badge cycle-karmic-badge">
-                            {cycleKarmic.number}
-                          </div>
-                        </div>
-
-                        <div className="cycle-karmic-content">
-                          <div className="cycle-karmic-summary">
-                            <h4>Résumé</h4>
-                            <p>{cycleKarmic.summary}</p>
-                          </div>
-
-                          <div className="cycle-karmic-challenge">
-                            <h4>Défi à relever</h4>
-                            <p>{cycleKarmic.challenge}</p>
-                          </div>
-
-                          <div className="cycle-karmic-details">
-                            <h4>Détails</h4>
-                            <p>{cycleKarmic.details}</p>
-                          </div>
-
-                          {cycleKarmic.keywords.length > 0 && (
-                            <div className="cycle-karmic-keywords">
-                              <h4>Mots-clés</h4>
-                              <div className="keywords-list">
-                                {cycleKarmic.keywords.map((keyword, index) => (
-                                  <span key={index} className="keyword-tag">
-                                    {keyword}
-                                  </span>
-                                ))}
-                              </div>
+                          <div className="header-right">
+                            <div className="number-badge cycle-karmic-badge">
+                              {cycleKarmic.number}
                             </div>
-                          )}
+                            <div
+                              className={`accordion-arrow ${
+                                openCycleKarmicAccordions.has(
+                                  cycleKarmic.number
+                                )
+                                  ? "open"
+                                  : ""
+                              }`}
+                            >
+                              <svg
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M6 9L12 15L18 9"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                />
+                              </svg>
+                            </div>
+                          </div>
                         </div>
+
+                        {openCycleKarmicAccordions.has(cycleKarmic.number) && (
+                          <div className="cycle-karmic-content accordion-content">
+                            <div className="cycle-karmic-summary">
+                              <h4>Résumé</h4>
+                              <p>{cycleKarmic.summary}</p>
+                            </div>
+
+                            <div className="cycle-karmic-challenge">
+                              <h4>Défi à relever</h4>
+                              <p>{cycleKarmic.challenge}</p>
+                            </div>
+
+                            <div className="cycle-karmic-details">
+                              <h4>Détails</h4>
+                              <p>{cycleKarmic.details}</p>
+                            </div>
+
+                            {cycleKarmic.keywords.length > 0 && (
+                              <div className="cycle-karmic-keywords">
+                                <h4>Mots-clés</h4>
+                                <div className="keywords-list">
+                                  {cycleKarmic.keywords.map(
+                                    (keyword, index) => (
+                                      <span key={index} className="keyword-tag">
+                                        {keyword}
+                                      </span>
+                                    )
+                                  )}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        )}
                       </div>
                     )
                   )
@@ -1646,6 +1751,245 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
                 )}
               </div>
             </section>
+
+            {/* Section des Dettes Karmiques */}
+            <section className="numerology-section karmic-debts-section">
+              <div className="section-header">
+                <div className="title-with-tooltip">
+                  <h2>Dettes Karmiques</h2>
+                  <div className="tooltip">
+                    <span className="tooltip-icon">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <circle
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          fill="none"
+                        />
+                        <path
+                          d="M12 16V12"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                        />
+                        <circle cx="12" cy="8" r="1" fill="currentColor" />
+                      </svg>
+                    </span>
+                    <div className="tooltip-content">
+                      <p>
+                        Les dettes karmiques (13, 14, 16, 19) révèlent des
+                        leçons importantes à apprendre dans cette vie.
+                      </p>
+                      <p>
+                        Elles indiquent des défis spécifiques liés à des abus ou
+                        des négligences dans des vies passées.
+                      </p>
+                      <p>
+                        Ces nombres apparaissent dans vos nombres principaux
+                        avant réduction.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="karmic-debts-overview">
+                <div className="karmic-debts-stats">
+                  <div className="stat-item">
+                    <span className="stat-number">
+                      {
+                        numerologyResults.karmicDebts.allDebts.filter(
+                          (debt) => debt.isKarmicDebt
+                        ).length
+                      }
+                    </span>
+                    <span className="stat-label">Dettes karmiques</span>
+                  </div>
+                  <div className="stat-item">
+                    <span className="stat-number">
+                      {
+                        numerologyResults.karmicDebts.allDebts.filter(
+                          (debt) => !debt.isKarmicDebt
+                        ).length
+                      }
+                    </span>
+                    <span className="stat-label">Nombres normaux</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="karmic-debts-analysis">
+                <h3>Analyse de vos nombres principaux</h3>
+                <div className="debt-analysis-grid">
+                  <div className="debt-analysis-item">
+                    <h4>Chemin de Vie</h4>
+                    <div className="debt-number">
+                      {numerologyResults.karmicDebts.lifePathDebt.number}
+                      {numerologyResults.karmicDebts.lifePathDebt
+                        .isKarmicDebt && (
+                        <span className="karmic-debt-badge">
+                          Dette{" "}
+                          {
+                            numerologyResults.karmicDebts.lifePathDebt
+                              .karmicDebtType
+                          }
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="debt-analysis-item">
+                    <h4>Expression</h4>
+                    <div className="debt-number">
+                      {numerologyResults.karmicDebts.expressionDebt.number}
+                      {numerologyResults.karmicDebts.expressionDebt
+                        .isKarmicDebt && (
+                        <span className="karmic-debt-badge">
+                          Dette{" "}
+                          {
+                            numerologyResults.karmicDebts.expressionDebt
+                              .karmicDebtType
+                          }
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="debt-analysis-item">
+                    <h4>Âme</h4>
+                    <div className="debt-number">
+                      {numerologyResults.karmicDebts.soulUrgeDebt.number}
+                      {numerologyResults.karmicDebts.soulUrgeDebt
+                        .isKarmicDebt && (
+                        <span className="karmic-debt-badge">
+                          Dette{" "}
+                          {
+                            numerologyResults.karmicDebts.soulUrgeDebt
+                              .karmicDebtType
+                          }
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="debt-analysis-item">
+                    <h4>Personnalité</h4>
+                    <div className="debt-number">
+                      {numerologyResults.karmicDebts.personalityDebt.number}
+                      {numerologyResults.karmicDebts.personalityDebt
+                        .isKarmicDebt && (
+                        <span className="karmic-debt-badge">
+                          Dette{" "}
+                          {
+                            numerologyResults.karmicDebts.personalityDebt
+                              .karmicDebtType
+                          }
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="debt-analysis-item">
+                    <h4>Jour de Naissance</h4>
+                    <div className="debt-number">
+                      {numerologyResults.karmicDebts.birthdayDebt.number}
+                      {numerologyResults.karmicDebts.birthdayDebt
+                        .isKarmicDebt && (
+                        <span className="karmic-debt-badge">
+                          Dette{" "}
+                          {
+                            numerologyResults.karmicDebts.birthdayDebt
+                              .karmicDebtType
+                          }
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="karmic-debts-definitions">
+                {numerologyResults.karmicDebts.allDebts
+                  .filter((debt) => debt.isKarmicDebt)
+                  .map((debt) => {
+                    const debtData =
+                      karmicDebtsData[
+                        debt.karmicDebtType!.toString() as keyof typeof karmicDebtsData
+                      ];
+                    return (
+                      <div
+                        key={debt.karmicDebtType}
+                        className="karmic-debt-card"
+                      >
+                        <div className="karmic-debt-header">
+                          <h3>
+                            Dette Karmique {debt.karmicDebtType}
+                            <span className="karmic-debt-period">
+                              (Leçon à apprendre)
+                            </span>
+                          </h3>
+                          <div className="number-badge karmic-debt-badge">
+                            {debt.karmicDebtType}
+                          </div>
+                        </div>
+
+                        <div className="karmic-debt-content">
+                          <div className="karmic-debt-summary">
+                            <h4>Résumé</h4>
+                            <p>{debtData.summary}</p>
+                          </div>
+
+                          <div className="karmic-debt-challenge">
+                            <h4>Défi à relever</h4>
+                            <p>{debtData.challenge}</p>
+                          </div>
+
+                          <div className="karmic-debt-details">
+                            <h4>Détails</h4>
+                            <p>{debtData.details}</p>
+                          </div>
+
+                          {debtData.keywords.length > 0 && (
+                            <div className="karmic-debt-keywords">
+                              <h4>Mots-clés</h4>
+                              <div className="keywords-list">
+                                {debtData.keywords.map(
+                                  (keyword: string, index: number) => (
+                                    <span key={index} className="keyword-tag">
+                                      {keyword}
+                                    </span>
+                                  )
+                                )}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+
+                {numerologyResults.karmicDebts.allDebts.filter(
+                  (debt) => debt.isKarmicDebt
+                ).length === 0 && (
+                  <div className="no-karmic-debts">
+                    <h3>Félicitations !</h3>
+                    <p>
+                      Aucune dette karmique détectée dans vos nombres
+                      principaux. Vous n'avez pas de leçons karmiques
+                      spécifiques à apprendre dans cette vie.
+                    </p>
+                  </div>
+                )}
+              </div>
+            </section>
           </>
         )}
 
@@ -1654,8 +1998,9 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
           <>
             <section className="numerology-section matrix-section">
               <div className="section-header">
-                <h2>Matrix Destiny</h2>
-                <p>Section en développement...</p>
+                <div className="title-with-tooltip">
+                  <h2>Matrix Destiny</h2>
+                </div>
               </div>
               <div className="placeholder-content">
                 <p>
@@ -1672,8 +2017,9 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
           <>
             <section className="numerology-section arbre-section">
               <div className="section-header">
-                <h2>Arbre de Vie</h2>
-                <p>Section en développement...</p>
+                <div className="title-with-tooltip">
+                  <h2>Arbre de Vie</h2>
+                </div>
               </div>
               <div className="placeholder-content">
                 <p>
@@ -1687,7 +2033,7 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
       </div>
 
       <div className="reading-actions">
-        {isLoggedIn && (
+        {isAuthenticated && (
           <button
             onClick={() => onNavigate("readings")}
             className="btn-secondary"

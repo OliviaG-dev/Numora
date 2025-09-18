@@ -17,7 +17,10 @@ import cycleKarmicData from "../data/numerology/CycleKarmicData.json";
  * calculateLifePathNumber("1990-03-15") // Retourne 1
  * calculateLifePathNumber("1985-07-22") // Retourne 7
  */
-export function calculateLifePathNumber(dateString: string): number {
+export function calculateLifePathNumber(
+  dateString: string,
+  reduce: boolean = true
+): number {
   // Validation du format de date
   if (!/^\d{4}-\d{2}-\d{2}$/.test(dateString)) {
     throw new Error('Format de date invalide. Utilisez "YYYY-MM-DD"');
@@ -34,8 +37,8 @@ export function calculateLifePathNumber(dateString: string): number {
   // Somme initiale de tous les chiffres
   const total = digits.reduce((acc, val) => acc + val, 0);
 
-  // Réduction du nombre
-  return reduceToSingleDigit(total);
+  // Réduction du nombre si demandée
+  return reduce ? reduceToSingleDigit(total) : total;
 }
 
 /**
@@ -43,7 +46,10 @@ export function calculateLifePathNumber(dateString: string): number {
  * @param fullName - Nom complet (prénoms + nom de famille)
  * @returns Le nombre d'Expression (1-9, 11, 22, ou 33)
  */
-export function calculateExpressionNumber(fullName: string): number {
+export function calculateExpressionNumber(
+  fullName: string,
+  reduce: boolean = true
+): number {
   // Validation du nom
   if (!fullName || fullName.trim().length === 0) {
     throw new Error("Le nom ne peut pas être vide");
@@ -68,7 +74,7 @@ export function calculateExpressionNumber(fullName: string): number {
 
   // Somme et réduction
   const total = nameDigits.reduce((acc, val) => acc + val, 0);
-  return reduceToSingleDigit(total);
+  return reduce ? reduceToSingleDigit(total) : total;
 }
 
 // Types pour les résultats
@@ -173,7 +179,10 @@ function reduceToSingleDigit(num: number): number {
  * @param fullName - Nom complet
  * @returns Le nombre de l'Âme (1-9, 11, 22, ou 33)
  */
-export function calculateSoulUrgeNumber(fullName: string): number {
+export function calculateSoulUrgeNumber(
+  fullName: string,
+  reduce: boolean = true
+): number {
   if (!fullName || fullName.trim().length === 0) {
     throw new Error("Le nom ne peut pas être vide");
   }
@@ -196,7 +205,7 @@ export function calculateSoulUrgeNumber(fullName: string): number {
   }
 
   const total = vowels.reduce((acc, val) => acc + val, 0);
-  return reduceToSingleDigit(total);
+  return reduce ? reduceToSingleDigit(total) : total;
 }
 
 /**
@@ -204,7 +213,10 @@ export function calculateSoulUrgeNumber(fullName: string): number {
  * @param fullName - Nom complet
  * @returns Le nombre de Personnalité (1-9, 11, 22, ou 33)
  */
-export function calculatePersonalityNumber(fullName: string): number {
+export function calculatePersonalityNumber(
+  fullName: string,
+  reduce: boolean = true
+): number {
   if (!fullName || fullName.trim().length === 0) {
     throw new Error("Le nom ne peut pas être vide");
   }
@@ -228,7 +240,7 @@ export function calculatePersonalityNumber(fullName: string): number {
   }
 
   const total = consonants.reduce((acc, val) => acc + val, 0);
-  return reduceToSingleDigit(total);
+  return reduce ? reduceToSingleDigit(total) : total;
 }
 
 /**
@@ -595,5 +607,95 @@ export function calculateCycleKarmicNumbers(
     presentNumbers: Array.from(presentNumbers).sort(),
     missingNumbers,
     cycleKarmicDefinitions,
+  };
+}
+
+// ===== DETTES KARMIQUES =====
+
+// Types pour les dettes karmiques
+export interface KarmicDebtResult {
+  number: number;
+  isKarmicDebt: boolean;
+  karmicDebtType?: 13 | 14 | 16 | 19;
+}
+
+// Les dettes karmiques reconnues
+const karmicDebtNumbers: (13 | 14 | 16 | 19)[] = [13, 14, 16, 19];
+
+/**
+ * Vérifie si un nombre est une dette karmique
+ * @param value Le nombre à tester (avant réduction)
+ */
+export function checkKarmicDebt(value: number): KarmicDebtResult {
+  if (karmicDebtNumbers.includes(value as 13 | 14 | 16 | 19)) {
+    return {
+      number: value,
+      isKarmicDebt: true,
+      karmicDebtType: value as 13 | 14 | 16 | 19,
+    };
+  }
+
+  return {
+    number: value,
+    isKarmicDebt: false,
+  };
+}
+
+/**
+ * Analyse les nombres principaux pour détecter les dettes karmiques
+ * @param coreNumbers Les nombres principaux avant réduction
+ */
+export function analyzeCoreNumbers(coreNumbers: number[]): KarmicDebtResult[] {
+  return coreNumbers.map((num) => checkKarmicDebt(num));
+}
+
+/**
+ * Calcule les dettes karmiques pour un profil numérologique complet
+ * @param birthDate Date de naissance (YYYY-MM-DD)
+ * @param fullName Nom complet
+ */
+export function calculateKarmicDebts(
+  birthDate: string,
+  fullName: string
+): {
+  lifePathDebt: KarmicDebtResult;
+  expressionDebt: KarmicDebtResult;
+  soulUrgeDebt: KarmicDebtResult;
+  personalityDebt: KarmicDebtResult;
+  birthdayDebt: KarmicDebtResult;
+  allDebts: KarmicDebtResult[];
+} {
+  // Calcul des nombres principaux (avant réduction)
+  const lifePathNumber = calculateLifePathNumber(birthDate, false); // false = pas de réduction
+  const expressionNumber = calculateExpressionNumber(fullName, false);
+  const soulUrgeNumber = calculateSoulUrgeNumber(fullName, false);
+  const personalityNumber = calculatePersonalityNumber(fullName, false);
+
+  // Pour le jour de naissance, on utilise le jour du mois (1-31)
+  const day = Number(birthDate.split("-")[2]);
+  const birthdayNumber = day;
+
+  // Analyse des dettes karmiques
+  const lifePathDebt = checkKarmicDebt(lifePathNumber);
+  const expressionDebt = checkKarmicDebt(expressionNumber);
+  const soulUrgeDebt = checkKarmicDebt(soulUrgeNumber);
+  const personalityDebt = checkKarmicDebt(personalityNumber);
+  const birthdayDebt = checkKarmicDebt(birthdayNumber);
+
+  const allDebts = [
+    lifePathDebt,
+    expressionDebt,
+    soulUrgeDebt,
+    personalityDebt,
+    birthdayDebt,
+  ];
+
+  return {
+    lifePathDebt,
+    expressionDebt,
+    soulUrgeDebt,
+    personalityDebt,
+    birthdayDebt,
+    allDebts,
   };
 }
