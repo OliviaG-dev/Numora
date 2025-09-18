@@ -1748,3 +1748,345 @@
 /* Les sections matrix-section et arbre-section héritent maintenant des styles de .numerology-section */
 
 /* Responsive pour les cycles karmiques - géré par les styles généraux */
+
+/* ===== STYLES POUR LES DETTES KARMIQUES ===== */
+
+/* Section des dettes karmiques */
+.karmic-debts-section {
+  background: var(--bg-secondary);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--bg-tertiary);
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.karmic-debts-section:hover {
+  transform: translateY(-5px);
+}
+
+.karmic-debts-section h2 {
+  color: var(--primary-purple);
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+}
+
+.karmic-debts-overview {
+  margin-bottom: 2rem;
+  background: var(--bg-tertiary);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid rgba(139, 92, 246, 0.1);
+}
+
+.karmic-debts-stats {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.karmic-debts-analysis {
+  margin-bottom: 2rem;
+  background: var(--bg-tertiary);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid rgba(139, 92, 246, 0.1);
+}
+
+.karmic-debts-analysis h3 {
+  color: var(--secondary-gold);
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(245, 158, 11, 0.3);
+}
+
+.debt-analysis-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.debt-analysis-item {
+  background: var(--bg-secondary);
+  border-radius: 15px;
+  padding: 1.5rem;
+  text-align: center;
+  border: 1px solid var(--bg-tertiary);
+  transition: all 0.3s ease;
+}
+
+.debt-analysis-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.2);
+  border-color: var(--primary-purple-light);
+}
+
+.debt-analysis-item h4 {
+  color: var(--secondary-gold);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.debt-number {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.debt-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  background: linear-gradient(
+    135deg,
+    var(--primary-purple),
+    var(--primary-purple-light)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.karmic-debt-badge {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid #dc2626;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
+}
+
+.karmic-debts-definitions {
+  display: grid;
+  gap: 2rem;
+  width: 100%;
+}
+
+.karmic-debt-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--bg-tertiary);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  position: relative;
+  min-width: 100%;
+  width: 100%;
+}
+
+.karmic-debt-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+.karmic-debt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.karmic-debt-header h3 {
+  color: var(--secondary-gold);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0;
+  flex: 1;
+  min-width: 200px;
+  text-shadow: 0 1px 2px rgba(245, 158, 11, 0.3);
+}
+
+.karmic-debt-period {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  display: block;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+.karmic-debt-content {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.karmic-debt-summary,
+.karmic-debt-challenge,
+.karmic-debt-details {
+  padding: 1.5rem;
+  background: var(--bg-primary);
+  border-radius: 15px;
+  border-left: 4px solid;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.karmic-debt-summary {
+  border-left-color: var(--secondary-gold);
+  background: linear-gradient(
+    135deg,
+    rgba(245, 158, 11, 0.05),
+    rgba(245, 158, 11, 0.02)
+  );
+}
+
+.karmic-debt-challenge {
+  border-left-color: #dc2626;
+  background: linear-gradient(
+    135deg,
+    rgba(220, 38, 38, 0.05),
+    rgba(220, 38, 38, 0.02)
+  );
+}
+
+.karmic-debt-details {
+  border-left-color: var(--primary-purple-light);
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.05),
+    rgba(139, 92, 246, 0.02)
+  );
+}
+
+.karmic-debt-summary:hover,
+.karmic-debt-challenge:hover,
+.karmic-debt-details:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.karmic-debt-summary h4,
+.karmic-debt-challenge h4,
+.karmic-debt-details h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.karmic-debt-summary h4 {
+  color: var(--secondary-gold);
+  text-shadow: 0 1px 2px rgba(245, 158, 11, 0.3);
+}
+
+.karmic-debt-challenge h4 {
+  color: #dc2626;
+  text-shadow: 0 1px 2px rgba(220, 38, 38, 0.3);
+}
+
+.karmic-debt-details h4 {
+  color: var(--primary-purple-light);
+  text-shadow: 0 1px 2px rgba(139, 92, 246, 0.3);
+}
+
+.karmic-debt-summary p,
+.karmic-debt-challenge p,
+.karmic-debt-details p {
+  color: var(--text-primary);
+  line-height: 1.7;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.karmic-debt-keywords {
+  padding: 1.5rem;
+  background: var(--bg-primary);
+  border-radius: 15px;
+  border: 1px solid rgba(139, 92, 246, 0.1);
+}
+
+.karmic-debt-keywords h4 {
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.no-karmic-debts {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(
+    135deg,
+    rgba(16, 185, 129, 0.05),
+    rgba(16, 185, 129, 0.02)
+  );
+  border: 2px solid rgba(16, 185, 129, 0.2);
+  border-radius: 20px;
+}
+
+.no-karmic-debts h3 {
+  color: #10b981;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
+}
+
+.no-karmic-debts p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  max-width: 500px;
+  margin: 0 auto;
+  font-weight: 500;
+}
+
+/* Responsive pour les dettes karmiques */
+@media (max-width: 768px) {
+  .karmic-debts-section {
+    padding: 1.5rem;
+  }
+
+  .karmic-debts-overview,
+  .karmic-debts-analysis {
+    padding: 1.5rem;
+  }
+
+  .karmic-debts-stats {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .debt-analysis-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .karmic-debt-header {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .karmic-debt-header h3 {
+    min-width: auto;
+  }
+
+  .karmic-debt-card {
+    padding: 1.5rem;
+  }
+}
