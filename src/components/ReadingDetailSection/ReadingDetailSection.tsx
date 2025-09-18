@@ -1756,8 +1756,9 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
           <>
             <section className="numerology-section matrix-section">
               <div className="section-header">
-                <h2>Matrix Destiny</h2>
-                <p>Section en développement...</p>
+                <div className="title-with-tooltip">
+                  <h2>Matrix Destiny</h2>
+                </div>
               </div>
               <div className="placeholder-content">
                 <p>
@@ -1774,8 +1775,9 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
           <>
             <section className="numerology-section arbre-section">
               <div className="section-header">
-                <h2>Arbre de Vie</h2>
-                <p>Section en développement...</p>
+                <div className="title-with-tooltip">
+                  <h2>Arbre de Vie</h2>
+                </div>
               </div>
               <div className="placeholder-content">
                 <p>

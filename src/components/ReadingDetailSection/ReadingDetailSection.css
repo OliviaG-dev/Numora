@@ -125,6 +125,15 @@
   transition: transform 0.3s ease;
   position: relative;
   z-index: 1;
+  width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1200px) {
+  .numerology-section {
+    width: 100%;
+    padding: 1rem;
+  }
 }
 
 .numerology-section:hover {
@@ -207,7 +216,8 @@
 .life-cycles .title-with-tooltip,
 .realization-periods .title-with-tooltip,
 .personal-numbers .title-with-tooltip,
-.karmic-section .title-with-tooltip {
+.matrix-section .title-with-tooltip,
+.arbre-section .title-with-tooltip {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -219,7 +229,8 @@
 .life-cycles .title-with-tooltip h2,
 .realization-periods .title-with-tooltip h2,
 .personal-numbers .title-with-tooltip h2,
-.karmic-section .title-with-tooltip h2 {
+.matrix-section .title-with-tooltip h2,
+.arbre-section .title-with-tooltip h2 {
   margin: 0;
   line-height: 1;
 }
@@ -230,7 +241,8 @@
 .life-cycles .tooltip-icon,
 .realization-periods .tooltip-icon,
 .personal-numbers .tooltip-icon,
-.karmic-section .tooltip-icon {
+.matrix-section .tooltip-icon,
+.arbre-section .tooltip-icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -992,38 +1004,7 @@
 
 /* ===== STYLES POUR LES NOMBRES KARMIQUES ===== */
 
-/* Styles spécifiques pour l'onglet karmique */
-.reading-content .karmic-section,
-.reading-content .cycle-karmic-section {
-  width: 100% !important;
-  max-width: 1200px !important;
-  min-width: 1200px !important;
-  margin: 0 auto !important;
-}
-
-.karmic-section {
-  background: var(--bg-secondary);
-  backdrop-filter: blur(20px);
-  border-radius: 24px;
-  padding: 2rem;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-  border: 1px solid var(--bg-tertiary);
-  transition: transform 0.3s ease;
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  min-width: 1200px;
-}
-
-.karmic-section h2 {
-  color: var(--primary-purple);
-  margin: 0;
-  font-size: 1.8rem;
-  font-weight: 700;
-  text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
-}
+/* Les sections karmiques utilisent maintenant les styles de base de .numerology-section */
 
 .karmic-overview {
   margin-bottom: 2rem;
@@ -1379,47 +1360,7 @@
   font-weight: 500;
 }
 
-/* Responsive pour les nombres karmiques */
-@media (max-width: 768px) {
-  .karmic-section {
-    padding: 1.5rem;
-  }
-
-  .karmic-overview {
-    padding: 1.5rem;
-  }
-
-  .karmic-stats {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .stat-item {
-    min-width: auto;
-  }
-
-  .karmic-header {
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-  }
-
-  .karmic-header h3 {
-    min-width: auto;
-  }
-
-  .karmic-badge {
-    align-self: center;
-  }
-
-  .keywords-list {
-    justify-content: center;
-  }
-
-  .karmic-card {
-    padding: 1.5rem;
-  }
-}
+/* Responsive pour les nombres karmiques - géré par les styles généraux */
 
 /* ===== STYLES POUR LA NAVIGATION PAR ONGLETS ===== */
 
@@ -1562,50 +1503,9 @@
 
 /* ===== STYLES POUR LES CYCLES KARMIQUES ===== */
 
-/* Section des cycles karmiques */
-.cycle-karmic-section {
-  background: var(--bg-secondary);
-  backdrop-filter: blur(20px);
-  border-radius: 24px;
-  padding: 2rem;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-  border: 1px solid var(--bg-tertiary);
-  transition: transform 0.3s ease;
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  min-width: 1200px;
-}
+/* Les sections cycles karmiques utilisent maintenant les styles de base de .numerology-section */
 
-.cycle-karmic-section h2 {
-  color: var(--primary-purple);
-  margin: 0;
-  font-size: 1.8rem;
-  font-weight: 700;
-  text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
-}
-
-.cycle-karmic-section .title-with-tooltip {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.cycle-karmic-section .title-with-tooltip h2 {
-  margin: 0;
-  line-height: 1;
-}
-
-.cycle-karmic-section .tooltip-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 1.8rem;
-  width: 1.8rem;
-  font-size: 1.2rem;
-}
+/* Les styles tooltip sont maintenant gérés par les styles généraux */
 
 .cycle-karmic-overview {
   margin-bottom: 2rem;
@@ -1843,44 +1743,8 @@
   font-weight: 500;
 }
 
-/* Responsive pour les cycles karmiques */
-@media (max-width: 768px) {
-  .cycle-karmic-section {
-    padding: 1.5rem;
-  }
+/* ===== STYLES POUR LES SECTIONS MATRIX DESTINY ET ARBRE DE VIE ===== */
 
-  .cycle-karmic-overview {
-    padding: 1.5rem;
-  }
+/* Les sections matrix-section et arbre-section héritent maintenant des styles de .numerology-section */
 
-  .cycle-karmic-stats {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .stat-item {
-    min-width: auto;
-  }
-
-  .cycle-karmic-header {
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-  }
-
-  .cycle-karmic-header h3 {
-    min-width: auto;
-  }
-
-  .cycle-karmic-badge {
-    align-self: center;
-  }
-
-  .keywords-list {
-    justify-content: center;
-  }
-
-  .cycle-karmic-card {
-    padding: 1.5rem;
-  }
-}
+/* Responsive pour les cycles karmiques - géré par les styles généraux */
