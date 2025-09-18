@@ -104,8 +104,11 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
     setOpenKarmicAccordions((prev) => {
       const newSet = new Set(prev);
       if (newSet.has(number)) {
+        // Si l'accordéon est déjà ouvert, on le ferme
         newSet.delete(number);
       } else {
+        // Si l'accordéon est fermé, on ferme tous les autres et on ouvre celui-ci
+        newSet.clear();
         newSet.add(number);
       }
       return newSet;
@@ -117,8 +120,11 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
     setOpenCycleKarmicAccordions((prev) => {
       const newSet = new Set(prev);
       if (newSet.has(number)) {
+        // Si l'accordéon est déjà ouvert, on le ferme
         newSet.delete(number);
       } else {
+        // Si l'accordéon est fermé, on ferme tous les autres et on ouvre celui-ci
+        newSet.clear();
         newSet.add(number);
       }
       return newSet;
