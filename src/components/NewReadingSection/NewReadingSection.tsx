@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./NewReadingSection.css";
+import { useAuth } from "../../hooks/useAuth";
 
 interface ReadingData {
   readingName: string;
@@ -30,8 +31,7 @@ interface NewReadingSectionProps {
 const NewReadingSection: React.FC<NewReadingSectionProps> = ({
   onNavigate,
 }) => {
-  // Simulation de l'état de connexion (à remplacer par votre logique d'authentification)
-  const [isLoggedIn] = useState(false); // Changez à true pour tester l'état connecté
+  const { isAuthenticated } = useAuth();
 
   const [formData, setFormData] = useState({
     // Informations de la lecture
@@ -78,7 +78,7 @@ const NewReadingSection: React.FC<NewReadingSectionProps> = ({
     const newErrors: Record<string, string> = {};
 
     // Validation des informations de la lecture (seulement si connecté)
-    if (isLoggedIn && !formData.readingName.trim()) {
+    if (isAuthenticated && !formData.readingName.trim()) {
       newErrors.readingName = "Le nom de la lecture est requis";
     }
 
@@ -145,7 +145,7 @@ const NewReadingSection: React.FC<NewReadingSectionProps> = ({
               </div>
             )}
 
-            {isLoggedIn ? (
+            {isAuthenticated ? (
               <div className="form-section">
                 <h3 className="form-section-title">
                   Informations de la lecture
