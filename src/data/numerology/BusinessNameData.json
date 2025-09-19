@@ -1,0 +1,86 @@
+{
+    "1": {
+      "summary": "Indépendance et leadership",
+      "favorable_for": "Startups, entreprises innovantes, projets pionniers.",
+      "unfavorable_for": "Activités nécessitant coopération étroite ou stabilité familiale.",
+      "strength": "Énergie de pionnier, audace, capacité à ouvrir de nouvelles voies.",
+      "challenge": "Risque d’isolement, autoritarisme ou difficulté à coopérer."
+    },
+    "2": {
+      "summary": "Coopération et diplomatie",
+      "favorable_for": "Associations, entreprises de médiation, services à la personne.",
+      "unfavorable_for": "Projets solitaires, trop compétitifs.",
+      "strength": "Sens de la collaboration, patience, sensibilité et équilibre.",
+      "challenge": "Dépendance excessive, hésitations, manque de dynamisme."
+    },
+    "3": {
+      "summary": "Créativité et communication",
+      "favorable_for": "Agences marketing, arts, divertissement, médias.",
+      "unfavorable_for": "Activités trop sérieuses ou rigides.",
+      "strength": "Charisme, expression créative, aisance relationnelle.",
+      "challenge": "Superficialité, dispersion, instabilité émotionnelle."
+    },
+    "4": {
+      "summary": "Solidité et organisation",
+      "favorable_for": "Bâtiment, finances, gestion, institutions durables.",
+      "unfavorable_for": "Projets nécessitant flexibilité ou innovation rapide.",
+      "strength": "Fiabilité, discipline, sens pratique et organisation.",
+      "challenge": "Rigidité, lenteur d’adaptation, manque de vision."
+    },
+    "5": {
+      "summary": "Changement et expansion",
+      "favorable_for": "Voyages, communication, technologie, commerce international.",
+      "unfavorable_for": "Structures trop rigides, domaines trop conservateurs.",
+      "strength": "Adaptabilité, audace, goût de l’aventure et du progrès.",
+      "challenge": "Instabilité, excès, difficultés à se fixer."
+    },
+    "6": {
+      "summary": "Responsabilité et harmonie",
+      "favorable_for": "Santé, bien-être, éducation, art de vivre, esthétique.",
+      "unfavorable_for": "Secteurs ultra-compétitifs ou individualistes.",
+      "strength": "Fiabilité, sens des responsabilités, recherche de beauté et d’harmonie.",
+      "challenge": "Surcontrôle, perfectionnisme, sacrifice excessif."
+    },
+    "7": {
+      "summary": "Réflexion et expertise",
+      "favorable_for": "Recherche, développement, spiritualité, enseignement.",
+      "unfavorable_for": "Business trop matériels, industries nécessitant rapidité.",
+      "strength": "Profondeur d’analyse, intuition, expertise spécialisée.",
+      "challenge": "Isolement, scepticisme, manque de pragmatisme."
+    },
+    "8": {
+      "summary": "Pouvoir et réussite matérielle",
+      "favorable_for": "Finance, immobilier, grandes entreprises, projets ambitieux.",
+      "unfavorable_for": "Entreprises fragiles, petites structures instables.",
+      "strength": "Ambition, force de gestion, succès matériel et autorité.",
+      "challenge": "Abus de pouvoir, matérialisme excessif, rapports de force."
+    },
+    "9": {
+      "summary": "Humanisme et vision globale",
+      "favorable_for": "ONG, arts, humanitaire, entreprises culturelles ou sociales.",
+      "unfavorable_for": "Projets purement matérialistes ou trop égoïstes.",
+      "strength": "Altruisme, créativité universelle, vision globale.",
+      "challenge": "Difficulté à gérer le concret, tendance au sacrifice excessif."
+    },
+    "11": {
+      "summary": "Inspiration et idéal élevé",
+      "favorable_for": "Innovation visionnaire, spiritualité, projets inspirants.",
+      "unfavorable_for": "Business uniquement matérialistes, manque de clarté.",
+      "strength": "Puissance créative, intuition forte, inspiration visionnaire.",
+      "challenge": "Nervosité, doutes, surcharge émotionnelle."
+    },
+    "22": {
+      "summary": "Grand bâtisseur",
+      "favorable_for": "Projets d’envergure, entreprises internationales, grandes fondations.",
+      "unfavorable_for": "Petites structures sans ambition, improvisation.",
+      "strength": "Capacité à concrétiser de grandes visions, sens stratégique.",
+      "challenge": "Pression énorme, risque d’échec si mal canalisé."
+    },
+    "33": {
+      "summary": "Service et rayonnement universel",
+      "favorable_for": "Éducation, santé, humanitaire, projets artistiques inspirants.",
+      "unfavorable_for": "Business purement financiers ou sans dimension humaine.",
+      "strength": "Amour universel, guérison, inspiration et rayonnement collectif.",
+      "challenge": "Sacrifice personnel excessif, dispersion dans les besoins des autres."
+    }
+}

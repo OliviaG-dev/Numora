@@ -16,6 +16,8 @@ import personelCycleData from "./numerology/PersonelCycleData.json";
 import karmicNumberData from "./numerology/KarmicNumberData.json";
 import cycleKarmicData from "./numerology/CycleKarmicData.json";
 import karmicDebtsData from "./numerology/KarmicDebtsData.json";
+import businessNameData from "./numerology/BusinessNameData.json";
+import dateVibeData from "./numerology/DateVibeData.json";
 
 // ===== EXPORTS PRINCIPAUX =====
 export {
@@ -31,6 +33,8 @@ export {
   karmicNumberData,
   cycleKarmicData,
   karmicDebtsData,
+  businessNameData,
+  dateVibeData,
 };
 
 // ===== ALIAS POUR COMPATIBILITÉ =====
@@ -173,6 +177,30 @@ export interface KarmicDebtDetail {
   challenge: string;
   details: string;
   keywords: string[];
+}
+
+export interface BusinessNameData {
+  [key: string]: BusinessNameDetail;
+}
+
+export interface BusinessNameDetail {
+  summary: string;
+  favorable_for: string;
+  unfavorable_for: string;
+  strength: string;
+  challenge: string;
+}
+
+export interface DateVibeData {
+  [key: string]: DateVibeDetail;
+}
+
+export interface DateVibeDetail {
+  summary: string;
+  strength: string;
+  challenge: string;
+  favorable_for: string;
+  unfavorable_for: string;
 }
 
 // ===== ALIAS POUR COMPATIBILITÉ =====

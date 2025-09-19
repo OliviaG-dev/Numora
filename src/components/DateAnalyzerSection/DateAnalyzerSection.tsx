@@ -5,39 +5,29 @@ import {
   calculatePersonalYear,
   calculatePersonalMonth,
   calculatePersonalDay,
+  getDateVibration,
 } from "../../utils/numerology";
+import { dateVibeData } from "../../data";
+import type { DateVibeDetail } from "../../data";
 
-interface DateAnalyzerSectionProps {
-  onNavigate: (
-    page:
-      | "home"
-      | "signup"
-      | "login"
-      | "newReading"
-      | "profile"
-      | "settings"
-      | "readings"
-      | "dateAnalyzer"
-      | "nameAnalyzer"
-  ) => void;
-}
+type DateAnalyzerSectionProps = Record<string, never>;
 
 interface DateAnalysisResult {
   lifePath: number;
   personalYear: number;
   personalMonth: number;
   personalDay: number;
+  dateVibration: number;
   analysis: {
     lifePathDescription: string;
     personalYearDescription: string;
     personalMonthDescription: string;
     personalDayDescription: string;
+    dateVibrationInfo: DateVibeDetail | null;
   };
 }
 
-const DateAnalyzerSection: React.FC<DateAnalyzerSectionProps> = ({
-  onNavigate,
-}) => {
+const DateAnalyzerSection: React.FC<DateAnalyzerSectionProps> = () => {
   const [date, setDate] = useState("");
   const [analysisResult, setAnalysisResult] =
     useState<DateAnalysisResult | null>(null);
@@ -95,12 +85,19 @@ const DateAnalyzerSection: React.FC<DateAnalyzerSectionProps> = ({
         new Date().getDate()
       );
 
+      // Calcul de la vibration de la date
+      const dateVibration = getDateVibration(new Date(date));
+      const dateVibrationInfo =
+        dateVibeData[dateVibration.toString() as keyof typeof dateVibeData] ||
+        null;
+
       // Descriptions basiques
       const analysis = {
         lifePathDescription: `Le chemin de vie ${lifePath} révèle votre mission principale dans cette incarnation.`,
         personalYearDescription: `L'année personnelle ${personalYear} influence votre année actuelle.`,
         personalMonthDescription: `Le mois personnel ${personalMonth} guide votre mois actuel.`,
         personalDayDescription: `Le jour personnel ${personalDay} influence votre journée actuelle.`,
+        dateVibrationInfo,
       };
 
       setAnalysisResult({
@@ -108,6 +105,7 @@ const DateAnalyzerSection: React.FC<DateAnalyzerSectionProps> = ({
         personalYear,
         personalMonth,
         personalDay,
+        dateVibration,
         analysis,
       });
     } catch (err) {
@@ -169,53 +167,73 @@ const DateAnalyzerSection: React.FC<DateAnalyzerSectionProps> = ({
               <h2>Résultats pour le {formatDate(date)}</h2>
             </div>
 
-            <div className="results-grid">
-              <div className="result-card">
-                <div className="result-number">{analysisResult.lifePath}</div>
-                <div className="result-label">Chemin de Vie</div>
-                <div className="result-description">
-                  {analysisResult.analysis.lifePathDescription}
+            <div className="vibration-analysis">
+              <div className="vibration-header">
+                <div className="vibration-badge">
+                  {analysisResult.dateVibration}
+                  <span className="star">✦</span>
+                  <span className="star">✧</span>
+                  <span className="star">✦</span>
+                  <span className="star">✧</span>
+                  <span className="star">✦</span>
+                  <span className="star">✧</span>
                 </div>
+                <h3>Vibration de la Date</h3>
+                <p className="vibration-subtitle">
+                  L'énergie numérologique de cette date
+                </p>
               </div>
 
-              <div className="result-card">
-                <div className="result-number">
-                  {analysisResult.personalYear}
-                </div>
-                <div className="result-label">Année Personnelle</div>
-                <div className="result-description">
-                  {analysisResult.analysis.personalYearDescription}
-                </div>
-              </div>
+              {analysisResult.analysis.dateVibrationInfo ? (
+                <div className="vibration-details">
+                  <div className="vibration-summary">
+                    <p>{analysisResult.analysis.dateVibrationInfo.summary}</p>
+                  </div>
 
-              <div className="result-card">
-                <div className="result-number">
-                  {analysisResult.personalMonth}
+                  <div className="vibration-details-grid">
+                    <div className="detail-item">
+                      <h4>Forces</h4>
+                      <p>
+                        {analysisResult.analysis.dateVibrationInfo.strength}
+                      </p>
+                    </div>
+                    <div className="detail-item">
+                      <h4>Défis</h4>
+                      <p>
+                        {analysisResult.analysis.dateVibrationInfo.challenge}
+                      </p>
+                    </div>
+                    <div className="detail-item">
+                      <h4>Favorable pour</h4>
+                      <p>
+                        {
+                          analysisResult.analysis.dateVibrationInfo
+                            .favorable_for
+                        }
+                      </p>
+                    </div>
+                    <div className="detail-item">
+                      <h4>Défavorable pour</h4>
+                      <p>
+                        {
+                          analysisResult.analysis.dateVibrationInfo
+                            .unfavorable_for
+                        }
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div className="result-label">Mois Personnel</div>
-                <div className="result-description">
-                  {analysisResult.analysis.personalMonthDescription}
+              ) : (
+                <div className="vibration-fallback">
+                  <p>
+                    La vibration {analysisResult.dateVibration} influence
+                    l'énergie de cette date.
+                  </p>
                 </div>
-              </div>
-
-              <div className="result-card">
-                <div className="result-number">
-                  {analysisResult.personalDay}
-                </div>
-                <div className="result-label">Jour Personnel</div>
-                <div className="result-description">
-                  {analysisResult.analysis.personalDayDescription}
-                </div>
-              </div>
+              )}
             </div>
 
             <div className="results-actions">
-              <button
-                onClick={() => onNavigate("newReading")}
-                className="btn-primary"
-              >
-                Créer une lecture complète
-              </button>
               <button
                 onClick={() => {
                   setDate("");
@@ -224,7 +242,7 @@ const DateAnalyzerSection: React.FC<DateAnalyzerSectionProps> = ({
                 }}
                 className="btn-secondary"
               >
-                Nouvelle analyse
+                Enregistrer l'analyse
               </button>
             </div>
           </div>

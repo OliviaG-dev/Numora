@@ -705,3 +705,25 @@ export function calculateKarmicDebts(
     allDebts,
   };
 }
+
+/**
+ * Calcule la vibration d'une date donnée
+ * @param date - Date à analyser
+ * @param allowMaster - Si true, préserve les nombres maîtres (11, 22, 33)
+ * @returns Le nombre de vibration de la date (1-9, ou 11, 22, 33 si allowMaster=true)
+ *
+ * @example
+ * getDateVibration(new Date("2026-02-14")) // Retourne 6
+ * getDateVibration(new Date("2026-02-14"), true) // Retourne 6 (pas de nombre maître ici)
+ */
+export function getDateVibration(
+  date: Date,
+  allowMaster: boolean = false
+): number {
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+
+  const sum = day + month + year;
+  return reduceToSingleDigit(sum, allowMaster);
+}
