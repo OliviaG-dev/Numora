@@ -12,11 +12,13 @@ interface HeaderProps {
       | "profile"
       | "settings"
       | "readings"
+      | "dateAnalyzer"
+      | "nameAnalyzer"
   ) => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
-  const { isAuthenticated, user, signOut } = useAuth();
+  const { isAuthenticated, signOut } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -60,6 +62,14 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
     onNavigate("readings");
   };
 
+  const handleDateAnalyzer = () => {
+    onNavigate("dateAnalyzer");
+  };
+
+  const handleNameAnalyzer = () => {
+    onNavigate("nameAnalyzer");
+  };
+
   return (
     <header className="header">
       <div className="header-container">
@@ -86,16 +96,6 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                 className="nav-link"
                 onClick={(e) => {
                   e.preventDefault();
-                  handleHome();
-                }}
-              >
-                Accueil
-              </a>
-              <a
-                href="#"
-                className="nav-link"
-                onClick={(e) => {
-                  e.preventDefault();
                   handleReadings();
                 }}
               >
@@ -110,6 +110,26 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                 }}
               >
                 Nouvelle Lecture
+              </a>
+              <a
+                href="#"
+                className="nav-link"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleDateAnalyzer();
+                }}
+              >
+                Date Analyser
+              </a>
+              <a
+                href="#"
+                className="nav-link"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNameAnalyzer();
+                }}
+              >
+                Nom Analyser
               </a>
               <div className="user-menu">
                 <button className="user-button">
@@ -153,10 +173,10 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
             </>
           ) : (
             <div className="auth-buttons">
-              <button className="btn-secondary" onClick={handleSignup}>
+              <button className="auth-btn-secondary" onClick={handleSignup}>
                 S'inscrire
               </button>
-              <button className="btn-primary" onClick={handleLogin}>
+              <button className="auth-btn-primary" onClick={handleLogin}>
                 Se connecter
               </button>
             </div>
@@ -185,17 +205,6 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                 className="mobile-nav-link"
                 onClick={(e) => {
                   e.preventDefault();
-                  handleHome();
-                  toggleMenu();
-                }}
-              >
-                Accueil
-              </a>
-              <a
-                href="#"
-                className="mobile-nav-link"
-                onClick={(e) => {
-                  e.preventDefault();
                   handleReadings();
                   toggleMenu();
                 }}
@@ -212,6 +221,28 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                 }}
               >
                 Nouvelle Lecture
+              </a>
+              <a
+                href="#"
+                className="mobile-nav-link"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleDateAnalyzer();
+                  toggleMenu();
+                }}
+              >
+                Date Analyzer
+              </a>
+              <a
+                href="#"
+                className="mobile-nav-link"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNameAnalyzer();
+                  toggleMenu();
+                }}
+              >
+                Nom Analyzer
               </a>
               <a
                 href="#profil"

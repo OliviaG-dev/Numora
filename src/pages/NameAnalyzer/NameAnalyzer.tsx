@@ -1,10 +1,10 @@
 import React from "react";
+import "./NameAnalyzer.css";
+import NameAnalyzerSection from "../../components/NameAnalyzerSection/NameAnalyzerSection";
 import Header from "../../components/Header/Header";
-import HomeSection from "../../components/HomeSection/HomeSection";
 import NumerologyBackground from "../../components/NumerologyBackground/NumerologyBackground";
-import "./Home.css";
 
-interface HomeProps {
+interface NameAnalyzerProps {
   onNavigate: (
     page:
       | "home"
@@ -19,14 +19,14 @@ interface HomeProps {
   ) => void;
 }
 
-const Home: React.FC<HomeProps> = ({ onNavigate }) => {
+const NameAnalyzer: React.FC<NameAnalyzerProps> = ({ onNavigate }) => {
   return (
-    <div className="home">
+    <div className="name-analyzer-page">
       <NumerologyBackground />
       <Header onNavigate={onNavigate} />
-      <HomeSection onNavigate={onNavigate} />
+      <NameAnalyzerSection onNavigate={onNavigate} />
     </div>
   );
 };
 
-export default Home;
+export default NameAnalyzer;

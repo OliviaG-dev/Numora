@@ -159,11 +159,15 @@ function getLetterValue(letter: string): number {
 /**
  * Fonction utilitaire pour réduire un nombre à un chiffre ou nombre maître
  * @param num - Nombre à réduire
- * @returns Nombre réduit (1-9, 11, 22, ou 33)
+ * @param allowMasterNumbers - Si true, préserve les nombres maîtres (11, 22, 33)
+ * @returns Nombre réduit (1-9, ou 11, 22, 33 si allowMasterNumbers=true)
  */
-function reduceToSingleDigit(num: number): number {
-  // Nombres maîtres (ne pas réduire)
-  if (MASTER_NUMBERS.includes(num)) return num;
+function reduceToSingleDigit(
+  num: number,
+  allowMasterNumbers: boolean = true
+): number {
+  // Nombres maîtres (ne pas réduire seulement si autorisés)
+  if (allowMasterNumbers && MASTER_NUMBERS.includes(num)) return num;
 
   // Nombres de base (1-9)
   if (num < 10) return num;
@@ -171,7 +175,7 @@ function reduceToSingleDigit(num: number): number {
   // Réduction : additionner les chiffres du nombre
   const digits = num.toString().split("").map(Number);
   const sum = digits.reduce((acc, val) => acc + val, 0);
-  return reduceToSingleDigit(sum);
+  return reduceToSingleDigit(sum, allowMasterNumbers);
 }
 
 /**
@@ -253,7 +257,7 @@ export function calculateBirthdayNumber(day: number): number {
     throw new Error("Le jour doit être entre 1 et 31");
   }
 
-  return reduceToSingleDigit(day);
+  return reduceToSingleDigit(day, false); // Pas de nombres maîtres pour les dates
 }
 
 /**
@@ -280,9 +284,9 @@ export function calculateChallengeNumbers(
   }
 
   // Réduction des composants de date
-  const dayReduced = reduceToSingleDigit(day);
-  const monthReduced = reduceToSingleDigit(month);
-  const yearReduced = reduceToSingleDigit(year);
+  const dayReduced = reduceToSingleDigit(day, false); // Pas de nombres maîtres pour les dates
+  const monthReduced = reduceToSingleDigit(month, false);
+  const yearReduced = reduceToSingleDigit(year, false);
 
   // Calcul des défis
   const first = Math.abs(dayReduced - monthReduced);
@@ -291,8 +295,8 @@ export function calculateChallengeNumbers(
   const fourth = Math.abs(first - second);
 
   // Réduction à 1-9 (0 devient 9)
-  const numbers = [first, second, third, fourth].map((n) =>
-    n === 0 ? 9 : reduceToSingleDigit(n)
+  const numbers = [first, second, third, fourth].map(
+    (n) => (n === 0 ? 9 : reduceToSingleDigit(n, false)) // Pas de nombres maîtres pour les défis
   );
 
   return {
@@ -334,13 +338,14 @@ function getChallengeDescription(challengeNumber: number): string {
  * @returns Les 3 cycles de vie avec leurs nombres
  */
 export function calculateLifeCycles(day: number, month: number, year: number) {
-  const monthReduced = reduceToSingleDigit(month);
-  const dayReduced = reduceToSingleDigit(day);
+  const monthReduced = reduceToSingleDigit(month, false); // Pas de nombres maîtres pour les dates
+  const dayReduced = reduceToSingleDigit(day, false);
   const yearReduced = reduceToSingleDigit(
     year
       .toString()
       .split("")
-      .reduce((acc, d) => acc + parseInt(d), 0)
+      .reduce((acc, d) => acc + parseInt(d), 0),
+    false
   );
 
   return {
@@ -362,19 +367,20 @@ export function calculateRealizationPeriods(
   month: number,
   year: number
 ) {
-  const dayReduced = reduceToSingleDigit(day);
-  const monthReduced = reduceToSingleDigit(month);
+  const dayReduced = reduceToSingleDigit(day, false); // Pas de nombres maîtres pour les dates
+  const monthReduced = reduceToSingleDigit(month, false);
   const yearReduced = reduceToSingleDigit(
     year
       .toString()
       .split("")
-      .reduce((acc, d) => acc + parseInt(d), 0)
+      .reduce((acc, d) => acc + parseInt(d), 0),
+    false
   );
 
-  const firstPeriod = reduceToSingleDigit(dayReduced + monthReduced); // jusqu'à ~30 ans
-  const secondPeriod = reduceToSingleDigit(dayReduced + yearReduced); // 30 → 39 ans
-  const thirdPeriod = reduceToSingleDigit(firstPeriod + secondPeriod); // 39 → 48 ans
-  const fourthPeriod = reduceToSingleDigit(monthReduced + yearReduced); // 48 ans → fin de vie
+  const firstPeriod = reduceToSingleDigit(dayReduced + monthReduced, false); // jusqu'à ~30 ans
+  const secondPeriod = reduceToSingleDigit(dayReduced + yearReduced, false); // 30 → 39 ans
+  const thirdPeriod = reduceToSingleDigit(firstPeriod + secondPeriod, false); // 39 → 48 ans
+  const fourthPeriod = reduceToSingleDigit(monthReduced + yearReduced, false); // 48 ans → fin de vie
 
   return {
     firstPeriod,
@@ -405,11 +411,11 @@ export function calculatePersonalYear(
   }
 
   // Réduction de l'année à un chiffre
-  const yearReduced = reduceToSingleDigit(year);
+  const yearReduced = reduceToSingleDigit(year, false); // Pas de nombres maîtres pour les dates
 
   // Calcul de l'année personnelle
   const sum = day + month + yearReduced;
-  return reduceToSingleDigit(sum);
+  return reduceToSingleDigit(sum, false); // Pas de nombres maîtres pour les dates personnelles
 }
 
 /**
@@ -427,7 +433,7 @@ export function calculatePersonalMonth(
   }
 
   const sum = personalYear + month;
-  return reduceToSingleDigit(sum);
+  return reduceToSingleDigit(sum, false); // Pas de nombres maîtres pour les dates personnelles
 }
 
 /**
@@ -445,7 +451,7 @@ export function calculatePersonalDay(
   }
 
   const sum = personalMonth + day;
-  return reduceToSingleDigit(sum);
+  return reduceToSingleDigit(sum, false); // Pas de nombres maîtres pour les dates personnelles
 }
 
 /**

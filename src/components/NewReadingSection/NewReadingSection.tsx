@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./NewReadingSection.css";
+import { useAuth } from "../../hooks/useAuth";
 
 interface ReadingData {
   readingName: string;
@@ -30,8 +31,7 @@ interface NewReadingSectionProps {
 const NewReadingSection: React.FC<NewReadingSectionProps> = ({
   onNavigate,
 }) => {
-  // Simulation de l'état de connexion (à remplacer par votre logique d'authentification)
-  const [isLoggedIn] = useState(false); // Changez à true pour tester l'état connecté
+  const { isAuthenticated } = useAuth();
 
   const [formData, setFormData] = useState({
     // Informations de la lecture
@@ -78,7 +78,7 @@ const NewReadingSection: React.FC<NewReadingSectionProps> = ({
     const newErrors: Record<string, string> = {};
 
     // Validation des informations de la lecture (seulement si connecté)
-    if (isLoggedIn && !formData.readingName.trim()) {
+    if (isAuthenticated && !formData.readingName.trim()) {
       newErrors.readingName = "Le nom de la lecture est requis";
     }
 
@@ -139,21 +139,24 @@ const NewReadingSection: React.FC<NewReadingSectionProps> = ({
         <div className="new-reading-form-container">
           <form className="new-reading-form" onSubmit={handleSubmit}>
             {errors.general && (
-              <div className="error-banner">
-                <span className="error-icon">⚠️</span>
+              <div className="new-reading-error-banner">
+                <span className="new-reading-error-icon">⚠️</span>
                 {errors.general}
               </div>
             )}
 
-            {isLoggedIn ? (
-              <div className="form-section">
-                <h3 className="form-section-title">
+            {isAuthenticated ? (
+              <div className="new-reading-form-section">
+                <h3 className="new-reading-form-section-title">
                   Informations de la lecture
                 </h3>
 
-                <div className="form-row">
-                  <div className="form-group">
-                    <label htmlFor="readingName" className="form-label">
+                <div className="new-reading-form-row">
+                  <div className="new-reading-form-group">
+                    <label
+                      htmlFor="readingName"
+                      className="new-reading-form-label"
+                    >
                       Nom de la lecture *
                     </label>
                     <input
@@ -162,20 +165,23 @@ const NewReadingSection: React.FC<NewReadingSectionProps> = ({
                       name="readingName"
                       value={formData.readingName}
                       onChange={handleInputChange}
-                      className={`form-input ${
+                      className={`new-reading-form-input ${
                         errors.readingName ? "error" : ""
                       }`}
                       placeholder="Ex: Lecture de Marie, Analyse de Jean..."
                     />
                     {errors.readingName && (
-                      <span className="error-message">
+                      <span className="new-reading-error-message">
                         {errors.readingName}
                       </span>
                     )}
                   </div>
 
-                  <div className="form-group">
-                    <label htmlFor="category" className="form-label">
+                  <div className="new-reading-form-group">
+                    <label
+                      htmlFor="category"
+                      className="new-reading-form-label"
+                    >
                       Catégorie *
                     </label>
                     <select
@@ -183,7 +189,7 @@ const NewReadingSection: React.FC<NewReadingSectionProps> = ({
                       name="category"
                       value={formData.category}
                       onChange={handleInputChange}
-                      className="form-input"
+                      className="new-reading-form-input"
                     >
                       <option value="personnelle">Personnelle</option>
                       <option value="amie">Amie</option>
@@ -195,7 +201,7 @@ const NewReadingSection: React.FC<NewReadingSectionProps> = ({
                 </div>
               </div>
             ) : (
-              <div className="form-section auth-warning">
+              <div className="new-reading-form-section auth-warning">
                 <div className="warning-content">
                   <p className="warning-message">
                     Pour garder vos lectures sous la main et accéder à toutes
@@ -212,17 +218,22 @@ const NewReadingSection: React.FC<NewReadingSectionProps> = ({
               </div>
             )}
 
-            <div className="form-section">
-              <h3 className="form-section-title">Données numérologiques</h3>
-              <p className="form-section-description">
+            <div className="new-reading-form-section">
+              <h3 className="new-reading-form-section-title">
+                Données numérologiques
+              </h3>
+              <p className="new-reading-form-section-description">
                 Ces informations sont essentielles pour calculer le profil
                 numérologique. Chaque prénom et le nom de famille ont une valeur
                 numérologique spécifique.
               </p>
 
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="firstGivenName" className="form-label">
+              <div className="new-reading-form-row">
+                <div className="new-reading-form-group">
+                  <label
+                    htmlFor="firstGivenName"
+                    className="new-reading-form-label"
+                  >
                     Premier prénom *
                   </label>
                   <input
@@ -231,20 +242,23 @@ const NewReadingSection: React.FC<NewReadingSectionProps> = ({
                     name="firstGivenName"
                     value={formData.firstGivenName}
                     onChange={handleInputChange}
-                    className={`form-input ${
+                    className={`new-reading-form-input ${
                       errors.firstGivenName ? "error" : ""
                     }`}
                     placeholder="Premier prénom de naissance"
                   />
                   {errors.firstGivenName && (
-                    <span className="error-message">
+                    <span className="new-reading-error-message">
                       {errors.firstGivenName}
                     </span>
                   )}
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="secondGivenName" className="form-label">
+                <div className="new-reading-form-group">
+                  <label
+                    htmlFor="secondGivenName"
+                    className="new-reading-form-label"
+                  >
                     Deuxième prénom
                   </label>
                   <input
@@ -253,16 +267,19 @@ const NewReadingSection: React.FC<NewReadingSectionProps> = ({
                     name="secondGivenName"
                     value={formData.secondGivenName}
                     onChange={handleInputChange}
-                    className="form-input"
+                    className="new-reading-form-input"
                     placeholder="Deuxième prénom (optionnel)"
                   />
-                  <span className="form-hint">Si il y en a un</span>
+                  <span className="new-reading-form-hint">Si il y en a un</span>
                 </div>
               </div>
 
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="thirdGivenName" className="form-label">
+              <div className="new-reading-form-row">
+                <div className="new-reading-form-group">
+                  <label
+                    htmlFor="thirdGivenName"
+                    className="new-reading-form-label"
+                  >
                     Troisième prénom
                   </label>
                   <input
@@ -271,14 +288,17 @@ const NewReadingSection: React.FC<NewReadingSectionProps> = ({
                     name="thirdGivenName"
                     value={formData.thirdGivenName}
                     onChange={handleInputChange}
-                    className="form-input"
+                    className="new-reading-form-input"
                     placeholder="Troisième prénom (optionnel)"
                   />
-                  <span className="form-hint">Si il y en a un</span>
+                  <span className="new-reading-form-hint">Si il y en a un</span>
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="familyName" className="form-label">
+                <div className="new-reading-form-group">
+                  <label
+                    htmlFor="familyName"
+                    className="new-reading-form-label"
+                  >
                     Nom de famille *
                   </label>
                   <input
@@ -287,18 +307,22 @@ const NewReadingSection: React.FC<NewReadingSectionProps> = ({
                     name="familyName"
                     value={formData.familyName}
                     onChange={handleInputChange}
-                    className={`form-input ${errors.familyName ? "error" : ""}`}
+                    className={`new-reading-form-input ${
+                      errors.familyName ? "error" : ""
+                    }`}
                     placeholder="Nom de famille de naissance"
                   />
                   {errors.familyName && (
-                    <span className="error-message">{errors.familyName}</span>
+                    <span className="new-reading-error-message">
+                      {errors.familyName}
+                    </span>
                   )}
                 </div>
               </div>
 
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="birthDate" className="form-label">
+              <div className="new-reading-form-row">
+                <div className="new-reading-form-group">
+                  <label htmlFor="birthDate" className="new-reading-form-label">
                     Date de naissance *
                   </label>
                   <input
@@ -307,15 +331,19 @@ const NewReadingSection: React.FC<NewReadingSectionProps> = ({
                     name="birthDate"
                     value={formData.birthDate}
                     onChange={handleInputChange}
-                    className={`form-input ${errors.birthDate ? "error" : ""}`}
+                    className={`new-reading-form-input ${
+                      errors.birthDate ? "error" : ""
+                    }`}
                   />
                   {errors.birthDate && (
-                    <span className="error-message">{errors.birthDate}</span>
+                    <span className="new-reading-error-message">
+                      {errors.birthDate}
+                    </span>
                   )}
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="birthTime" className="form-label">
+                <div className="new-reading-form-group">
+                  <label htmlFor="birthTime" className="new-reading-form-label">
                     Heure de naissance
                   </label>
                   <input
@@ -324,9 +352,9 @@ const NewReadingSection: React.FC<NewReadingSectionProps> = ({
                     name="birthTime"
                     value={formData.birthTime}
                     onChange={handleInputChange}
-                    className="form-input"
+                    className="new-reading-form-input"
                   />
-                  <span className="form-hint">
+                  <span className="new-reading-form-hint">
                     Optionnel, mais améliore la précision
                   </span>
                 </div>

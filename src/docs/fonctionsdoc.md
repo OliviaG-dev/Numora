@@ -6,7 +6,7 @@
 src/
 ├── components/          # Composants React
 │   ├── Header/         # En-tête de navigation
-│   ├── HeroSection/    # Section d'accueil
+│   ├── HomeSection/    # Section d'accueil
 │   ├── LoginSection/   # Formulaire de connexion (Supabase)
 │   ├── SignupSection/  # Formulaire d'inscription (Supabase)
 │   ├── NewReadingSection/ # Création de nouvelles lectures

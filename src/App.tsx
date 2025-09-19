@@ -7,6 +7,8 @@ import Profile from "./pages/Profile/Profile";
 import Settings from "./pages/Settings/Settings";
 import Readings from "./pages/Readings/Readings";
 import ReadingDetail from "./pages/ReadingDetail/ReadingDetail";
+import DateAnalyzer from "./pages/DateAnalyzer/DateAnalyzer";
+import NameAnalyzer from "./pages/NameAnalyzer/NameAnalyzer";
 
 interface ReadingData {
   readingName: string;
@@ -29,6 +31,8 @@ function App() {
     | "settings"
     | "readings"
     | "readingDetail"
+    | "dateAnalyzer"
+    | "nameAnalyzer"
   >("home");
 
   const [currentReadingData, setCurrentReadingData] =
@@ -43,7 +47,9 @@ function App() {
       | "profile"
       | "settings"
       | "readings"
-      | "readingDetail",
+      | "readingDetail"
+      | "dateAnalyzer"
+      | "nameAnalyzer",
     readingData?: ReadingData
   ) => {
     setCurrentPage(page);
@@ -68,6 +74,12 @@ function App() {
           onNavigate={navigateToPage}
           readingData={currentReadingData}
         />
+      )}
+      {currentPage === "dateAnalyzer" && (
+        <DateAnalyzer onNavigate={navigateToPage} />
+      )}
+      {currentPage === "nameAnalyzer" && (
+        <NameAnalyzer onNavigate={navigateToPage} />
       )}
     </>
   );

@@ -1,10 +1,10 @@
 import React from "react";
+import "./DateAnalyzer.css";
+import DateAnalyzerSection from "../../components/DateAnalyzerSection/DateAnalyzerSection";
 import Header from "../../components/Header/Header";
-import HomeSection from "../../components/HomeSection/HomeSection";
 import NumerologyBackground from "../../components/NumerologyBackground/NumerologyBackground";
-import "./Home.css";
 
-interface HomeProps {
+interface DateAnalyzerProps {
   onNavigate: (
     page:
       | "home"
@@ -19,14 +19,14 @@ interface HomeProps {
   ) => void;
 }
 
-const Home: React.FC<HomeProps> = ({ onNavigate }) => {
+const DateAnalyzer: React.FC<DateAnalyzerProps> = ({ onNavigate }) => {
   return (
-    <div className="home">
+    <div className="date-analyzer-page">
       <NumerologyBackground />
       <Header onNavigate={onNavigate} />
-      <HomeSection onNavigate={onNavigate} />
+      <DateAnalyzerSection onNavigate={onNavigate} />
     </div>
   );
 };
 
-export default Home;
+export default DateAnalyzer;
