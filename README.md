@@ -66,6 +66,14 @@
 - [x] **Paramètres** - Page de configuration des préférences
 - [x] **Navigation** - Accès rapide à toutes les fonctionnalités
 
+### 🔮 **Analyseurs rapides** ✅
+
+- [x] **Date Analyser** - Analyse rapide des nombres personnels (année, mois, jour)
+- [x] **Nom Analyser** - Analyse rapide des nombres de nom (Expression, Âme, Personnalité)
+- [x] **Interface dédiée** - Pages spécialisées avec design cohérent
+- [x] **Calculs instantanés** - Résultats immédiats sans sauvegarde
+- [x] **Navigation fluide** - Accès direct depuis le header
+
 ### 🔮 **Fonctionnalités à venir** 🚧
 
 - [ ] **Sauvegarde Supabase** - Stockage persistant des lectures créées
@@ -170,6 +178,29 @@ const MyComponent = () => {
 };
 ```
 
+#### 🔮 Analyseurs Rapides
+
+```typescript
+// Exemple d'utilisation des analyseurs
+import { DateAnalyzerSection } from "./src/components/DateAnalyzerSection/DateAnalyzerSection";
+import { NameAnalyzerSection } from "./src/components/NameAnalyzerSection/NameAnalyzerSection";
+
+// Analyse rapide d'une date
+const dateAnalysis = {
+  lifePath: calculateLifePathNumber("1990-03-15"),
+  personalYear: calculatePersonalYear(15, 3, 2024),
+  personalMonth: calculatePersonalMonth(6, 3),
+  personalDay: calculatePersonalDay(6, 15),
+};
+
+// Analyse rapide d'un nom
+const nameAnalysis = {
+  expression: calculateExpressionNumber("Marie Dupont"),
+  soulUrge: calculateSoulUrgeNumber("Marie Dupont"),
+  personality: calculatePersonalityNumber("Marie Dupont"),
+};
+```
+
 ### Scripts disponibles
 
 ```bash
@@ -200,10 +231,12 @@ numora/
 │   │   ├── ReadingDetail/      # Page de détail de lecture
 │   │   ├── Readings/           # Page des lectures
 │   │   ├── Profile/            # Page de profil utilisateur
-│   │   └── Settings/           # Page de paramètres
+│   │   ├── Settings/           # Page de paramètres
+│   │   ├── DateAnalyzer/       # Page d'analyse de date
+│   │   └── NameAnalyzer/       # Page d'analyse de nom
 │   ├── components/             # Composants réutilisables
 │   │   ├── Header/             # Navigation principale
-│   │   ├── HeroSection/        # Section d'accueil
+│   │   ├── HomeSection/        # Section d'accueil (ex-HeroSection)
 │   │   ├── LoginSection/       # Formulaire de connexion (Supabase)
 │   │   ├── SignupSection/      # Formulaire d'inscription (Supabase)
 │   │   ├── NewReadingSection/  # Formulaire de lecture
@@ -211,6 +244,8 @@ numora/
 │   │   ├── ReadingsSection/    # Liste des lectures
 │   │   ├── ProfileSection/     # Gestion du profil
 │   │   ├── SettingsSection/    # Configuration
+│   │   ├── DateAnalyzerSection/ # Analyseur de date
+│   │   ├── NameAnalyzerSection/ # Analyseur de nom
 │   │   └── NumerologyBackground/ # Arrière-plan numérologique
 │   ├── utils/                  # Fonctions utilitaires
 │   │   └── numerology.ts       # Calculs numérologiques complets
@@ -280,8 +315,10 @@ Le projet suit une architecture modulaire organisée :
 - **🌟 Spirituelle et pratique** - Pour mieux se connaître et évoluer
 - **💎 Unique** - Fusion de tradition numérologique et technologie moderne
 - **🔮 Complet** - Calculs numérologiques complets avec fonctionnalités karmiques
+- **⚡ Rapide** - Analyseurs instantanés pour dates et noms
 - **🔐 Sécurisé** - Authentification Supabase et protection des données
 - **📊 Précis** - Algorithmes de calcul validés et interprétations détaillées
+- **🎨 Harmonieux** - Design cohérent et espacement uniforme
 
 ## 👥 Pour qui ?
 
@@ -313,6 +350,8 @@ Le projet suit une architecture modulaire organisée :
 - [x] **Authentification Supabase** - Système de connexion complet
 - [x] **Fonctionnalités karmiques** - Nombres karmiques et dettes karmiques
 - [x] **Interface détaillée** - Affichage complet des lectures
+- [x] **Analyseurs rapides** - Pages Date Analyser et Nom Analyser
+- [x] **Design harmonisé** - Espacement et styles cohérents
 - [x] **Documentation** - Guide complet et API documentation
 
 ### Version 0.3.0 🚧 **EN COURS**
