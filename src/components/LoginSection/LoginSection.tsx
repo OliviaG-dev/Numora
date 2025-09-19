@@ -195,6 +195,10 @@ const LoginSection: React.FC<LoginSectionProps> = ({ onNavigate }) => {
               </div>
             )}
 
+            <h3 className="login-form-section-title">
+              Informations de connexion
+            </h3>
+
             <div className="form-group">
               <label htmlFor="email" className="form-label">
                 Email *

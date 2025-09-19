@@ -1,7 +1,7 @@
 import React from "react";
-import "./HeroSection.css";
+import "./HomeSection.css";
 
-interface HeroSectionProps {
+interface HomeSectionProps {
   onNavigate: (
     page:
       | "home"
@@ -11,24 +11,26 @@ interface HeroSectionProps {
       | "profile"
       | "settings"
       | "readings"
+      | "dateAnalyzer"
+      | "nameAnalyzer"
   ) => void;
 }
 
-const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
+const HomeSection: React.FC<HomeSectionProps> = ({ onNavigate }) => {
   return (
-    <section className="hero">
-      <div className="hero-content">
-        <h1 className="hero-title">
+    <section className="home">
+      <div className="home-content">
+        <h1 className="home-title">
           <img
             src="/src/assets/logo.png"
             alt="Numora Logo"
-            className="hero-logo"
+            className="home-logo"
           />
           Numora
         </h1>
-        <p className="hero-subtitle">Chaque nombre raconte ton histoire.</p>
+        <p className="home-subtitle">Chaque nombre raconte ton histoire.</p>
 
-        <div className="hero-description">
+        <div className="home-description">
           <h2>Ton compagnon numérique de numérologie</h2>
           <p>
             Découvre comment les nombres de ta naissance révèlent tes talents,
@@ -45,4 +47,4 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
   );
 };
 
-export default HeroSection;
+export default HomeSection;
