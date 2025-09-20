@@ -50,6 +50,9 @@ const DateAnalyzerSection: React.FC<DateAnalyzerSectionProps> = () => {
       setIsAnalyzing(true);
       setError(null);
 
+      // Délai pour voir le message de chargement
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
       const [year, month, day] = date.split("-").map(Number);
 
       // Validation de la date
@@ -124,7 +127,7 @@ const DateAnalyzerSection: React.FC<DateAnalyzerSectionProps> = () => {
     <section className="date-analyzer-section">
       <div className="analyzer-container">
         <div className="analyzer-header">
-          <h1>Analyseur de Date</h1>
+          <h1>Explorateur de Dates</h1>
           <p className="analyzer-subtitle">
             Découvrez les significations numérologiques cachées dans n'importe
             quelle date
