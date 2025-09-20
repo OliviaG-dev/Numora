@@ -18,6 +18,9 @@ import cycleKarmicData from "./numerology/CycleKarmicData.json";
 import karmicDebtsData from "./numerology/KarmicDebtsData.json";
 import businessNameData from "./numerology/BusinessNameData.json";
 import dateVibeData from "./numerology/DateVibeData.json";
+import actifBusinessData from "./numerology/ActifBusinessData.json";
+import expressionBusinessData from "./numerology/ExpressionBusinessData.json";
+import hereditaryBusinessData from "./numerology/HereditaryBusinessData.json";
 
 // ===== EXPORTS PRINCIPAUX =====
 export {
@@ -35,6 +38,9 @@ export {
   karmicDebtsData,
   businessNameData,
   dateVibeData,
+  actifBusinessData,
+  expressionBusinessData,
+  hereditaryBusinessData,
 };
 
 // ===== ALIAS POUR COMPATIBILITÉ =====
@@ -203,11 +209,50 @@ export interface DateVibeDetail {
   unfavorable_for: string;
 }
 
+export interface ActifBusinessData {
+  [key: string]: ActifBusinessDetail;
+}
+
+export interface ActifBusinessDetail {
+  summary: string;
+  mission: string;
+  strengths: string[];
+  challenges: string[];
+}
+
+export interface ExpressionBusinessData {
+  [key: string]: ExpressionBusinessDetail;
+}
+
+export interface ExpressionBusinessDetail {
+  summary: string;
+  mission: string;
+  strengths: string[];
+  challenges: string[];
+}
+
+export interface HereditaryBusinessData {
+  [key: string]: HereditaryBusinessDetail;
+}
+
+export interface HereditaryBusinessDetail {
+  summary: string;
+  mission: string;
+  strengths: string[];
+  challenges: string[];
+}
+
 // ===== ALIAS POUR COMPATIBILITÉ =====
 export type ExpressionNumberData = ExpressionData;
 export type ExpressionNumberDetail = ExpressionDetail;
 export type ChallengeNumbersData = ChallengeData;
 export type ChallengeNumberDetail = ChallengeDetail;
+export type ActifBusinessNumberData = ActifBusinessData;
+export type ActifBusinessNumberDetail = ActifBusinessDetail;
+export type ExpressionBusinessNumberData = ExpressionBusinessData;
+export type ExpressionBusinessNumberDetail = ExpressionBusinessDetail;
+export type HereditaryBusinessNumberData = HereditaryBusinessData;
+export type HereditaryBusinessNumberDetail = HereditaryBusinessDetail;
 
 // ===== UTILITAIRES =====
 
