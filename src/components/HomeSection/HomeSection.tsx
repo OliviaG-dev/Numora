@@ -38,15 +38,15 @@ const HomeSection: React.FC<HomeSectionProps> = ({ onNavigate }) => {
           <div className="analyzer-card left-card">
             <h3>Analyse de Nom</h3>
             <p>
-              Découvre la signification cachée de ton nom et révèle ta
-              personnalité, tes talents naturels et ton chemin de vie à travers
-              la numérologie.
+              Analyse le nom complet de ton entreprise ou projet pour révéler
+              ses nombres d'expression, actif et héréditaire. Découvre les
+              énergies et potentiels cachés de ton business.
             </p>
             <button
               className="analyzer-button"
               onClick={() => onNavigate("nameAnalyzer")}
             >
-              Analyser mon nom
+              Analyser un nom
             </button>
           </div>
 
@@ -68,14 +68,15 @@ const HomeSection: React.FC<HomeSectionProps> = ({ onNavigate }) => {
           <div className="analyzer-card right-card">
             <h3>Analyse de Date</h3>
             <p>
-              Explore les cycles de vie, les défis et les opportunités révélés
-              par ta date de naissance pour mieux comprendre ton destin.
+              Découvre l'énergie vibratoire d'une date précise (passée ou
+              future) et ses influences. Analyse les opportunités et défis liés
+              à cette date spécifique.
             </p>
             <button
               className="analyzer-button"
               onClick={() => onNavigate("dateAnalyzer")}
             >
-              Analyser ma date
+              Analyser une date
             </button>
           </div>
         </div>
