@@ -171,7 +171,6 @@
   border-radius: 0;
   padding: 2rem;
   text-align: center;
-  transition: none;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -189,20 +188,45 @@
     sans-serif;
 }
 
-/* Couleurs spécifiques pour chaque titre */
-.left-card h3 {
-  color: #10b981; /* Vert pour Analyse de Nom */
-  text-shadow: 0 1px 3px rgba(16, 185, 129, 0.3);
+.analyzer-card h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 1;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  text-align: center;
+  transition: all 0.3s ease;
 }
 
-.center-card h3 {
-  color: #f59e0b; /* Or pour Découvre toi */
-  text-shadow: 0 1px 3px rgba(245, 158, 11, 0.3);
+.analyzer-card:hover h3 {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
 }
 
-.right-card h3 {
-  color: #3b82f6; /* Bleu pour Analyse de Date */
-  text-shadow: 0 1px 3px rgba(59, 130, 246, 0.3);
+.analyzer-card h3::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background: var(--gradient-secondary);
+  border-radius: 1px;
+  transition: all 0.3s ease;
+}
+
+.analyzer-card:hover h3::after {
+  width: 60px;
+  height: 3px;
 }
 
 .analyzer-card p {
