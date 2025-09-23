@@ -4,23 +4,23 @@
  */
 
 // ===== IMPORTS =====
-import lifePathData from "./numerology/LifePathData.json";
-import expressionData from "./numerology/ExpressionNumberData.json";
-import challengeData from "./numerology/ChallengeData.json";
-import soulUrgeData from "./numerology/SoulUrgeData.json";
-import personalityData from "./numerology/PersonalityData.json";
-import birthdayData from "./numerology/BirthdayData.json";
-import lifeCycleData from "./numerology/LifeCycleData.json";
-import realizationPeriodData from "./numerology/RealizationPeriodData.json";
-import personelCycleData from "./numerology/PersonelCycleData.json";
-import karmicNumberData from "./numerology/KarmicNumberData.json";
-import cycleKarmicData from "./numerology/CycleKarmicData.json";
-import karmicDebtsData from "./numerology/KarmicDebtsData.json";
-import businessNameData from "./numerology/BusinessNameData.json";
-import dateVibeData from "./numerology/DateVibeData.json";
-import actifBusinessData from "./numerology/ActifBusinessData.json";
-import expressionBusinessData from "./numerology/ExpressionBusinessData.json";
-import hereditaryBusinessData from "./numerology/HereditaryBusinessData.json";
+import lifePathData from "./numerology/Basique/LifePathData.json";
+import expressionData from "./numerology/Basique/ExpressionNumberData.json";
+import challengeData from "./numerology/Basique/ChallengeData.json";
+import soulUrgeData from "./numerology/Basique/SoulUrgeData.json";
+import personalityData from "./numerology/Basique/PersonalityData.json";
+import birthdayData from "./numerology/Basique/BirthdayData.json";
+import lifeCycleData from "./numerology/Dates/LifeCycleData.json";
+import realizationPeriodData from "./numerology/Dates/RealizationPeriodData.json";
+import personelCycleData from "./numerology/Dates/PersonelCycleData.json";
+import karmicNumberData from "./numerology/Karmique/KarmicNumberData.json";
+import cycleKarmicData from "./numerology/Karmique/CycleKarmicData.json";
+import karmicDebtsData from "./numerology/Karmique/KarmicDebtsData.json";
+import businessNameData from "./numerology/NaneBusiness/BusinessNameData.json";
+import dateVibeData from "./numerology/Dates/DateVibeData.json";
+import actifBusinessData from "./numerology/NaneBusiness/ActifBusinessData.json";
+import expressionBusinessData from "./numerology/DateBusiness/ExpressionBusinessData.json";
+import hereditaryBusinessData from "./numerology/NaneBusiness/HereditaryBusinessData.json";
 
 // ===== EXPORTS PRINCIPAUX =====
 export {

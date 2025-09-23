@@ -2,8 +2,8 @@
 
 > **Ton âme a un code, les nombres l'éclairent.**
 
-![Version](https://img.shields.io/badge/version-0.2.0-green.svg)
-![Status](https://img.shields.io/badge/status-🔮_Calculs_Numérologiques_Complets-brightgreen.svg)
+![Version](https://img.shields.io/badge/version-0.3.0-green.svg)
+![Status](https://img.shields.io/badge/status-🔮_Architecture_Modulaire_Complète-brightgreen.svg)
 ![React](https://img.shields.io/badge/React-18+-61dafb.svg)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5+-3178c6.svg)
 ![Vite](https://img.shields.io/badge/Vite-7+-646cff.svg)
@@ -12,7 +12,7 @@
 
 **Numora** est ton compagnion numérique de numérologie moderne. Cette application web révolutionnaire combine la sagesse ancestrale de la numérologie avec une interface utilisateur moderne et intuitive pour t'aider à découvrir les secrets cachés de ton chemin de vie.
 
-> 🔮 **Version 0.2.0 terminée !** L'application complète avec calculs numérologiques, authentification Supabase et fonctionnalités karmiques est maintenant disponible.
+> 🔮 **Version 0.3.0 terminée !** Architecture modulaire complète avec calculs numérologiques avancés, authentification Supabase, fonctionnalités karmiques et analyseurs business.
 
 ## 🔮 Fonctionnalités principales
 
@@ -51,6 +51,8 @@
 - [x] **Nombres de Défi** - Calcul des 4 défis de vie
 - [x] **Cycles de Vie** - Calcul des cycles de vie
 - [x] **Périodes de Réalisation** - Calcul des périodes importantes
+- [x] **Nombres Personnels** - Année, mois et jour personnels
+- [x] **Vibrations de Date** - Analyse des énergies des dates
 
 ### ⚡ **Fonctionnalités Karmiques** ✅
 
@@ -73,6 +75,14 @@
 - [x] **Interface dédiée** - Pages spécialisées avec design cohérent
 - [x] **Calculs instantanés** - Résultats immédiats sans sauvegarde
 - [x] **Navigation fluide** - Accès direct depuis le header
+
+### 💼 **Analyseurs Business** ✅
+
+- [x] **Nom Business** - Analyse numérologique des noms d'entreprise
+- [x] **Actif Business** - Calcul des nombres actifs pour les entreprises
+- [x] **Expression Business** - Analyse de l'expression d'entreprise
+- [x] **Héréditaire Business** - Analyse des nombres héréditaires
+- [x] **Interface dédiée** - Pages spécialisées pour l'analyse business
 
 ### 🔮 **Fonctionnalités à venir** 🚧
 
@@ -141,14 +151,18 @@ L'application sera accessible sur [http://localhost:5173](http://localhost:5173)
 #### 🔮 Calculs Numérologiques Complets
 
 ```typescript
-// Exemple d'utilisation des calculs
+// Exemple d'utilisation des calculs modulaires
 import {
   calculateLifePathNumber,
+  calculateExpressionNumber,
   calculateKarmicDebts,
+  calculatePersonalNumbers,
+  calculateBusinessNumbers,
 } from "./src/utils/numerology";
 
-// Calcul du Chemin de Vie
+// Calculs de base
 const lifePath = calculateLifePathNumber("1990-03-15"); // Retourne 1
+const expression = calculateExpressionNumber("Marie Dupont"); // Retourne 9
 
 // Analyse des dettes karmiques
 const karmicDebts = calculateKarmicDebts("1990-03-15", "Marie Dupont");
@@ -157,6 +171,14 @@ if (karmicDebts.lifePathDebt.isKarmicDebt) {
     `Dette karmique détectée: ${karmicDebts.lifePathDebt.karmicDebtType}`
   );
 }
+
+// Nombres personnels
+const personalNumbers = calculatePersonalNumbers("1990-03-15", 2024, 3, 15);
+console.log(`Année personnelle: ${personalNumbers.year.number}`);
+
+// Analyse business
+const businessAnalysis = calculateBusinessNumbers("Entreprise ABC");
+console.log(`Nombre business: ${businessAnalysis.businessNumber}`);
 ```
 
 #### 🔐 Authentification Sécurisée
@@ -181,19 +203,27 @@ const MyComponent = () => {
 #### 🔮 Analyseurs Rapides
 
 ```typescript
-// Exemple d'utilisation des analyseurs
+// Exemple d'utilisation des analyseurs modulaires
 import { DateAnalyzerSection } from "./src/components/DateAnalyzerSection/DateAnalyzerSection";
 import { NameAnalyzerSection } from "./src/components/NameAnalyzerSection/NameAnalyzerSection";
+import {
+  calculateLifePathNumber,
+  calculatePersonalNumbers,
+  calculateExpressionNumber,
+  calculateSoulUrgeNumber,
+  calculatePersonalityNumber,
+} from "./src/utils/numerology";
 
-// Analyse rapide d'une date
+// Analyse rapide d'une date avec nombres personnels
+const personalNumbers = calculatePersonalNumbers("1990-03-15", 2024, 3, 15);
 const dateAnalysis = {
   lifePath: calculateLifePathNumber("1990-03-15"),
-  personalYear: calculatePersonalYear(15, 3, 2024),
-  personalMonth: calculatePersonalMonth(6, 3),
-  personalDay: calculatePersonalDay(6, 15),
+  personalYear: personalNumbers.year.number,
+  personalMonth: personalNumbers.month.number,
+  personalDay: personalNumbers.day.number,
 };
 
-// Analyse rapide d'un nom
+// Analyse rapide d'un nom avec calculs complets
 const nameAnalysis = {
   expression: calculateExpressionNumber("Marie Dupont"),
   soulUrge: calculateSoulUrgeNumber("Marie Dupont"),
@@ -236,7 +266,7 @@ numora/
 │   │   └── NameAnalyzer/       # Page d'analyse de nom
 │   ├── components/             # Composants réutilisables
 │   │   ├── Header/             # Navigation principale
-│   │   ├── HomeSection/        # Section d'accueil (ex-HeroSection)
+│   │   ├── HomeSection/        # Section d'accueil
 │   │   ├── LoginSection/       # Formulaire de connexion (Supabase)
 │   │   ├── SignupSection/      # Formulaire d'inscription (Supabase)
 │   │   ├── NewReadingSection/  # Formulaire de lecture
@@ -247,58 +277,121 @@ numora/
 │   │   ├── DateAnalyzerSection/ # Analyseur de date
 │   │   ├── NameAnalyzerSection/ # Analyseur de nom
 │   │   └── NumerologyBackground/ # Arrière-plan numérologique
-│   ├── utils/                  # Fonctions utilitaires
-│   │   └── numerology.ts       # Calculs numérologiques complets
-│   ├── data/                   # Données JSON
+│   ├── utils/                  # Fonctions utilitaires modulaires
+│   │   ├── numerology/         # Module numérologie complet
+│   │   │   ├── index.ts        # Point d'entrée principal
+│   │   │   ├── types.ts        # Types TypeScript
+│   │   │   ├── utils.ts        # Fonctions utilitaires
+│   │   │   ├── core.ts         # Calculs de base
+│   │   │   ├── challenges.ts   # Défis et cycles
+│   │   │   ├── personal.ts     # Nombres personnels
+│   │   │   ├── karmic.ts       # Calculs karmiques
+│   │   │   └── business.ts     # Calculs business
+│   │   └── matrixDestiny/      # Module Matrix Destiny (à venir)
+│   ├── data/                   # Données JSON organisées
 │   │   ├── numerology/         # Interprétations numérologiques
-│   │   │   ├── LifePathData.json
-│   │   │   ├── ExpressionNumberData.json
-│   │   │   ├── ChallengeData.json
-│   │   │   ├── SoulUrgeData.json
-│   │   │   ├── PersonalityData.json
-│   │   │   ├── BirthdayData.json
-│   │   │   ├── KarmicNumberData.json
-│   │   │   ├── CycleKarmicData.json
-│   │   │   └── KarmicDebtsData.json
+│   │   │   ├── Basique/        # Calculs de base
+│   │   │   │   ├── LifePathData.json
+│   │   │   │   ├── ExpressionNumberData.json
+│   │   │   │   ├── ChallengeData.json
+│   │   │   │   ├── SoulUrgeData.json
+│   │   │   │   ├── PersonalityData.json
+│   │   │   │   └── BirthdayData.json
+│   │   │   ├── Dates/          # Calculs de dates
+│   │   │   │   ├── LifeCycleData.json
+│   │   │   │   ├── RealizationPeriodData.json
+│   │   │   │   ├── PersonelCycleData.json
+│   │   │   │   └── DateVibeData.json
+│   │   │   ├── Karmique/       # Calculs karmiques
+│   │   │   │   ├── KarmicNumberData.json
+│   │   │   │   ├── CycleKarmicData.json
+│   │   │   │   └── KarmicDebtsData.json
+│   │   │   ├── NaneBusiness/   # Analyse business (noms)
+│   │   │   │   ├── BusinessNameData.json
+│   │   │   │   ├── ActifBusinessData.json
+│   │   │   │   └── HereditaryBusinessData.json
+│   │   │   └── DateBusiness/   # Analyse business (dates)
+│   │   │       └── ExpressionBusinessData.json
+│   │   ├── matrixDestiny/      # Données Matrix Destiny (à venir)
 │   │   └── index.ts            # Exports centralisés
 │   ├── lib/                    # Bibliothèques externes
 │   │   └── supabase.ts         # Client Supabase et authentification
 │   ├── config/                 # Configuration
 │   │   └── supabase.ts         # Configuration Supabase
 │   ├── contexts/               # Contextes React
-│   │   └── AuthContext.tsx     # Contexte d'authentification
-│   ├── docs/                   # Documentation
+│   │   ├── AuthContext.tsx     # Contexte d'authentification
+│   │   └── AuthContext.ts      # Types d'authentification
+│   ├── hooks/                  # Hooks React personnalisés
+│   │   └── useAuth.ts          # Hook d'authentification
+│   ├── types/                  # Types TypeScript globaux
+│   │   └── auth.ts             # Types d'authentification
+│   ├── docs/                   # Documentation complète
 │   │   ├── numerology-guide.md # Guide utilisateur
 │   │   ├── numerology-api.md   # Documentation technique
 │   │   ├── supabase-auth.md    # Documentation authentification
+│   │   ├── SUPABASE_SETUP.md   # Guide configuration Supabase
+│   │   ├── supabase_users_table.sql # Script SQL
+│   │   ├── fonctionsdoc.md     # Documentation du code
 │   │   └── README.md           # Index de la documentation
-│   ├── examples/               # Exemples d'utilisation
-│   │   ├── numerology-example.ts
-│   │   └── README.md
 │   ├── assets/                 # Ressources statiques
+│   │   ├── logo.png           # Logo de l'application
+│   │   └── Matrix_destiny.webp # Image Matrix Destiny
 │   ├── App.tsx                 # Point d'entrée de l'application
 │   ├── App.css                 # Styles globaux
 │   ├── index.css               # Styles de base
 │   ├── main.tsx                # Point d'entrée principal
-│   └── fonctionsdoc.md         # Documentation du code
+│   └── vite-env.d.ts          # Types Vite
 ├── SUPABASE_SETUP.md           # Guide de configuration Supabase
 ├── package.json
+├── tsconfig.json              # Configuration TypeScript
+├── tsconfig.app.json          # Configuration TypeScript app
+├── tsconfig.node.json         # Configuration TypeScript node
+├── vite.config.ts            # Configuration Vite
+├── eslint.config.js           # Configuration ESLint
 └── README.md
 ```
 
 ### 🏗️ Architecture
 
-Le projet suit une architecture modulaire organisée :
+Le projet suit une **architecture modulaire avancée** organisée en couches :
+
+#### 📁 **Couche Présentation**
 
 - **📁 `pages/`** - Pages principales de l'application avec navigation
 - **📁 `components/`** - Composants réutilisables, chacun dans son propre dossier
-- **📁 `utils/`** - Fonctions de calcul numérologique et utilitaires
-- **📁 `data/`** - Base de données JSON des interprétations numérologiques
+- **📁 `assets/`** - Images, icônes et autres ressources statiques
+
+#### 📁 **Couche Logique Métier**
+
+- **📁 `utils/numerology/`** - Module numérologie modulaire complet
+  - `core.ts` - Calculs de base (Chemin de Vie, Expression, etc.)
+  - `challenges.ts` - Défis et cycles de vie
+  - `personal.ts` - Nombres personnels et vibrations
+  - `karmic.ts` - Calculs karmiques et dettes
+  - `business.ts` - Analyse numérologique business
+  - `types.ts` - Types TypeScript complets
+  - `utils.ts` - Fonctions utilitaires communes
+
+#### 📁 **Couche Données**
+
+- **📁 `data/numerology/`** - Base de données JSON organisée par catégories
+  - `Basique/` - Calculs fondamentaux
+  - `Dates/` - Analyses temporelles
+  - `Karmique/` - Données karmiques
+  - `NaneBusiness/` - Analyse business (noms)
+  - `DateBusiness/` - Analyse business (dates)
+
+#### 📁 **Couche Infrastructure**
+
 - **📁 `lib/`** - Bibliothèques externes (Supabase)
 - **📁 `config/`** - Configuration des services externes
 - **📁 `contexts/`** - Contextes React pour la gestion d'état globale
+- **📁 `hooks/`** - Hooks React personnalisés
+- **📁 `types/`** - Types TypeScript globaux
+
+#### 📁 **Couche Documentation**
+
 - **📁 `docs/`** - Documentation complète du projet
-- **📁 `assets/`** - Images, icônes et autres ressources statiques
 
 **Navigation SPA** : L'application utilise un système de navigation côté client avec React Router concept, permettant une expérience utilisateur fluide sans rechargement de page.
 
@@ -306,7 +399,13 @@ Le projet suit une architecture modulaire organisée :
 
 **Authentification Supabase** : Système d'authentification complet avec gestion des sessions, protection des routes et contexte React global.
 
-**Calculs numérologiques** : Module complet de calculs numérologiques avec support des nombres karmiques et dettes karmiques.
+**Calculs numérologiques modulaires** : Architecture modulaire avec séparation des responsabilités :
+
+- **Calculs de base** : Chemin de Vie, Expression, Âme, Personnalité
+- **Calculs temporels** : Cycles, défis, périodes de réalisation
+- **Calculs personnels** : Année/mois/jour personnels, vibrations
+- **Calculs karmiques** : Nombres karmiques, cycles karmiques, dettes
+- **Calculs business** : Analyse des noms d'entreprise et dates business
 
 ## 🌟 Pourquoi Numora ?
 
@@ -354,22 +453,34 @@ Le projet suit une architecture modulaire organisée :
 - [x] **Design harmonisé** - Espacement et styles cohérents
 - [x] **Documentation** - Guide complet et API documentation
 
-### Version 0.3.0 🚧 **EN COURS**
+### Version 0.3.0 ✅ **TERMINÉE**
+
+- [x] **Architecture modulaire** - Refactoring complet en modules séparés
+- [x] **Calculs personnels** - Nombres personnels (année, mois, jour)
+- [x] **Vibrations de date** - Analyse des énergies des dates
+- [x] **Analyseurs business** - Calculs numérologiques pour entreprises
+- [x] **Organisation des données** - Structure JSON par catégories
+- [x] **Types TypeScript** - Typage complet et robuste
+- [x] **Documentation technique** - Guide d'architecture modulaire
+- [x] **Optimisation des imports** - Exports centralisés et alias
+
+### Version 0.4.0 🚧 **EN COURS**
 
 - [ ] **Sauvegarde Supabase** - Stockage persistant des lectures
 - [ ] **Rapports PDF** - Génération de profils détaillés
 - [ ] **Historique** - Suivi des lectures précédentes
 - [ ] **Export/Partage** - Fonctionnalités de partage social
 
-### Version 0.4.0 📋 **PLANIFIÉE**
+### Version 0.5.0 📋 **PLANIFIÉE**
 
 - [ ] **Compatibilité** - Tests d'harmonie entre personnes
 - [ ] **Cycles de vie** - Analyse des années personnelles
 - [ ] **Notifications** - Rappels et insights personnalisés
 - [ ] **API avancée** - Endpoints pour intégrations tierces
 
-### Version 0.5.0 🔮 **FUTURE**
+### Version 0.6.0 🔮 **FUTURE**
 
+- [ ] **Matrix Destiny** - Module Matrix Destiny complet
 - [ ] **Paiements** - Fonctionnalités premium
 - [ ] **Mobile App** - Application mobile native
 - [ ] **IA** - Insights personnalisés avec intelligence artificielle
@@ -377,7 +488,7 @@ Le projet suit une architecture modulaire organisée :
 
 ## 🤝 Contribution
 
-Le projet Numora est maintenant dans une phase avancée avec une base solide. Les contributions sont les bienvenues !
+Le projet Numora est maintenant dans une phase avancée avec une **architecture modulaire complète** et une base solide. Les contributions sont les bienvenues !
 
 ### Comment contribuer
 
@@ -391,9 +502,12 @@ Le projet Numora est maintenant dans une phase avancée avec une base solide. Le
 
 - 🐛 **Correction de bugs** - Amélioration de la stabilité
 - ✨ **Nouvelles fonctionnalités** - Ajout de calculs numérologiques
+- 🏗️ **Architecture** - Amélioration de l'organisation modulaire
 - 📚 **Documentation** - Amélioration des guides et exemples
 - 🎨 **Design** - Amélioration de l'interface utilisateur
 - 🔧 **Performance** - Optimisation des calculs et de l'interface
+- 💼 **Business** - Développement des fonctionnalités business
+- 🔮 **Matrix Destiny** - Implémentation du module Matrix Destiny
 
 ## 📄 Licence
 
