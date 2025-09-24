@@ -426,24 +426,6 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
         </p>
       </div>
 
-      {!isAuthenticated && (
-        <div className="auth-warning">
-          <div className="warning-content">
-            <p className="warning-message">
-              Pour garder vos lectures sous la main et accéder à toutes les
-              fonctionnalités,{" "}
-              <span
-                className="highlight-text"
-                onClick={() => onNavigate("login")}
-              >
-                connectez-vous
-              </span>
-              .
-            </p>
-          </div>
-        </div>
-      )}
-
       {/* Navigation par onglets */}
       <div className="navigation-tabs">
         <div className="tabs-container">
