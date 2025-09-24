@@ -426,6 +426,24 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
         </p>
       </div>
 
+      {!isAuthenticated && (
+        <div className="auth-warning">
+          <div className="warning-content">
+            <p className="warning-message">
+              Pour garder vos lectures sous la main et accéder à toutes les
+              fonctionnalités,{" "}
+              <span
+                className="highlight-text"
+                onClick={() => onNavigate("login")}
+              >
+                connectez-vous
+              </span>
+              .
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* Navigation par onglets */}
       <div className="navigation-tabs">
         <div className="tabs-container">
@@ -2033,20 +2051,26 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
       </div>
 
       <div className="reading-actions">
-        {isAuthenticated && (
-          <button
-            onClick={() => onNavigate("readings")}
-            className="btn-secondary"
-          >
-            Retour aux lectures
+        {isAuthenticated ? (
+          <>
+            <button
+              onClick={() => onNavigate("readings")}
+              className="btn-secondary"
+            >
+              Retour aux lectures
+            </button>
+            <button
+              onClick={() => onNavigate("newReading")}
+              className="btn-primary"
+            >
+              Nouvelle lecture
+            </button>
+          </>
+        ) : (
+          <button onClick={() => onNavigate("home")} className="btn-primary">
+            Retour à l'accueil
           </button>
         )}
-        <button
-          onClick={() => onNavigate("newReading")}
-          className="btn-primary"
-        >
-          Nouvelle lecture
-        </button>
       </div>
     </div>
   );
