@@ -52,6 +52,20 @@ export {
 
 // ===== ALIAS POUR COMPATIBILITÉ =====
 // Ces alias maintiennent la compatibilité avec l'ancienne API
+import { calculateLifePathNumber } from "./core";
+import { calculateExpressionNumber } from "./core";
+import { calculateSoulUrgeNumber } from "./core";
+import { calculatePersonalityNumber } from "./core";
+import { calculateBirthdayNumber } from "./core";
+import { calculateChallengeNumbers } from "./challenges";
+import { calculateLifeCycles } from "./challenges";
+import { calculateRealizationPeriods } from "./challenges";
+import { calculatePersonalNumbers } from "./personal";
+import { calculateKarmicNumbers } from "./karmic";
+import { calculateCycleKarmicNumbers } from "./karmic";
+import { calculateKarmicDebts } from "./karmic";
+import { calculateBusinessNumbers } from "./business";
+
 export { calculateLifePathNumber as calculateLifePath };
 export { calculateExpressionNumber as calculateExpression };
 export { calculateSoulUrgeNumber as calculateSoulUrge };
@@ -65,4 +79,3 @@ export { calculateKarmicNumbers as calculateKarmic };
 export { calculateCycleKarmicNumbers as calculateCycleKarmic };
 export { calculateKarmicDebts as calculateDebts };
 export { calculateBusinessNumbers as calculateBusiness };
-

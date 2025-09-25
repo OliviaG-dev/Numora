@@ -1,7 +1,7 @@
 import React from "react";
 import type { TabProps } from "../shared/types";
 
-const ArbreTab: React.FC<TabProps> = ({ numerologyResults, readingData }) => {
+const ArbreTab: React.FC<TabProps> = () => {
   return (
     <section className="numerology-section arbre-section">
       <div className="section-header">
