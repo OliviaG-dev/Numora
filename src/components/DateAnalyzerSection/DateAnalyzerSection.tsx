@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./DateAnalyzerSection.css";
+import { useAuth } from "../../hooks/useAuth";
 import {
   calculateLifePathNumber,
   calculatePersonalYear,
@@ -10,7 +11,19 @@ import {
 import { dateVibeData } from "../../data";
 import type { DateVibeDetail } from "../../data";
 
-type DateAnalyzerSectionProps = Record<string, never>;
+interface DateAnalyzerSectionProps {
+  onNavigate: (
+    page:
+      | "home"
+      | "signup"
+      | "login"
+      | "newReading"
+      | "profile"
+      | "settings"
+      | "readings"
+      | "readingDetail"
+  ) => void;
+}
 
 interface DateAnalysisResult {
   lifePath: number;
@@ -27,7 +40,10 @@ interface DateAnalysisResult {
   };
 }
 
-const DateAnalyzerSection: React.FC<DateAnalyzerSectionProps> = () => {
+const DateAnalyzerSection: React.FC<DateAnalyzerSectionProps> = ({
+  onNavigate,
+}) => {
+  const { isAuthenticated } = useAuth();
   const [date, setDate] = useState("");
   const [analysisResult, setAnalysisResult] =
     useState<DateAnalysisResult | null>(null);
@@ -38,6 +54,13 @@ const DateAnalyzerSection: React.FC<DateAnalyzerSectionProps> = () => {
     setDate(e.target.value);
     setError(null);
     setAnalysisResult(null);
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      analyzeDate();
+    }
   };
 
   const analyzeDate = async () => {
@@ -135,6 +158,23 @@ const DateAnalyzerSection: React.FC<DateAnalyzerSectionProps> = () => {
         </div>
 
         <div className="analyzer-form">
+          {!isAuthenticated && (
+            <div className="auth-warning">
+              <div className="warning-content">
+                <p className="warning-message">
+                  Pour garder vos lectures sous la main et accéder à toutes les
+                  fonctionnalités,{" "}
+                  <span
+                    className="highlight-text"
+                    onClick={() => onNavigate("login")}
+                  >
+                    connectez-vous
+                  </span>
+                  .
+                </p>
+              </div>
+            </div>
+          )}
           <div className="form-group">
             <label htmlFor="date-input">Sélectionnez une date :</label>
             <input
@@ -142,6 +182,7 @@ const DateAnalyzerSection: React.FC<DateAnalyzerSectionProps> = () => {
               type="date"
               value={date}
               onChange={handleDateChange}
+              onKeyPress={handleKeyPress}
               className="date-input"
               max="2100-12-31"
               min="1900-01-01"
@@ -239,13 +280,19 @@ const DateAnalyzerSection: React.FC<DateAnalyzerSectionProps> = () => {
             <div className="results-actions">
               <button
                 onClick={() => {
-                  setDate("");
-                  setAnalysisResult(null);
-                  setError(null);
+                  if (isAuthenticated) {
+                    setDate("");
+                    setAnalysisResult(null);
+                    setError(null);
+                  } else {
+                    onNavigate("home");
+                  }
                 }}
                 className="btn-secondary"
               >
-                Enregistrer l'analyse
+                {isAuthenticated
+                  ? "Enregistrer l'analyse"
+                  : "Retour à l'accueil"}
               </button>
             </div>
           </div>

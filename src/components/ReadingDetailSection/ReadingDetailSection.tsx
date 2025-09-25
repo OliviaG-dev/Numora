@@ -16,6 +16,7 @@ import {
   calculateKarmicDebts,
   type KarmicDebtResult,
 } from "../../utils/numerology";
+import MatrixTab from "./tabs/MatrixTab";
 import {
   lifePathData,
   expressionData,
@@ -43,7 +44,7 @@ interface ReadingData {
   thirdGivenName: string;
   familyName: string;
   birthDate: string;
-  birthTime: string;
+  gender: string;
 }
 
 interface ReadingDetailSectionProps {
@@ -492,12 +493,12 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
                   new Date(readingData.birthDate).toLocaleDateString("fr-FR")}
               </span>
             </div>
-            {readingData?.birthTime && (
-              <div className="info-item">
-                <span className="info-label">Heure de naissance:</span>
-                <span className="info-value">{readingData.birthTime}</span>
-              </div>
-            )}
+            <div className="info-item">
+              <span className="info-label">Sexe:</span>
+              <span className="info-value">
+                {readingData?.gender === "M" ? "Masculin" : "Féminin"}
+              </span>
+            </div>
             <div className="info-item">
               <span className="info-label">Catégorie:</span>
               <span className="info-value capitalize">
@@ -1994,59 +1995,32 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
         )}
 
         {/* ONGLET MATRIX DESTINY */}
-        {activeTab === "matrix" && (
-          <>
-            <section className="numerology-section matrix-section">
-              <div className="section-header">
-                <div className="title-with-tooltip">
-                  <h2>Matrix Destiny</h2>
-                </div>
-              </div>
-              <div className="placeholder-content">
-                <p>
-                  Cette section sera bientôt disponible avec l'analyse Matrix
-                  Destiny.
-                </p>
-              </div>
-            </section>
-          </>
-        )}
-
-        {/* ONGLET ARBRE DE VIE */}
-        {activeTab === "arbre" && (
-          <>
-            <section className="numerology-section arbre-section">
-              <div className="section-header">
-                <div className="title-with-tooltip">
-                  <h2>Arbre de Vie</h2>
-                </div>
-              </div>
-              <div className="placeholder-content">
-                <p>
-                  Cette section sera bientôt disponible avec l'analyse de
-                  l'Arbre de Vie.
-                </p>
-              </div>
-            </section>
-          </>
+        {activeTab === "matrix" && readingData && (
+          <MatrixTab readingData={readingData} />
         )}
       </div>
 
       <div className="reading-actions">
-        {isAuthenticated && (
-          <button
-            onClick={() => onNavigate("readings")}
-            className="btn-secondary"
-          >
-            Retour aux lectures
+        {isAuthenticated ? (
+          <>
+            <button
+              onClick={() => onNavigate("readings")}
+              className="btn-secondary"
+            >
+              Retour aux lectures
+            </button>
+            <button
+              onClick={() => onNavigate("newReading")}
+              className="btn-primary"
+            >
+              Nouvelle lecture
+            </button>
+          </>
+        ) : (
+          <button onClick={() => onNavigate("home")} className="btn-primary">
+            Retour à l'accueil
           </button>
         )}
-        <button
-          onClick={() => onNavigate("newReading")}
-          className="btn-primary"
-        >
-          Nouvelle lecture
-        </button>
       </div>
     </div>
   );

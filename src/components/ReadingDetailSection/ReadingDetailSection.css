@@ -1008,10 +1008,10 @@
 
 .karmic-overview {
   margin-bottom: 2rem;
-  background: var(--bg-tertiary);
+  background: var(--bg-secondary);
   border-radius: 20px;
   padding: 2rem;
-  border: 1px solid rgba(139, 92, 246, 0.1);
+  border: 1px solid var(--bg-tertiary);
 }
 
 .karmic-stats {
@@ -1509,11 +1509,11 @@
 
 .cycle-karmic-overview {
   margin-bottom: 2rem;
-  background: var(--bg-tertiary);
+  background: var(--bg-secondary);
   backdrop-filter: blur(10px);
   border-radius: 20px;
   padding: 2rem;
-  border: 1px solid var(--bg-primary);
+  border: 1px solid var(--bg-tertiary);
 }
 
 .cycle-karmic-stats {
@@ -1778,10 +1778,10 @@
 
 .karmic-debts-overview {
   margin-bottom: 2rem;
-  background: var(--bg-tertiary);
+  background: var(--bg-secondary);
   border-radius: 20px;
   padding: 2rem;
-  border: 1px solid rgba(139, 92, 246, 0.1);
+  border: 1px solid var(--bg-tertiary);
 }
 
 .karmic-debts-stats {
@@ -1794,10 +1794,10 @@
 
 .karmic-debts-analysis {
   margin-bottom: 2rem;
-  background: var(--bg-tertiary);
+  background: var(--bg-secondary);
   border-radius: 20px;
   padding: 2rem;
-  border: 1px solid rgba(139, 92, 246, 0.1);
+  border: 1px solid var(--bg-tertiary);
 }
 
 .karmic-debts-analysis h3 {
@@ -2089,4 +2089,646 @@
   .karmic-debt-card {
     padding: 1.5rem;
   }
+}
+
+/* ===== STYLES POUR MATRIX DESTINY ===== */
+
+/* Section Matrix Destiny */
+.matrix-section {
+  background: var(--bg-secondary);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--bg-tertiary);
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+  width: 1200px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Information sur la méthode Grabovoi */
+.matrix-method-info {
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.1),
+    rgba(139, 92, 246, 0.05)
+  );
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.method-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.method-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary-purple);
+  text-shadow: 0 2px 4px rgba(139, 92, 246, 0.3);
+}
+
+.method-rating {
+  font-size: 1.1rem;
+  color: var(--secondary-gold);
+  text-shadow: 0 1px 2px rgba(245, 158, 11, 0.3);
+}
+
+.method-description {
+  color: var(--text-primary);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  font-weight: 500;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.matrix-section:hover {
+  transform: translateY(-5px);
+}
+
+/* Sections de Matrix */
+.matrix-base-section,
+.matrix-center-section,
+.matrix-chakras-section,
+.matrix-cycles-section,
+.matrix-special-section {
+  margin-bottom: 3rem;
+  background: var(--bg-primary);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid var(--bg-tertiary);
+}
+
+.matrix-base-section h3,
+.matrix-center-section h3,
+.matrix-chakras-section h3,
+.matrix-cycles-section h3,
+.matrix-special-section h3 {
+  color: var(--primary-purple);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+}
+
+/* Grid des nombres de base */
+.matrix-base-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.matrix-base-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.matrix-base-item span {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Grid du centre */
+.matrix-center-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.matrix-center-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.matrix-center-item span {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Grid des chakras */
+.matrix-chakras-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.matrix-chakra-card {
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid var(--bg-tertiary);
+  transition: all 0.3s ease;
+}
+
+.matrix-chakra-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+.chakra-header h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.chakra-values {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.chakra-value {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.value-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Grid des cycles */
+.matrix-cycles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.matrix-cycle-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  border: 1px solid var(--bg-tertiary);
+  transition: all 0.3s ease;
+}
+
+.matrix-cycle-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(139, 92, 246, 0.1);
+}
+
+.cycle-age {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* Grid des domaines spéciaux */
+.matrix-special-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.matrix-special-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  border: 1px solid var(--bg-tertiary);
+  transition: all 0.3s ease;
+}
+
+.matrix-special-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+}
+
+.special-icon {
+  font-size: 2rem;
+}
+
+.matrix-special-item span {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Badges Matrix */
+.matrix-number-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.matrix-number-badge:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Couleurs des badges Matrix */
+.day-badge {
+  background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+}
+
+.month-badge {
+  background: linear-gradient(135deg, #2196f3 0%, #1565c0 100%);
+}
+
+.year-badge {
+  background: linear-gradient(135deg, #ff9800 0%, #ef6c00 100%);
+}
+
+.mission-badge {
+  background: linear-gradient(135deg, #9c27b0 0%, #6a1b9a 100%);
+}
+
+.male-badge {
+  background: linear-gradient(135deg, #2196f3 0%, #1565c0 100%);
+}
+
+.female-badge {
+  background: linear-gradient(135deg, #e91e63 0%, #ad1457 100%);
+}
+
+.chakra-badge {
+  width: 40px;
+  height: 40px;
+  font-size: 1rem;
+}
+
+.cycle-badge {
+  background: linear-gradient(135deg, #ff9800 0%, #ef6c00 100%);
+}
+
+.love-badge {
+  background: linear-gradient(135deg, #e91e63 0%, #ad1457 100%);
+}
+
+.money-badge {
+  background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+}
+
+/* Responsive pour Matrix Destiny */
+@media (max-width: 768px) {
+  .matrix-section {
+    padding: 1.5rem;
+    width: 100%;
+  }
+
+  .matrix-base-grid,
+  .matrix-center-grid,
+  .matrix-special-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .matrix-chakras-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .matrix-cycles-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .chakra-values {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .matrix-number-badge {
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
+  }
+
+  .chakra-badge {
+    width: 35px;
+    height: 35px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .matrix-base-grid,
+  .matrix-center-grid,
+  .matrix-special-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .matrix-cycles-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ===== STYLES POUR LE SCHÉMA VISUEL MATRIX DESTINY ===== */
+
+/* Section du schéma visuel */
+.matrix-visual-section {
+  margin-top: 3rem;
+  background: var(--bg-primary);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid var(--bg-tertiary);
+}
+
+.matrix-visual-section h3 {
+  color: var(--primary-purple);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+}
+
+/* Conteneur du schéma */
+.matrix-visual-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Wrapper de l'image */
+.matrix-image-wrapper {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  width: 600px;
+  height: auto;
+}
+
+/* Image Matrix Destiny */
+.matrix-destiny-image {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+/* Désactiver les effets de hover sur l'image du schéma */
+.matrix-visual-section .matrix-destiny-image:hover {
+  transform: none;
+}
+
+.matrix-destiny-image:hover {
+  transform: scale(1.02);
+}
+
+.base {
+  font-size: 2rem;
+  z-index: 7;
+  font-weight: 700;
+}
+
+.black-text {
+  color: black;
+}
+
+/* Overlay pour positionner les chiffres */
+.matrix-numbers-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Positionnement des chiffres */
+.matrix-number-position {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+  z-index: 5;
+}
+
+/* Styles spécifiques pour les chakras */
+.matrix-number-position.sahasrara,
+.matrix-number-position.ajna,
+.matrix-number-position.vissudha,
+.matrix-number-position.anahata,
+.matrix-number-position.manipura,
+.matrix-number-position.svadhisthana,
+.matrix-number-position.muladhara {
+  flex-direction: row;
+  gap: 0.2rem;
+}
+
+/* Styles pour les chakras dans le schéma visuel */
+.chakra-number {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+  padding: 0.3rem;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.chakra-physique,
+.chakra-energy,
+.chakra-emotions {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+  min-width: 1.2rem;
+  text-align: center;
+}
+
+.chakra-physique {
+  color: #ff6b6b; /* Rouge pour physique */
+}
+
+.chakra-energy {
+  color: #4ecdc4; /* Turquoise pour énergie */
+}
+
+.chakra-emotions {
+  color: #ffe66d; /* Jaune pour émotions */
+}
+
+/* Positionnement spécifique des chakras */
+.chakra-sahasrara {
+  z-index: 8;
+}
+
+.chakra-ajna {
+  z-index: 8;
+}
+
+.chakra-vissudha {
+  z-index: 8;
+}
+
+.chakra-anahata {
+  z-index: 8;
+}
+
+.chakra-manipura {
+  z-index: 8;
+}
+
+.chakra-svadhisthana {
+  z-index: 8;
+}
+
+.chakra-muladhara {
+  z-index: 8;
+}
+
+/* Styles pour les nombres de base */
+.matrix-number-position.base-day,
+.matrix-number-position.base-month,
+.matrix-number-position.base-year,
+.matrix-number-position.base-mission {
+  z-index: 6;
+}
+
+/* Styles pour les lignes masculine et féminine */
+.matrix-number-position.male-line,
+.matrix-number-position.female-line {
+  z-index: 4;
+}
+
+/* Styles pour les domaines spéciaux */
+.matrix-number-position.special-love,
+.matrix-number-position.special-money {
+  z-index: 7;
+}
+
+/* Centre de la Matrix */
+.matrix-number-position.center-mission {
+  z-index: 10;
+}
+
+/* Badge central plus grand */
+.center-badge {
+  width: 60px;
+  height: 60px;
+  font-size: 1.4rem;
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+  border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Animation des badges sur l'image */
+.matrix-number-position .matrix-number-badge {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Désactiver les effets de hover sur le schéma */
+.matrix-visual-section .matrix-number-badge:hover {
+  transform: none;
+  box-shadow: none;
+  z-index: auto;
+}
+
+/* Styles spécifiques pour les nombres du schéma Matrix Destiny */
+.matrix-visual-section .matrix-number-badge {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  color: #ffffff;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+/* Styles pour tous les types de badges dans le schéma */
+.matrix-visual-section .day-badge,
+.matrix-visual-section .month-badge,
+.matrix-visual-section .year-badge,
+.matrix-visual-section .mission-badge,
+.matrix-visual-section .male-badge,
+.matrix-visual-section .female-badge,
+.matrix-visual-section .love-badge,
+.matrix-visual-section .money-badge,
+.matrix-visual-section .chakra-badge,
+.matrix-visual-section .center-badge {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.matrix-number-position .matrix-number-badge:hover {
+  transform: scale(1.2);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+/* Légende pour les chakras */
+.matrix-number-position .chakra-badge::after {
+  content: attr(data-chakra);
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Désactiver les effets de hover sur les chakras du schéma */
+.matrix-visual-section .matrix-number-position .chakra-badge:hover::after {
+  opacity: 0;
+}
+
+.matrix-number-position .chakra-badge:hover::after {
+  opacity: 1;
 }

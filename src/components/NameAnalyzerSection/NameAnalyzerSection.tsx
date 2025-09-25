@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./NameAnalyzerSection.css";
+import { useAuth } from "../../hooks/useAuth";
 import { calculateBusinessNumbers } from "../../utils/numerology";
 import {
   actifBusinessData,
@@ -9,6 +10,20 @@ import {
   type ExpressionBusinessDetail,
   type HereditaryBusinessDetail,
 } from "../../data";
+
+interface NameAnalyzerSectionProps {
+  onNavigate: (
+    page:
+      | "home"
+      | "signup"
+      | "login"
+      | "newReading"
+      | "profile"
+      | "settings"
+      | "readings"
+      | "readingDetail"
+  ) => void;
+}
 
 interface BusinessAnalysisResult {
   expression: {
@@ -28,7 +43,10 @@ interface BusinessAnalysisResult {
   };
 }
 
-const NameAnalyzerSection: React.FC = () => {
+const NameAnalyzerSection: React.FC<NameAnalyzerSectionProps> = ({
+  onNavigate,
+}) => {
+  const { isAuthenticated } = useAuth();
   const [fullName, setFullName] = useState("");
   const [businessResult, setBusinessResult] =
     useState<BusinessAnalysisResult | null>(null);
@@ -132,6 +150,23 @@ const NameAnalyzerSection: React.FC = () => {
         </div>
 
         <div className="analyzer-form">
+          {!isAuthenticated && (
+            <div className="auth-warning">
+              <div className="warning-content">
+                <p className="warning-message">
+                  Pour garder vos lectures sous la main et accéder à toutes les
+                  fonctionnalités,{" "}
+                  <span
+                    className="highlight-text"
+                    onClick={() => onNavigate("login")}
+                  >
+                    connectez-vous
+                  </span>
+                  .
+                </p>
+              </div>
+            </div>
+          )}
           <div className="form-group">
             <label htmlFor="name-input">
               Entrez le nom de l'entreprise ou du projet :
@@ -408,13 +443,19 @@ const NameAnalyzerSection: React.FC = () => {
             <div className="results-actions">
               <button
                 onClick={() => {
-                  setFullName("");
-                  setBusinessResult(null);
-                  setError(null);
+                  if (isAuthenticated) {
+                    setFullName("");
+                    setBusinessResult(null);
+                    setError(null);
+                  } else {
+                    onNavigate("home");
+                  }
                 }}
                 className="btn-secondary"
               >
-                Enregistrer l'analyse
+                {isAuthenticated
+                  ? "Enregistrer l'analyse"
+                  : "Retour à l'accueil"}
               </button>
             </div>
           </div>
