@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import { calculateMatrixDestiny } from "../../../utils/matrixDestiny";
 import MatrixDestinyImage from "../../../assets/Matrix_destiny.webp";
+import MatrixTimeline from "./MatrixTimeline";
 
 interface ReadingData {
   readingName: string;
@@ -22,9 +23,7 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
     if (!readingData) return null;
 
     const [year, month, day] = readingData.birthDate.split("-").map(Number);
-    const fullName =
-      `${readingData.firstGivenName} ${readingData.secondGivenName} ${readingData.thirdGivenName} ${readingData.familyName}`.trim();
-    return calculateMatrixDestiny(day, month, year, fullName);
+    return calculateMatrixDestiny(day, month, year);
   }, [readingData]);
 
   if (!matrixDestiny || !readingData) {
@@ -95,15 +94,14 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
             </span>
             <div className="tooltip-content">
               <p>
-                <strong>Méthode Grabovoi</strong> - La Matrix Destiny révèle
-                votre mission de vie à travers l'analyse des chakras et des
-                cycles temporels.
+                <strong>Méthode Traditionnelle</strong> - La Matrix Destiny
+                révèle votre mission de vie à travers une structure octogonale
+                complexe et des calculs non réduits.
               </p>
               <p>
-                Basée sur les mathématiques pures et la physique quantique, elle
-                combine votre date de naissance et votre nom avec les principes
-                de la numérologie pour révéler votre potentiel avec une
-                précision maximale.
+                Basée sur les traditions numérologiques anciennes, elle utilise
+                des nombres jusqu'à 22 et des cycles d'âge détaillés pour
+                révéler votre potentiel avec une précision maximale.
               </p>
             </div>
           </div>
@@ -113,12 +111,13 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
       {/* Information sur la méthode */}
       <div className="matrix-method-info">
         <div className="method-badge">
-          <span className="method-name">Méthode Grabovoi</span>
+          <span className="method-name">Méthode Traditionnelle</span>
           <span className="method-rating">⭐⭐⭐⭐⭐</span>
         </div>
         <p className="method-description">
-          Calculs basés sur les mathématiques pures et la physique quantique
-          pour une précision maximale.
+          Calculs basés sur les traditions numérologiques anciennes avec
+          structure octogonale et nombres non réduits pour une précision
+          maximale.
         </p>
       </div>
 
@@ -236,19 +235,6 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
         </div>
       </div>
 
-      {/* Cycles */}
-      <div className="matrix-cycles-section">
-        <h3>Cycles de Vie</h3>
-        <div className="matrix-cycles-grid">
-          {Object.entries(matrixDestiny.cycles).map(([age, number]) => (
-            <div key={age} className="matrix-cycle-item">
-              <div className="cycle-age">{age} ans</div>
-              <div className="matrix-number-badge cycle-badge">{number}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-
       {/* Special */}
       <div className="matrix-special-section">
         <h3>Domaines Spéciaux</h3>
@@ -269,6 +255,36 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
           </div>
         </div>
       </div>
+
+      {/* Common Energy Zone */}
+      {matrixDestiny.commonEnergyZone && (
+        <div className="matrix-common-energy-section">
+          <h3>Zone d'Énergie Commune</h3>
+          <div className="matrix-common-energy-grid">
+            <div className="matrix-common-energy-item">
+              <div className="matrix-number-badge physics-badge">
+                {matrixDestiny.commonEnergyZone.physics}
+              </div>
+              <span>Physique</span>
+            </div>
+            <div className="matrix-common-energy-item">
+              <div className="matrix-number-badge energy-badge">
+                {matrixDestiny.commonEnergyZone.energy}
+              </div>
+              <span>Énergie</span>
+            </div>
+            <div className="matrix-common-energy-item">
+              <div className="matrix-number-badge emotions-badge">
+                {matrixDestiny.commonEnergyZone.emotions}
+              </div>
+              <span>Émotions</span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Timeline des cycles de vie */}
+      <MatrixTimeline cycles={matrixDestiny.cycles} />
 
       {/* Schéma visuel Matrix Destiny */}
       <div className="matrix-visual-section">
@@ -293,7 +309,7 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
 
               <div
                 className="matrix-number-position base-month"
-                style={{ top: "6.5%", right: "48.25%" }}
+                style={{ top: "6.5%", right: "44.25%" }}
               >
                 <div className="base">{matrixDestiny.base.month}</div>
               </div>
@@ -307,7 +323,7 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
 
               <div
                 className="matrix-number-position base-mission"
-                style={{ bottom: "25%", right: "15%" }}
+                style={{ bottom: "-1%", right: "45.5%" }}
               >
                 <div className="base">{matrixDestiny.base.lifeMission}</div>
               </div>

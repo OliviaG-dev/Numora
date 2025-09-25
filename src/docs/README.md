@@ -15,6 +15,8 @@ Cette documentation couvre tous les aspects techniques et fonctionnels de l'appl
 ### 🔮 Matrix Destiny
 
 - [Méthodes Matrix Destiny](matrix-destiny-methods.md) - Comparaison des méthodes
+- [Méthode Traditionnelle](matrix-destiny-traditional.md) - Méthode classique avec structure octogonale
+- [Calculs Matrix Destiny](matrix-destiny-calculations.md) - Formules et calculs détaillés
 - [Documentation technique Matrix Destiny](matrix-destiny-technical.md) - Implémentation technique
 
 ### 🗄️ Base de données
