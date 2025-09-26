@@ -78,7 +78,8 @@ export function calculateMatrixDestiny(
     dayValue,
     monthValue,
     yearValue,
-    centerMission
+    centerMission,
+    lifeMission
   );
 
   // === CHAKRAS (Calculs traditionnels précis) ===
