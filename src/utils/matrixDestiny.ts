@@ -7,7 +7,7 @@ export function reduceNumber(n: number): number {
 
 export function sumReduce(...nums: number[]): number {
   const total = nums.reduce((a, b) => a + b, 0);
-  return reduceNumber(total);
+  return reduceToMatrixNumber(total);
 }
 
 export interface MatrixDestiny {
@@ -19,8 +19,16 @@ export interface MatrixDestiny {
   };
   center: {
     mission: number;
-    maleLine: number;
-    femaleLine: number;
+    maleLine: {
+      dayMonth: number;
+      mission: number;
+      dayYear: number;
+    };
+    femaleLine: {
+      monthYear: number;
+      mission: number;
+      monthDay: number;
+    };
   };
   chakras: Record<
     string,
@@ -59,8 +67,19 @@ export function calculateMatrixDestiny(
   const lifeMission = calculateLifeMission(day, month, year);
 
   // === CENTRE DE LA MATRIX ===
-  const maleLine = calculateMaleLine(day, month);
-  const femaleLine = calculateFemaleLine(month, year);
+  const centerMission = sumReduce(dayValue, monthValue, yearValue, lifeMission);
+  const maleLine = calculateMaleLine(
+    dayValue,
+    monthValue,
+    yearValue,
+    centerMission
+  );
+  const femaleLine = calculateFemaleLine(
+    dayValue,
+    monthValue,
+    yearValue,
+    centerMission
+  );
 
   // === CHAKRAS (Calculs traditionnels précis) ===
   const chakras = calculateChakrasTraditional(day, month, year);
@@ -81,7 +100,11 @@ export function calculateMatrixDestiny(
       year: yearValue,
       lifeMission,
     },
-    center: { mission: lifeMission, maleLine, femaleLine },
+    center: {
+      mission: centerMission,
+      maleLine,
+      femaleLine,
+    },
     chakras,
     cycles,
     special,
@@ -102,19 +125,49 @@ function calculateLifeMission(
 }
 
 /**
- * Calcule la ligne masculine (jour + mois)
+ * Calcule la ligne masculine avec 3 valeurs :
+ * 1. Jour + Mois (réduit)
+ * 2. Mission (centre)
+ * 3. Jour + Année (réduit)
  */
-function calculateMaleLine(day: number, month: number): number {
-  const sum = day + month;
-  return reduceToMatrixNumber(sum);
+function calculateMaleLine(
+  day: number,
+  month: number,
+  year: number,
+  mission: number
+): {
+  dayMonth: number;
+  mission: number;
+  dayYear: number;
+} {
+  return {
+    dayMonth: day + month, // Somme brute : Jour + Mois
+    mission: mission,
+    dayYear: day + year, // Somme brute : Jour + Année
+  };
 }
 
 /**
- * Calcule la ligne féminine (mois + année)
+ * Calcule la ligne féminine avec 3 valeurs :
+ * 1. Mois + Année (réduit)
+ * 2. Mission (centre)
+ * 3. Mois + Jour (réduit)
  */
-function calculateFemaleLine(month: number, year: number): number {
-  const sum = month + year;
-  return reduceToMatrixNumber(sum);
+function calculateFemaleLine(
+  day: number,
+  month: number,
+  year: number,
+  mission: number
+): {
+  monthYear: number;
+  mission: number;
+  monthDay: number;
+} {
+  return {
+    monthYear: month + year, // Somme brute : Mois + Année
+    mission: mission,
+    monthDay: month + day, // Somme brute : Mois + Jour
+  };
 }
 
 /**

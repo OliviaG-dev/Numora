@@ -155,24 +155,57 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
       {/* Center */}
       <div className="matrix-center-section">
         <h3>Centre de la Matrix</h3>
-        <div className="matrix-center-grid">
-          <div className="matrix-center-item">
-            <div className="matrix-number-badge mission-badge">
-              {matrixDestiny.center.mission}
+
+        {/* Lignes de génération */}
+        <div className="generation-lines-container">
+          {/* Ligne Masculine */}
+          <div className="matrix-generation-line">
+            <h4 className="generation-line-title male-title">
+              <span className="generation-icon">♂</span>
+              Ligne Masculine
+            </h4>
+            <div className="generation-line-horizontal">
+              <div className="generation-number">
+                <div className="matrix-number-badge male-badge">
+                  {matrixDestiny.center.maleLine.dayMonth}
+                </div>
+              </div>
+              <div className="generation-number">
+                <div className="matrix-number-badge mission-badge">
+                  {matrixDestiny.center.maleLine.mission}
+                </div>
+              </div>
+              <div className="generation-number">
+                <div className="matrix-number-badge male-badge">
+                  {matrixDestiny.center.maleLine.dayYear}
+                </div>
+              </div>
             </div>
-            <span>Mission</span>
           </div>
-          <div className="matrix-center-item">
-            <div className="matrix-number-badge male-badge">
-              {matrixDestiny.center.maleLine}
+
+          {/* Ligne Féminine */}
+          <div className="matrix-generation-line">
+            <h4 className="generation-line-title female-title">
+              <span className="generation-icon">♀</span>
+              Ligne Féminine
+            </h4>
+            <div className="generation-line-horizontal">
+              <div className="generation-number">
+                <div className="matrix-number-badge female-badge">
+                  {matrixDestiny.center.femaleLine.monthYear}
+                </div>
+              </div>
+              <div className="generation-number">
+                <div className="matrix-number-badge mission-badge">
+                  {matrixDestiny.center.femaleLine.mission}
+                </div>
+              </div>
+              <div className="generation-number">
+                <div className="matrix-number-badge female-badge">
+                  {matrixDestiny.center.femaleLine.monthDay}
+                </div>
+              </div>
             </div>
-            <span>Ligne Masculine</span>
-          </div>
-          <div className="matrix-center-item">
-            <div className="matrix-number-badge female-badge">
-              {matrixDestiny.center.femaleLine}
-            </div>
-            <span>Ligne Féminine</span>
           </div>
         </div>
       </div>
@@ -344,7 +377,7 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
                 style={{ top: "19%", left: "19.5%" }}
               >
                 <div className="base black-text">
-                  {matrixDestiny.center.maleLine}
+                  {matrixDestiny.center.maleLine.dayMonth}
                 </div>
               </div>
 
@@ -353,7 +386,7 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
                 style={{ top: "19%", right: "15.75%" }}
               >
                 <div className="base black-text">
-                  {matrixDestiny.center.femaleLine}
+                  {matrixDestiny.center.femaleLine.monthYear}
                 </div>
               </div>
 

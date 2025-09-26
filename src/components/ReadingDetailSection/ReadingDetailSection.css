@@ -2435,6 +2435,128 @@
   background: linear-gradient(135deg, #ffe66d 0%, #f6ad55 100%);
 }
 
+/* Styles pour le centre de la Matrix */
+.matrix-center-main {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.center-mission-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.1),
+    rgba(139, 92, 246, 0.05)
+  );
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.center-mission-number {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(135deg, #9c27b0 0%, #6a1b9a 100%);
+  box-shadow: 0 8px 25px rgba(156, 39, 176, 0.4);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.center-mission-label {
+  color: var(--primary-purple);
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Container des lignes de génération */
+.generation-lines-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Styles pour les lignes de génération */
+.matrix-generation-line {
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid var(--bg-tertiary);
+  transition: all 0.3s ease;
+}
+
+.matrix-generation-line:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+.generation-line-title {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-align: center;
+  justify-content: center;
+}
+
+.generation-line-title.male-title {
+  color: var(--text-primary);
+}
+
+.generation-line-title.female-title {
+  color: var(--text-primary);
+}
+
+.generation-icon {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+/* Styles pour les lignes de génération horizontales */
+.generation-line-horizontal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.generation-number {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.generation-number span {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Badge centre spécial */
+.center-badge {
+  background: linear-gradient(135deg, #9c27b0 0%, #6a1b9a 100%) !important;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 6px 20px rgba(156, 39, 176, 0.4);
+}
+
 /* Responsive pour Matrix Destiny */
 @media (max-width: 768px) {
   .matrix-section {
@@ -2467,6 +2589,10 @@
     width: 35px;
     height: 35px;
     font-size: 0.9rem;
+  }
+
+  .generation-line-horizontal {
+    gap: 1rem;
   }
 }
 
