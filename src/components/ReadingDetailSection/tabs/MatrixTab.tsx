@@ -331,57 +331,269 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
       <div className="matrix-chakras-section">
         <h3>Chakras et Énergies</h3>
         <div className="matrix-chakras-grid">
-          {Object.entries(matrixDestiny.chakras).map(([chakraKey, values]) => (
-            <div key={chakraKey} className="matrix-chakra-card">
-              <div className="chakra-header">
-                <h4
-                  style={{
-                    color: chakraColors[chakraKey as keyof typeof chakraColors],
-                  }}
+          {/* Sahasrara */}
+          <div className="matrix-chakra-card">
+            <div className="chakra-header">
+              <h4 style={{ color: chakraColors.sahasrara }}>
+                {chakraNames.sahasrara}
+              </h4>
+            </div>
+            <div className="chakra-values">
+              <div className="chakra-value">
+                <span className="value-label">Physique</span>
+                <div
+                  className="matrix-number-badge chakra-badge"
+                  style={{ backgroundColor: chakraColors.sahasrara }}
                 >
-                  {chakraNames[chakraKey as keyof typeof chakraNames]}
-                </h4>
+                  {matrixDestiny.base.day}
+                </div>
               </div>
-              <div className="chakra-values">
-                <div className="chakra-value">
-                  <span className="value-label">Physique</span>
-                  <div
-                    className="matrix-number-badge chakra-badge"
-                    style={{
-                      backgroundColor:
-                        chakraColors[chakraKey as keyof typeof chakraColors],
-                    }}
-                  >
-                    {values.physique}
-                  </div>
+              <div className="chakra-value">
+                <span className="value-label">Énergie</span>
+                <div
+                  className="matrix-number-badge chakra-badge"
+                  style={{ backgroundColor: chakraColors.sahasrara }}
+                >
+                  {matrixDestiny.base.month}
                 </div>
-                <div className="chakra-value">
-                  <span className="value-label">Énergie</span>
-                  <div
-                    className="matrix-number-badge chakra-badge"
-                    style={{
-                      backgroundColor:
-                        chakraColors[chakraKey as keyof typeof chakraColors],
-                    }}
-                  >
-                    {values.energy}
-                  </div>
-                </div>
-                <div className="chakra-value">
-                  <span className="value-label">Émotions</span>
-                  <div
-                    className="matrix-number-badge chakra-badge"
-                    style={{
-                      backgroundColor:
-                        chakraColors[chakraKey as keyof typeof chakraColors],
-                    }}
-                  >
-                    {values.emotions}
-                  </div>
+              </div>
+              <div className="chakra-value">
+                <span className="value-label">Émotions</span>
+                <div
+                  className="matrix-number-badge chakra-badge"
+                  style={{ backgroundColor: chakraColors.sahasrara }}
+                >
+                  {matrixDestiny.chakras.sahasrara.emotions}
                 </div>
               </div>
             </div>
-          ))}
+          </div>
+
+          {/* Ajna */}
+          <div className="matrix-chakra-card">
+            <div className="chakra-header">
+              <h4 style={{ color: chakraColors.ajna }}>{chakraNames.ajna}</h4>
+            </div>
+            <div className="chakra-values">
+              <div className="chakra-value">
+                <span className="value-label">Physique</span>
+                <div
+                  className="matrix-number-badge chakra-badge"
+                  style={{ backgroundColor: chakraColors.ajna }}
+                >
+                  {matrixDestiny.karmicLines.parents.secondary}
+                </div>
+              </div>
+              <div className="chakra-value">
+                <span className="value-label">Énergie</span>
+                <div
+                  className="matrix-number-badge chakra-badge"
+                  style={{ backgroundColor: chakraColors.ajna }}
+                >
+                  {matrixDestiny.karmicLines.talentZone.secondary}
+                </div>
+              </div>
+              <div className="chakra-value">
+                <span className="value-label">Émotions</span>
+                <div
+                  className="matrix-number-badge chakra-badge"
+                  style={{ backgroundColor: chakraColors.ajna }}
+                >
+                  {matrixDestiny.chakras.ajna.emotions}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Vishuddha */}
+          <div className="matrix-chakra-card">
+            <div className="chakra-header">
+              <h4 style={{ color: chakraColors.vissudha }}>
+                {chakraNames.vissudha}
+              </h4>
+            </div>
+            <div className="chakra-values">
+              <div className="chakra-value">
+                <span className="value-label">Physique</span>
+                <div
+                  className="matrix-number-badge chakra-badge"
+                  style={{ backgroundColor: chakraColors.vissudha }}
+                >
+                  {matrixDestiny.karmicLines.parents.primary}
+                </div>
+              </div>
+              <div className="chakra-value">
+                <span className="value-label">Énergie</span>
+                <div
+                  className="matrix-number-badge chakra-badge"
+                  style={{ backgroundColor: chakraColors.vissudha }}
+                >
+                  {matrixDestiny.karmicLines.talentZone.primary}
+                </div>
+              </div>
+              <div className="chakra-value">
+                <span className="value-label">Émotions</span>
+                <div
+                  className="matrix-number-badge chakra-badge"
+                  style={{ backgroundColor: chakraColors.vissudha }}
+                >
+                  {matrixDestiny.chakras.vissudha.emotions}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Anahata */}
+          <div className="matrix-chakra-card">
+            <div className="chakra-header">
+              <h4 style={{ color: chakraColors.anahata }}>
+                {chakraNames.anahata}
+              </h4>
+            </div>
+            <div className="chakra-values">
+              <div className="chakra-value">
+                <span className="value-label">Physique</span>
+                <div
+                  className="matrix-number-badge chakra-badge"
+                  style={{ backgroundColor: chakraColors.anahata }}
+                >
+                  {matrixDestiny.chakras.anahata.physique}
+                </div>
+              </div>
+              <div className="chakra-value">
+                <span className="value-label">Énergie</span>
+                <div
+                  className="matrix-number-badge chakra-badge"
+                  style={{ backgroundColor: chakraColors.anahata }}
+                >
+                  {matrixDestiny.chakras.anahata.energy}
+                </div>
+              </div>
+              <div className="chakra-value">
+                <span className="value-label">Émotions</span>
+                <div
+                  className="matrix-number-badge chakra-badge"
+                  style={{ backgroundColor: chakraColors.anahata }}
+                >
+                  {matrixDestiny.chakras.anahata.emotions}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Manipura */}
+          <div className="matrix-chakra-card">
+            <div className="chakra-header">
+              <h4 style={{ color: chakraColors.manipura }}>
+                {chakraNames.manipura}
+              </h4>
+            </div>
+            <div className="chakra-values">
+              <div className="chakra-value">
+                <span className="value-label">Physique</span>
+                <div
+                  className="matrix-number-badge chakra-badge"
+                  style={{ backgroundColor: chakraColors.manipura }}
+                >
+                  {matrixDestiny.center.maleLine.mission}
+                </div>
+              </div>
+              <div className="chakra-value">
+                <span className="value-label">Énergie</span>
+                <div
+                  className="matrix-number-badge chakra-badge"
+                  style={{ backgroundColor: chakraColors.manipura }}
+                >
+                  {matrixDestiny.center.maleLine.mission}
+                </div>
+              </div>
+              <div className="chakra-value">
+                <span className="value-label">Émotions</span>
+                <div
+                  className="matrix-number-badge chakra-badge"
+                  style={{ backgroundColor: chakraColors.manipura }}
+                >
+                  {matrixDestiny.chakras.manipura.emotions}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Svadhisthana */}
+          <div className="matrix-chakra-card">
+            <div className="chakra-header">
+              <h4 style={{ color: chakraColors.svadhisthana }}>
+                {chakraNames.svadhisthana}
+              </h4>
+            </div>
+            <div className="chakra-values">
+              <div className="chakra-value">
+                <span className="value-label">Physique</span>
+                <div
+                  className="matrix-number-badge chakra-badge"
+                  style={{ backgroundColor: chakraColors.svadhisthana }}
+                >
+                  {matrixDestiny.karmicLines.financialKarmicTail.primary}
+                </div>
+              </div>
+              <div className="chakra-value">
+                <span className="value-label">Énergie</span>
+                <div
+                  className="matrix-number-badge chakra-badge"
+                  style={{ backgroundColor: chakraColors.svadhisthana }}
+                >
+                  {matrixDestiny.karmicLines.karmicLife.primary}
+                </div>
+              </div>
+              <div className="chakra-value">
+                <span className="value-label">Émotions</span>
+                <div
+                  className="matrix-number-badge chakra-badge"
+                  style={{ backgroundColor: chakraColors.svadhisthana }}
+                >
+                  {matrixDestiny.chakras.svadhisthana.emotions}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Muladhara */}
+          <div className="matrix-chakra-card">
+            <div className="chakra-header">
+              <h4 style={{ color: chakraColors.muladhara }}>
+                {chakraNames.muladhara}
+              </h4>
+            </div>
+            <div className="chakra-values">
+              <div className="chakra-value">
+                <span className="value-label">Physique</span>
+                <div
+                  className="matrix-number-badge chakra-badge"
+                  style={{ backgroundColor: chakraColors.muladhara }}
+                >
+                  {matrixDestiny.base.year}
+                </div>
+              </div>
+              <div className="chakra-value">
+                <span className="value-label">Énergie</span>
+                <div
+                  className="matrix-number-badge chakra-badge"
+                  style={{ backgroundColor: chakraColors.muladhara }}
+                >
+                  {matrixDestiny.base.lifeMission}
+                </div>
+              </div>
+              <div className="chakra-value">
+                <span className="value-label">Émotions</span>
+                <div
+                  className="matrix-number-badge chakra-badge"
+                  style={{ backgroundColor: chakraColors.muladhara }}
+                >
+                  {matrixDestiny.chakras.muladhara.emotions}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -395,6 +607,13 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
               {matrixDestiny.special.love}
             </div>
             <span>Amour</span>
+          </div>
+          <div className="matrix-special-item">
+            <div className="special-icon">⚖️</div>
+            <div className="matrix-number-badge balance-badge">
+              {matrixDestiny.special.balance}
+            </div>
+            <span>Balance</span>
           </div>
           <div className="matrix-special-item">
             <div className="special-icon">💰</div>

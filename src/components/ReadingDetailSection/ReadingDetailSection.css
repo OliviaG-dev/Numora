@@ -2385,7 +2385,6 @@
   background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
   color: white;
   border: 2px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
   width: 50px;
   height: 50px;
   font-size: 1.2rem;
@@ -2405,7 +2404,6 @@
   background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
   color: white;
   border: 2px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
   width: 50px;
   height: 50px;
   font-size: 1.2rem;
@@ -2425,7 +2423,6 @@
   background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: white;
   border: 2px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
   width: 50px;
   height: 50px;
   font-size: 1.2rem;
@@ -2445,7 +2442,6 @@
   background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
   color: white;
   border: 2px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
   width: 50px;
   height: 50px;
   font-size: 1.2rem;
@@ -2498,6 +2494,10 @@
 
 .love-badge {
   background: linear-gradient(135deg, #e91e63 0%, #ad1457 100%);
+}
+
+.balance-badge {
+  background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
 }
 
 .money-badge {
