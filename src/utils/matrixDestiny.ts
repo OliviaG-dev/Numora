@@ -45,13 +45,35 @@ export interface MatrixDestiny {
     emotions: number;
   };
   karmicLines: {
-    financialKarmicTail: number;
-    karmicLife: number;
-    talentZone: number;
+    financialKarmicTail: {
+      primary: number;
+      secondary: number;
+    };
+    karmicLife: {
+      primary: number;
+      secondary: number;
+    };
+    talentZone: {
+      primary: number;
+      secondary: number;
+    };
     socialConnection: number;
-    parents: number;
-    feminineAncestry: number;
-    masculineAncestry: number;
+    parents: {
+      primary: number;
+      secondary: number;
+    };
+    feminineAncestry: {
+      primary: number;
+      secondary: number;
+      tertiary: number;
+      quaternary: number;
+    };
+    masculineAncestry: {
+      primary: number;
+      secondary: number;
+      tertiary: number;
+      quaternary: number;
+    };
   };
 }
 
@@ -87,7 +109,8 @@ export function calculateMatrixDestiny(
     dayValue,
     monthValue,
     yearValue,
-    centerMission
+    centerMission,
+    lifeMission
   );
 
   // === CHAKRAS (Calculs traditionnels précis) ===
@@ -103,7 +126,29 @@ export function calculateMatrixDestiny(
   const commonEnergyZone = calculateCommonEnergyZone(chakras);
 
   // === LIGNES KARMIQUES ===
-  const karmicLines = calculateKarmicLines(day, month, year, lifeMission);
+  // Calcul préliminaire des valeurs nécessaires pour les antécédents
+  const parentsPrimary = reduceToMatrixNumber(maleLine.mission + dayValue);
+  const karmicLifePrimary = reduceToMatrixNumber(
+    maleLine.mission + lifeMission
+  );
+  const talentZonePrimary = reduceToMatrixNumber(maleLine.mission + monthValue);
+
+  const karmicLines = calculateKarmicLines(
+    month,
+    year,
+    lifeMission,
+    maleLine.mission,
+    yearValue,
+    monthValue,
+    dayValue,
+    maleLine.dayMonth,
+    maleLine.dayYear,
+    parentsPrimary,
+    karmicLifePrimary,
+    talentZonePrimary,
+    femaleLine.monthYear,
+    femaleLine.monthDay
+  );
 
   return {
     base: {
@@ -170,7 +215,8 @@ function calculateFemaleLine(
   day: number,
   month: number,
   year: number,
-  mission: number
+  mission: number,
+  lifeMission: number
 ): {
   monthYear: number;
   mission: number;
@@ -179,7 +225,7 @@ function calculateFemaleLine(
   return {
     monthYear: month + year, // Somme brute : Mois + Année
     mission: mission,
-    monthDay: month + day, // Somme brute : Mois + Jour
+    monthDay: lifeMission + day, // lifeMission + day
   };
 }
 
@@ -329,42 +375,126 @@ function calculateCommonEnergyZone(
  * Ces lignes révèlent les leçons karmiques et les héritages spirituels
  */
 function calculateKarmicLines(
-  day: number,
   month: number,
   year: number,
-  lifeMission: number
+  lifeMission: number,
+  maleLineMission: number,
+  yearValue: number,
+  monthValue: number,
+  dayValue: number,
+  maleLineDayMonth: number,
+  maleLineDayYear: number,
+  parentsPrimary: number,
+  karmicLifePrimary: number,
+  talentZonePrimary: number,
+  femaleLineMonthYear: number,
+  femaleLineMonthDay: number
 ): {
-  financialKarmicTail: number;
-  karmicLife: number;
-  talentZone: number;
+  financialKarmicTail: {
+    primary: number;
+    secondary: number;
+  };
+  karmicLife: {
+    primary: number;
+    secondary: number;
+  };
+  talentZone: {
+    primary: number;
+    secondary: number;
+  };
   socialConnection: number;
-  parents: number;
-  feminineAncestry: number;
-  masculineAncestry: number;
+  parents: {
+    primary: number;
+    secondary: number;
+  };
+  feminineAncestry: {
+    primary: number;
+    secondary: number;
+    tertiary: number;
+    quaternary: number;
+  };
+  masculineAncestry: {
+    primary: number;
+    secondary: number;
+    tertiary: number;
+    quaternary: number;
+  };
 } {
-  const decade = year % 100;
-  const century = Math.floor(year / 100);
+  // Queue karmique financière : Calcul spécial avec deux badges
+  const financialPrimary = reduceToMatrixNumber(maleLineMission + yearValue);
+  const financialSecondary = reduceToMatrixNumber(financialPrimary + yearValue);
+
+  // Vie karmique : Calcul spécial avec deux badges
+  const karmicLifeSecondary = reduceToMatrixNumber(
+    karmicLifePrimary + lifeMission
+  );
+
+  // Zone de talent : Calcul spécial avec deux badges
+  const talentZoneSecondary = reduceToMatrixNumber(
+    talentZonePrimary + monthValue
+  );
+
+  // Parents & Lien en société : Calcul spécial avec deux badges
+  const parentsSecondary = reduceToMatrixNumber(parentsPrimary + dayValue);
 
   return {
     // Queue karmique financière : Dettes karmiques liées à l'argent
-    financialKarmicTail: reduceToMatrixNumber((month * day) % 22),
+    financialKarmicTail: {
+      primary: financialPrimary,
+      secondary: financialSecondary,
+    },
 
     // Vie karmique : Expériences accumulées des vies antérieures
-    karmicLife: reduceToMatrixNumber((day + month + decade) % 22),
+    karmicLife: {
+      primary: karmicLifePrimary,
+      secondary: karmicLifeSecondary,
+    },
 
     // Zone de talent : Dons naturels hérités karmiquement
-    talentZone: reduceToMatrixNumber((lifeMission + day) % 22),
+    talentZone: {
+      primary: talentZonePrimary,
+      secondary: talentZoneSecondary,
+    },
 
     // Lien en société : Capacité d'intégration sociale
     socialConnection: reduceToMatrixNumber((month + year) % 22),
 
     // Parents : Relations karmiques avec les parents
-    parents: reduceToMatrixNumber((day + year) % 22),
+    parents: {
+      primary: parentsPrimary,
+      secondary: parentsSecondary,
+    },
 
-    // Antécédents féminins : Héritage de la lignée maternelle
-    feminineAncestry: reduceToMatrixNumber((month + century) % 22),
+    // Antécédents féminins : Héritage de la lignée maternelle (4 badges)
+    feminineAncestry: {
+      // Badge 1 : financialKarmicTail.primary + talentZone.primary
+      primary: reduceToMatrixNumber(financialPrimary + talentZonePrimary),
+      // Badge 2 : (financialKarmicTail.primary + talentZone.primary) + femaleLine.monthYear
+      secondary: reduceToMatrixNumber(
+        financialPrimary + talentZonePrimary + femaleLineMonthYear
+      ),
+      // Badge 3 : parents.primary + karmicLife.primary
+      tertiary: reduceToMatrixNumber(parentsPrimary + karmicLifePrimary),
+      // Badge 4 : (parents.primary + karmicLife.primary) + femaleLine.monthDay
+      quaternary: reduceToMatrixNumber(
+        parentsPrimary + karmicLifePrimary + femaleLineMonthDay
+      ),
+    },
 
-    // Antécédents masculins : Héritage de la lignée paternelle
-    masculineAncestry: reduceToMatrixNumber((day + century) % 22),
+    // Antécédents masculins : Héritage de la lignée paternelle (4 badges)
+    masculineAncestry: {
+      // Badge 1 : parents.primary + talentZone.primary
+      primary: reduceToMatrixNumber(parentsPrimary + talentZonePrimary),
+      // Badge 2 : (parents.primary + talentZone.primary) + maleLine.dayMonth
+      secondary: reduceToMatrixNumber(
+        parentsPrimary + talentZonePrimary + maleLineDayMonth
+      ),
+      // Badge 3 : financialKarmicTail.primary + karmicLife.primary
+      tertiary: reduceToMatrixNumber(financialPrimary + karmicLifePrimary),
+      // Badge 4 : (financialKarmicTail.primary + karmicLife.primary) + maleLine.dayYear
+      quaternary: reduceToMatrixNumber(
+        financialPrimary + karmicLifePrimary + maleLineDayYear
+      ),
+    },
   };
 }

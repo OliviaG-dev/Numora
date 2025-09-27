@@ -219,10 +219,10 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
             <div className="matrix-karmic-item">
               <div className="karmic-badges">
                 <div className="karmic-badge-primary">
-                  {matrixDestiny.karmicLines.financialKarmicTail}
+                  {matrixDestiny.karmicLines.financialKarmicTail.primary}
                 </div>
                 <div className="karmic-badge-secondary">
-                  {matrixDestiny.karmicLines.karmicLife}
+                  {matrixDestiny.karmicLines.financialKarmicTail.secondary}
                 </div>
               </div>
               <span>Queue Karmique Financière</span>
@@ -234,10 +234,10 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
             <div className="matrix-karmic-item">
               <div className="karmic-badges">
                 <div className="karmic-badge-primary">
-                  {matrixDestiny.karmicLines.talentZone}
+                  {matrixDestiny.karmicLines.talentZone.primary}
                 </div>
                 <div className="karmic-badge-secondary">
-                  {matrixDestiny.karmicLines.socialConnection}
+                  {matrixDestiny.karmicLines.talentZone.secondary}
                 </div>
               </div>
               <span>Zone de Talent</span>
@@ -252,10 +252,10 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
             <div className="matrix-karmic-item">
               <div className="karmic-badges">
                 <div className="karmic-badge-primary">
-                  {matrixDestiny.karmicLines.parents}
+                  {matrixDestiny.karmicLines.parents.primary}
                 </div>
                 <div className="karmic-badge-secondary">
-                  {matrixDestiny.karmicLines.socialConnection}
+                  {matrixDestiny.karmicLines.parents.secondary}
                 </div>
               </div>
               <span>Parents & Lien en Société</span>
@@ -267,15 +267,15 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
             <div className="matrix-karmic-item">
               <div className="karmic-badges">
                 <div className="karmic-badge-primary">
-                  {matrixDestiny.karmicLines.feminineAncestry}
+                  {matrixDestiny.karmicLines.karmicLife.primary}
                 </div>
                 <div className="karmic-badge-secondary">
-                  {matrixDestiny.karmicLines.karmicLife}
+                  {matrixDestiny.karmicLines.karmicLife.secondary}
                 </div>
               </div>
-              <span>Antécédents Féminins</span>
+              <span>Vie Karmique</span>
               <p className="karmic-description">
-                Héritage spirituel de la lignée maternelle
+                Expériences et leçons accumulées des vies antérieures
               </p>
             </div>
           </div>
@@ -285,25 +285,37 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
             <div className="matrix-karmic-item">
               <div className="karmic-badges">
                 <div className="karmic-badge-primary">
-                  {matrixDestiny.karmicLines.karmicLife}
+                  {matrixDestiny.karmicLines.feminineAncestry.primary}
                 </div>
                 <div className="karmic-badge-secondary">
-                  {matrixDestiny.karmicLines.talentZone}
+                  {matrixDestiny.karmicLines.feminineAncestry.secondary}
+                </div>
+                <div className="karmic-badge-tertiary">
+                  {matrixDestiny.karmicLines.feminineAncestry.tertiary}
+                </div>
+                <div className="karmic-badge-quaternary">
+                  {matrixDestiny.karmicLines.feminineAncestry.quaternary}
                 </div>
               </div>
-              <span>Vie Karmique</span>
+              <span>Antécédents Féminins</span>
               <p className="karmic-description">
-                Expériences et leçons accumulées des vies antérieures
+                Héritage spirituel de la lignée maternelle
               </p>
             </div>
 
             <div className="matrix-karmic-item">
               <div className="karmic-badges">
                 <div className="karmic-badge-primary">
-                  {matrixDestiny.karmicLines.masculineAncestry}
+                  {matrixDestiny.karmicLines.masculineAncestry.primary}
                 </div>
                 <div className="karmic-badge-secondary">
-                  {matrixDestiny.karmicLines.socialConnection}
+                  {matrixDestiny.karmicLines.masculineAncestry.secondary}
+                </div>
+                <div className="karmic-badge-tertiary">
+                  {matrixDestiny.karmicLines.masculineAncestry.tertiary}
+                </div>
+                <div className="karmic-badge-quaternary">
+                  {matrixDestiny.karmicLines.masculineAncestry.quaternary}
                 </div>
               </div>
               <span>Antécédents Masculins</span>
