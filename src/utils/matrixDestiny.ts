@@ -44,6 +44,15 @@ export interface MatrixDestiny {
     energy: number;
     emotions: number;
   };
+  karmicLines: {
+    financialKarmicTail: number;
+    karmicLife: number;
+    talentZone: number;
+    socialConnection: number;
+    parents: number;
+    feminineAncestry: number;
+    masculineAncestry: number;
+  };
 }
 
 /**
@@ -78,8 +87,7 @@ export function calculateMatrixDestiny(
     dayValue,
     monthValue,
     yearValue,
-    centerMission,
-    lifeMission
+    centerMission
   );
 
   // === CHAKRAS (Calculs traditionnels précis) ===
@@ -93,6 +101,9 @@ export function calculateMatrixDestiny(
 
   // === ZONE D'ÉNERGIE COMMUNE ===
   const commonEnergyZone = calculateCommonEnergyZone(chakras);
+
+  // === LIGNES KARMIQUES ===
+  const karmicLines = calculateKarmicLines(day, month, year, lifeMission);
 
   return {
     base: {
@@ -110,6 +121,7 @@ export function calculateMatrixDestiny(
     cycles,
     special,
     commonEnergyZone,
+    karmicLines,
   };
 }
 
@@ -309,5 +321,50 @@ function calculateCommonEnergyZone(
     physics: reduceToMatrixNumber(totalPhysics),
     energy: reduceToMatrixNumber(totalEnergy),
     emotions: reduceToMatrixNumber(totalEmotions),
+  };
+}
+
+/**
+ * Calcule les lignes karmiques selon la méthode traditionnelle
+ * Ces lignes révèlent les leçons karmiques et les héritages spirituels
+ */
+function calculateKarmicLines(
+  day: number,
+  month: number,
+  year: number,
+  lifeMission: number
+): {
+  financialKarmicTail: number;
+  karmicLife: number;
+  talentZone: number;
+  socialConnection: number;
+  parents: number;
+  feminineAncestry: number;
+  masculineAncestry: number;
+} {
+  const decade = year % 100;
+  const century = Math.floor(year / 100);
+
+  return {
+    // Queue karmique financière : Dettes karmiques liées à l'argent
+    financialKarmicTail: reduceToMatrixNumber((month * day) % 22),
+
+    // Vie karmique : Expériences accumulées des vies antérieures
+    karmicLife: reduceToMatrixNumber((day + month + decade) % 22),
+
+    // Zone de talent : Dons naturels hérités karmiquement
+    talentZone: reduceToMatrixNumber((lifeMission + day) % 22),
+
+    // Lien en société : Capacité d'intégration sociale
+    socialConnection: reduceToMatrixNumber((month + year) % 22),
+
+    // Parents : Relations karmiques avec les parents
+    parents: reduceToMatrixNumber((day + year) % 22),
+
+    // Antécédents féminins : Héritage de la lignée maternelle
+    feminineAncestry: reduceToMatrixNumber((month + century) % 22),
+
+    // Antécédents masculins : Héritage de la lignée paternelle
+    masculineAncestry: reduceToMatrixNumber((day + century) % 22),
   };
 }

@@ -2380,6 +2380,47 @@
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
+/* Badges karmiques - Styles spécifiques pour éviter les conflits */
+.karmic-badge-primary {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+  width: 50px;
+  height: 50px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.karmic-badge-secondary {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+  width: 50px;
+  height: 50px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 /* Couleurs des badges Matrix */
 .day-badge {
   background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
@@ -3117,4 +3158,139 @@
 
 .matrix-number-position .chakra-badge:hover::after {
   opacity: 1;
+}
+
+/* ===== STYLES POUR LES LIGNES KARMIQUES ===== */
+
+/* Section des lignes karmiques */
+.matrix-karmic-section {
+  margin-bottom: 3rem;
+  background: var(--bg-primary);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid var(--bg-tertiary);
+}
+
+.matrix-karmic-section h3 {
+  color: var(--primary-purple);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+}
+
+/* Grid des lignes karmiques */
+.matrix-karmic-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+/* Ligne de cartes karmiques */
+.matrix-karmic-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+/* Item de ligne karmique */
+.matrix-karmic-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  border: 1px solid var(--bg-tertiary);
+  transition: all 0.3s ease;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.matrix-karmic-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+/* Container des badges karmiques */
+.karmic-badges {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+/* Titre de la ligne karmique */
+.matrix-karmic-item span {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+}
+
+/* Description karmique */
+.karmic-description {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+  font-weight: 500;
+  text-align: center;
+  max-width: 250px;
+}
+
+/* Responsive pour les lignes karmiques */
+@media (max-width: 768px) {
+  .matrix-karmic-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .matrix-karmic-item {
+    padding: 1rem;
+  }
+
+  .karmic-badges {
+    gap: 0.8rem;
+  }
+
+  .karmic-badge,
+  .karmic-badge-secondary {
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
+  }
+
+  .matrix-karmic-item span {
+    font-size: 1rem;
+  }
+
+  .karmic-description {
+    font-size: 0.85rem;
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .matrix-karmic-row {
+    grid-template-columns: 1fr;
+  }
+
+  .karmic-badges {
+    gap: 0.5rem;
+  }
+
+  .karmic-badge,
+  .karmic-badge-secondary {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
 }

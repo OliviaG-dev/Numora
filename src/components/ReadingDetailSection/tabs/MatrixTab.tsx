@@ -210,6 +210,111 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
         </div>
       </div>
 
+      {/* Lignes Karmiques */}
+      <div className="matrix-karmic-section">
+        <h3>Lignes Karmiques</h3>
+        <div className="matrix-karmic-grid">
+          {/* Ligne 1 */}
+          <div className="matrix-karmic-row">
+            <div className="matrix-karmic-item">
+              <div className="karmic-badges">
+                <div className="karmic-badge-primary">
+                  {matrixDestiny.karmicLines.financialKarmicTail}
+                </div>
+                <div className="karmic-badge-secondary">
+                  {matrixDestiny.karmicLines.karmicLife}
+                </div>
+              </div>
+              <span>Queue Karmique Financière</span>
+              <p className="karmic-description">
+                Dettes karmiques liées à l'argent et aux ressources matérielles
+              </p>
+            </div>
+
+            <div className="matrix-karmic-item">
+              <div className="karmic-badges">
+                <div className="karmic-badge-primary">
+                  {matrixDestiny.karmicLines.talentZone}
+                </div>
+                <div className="karmic-badge-secondary">
+                  {matrixDestiny.karmicLines.socialConnection}
+                </div>
+              </div>
+              <span>Zone de Talent</span>
+              <p className="karmic-description">
+                Dons naturels et compétences hérités karmiquement
+              </p>
+            </div>
+          </div>
+
+          {/* Ligne 2 */}
+          <div className="matrix-karmic-row">
+            <div className="matrix-karmic-item">
+              <div className="karmic-badges">
+                <div className="karmic-badge-primary">
+                  {matrixDestiny.karmicLines.parents}
+                </div>
+                <div className="karmic-badge-secondary">
+                  {matrixDestiny.karmicLines.socialConnection}
+                </div>
+              </div>
+              <span>Parents & Lien en Société</span>
+              <p className="karmic-description">
+                Relations karmiques parentales et capacité d'intégration sociale
+              </p>
+            </div>
+
+            <div className="matrix-karmic-item">
+              <div className="karmic-badges">
+                <div className="karmic-badge-primary">
+                  {matrixDestiny.karmicLines.feminineAncestry}
+                </div>
+                <div className="karmic-badge-secondary">
+                  {matrixDestiny.karmicLines.karmicLife}
+                </div>
+              </div>
+              <span>Antécédents Féminins</span>
+              <p className="karmic-description">
+                Héritage spirituel de la lignée maternelle
+              </p>
+            </div>
+          </div>
+
+          {/* Ligne 3 */}
+          <div className="matrix-karmic-row">
+            <div className="matrix-karmic-item">
+              <div className="karmic-badges">
+                <div className="karmic-badge-primary">
+                  {matrixDestiny.karmicLines.karmicLife}
+                </div>
+                <div className="karmic-badge-secondary">
+                  {matrixDestiny.karmicLines.talentZone}
+                </div>
+              </div>
+              <span>Vie Karmique</span>
+              <p className="karmic-description">
+                Expériences et leçons accumulées des vies antérieures
+              </p>
+            </div>
+
+            <div className="matrix-karmic-item">
+              <div className="karmic-badges">
+                <div className="karmic-badge-primary">
+                  {matrixDestiny.karmicLines.masculineAncestry}
+                </div>
+                <div className="karmic-badge-secondary">
+                  {matrixDestiny.karmicLines.socialConnection}
+                </div>
+              </div>
+              <span>Antécédents Masculins</span>
+              <p className="karmic-description">
+                Héritage spirituel de la lignée paternelle
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Chakras */}
       <div className="matrix-chakras-section">
         <h3>Chakras et Énergies</h3>
