@@ -38,11 +38,43 @@ export interface MatrixDestiny {
   special: {
     love: number;
     money: number;
+    balance: number;
   };
   commonEnergyZone?: {
     physics: number;
     energy: number;
     emotions: number;
+  };
+  karmicLines: {
+    financialKarmicTail: {
+      primary: number;
+      secondary: number;
+    };
+    karmicLife: {
+      primary: number;
+      secondary: number;
+    };
+    talentZone: {
+      primary: number;
+      secondary: number;
+    };
+    socialConnection: number;
+    parents: {
+      primary: number;
+      secondary: number;
+    };
+    feminineAncestry: {
+      primary: number;
+      secondary: number;
+      tertiary: number;
+      quaternary: number;
+    };
+    masculineAncestry: {
+      primary: number;
+      secondary: number;
+      tertiary: number;
+      quaternary: number;
+    };
   };
 }
 
@@ -83,13 +115,71 @@ export function calculateMatrixDestiny(
   );
 
   // === CHAKRAS (Calculs traditionnels précis) ===
-  const chakras = calculateChakrasTraditional(day, month, year);
+  // Calcul préliminaire des valeurs nécessaires pour les chakras
+  const parentsPrimary = reduceToMatrixNumber(maleLine.mission + dayValue);
+  const talentZonePrimary = reduceToMatrixNumber(maleLine.mission + monthValue);
+  const parentsSecondary = reduceToMatrixNumber(
+    maleLine.mission + dayValue + dayValue
+  );
+  const talentZoneSecondary = reduceToMatrixNumber(
+    maleLine.mission + monthValue + monthValue
+  );
+  const financialKarmicTailPrimary = reduceToMatrixNumber(
+    maleLine.mission + yearValue
+  );
+  const karmicLifePrimary = reduceToMatrixNumber(
+    maleLine.mission + lifeMission
+  );
+
+  const chakras = calculateChakrasTraditional(
+    day,
+    month,
+    year,
+    dayValue,
+    monthValue,
+    parentsSecondary,
+    talentZoneSecondary,
+    parentsPrimary,
+    talentZonePrimary,
+    maleLine.mission,
+    financialKarmicTailPrimary,
+    karmicLifePrimary,
+    yearValue,
+    lifeMission
+  );
 
   // === CYCLES DE VIE (Méthode traditionnelle) ===
   const cycles = calculateAgeCycles(day, month, year);
 
+  // === LIGNES KARMIQUES ===
+  // Calcul préliminaire des valeurs nécessaires pour les antécédents
+
+  const karmicLines = calculateKarmicLines(
+    month,
+    year,
+    lifeMission,
+    maleLine.mission,
+    yearValue,
+    monthValue,
+    dayValue,
+    maleLine.dayMonth,
+    maleLine.dayYear,
+    parentsPrimary,
+    karmicLifePrimary,
+    talentZonePrimary,
+    femaleLine.monthYear,
+    femaleLine.monthDay
+  );
+
   // === DOMAINES SPÉCIAUX ===
-  const special = calculateSpecialDomainsTraditional(day, month, year);
+  const special = calculateSpecialDomainsTraditional(
+    day,
+    month,
+    year,
+    karmicLifePrimary,
+    karmicLines.masculineAncestry.tertiary,
+    financialKarmicTailPrimary
+  );
 
   // === ZONE D'ÉNERGIE COMMUNE ===
   const commonEnergyZone = calculateCommonEnergyZone(chakras);
@@ -110,6 +200,7 @@ export function calculateMatrixDestiny(
     cycles,
     special,
     commonEnergyZone,
+    karmicLines,
   };
 }
 
@@ -158,7 +249,8 @@ function calculateFemaleLine(
   day: number,
   month: number,
   year: number,
-  mission: number
+  mission: number,
+  lifeMission: number
 ): {
   monthYear: number;
   mission: number;
@@ -167,7 +259,7 @@ function calculateFemaleLine(
   return {
     monthYear: month + year, // Somme brute : Mois + Année
     mission: mission,
-    monthDay: month + day, // Somme brute : Mois + Jour
+    monthDay: lifeMission + day, // lifeMission + day
   };
 }
 
@@ -191,47 +283,56 @@ function reduceToMatrixNumber(n: number): number {
 function calculateChakrasTraditional(
   day: number,
   month: number,
-  year: number
+  year: number,
+  dayValue: number,
+  monthValue: number,
+  parentsSecondary: number,
+  talentZoneSecondary: number,
+  parentsPrimary: number,
+  talentZonePrimary: number,
+  maleLineMission: number,
+  financialKarmicTailPrimary: number,
+  karmicLifePrimary: number,
+  yearValue: number,
+  lifeMission: number
 ): Record<string, { physique: number; energy: number; emotions: number }> {
-  const lifeMission = calculateLifeMission(day, month, year);
-  const century = Math.floor(year / 100);
-  const decade = year % 100;
-
   return {
     sahasrara: {
-      physique: reduceToMatrixNumber(lifeMission + century), // Mission + siècle
-      energy: reduceToMatrixNumber(lifeMission + decade), // Mission + décennie
-      emotions: reduceToMatrixNumber(lifeMission + day), // Mission + jour
+      physique: dayValue, // Jour réduit
+      energy: monthValue, // Mois réduit
+      emotions: reduceToMatrixNumber(monthValue + dayValue), // Mois + Jour
     },
     ajna: {
       physique: reduceToMatrixNumber((day * month) % 22), // Jour × mois mod 22
       energy: reduceToMatrixNumber((month * year) % 22), // Mois × année mod 22
-      emotions: reduceToMatrixNumber((day * year) % 22), // Jour × année mod 22
+      emotions: reduceToMatrixNumber(parentsSecondary + talentZoneSecondary), // parents.secondary + talentZone.secondary
     },
     vissudha: {
       physique: reduceToMatrixNumber((day + month + year) % 22), // Somme mod 22
       energy: reduceToMatrixNumber((day * 2 + month) % 22), // Jour×2 + mois mod 22
-      emotions: reduceToMatrixNumber((month * 2 + decade) % 22), // Mois×2 + décennie mod 22
+      emotions: reduceToMatrixNumber(parentsPrimary + talentZonePrimary), // parents.primary + talentZone.primary
     },
     anahata: {
       physique: reduceToMatrixNumber(((day + month) * 2) % 22), // (Jour + mois)×2 mod 22
-      energy: reduceToMatrixNumber(((month + decade) * 2) % 22), // (Mois + décennie)×2 mod 22
-      emotions: reduceToMatrixNumber(((day + decade) * 2) % 22), // (Jour + décennie)×2 mod 22
+      energy: reduceToMatrixNumber(((month + (year % 100)) * 2) % 22), // (Mois + décennie)×2 mod 22
+      emotions: reduceToMatrixNumber(((day + (year % 100)) * 2) % 22), // (Jour + décennie)×2 mod 22
     },
     manipura: {
       physique: Math.floor(day / 2) + Math.floor(month / 2), // Demi-jour + demi-mois
       energy: Math.floor(month / 2) + Math.floor(year / 200), // Demi-mois + demi-siècle
-      emotions: Math.floor(day / 2) + Math.floor(year / 200), // Demi-jour + demi-siècle
+      emotions: reduceToMatrixNumber(maleLineMission + maleLineMission), // maleLine.mission + maleLine.mission
     },
     svadhisthana: {
       physique: reduceToMatrixNumber((day * 3) % 22), // Jour×3 mod 22
       energy: reduceToMatrixNumber((month * 3) % 22), // Mois×3 mod 22
-      emotions: reduceToMatrixNumber((decade * 3) % 22), // Décennie×3 mod 22
+      emotions: reduceToMatrixNumber(
+        financialKarmicTailPrimary + karmicLifePrimary
+      ), // financialKarmicTail.primary + karmicLife.primary
     },
     muladhara: {
       physique: reduceToMatrixNumber(day % 22), // Jour mod 22
       energy: reduceToMatrixNumber(month % 22), // Mois mod 22
-      emotions: reduceToMatrixNumber(decade % 22), // Décennie mod 22
+      emotions: reduceToMatrixNumber(yearValue + lifeMission), // base.year + base.lifeMission
     },
   };
 }
@@ -272,15 +373,27 @@ function calculateAgeCycles(
 function calculateSpecialDomainsTraditional(
   day: number,
   month: number,
-  year: number
-): { love: number; money: number } {
-  // Argent : mois × année mod 22
-  const money = reduceToMatrixNumber((month * year) % 22);
+  year: number,
+  karmicLifePrimary?: number,
+  masculineAncestryTertiary?: number,
+  financialKarmicTailPrimary?: number
+): { love: number; money: number; balance: number } {
+  // Balance : masculineAncestry.tertiary (si disponible)
+  const balance =
+    masculineAncestryTertiary || reduceToMatrixNumber(day + month);
 
-  // Amour : jour × mois mod 22
-  const love = reduceToMatrixNumber((day * month) % 22);
+  // Argent : balance + financialKarmicTail.primary (si disponible)
+  const money = financialKarmicTailPrimary
+    ? reduceToMatrixNumber(balance + financialKarmicTailPrimary)
+    : reduceToMatrixNumber((month * year) % 22);
 
-  return { love, money };
+  // Amour : karmicLife.primary + masculineAncestry.tertiary (si disponibles)
+  const love =
+    karmicLifePrimary && masculineAncestryTertiary
+      ? reduceToMatrixNumber(karmicLifePrimary + masculineAncestryTertiary)
+      : reduceToMatrixNumber((day * month) % 22);
+
+  return { love, money, balance };
 }
 
 /**
@@ -309,5 +422,134 @@ function calculateCommonEnergyZone(
     physics: reduceToMatrixNumber(totalPhysics),
     energy: reduceToMatrixNumber(totalEnergy),
     emotions: reduceToMatrixNumber(totalEmotions),
+  };
+}
+
+/**
+ * Calcule les lignes karmiques selon la méthode traditionnelle
+ * Ces lignes révèlent les leçons karmiques et les héritages spirituels
+ */
+function calculateKarmicLines(
+  month: number,
+  year: number,
+  lifeMission: number,
+  maleLineMission: number,
+  yearValue: number,
+  monthValue: number,
+  dayValue: number,
+  maleLineDayMonth: number,
+  maleLineDayYear: number,
+  parentsPrimary: number,
+  karmicLifePrimary: number,
+  talentZonePrimary: number,
+  femaleLineMonthYear: number,
+  femaleLineMonthDay: number
+): {
+  financialKarmicTail: {
+    primary: number;
+    secondary: number;
+  };
+  karmicLife: {
+    primary: number;
+    secondary: number;
+  };
+  talentZone: {
+    primary: number;
+    secondary: number;
+  };
+  socialConnection: number;
+  parents: {
+    primary: number;
+    secondary: number;
+  };
+  feminineAncestry: {
+    primary: number;
+    secondary: number;
+    tertiary: number;
+    quaternary: number;
+  };
+  masculineAncestry: {
+    primary: number;
+    secondary: number;
+    tertiary: number;
+    quaternary: number;
+  };
+} {
+  // Queue karmique financière : Calcul spécial avec deux badges
+  const financialPrimary = reduceToMatrixNumber(maleLineMission + yearValue);
+  const financialSecondary = reduceToMatrixNumber(financialPrimary + yearValue);
+
+  // Vie karmique : Calcul spécial avec deux badges
+  const karmicLifeSecondary = reduceToMatrixNumber(
+    karmicLifePrimary + lifeMission
+  );
+
+  // Zone de talent : Calcul spécial avec deux badges
+  const talentZoneSecondary = reduceToMatrixNumber(
+    talentZonePrimary + monthValue
+  );
+
+  // Parents & Lien en société : Calcul spécial avec deux badges
+  const parentsSecondary = reduceToMatrixNumber(parentsPrimary + dayValue);
+
+  return {
+    // Queue karmique financière : Dettes karmiques liées à l'argent
+    financialKarmicTail: {
+      primary: financialPrimary,
+      secondary: financialSecondary,
+    },
+
+    // Vie karmique : Expériences accumulées des vies antérieures
+    karmicLife: {
+      primary: karmicLifePrimary,
+      secondary: karmicLifeSecondary,
+    },
+
+    // Zone de talent : Dons naturels hérités karmiquement
+    talentZone: {
+      primary: talentZonePrimary,
+      secondary: talentZoneSecondary,
+    },
+
+    // Lien en société : Capacité d'intégration sociale
+    socialConnection: reduceToMatrixNumber((month + year) % 22),
+
+    // Parents : Relations karmiques avec les parents
+    parents: {
+      primary: parentsPrimary,
+      secondary: parentsSecondary,
+    },
+
+    // Antécédents féminins : Héritage de la lignée maternelle (4 badges)
+    feminineAncestry: {
+      // Badge 1 : financialKarmicTail.primary + talentZone.primary
+      primary: reduceToMatrixNumber(financialPrimary + talentZonePrimary),
+      // Badge 2 : (financialKarmicTail.primary + talentZone.primary) + femaleLine.monthYear
+      secondary: reduceToMatrixNumber(
+        financialPrimary + talentZonePrimary + femaleLineMonthYear
+      ),
+      // Badge 3 : parents.primary + karmicLife.primary
+      tertiary: reduceToMatrixNumber(parentsPrimary + karmicLifePrimary),
+      // Badge 4 : (parents.primary + karmicLife.primary) + femaleLine.monthDay
+      quaternary: reduceToMatrixNumber(
+        parentsPrimary + karmicLifePrimary + femaleLineMonthDay
+      ),
+    },
+
+    // Antécédents masculins : Héritage de la lignée paternelle (4 badges)
+    masculineAncestry: {
+      // Badge 1 : parents.primary + talentZone.primary
+      primary: reduceToMatrixNumber(parentsPrimary + talentZonePrimary),
+      // Badge 2 : (parents.primary + talentZone.primary) + maleLine.dayMonth
+      secondary: reduceToMatrixNumber(
+        parentsPrimary + talentZonePrimary + maleLineDayMonth
+      ),
+      // Badge 3 : financialKarmicTail.primary + karmicLife.primary
+      tertiary: reduceToMatrixNumber(financialPrimary + karmicLifePrimary),
+      // Badge 4 : (financialKarmicTail.primary + karmicLife.primary) + maleLine.dayYear
+      quaternary: reduceToMatrixNumber(
+        financialPrimary + karmicLifePrimary + maleLineDayYear
+      ),
+    },
   };
 }
