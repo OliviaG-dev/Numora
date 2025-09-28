@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import type { TabProps } from "../shared/types";
 import { karmicDebtsData } from "../../../data";
 
-const KarmiqueTab: React.FC<TabProps> = ({
-  numerologyResults,
-  readingData,
-}) => {
+const KarmiqueTab: React.FC<TabProps> = ({ numerologyResults }) => {
   // État pour gérer l'ouverture/fermeture des accordéons karmiques
   const [openKarmicAccordions, setOpenKarmicAccordions] = useState<Set<number>>(
     new Set()

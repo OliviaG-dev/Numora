@@ -1,7 +1,8 @@
 import React, { useMemo } from "react";
 import { calculateMatrixDestiny } from "../../../utils/matrixDestiny";
+import { getRelationMeaning } from "../../../utils/matrixRelations";
+import { getMatrixMeaning } from "../../../utils/matrixDestiny/getMatrixMeaning";
 import MatrixDestinyImage from "../../../assets/Matrix_destiny.webp";
-import MatrixTimeline from "./MatrixTimeline";
 
 interface ReadingData {
   readingName: string;
@@ -290,10 +291,10 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
                 <div className="karmic-badge-secondary">
                   {matrixDestiny.karmicLines.feminineAncestry.secondary}
                 </div>
-                <div className="karmic-badge-tertiary">
+                <div className="karmic-badge-primary">
                   {matrixDestiny.karmicLines.feminineAncestry.tertiary}
                 </div>
-                <div className="karmic-badge-quaternary">
+                <div className="karmic-badge-secondary">
                   {matrixDestiny.karmicLines.feminineAncestry.quaternary}
                 </div>
               </div>
@@ -311,10 +312,10 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
                 <div className="karmic-badge-secondary">
                   {matrixDestiny.karmicLines.masculineAncestry.secondary}
                 </div>
-                <div className="karmic-badge-tertiary">
+                <div className="karmic-badge-primary">
                   {matrixDestiny.karmicLines.masculineAncestry.tertiary}
                 </div>
-                <div className="karmic-badge-quaternary">
+                <div className="karmic-badge-secondary">
                   {matrixDestiny.karmicLines.masculineAncestry.quaternary}
                 </div>
               </div>
@@ -607,6 +608,11 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
               {matrixDestiny.special.love}
             </div>
             <span>Amour</span>
+            <div className="special-description">
+              <p className="special-text">
+                {getMatrixMeaning(matrixDestiny.special.love, "love")}
+              </p>
+            </div>
           </div>
           <div className="matrix-special-item">
             <div className="special-icon">⚖️</div>
@@ -614,6 +620,11 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
               {matrixDestiny.special.balance}
             </div>
             <span>Balance</span>
+            <div className="special-description">
+              <p className="special-text">
+                {getMatrixMeaning(matrixDestiny.special.balance, "pivot")}
+              </p>
+            </div>
           </div>
           <div className="matrix-special-item">
             <div className="special-icon">💰</div>
@@ -621,39 +632,57 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
               {matrixDestiny.special.money}
             </div>
             <span>Argent</span>
+            <div className="special-description">
+              <p className="special-text">
+                {getMatrixMeaning(matrixDestiny.special.money, "money")}
+              </p>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Common Energy Zone */}
-      {matrixDestiny.commonEnergyZone && (
-        <div className="matrix-common-energy-section">
-          <h3>Zone d'Énergie Commune</h3>
-          <div className="matrix-common-energy-grid">
-            <div className="matrix-common-energy-item">
-              <div className="matrix-number-badge physics-badge">
-                {matrixDestiny.commonEnergyZone.physics}
+      {/* Heart Line */}
+      {matrixDestiny.heartLine && (
+        <div className="matrix-health-section">
+          <h3>Ligne du Cœur</h3>
+          <div className="matrix-health-grid">
+            <div className="matrix-health-item">
+              <div className="matrix-number-badge health-badge">
+                {matrixDestiny.heartLine.physique}
               </div>
               <span>Physique</span>
+              <p className="health-description">
+                Comment tu reçois l'amour / ton monde émotionnel interne.
+              </p>
+              <div className="relation-meaning">
+                <p className="relation-text">
+                  {getRelationMeaning(
+                    matrixDestiny.heartLine.physique,
+                    "interior"
+                  )}
+                </p>
+              </div>
             </div>
-            <div className="matrix-common-energy-item">
-              <div className="matrix-number-badge energy-badge">
-                {matrixDestiny.commonEnergyZone.energy}
+            <div className="matrix-health-item">
+              <div className="matrix-number-badge health-badge">
+                {matrixDestiny.heartLine.energy}
               </div>
               <span>Énergie</span>
-            </div>
-            <div className="matrix-common-energy-item">
-              <div className="matrix-number-badge emotions-badge">
-                {matrixDestiny.commonEnergyZone.emotions}
+              <p className="health-description">
+                Comment tu donnes l'amour / ton rapport aux autres.
+              </p>
+              <div className="relation-meaning">
+                <p className="relation-text">
+                  {getRelationMeaning(
+                    matrixDestiny.heartLine.energy,
+                    "exterior"
+                  )}
+                </p>
               </div>
-              <span>Émotions</span>
             </div>
           </div>
         </div>
       )}
-
-      {/* Timeline des cycles de vie */}
-      <MatrixTimeline cycles={matrixDestiny.cycles} />
 
       {/* Schéma visuel Matrix Destiny */}
       <div className="matrix-visual-section">

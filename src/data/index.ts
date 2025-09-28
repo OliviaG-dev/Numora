@@ -21,6 +21,8 @@ import dateVibeData from "./numerology/Dates/DateVibeData.json";
 import actifBusinessData from "./numerology/NaneBusiness/ActifBusinessData.json";
 import expressionBusinessData from "./numerology/DateBusiness/ExpressionBusinessData.json";
 import hereditaryBusinessData from "./numerology/NaneBusiness/HereditaryBusinessData.json";
+import matrixRelationsHeartData from "./matrixDestiny/matrixRelationsHeart.json";
+import matrixMoneyLoveData from "./matrixDestiny/matrixMoneyLove.json";
 
 // ===== EXPORTS PRINCIPAUX =====
 export {
@@ -41,6 +43,8 @@ export {
   actifBusinessData,
   expressionBusinessData,
   hereditaryBusinessData,
+  matrixRelationsHeartData,
+  matrixMoneyLoveData,
 };
 
 // ===== ALIAS POUR COMPATIBILITÉ =====
@@ -240,6 +244,27 @@ export interface HereditaryBusinessDetail {
   mission: string;
   strengths: string[];
   challenges: string[];
+}
+
+export interface MatrixRelationsHeartData {
+  interior: {
+    [key: string]: string;
+  };
+  exterior: {
+    [key: string]: string;
+  };
+}
+
+export interface MatrixMoneyLoveData {
+  love: {
+    [key: string]: string;
+  };
+  money: {
+    [key: string]: string;
+  };
+  pivot: {
+    [key: string]: string;
+  };
 }
 
 // ===== ALIAS POUR COMPATIBILITÉ =====
