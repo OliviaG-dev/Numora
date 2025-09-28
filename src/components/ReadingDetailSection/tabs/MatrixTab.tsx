@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
-import { calculateMatrixDestiny } from "../../../utils/matrixDestiny";
-import { getRelationMeaning } from "../../../utils/matrixRelations";
+import { calculateMatrixDestiny } from "../../../utils/matrixDestiny/matrixDestiny";
+import { getRelationMeaning } from "../../../utils/matrixDestiny/matrixRelations";
 import { getMatrixMeaning } from "../../../utils/matrixDestiny/getMatrixMeaning";
 import MatrixDestinyImage from "../../../assets/Matrix_destiny.webp";
 

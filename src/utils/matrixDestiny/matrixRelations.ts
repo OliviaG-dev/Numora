@@ -1,4 +1,4 @@
-import { matrixRelationsHeartData } from "../data";
+import { matrixRelationsHeartData } from "../../data";
 
 type RelationType = "interior" | "exterior";
 

@@ -239,7 +239,7 @@ Common energy-zone: P=54→9, E=63→9, É=42→6
 ## Interface TypeScript
 
 ```typescript
-interface MatrixDestinyTraditional {
+interface MatrixDestiny {
   base: {
     day: number;
     month: number;
@@ -248,8 +248,16 @@ interface MatrixDestinyTraditional {
   };
   center: {
     mission: number;
-    maleLine: number;
-    femaleLine: number;
+    maleLine: {
+      dayMonth: number;
+      mission: number;
+      dayYear: number;
+    };
+    femaleLine: {
+      monthYear: number;
+      mission: number;
+      monthDay: number;
+    };
   };
   chakras: Record<
     string,
@@ -263,11 +271,48 @@ interface MatrixDestinyTraditional {
   special: {
     love: number;
     money: number;
+    balance: number;
   };
-  commonEnergyZone: {
+  commonEnergyZone?: {
     physics: number;
     energy: number;
     emotions: number;
+  };
+  heartLine?: {
+    physique: number;
+    energy: number;
+    emotions: number;
+  };
+  karmicLines: {
+    financialKarmicTail: {
+      primary: number;
+      secondary: number;
+    };
+    karmicLife: {
+      primary: number;
+      secondary: number;
+    };
+    talentZone: {
+      primary: number;
+      secondary: number;
+    };
+    socialConnection: number;
+    parents: {
+      primary: number;
+      secondary: number;
+    };
+    feminineAncestry: {
+      primary: number;
+      secondary: number;
+      tertiary: number;
+      quaternary: number;
+    };
+    masculineAncestry: {
+      primary: number;
+      secondary: number;
+      tertiary: number;
+      quaternary: number;
+    };
   };
 }
 ```

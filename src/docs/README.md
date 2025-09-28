@@ -18,6 +18,7 @@ Cette documentation couvre tous les aspects techniques et fonctionnels de l'appl
 - [Méthode Traditionnelle](matrix-destiny-traditional.md) - Méthode classique avec structure octogonale
 - [Calculs Matrix Destiny](matrix-destiny-calculations.md) - Formules et calculs détaillés
 - [Documentation technique Matrix Destiny](matrix-destiny-technical.md) - Implémentation technique
+- [Nouvelles fonctionnalités Matrix Destiny](matrix-destiny-features.md) - Descriptions et ligne du cœur
 
 ### 🗄️ Base de données
 
@@ -27,11 +28,12 @@ Cette documentation couvre tous les aspects techniques et fonctionnels de l'appl
 
 ## Méthodes de numérologie supportées
 
-### 1. Matrix Destiny (Méthode Grabovoi) ⭐⭐⭐⭐⭐
+### 1. Matrix Destiny (Méthode Traditionnelle) ⭐⭐⭐⭐⭐
 
 - **Précision** : Maximale
 - **Fiabilité** : Très élevée
-- **Base** : Mathématiques pures et physique quantique
+- **Base** : Structure octogonale et nombres non réduits
+- **Fonctionnalités** : Descriptions des domaines spéciaux, ligne du cœur
 - **Documentation** : [matrix-destiny-methods.md](matrix-destiny-methods.md)
 
 ### 2. Numérologie traditionnelle
@@ -64,7 +66,7 @@ Cette documentation couvre tous les aspects techniques et fonctionnels de l'appl
 
 ### Calculs
 
-- **Méthode principale** : Grabovoi (Matrix Destiny)
+- **Méthode principale** : Matrix Destiny (Méthode Traditionnelle)
 - **Méthodes secondaires** : Numérologie traditionnelle
 - **Langage** : TypeScript
 - **Validation** : Tests unitaires
@@ -106,7 +108,10 @@ src/
 │   └── ...
 ├── utils/              # Utilitaires et calculs
 │   ├── numerology/     # Calculs de numérologie
-│   └── matrixDestiny.ts # Calculs Matrix Destiny
+│   └── matrixDestiny/  # Calculs Matrix Destiny
+│       ├── matrixDestiny.ts      # Calculs principaux
+│       ├── matrixRelations.ts    # Relations du cœur
+│       └── getMatrixMeaning.ts   # Significations des domaines
 ├── docs/               # Documentation
 ├── data/               # Données statiques
 └── types/              # Types TypeScript
@@ -117,7 +122,9 @@ src/
 ### Matrix Destiny
 
 ```typescript
-calculateMatrixDestiny(day: number, month: number, year: number, name?: string): MatrixDestiny
+calculateMatrixDestiny(day: number, month: number, year: number): MatrixDestiny
+getMatrixMeaning(number: number, category: "love" | "money" | "pivot"): string
+getRelationMeaning(number: number, type: "interior" | "exterior"): string
 ```
 
 ### Numérologie traditionnelle
@@ -175,9 +182,17 @@ npm run lint
 
 ## Changelog
 
+### Version 2.1.0 (Décembre 2024)
+
+- ✅ Descriptions des domaines spéciaux (Amour, Argent, Balance)
+- ✅ Ligne du cœur avec descriptions interior/exterior
+- ✅ Organisation modulaire du code Matrix Destiny
+- ✅ Nouvelles données JSON pour les significations
+- ✅ Interface utilisateur enrichie
+
 ### Version 2.0.0 (Décembre 2024)
 
-- ✅ Implémentation de la méthode Grabovoi pour Matrix Destiny
+- ✅ Implémentation de la méthode traditionnelle pour Matrix Destiny
 - ✅ Documentation complète des méthodes
 - ✅ Interface utilisateur améliorée
 - ✅ Calculs plus précis et fiables
