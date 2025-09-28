@@ -290,10 +290,10 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
                 <div className="karmic-badge-secondary">
                   {matrixDestiny.karmicLines.feminineAncestry.secondary}
                 </div>
-                <div className="karmic-badge-tertiary">
+                <div className="karmic-badge-primary">
                   {matrixDestiny.karmicLines.feminineAncestry.tertiary}
                 </div>
-                <div className="karmic-badge-quaternary">
+                <div className="karmic-badge-secondary">
                   {matrixDestiny.karmicLines.feminineAncestry.quaternary}
                 </div>
               </div>
@@ -311,10 +311,10 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
                 <div className="karmic-badge-secondary">
                   {matrixDestiny.karmicLines.masculineAncestry.secondary}
                 </div>
-                <div className="karmic-badge-tertiary">
+                <div className="karmic-badge-primary">
                   {matrixDestiny.karmicLines.masculineAncestry.tertiary}
                 </div>
-                <div className="karmic-badge-quaternary">
+                <div className="karmic-badge-secondary">
                   {matrixDestiny.karmicLines.masculineAncestry.quaternary}
                 </div>
               </div>
@@ -625,28 +625,28 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
         </div>
       </div>
 
-      {/* Common Energy Zone */}
-      {matrixDestiny.commonEnergyZone && (
-        <div className="matrix-common-energy-section">
-          <h3>Zone d'Énergie Commune</h3>
-          <div className="matrix-common-energy-grid">
-            <div className="matrix-common-energy-item">
-              <div className="matrix-number-badge physics-badge">
-                {matrixDestiny.commonEnergyZone.physics}
+      {/* Heart Line */}
+      {matrixDestiny.heartLine && (
+        <div className="matrix-health-section">
+          <h3>Ligne du Cœur</h3>
+          <div className="matrix-health-grid">
+            <div className="matrix-health-item">
+              <div className="matrix-number-badge health-badge">
+                {matrixDestiny.heartLine.physique}
               </div>
               <span>Physique</span>
+              <p className="health-description">
+                Comment tu reçois l'amour / ton monde émotionnel interne.
+              </p>
             </div>
-            <div className="matrix-common-energy-item">
-              <div className="matrix-number-badge energy-badge">
-                {matrixDestiny.commonEnergyZone.energy}
+            <div className="matrix-health-item">
+              <div className="matrix-number-badge health-badge">
+                {matrixDestiny.heartLine.energy}
               </div>
               <span>Énergie</span>
-            </div>
-            <div className="matrix-common-energy-item">
-              <div className="matrix-number-badge emotions-badge">
-                {matrixDestiny.commonEnergyZone.emotions}
-              </div>
-              <span>Émotions</span>
+              <p className="health-description">
+                Comment tu donnes l'amour / ton rapport aux autres.
+              </p>
             </div>
           </div>
         </div>

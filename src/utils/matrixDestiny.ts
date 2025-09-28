@@ -45,6 +45,11 @@ export interface MatrixDestiny {
     energy: number;
     emotions: number;
   };
+  heartLine?: {
+    physique: number;
+    energy: number;
+    emotions: number;
+  };
   karmicLines: {
     financialKarmicTail: {
       primary: number;
@@ -131,6 +136,13 @@ export function calculateMatrixDestiny(
     maleLine.mission + lifeMission
   );
 
+  // === LIGNE DU CŒUR (calculée avant les chakras) ===
+  const heartLine = calculateHeartLine(
+    parentsPrimary, // parents.primary (déjà réduit)
+    maleLine.mission, // maleLine.mission (centre de la matrix)
+    talentZonePrimary // talentZone.primary (déjà réduit)
+  );
+
   const chakras = calculateChakrasTraditional(
     day,
     month,
@@ -145,7 +157,8 @@ export function calculateMatrixDestiny(
     financialKarmicTailPrimary,
     karmicLifePrimary,
     yearValue,
-    lifeMission
+    lifeMission,
+    heartLine
   );
 
   // === CYCLES DE VIE (Méthode traditionnelle) ===
@@ -200,6 +213,7 @@ export function calculateMatrixDestiny(
     cycles,
     special,
     commonEnergyZone,
+    heartLine,
     karmicLines,
   };
 }
@@ -294,7 +308,8 @@ function calculateChakrasTraditional(
   financialKarmicTailPrimary: number,
   karmicLifePrimary: number,
   yearValue: number,
-  lifeMission: number
+  lifeMission: number,
+  heartLine: { physique: number; energy: number; emotions: number }
 ): Record<string, { physique: number; energy: number; emotions: number }> {
   return {
     sahasrara: {
@@ -313,9 +328,9 @@ function calculateChakrasTraditional(
       emotions: reduceToMatrixNumber(parentsPrimary + talentZonePrimary), // parents.primary + talentZone.primary
     },
     anahata: {
-      physique: reduceToMatrixNumber(((day + month) * 2) % 22), // (Jour + mois)×2 mod 22
-      energy: reduceToMatrixNumber(((month + (year % 100)) * 2) % 22), // (Mois + décennie)×2 mod 22
-      emotions: reduceToMatrixNumber(((day + (year % 100)) * 2) % 22), // (Jour + décennie)×2 mod 22
+      physique: heartLine.physique, // parents.primary + maleLine.mission
+      energy: heartLine.energy, // maleLine.mission + talentZone.primary
+      emotions: heartLine.emotions, // physique + énergie
     },
     manipura: {
       physique: Math.floor(day / 2) + Math.floor(month / 2), // Demi-jour + demi-mois
@@ -551,5 +566,27 @@ function calculateKarmicLines(
         financialPrimary + karmicLifePrimary + maleLineDayYear
       ),
     },
+  };
+}
+
+/**
+ * Calcule la ligne du cœur
+ * Physique : parents.primary + maleLine.mission
+ * Énergie : maleLine.mission + talentZone.primary
+ * Émotions : physique + énergie (pour le chakra Anahata)
+ */
+function calculateHeartLine(
+  parentsPrimary: number,
+  maleLineMission: number,
+  talentZonePrimary: number
+): { physique: number; energy: number; emotions: number } {
+  const physique = reduceToMatrixNumber(parentsPrimary + maleLineMission);
+  const energy = reduceToMatrixNumber(maleLineMission + talentZonePrimary);
+  const emotions = reduceToMatrixNumber(physique + energy);
+
+  return {
+    physique,
+    energy,
+    emotions,
   };
 }
