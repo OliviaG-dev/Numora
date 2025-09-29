@@ -2424,6 +2424,109 @@
   text-align: center;
 }
 
+/* Section Relations Extérieures */
+.matrix-external-relations-section {
+  margin-bottom: 3rem;
+  background: var(--bg-primary);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid var(--bg-tertiary);
+}
+
+.matrix-external-relations-section .section-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.matrix-external-relations-section h3 {
+  color: var(--primary-purple);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+}
+
+.matrix-external-relations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.matrix-external-relation-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  border: 1px solid var(--bg-tertiary);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(107, 70, 193, 0.1);
+}
+
+.matrix-external-relation-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(107, 70, 193, 0.2);
+}
+
+.matrix-external-relation-item span {
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.external-relation-description {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  text-align: center;
+  margin: 0.5rem 0;
+}
+
+.matrix-external-relation-item .matrix-number-badge {
+  width: 50px;
+  height: 50px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(
+    135deg,
+    var(--primary-purple) 0%,
+    var(--primary-purple-light) 100%
+  );
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(107, 70, 193, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.matrix-external-relation-item .relation-meaning {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(107, 70, 193, 0.1);
+  border-radius: 12px;
+  border-left: 4px solid var(--primary-purple);
+  backdrop-filter: blur(5px);
+}
+
+.matrix-external-relation-item .relation-text {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+  font-weight: 500;
+  font-style: italic;
+  text-align: center;
+}
+
 .matrix-special-item {
   display: flex;
   flex-direction: column;
@@ -2786,33 +2889,26 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  max-width: 600px; /* Largeur fixe pour éviter les variations */
+  margin: 0 auto; /* Centre le conteneur */
 }
 
 /* Wrapper de l'image */
 .matrix-image-wrapper {
   position: relative;
-  display: inline-block;
-  max-width: 100%;
-  width: 600px;
-  height: auto;
+  display: block; /* Change de inline-block à block */
+  width: 600px; /* Largeur fixe */
+  height: 600px; /* Hauteur fixe pour éviter les variations */
+  overflow: hidden; /* Cache les débordements */
+  flex-shrink: 0; /* Empêche la réduction de taille */
 }
 
 /* Image Matrix Destiny */
 .matrix-destiny-image {
   width: 100%;
-  height: auto;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
-}
-
-/* Désactiver les effets de hover sur l'image du schéma */
-.matrix-visual-section .matrix-destiny-image:hover {
-  transform: none;
-}
-
-.matrix-destiny-image:hover {
-  transform: scale(1.02);
+  height: 100%; /* Remplit le conteneur fixe */
+  object-fit: contain; /* Garde les proportions */
+  object-position: center; /* Centre l'image */
 }
 
 .base {
@@ -2821,8 +2917,24 @@
   font-weight: 700;
 }
 
+.moyen {
+  font-size: 1.2rem;
+  z-index: 7;
+  font-weight: 700;
+}
+
+.petit {
+  font-size: 1rem;
+  z-index: 7;
+  font-weight: 700;
+}
+
 .black-text {
-  color: black;
+  color: rgb(12, 3, 32);
+}
+
+.white-text {
+  color: rgb(228, 219, 219);
 }
 
 /* Overlay pour positionner les chiffres */
@@ -2830,8 +2942,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 600px; /* Largeur fixe égale au wrapper */
+  height: 600px; /* Hauteur fixe égale au wrapper */
   pointer-events: none;
 }
 
@@ -2944,6 +3056,11 @@
   z-index: 7;
 }
 
+/* Styles pour les lignes du cœur */
+.matrix-number-position.heart-line {
+  z-index: 8;
+}
+
 /* Centre de la Matrix */
 .matrix-number-position.center-mission {
   z-index: 10;
@@ -2956,6 +3073,33 @@
   font-size: 1.4rem;
   box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
   border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Badges adjacents au centre */
+.center-adjacent-badge {
+  background: white;
+  border: 2px solid #0f4d94;
+  color: rgb(12, 3, 32);
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+/* Tailles spécifiques pour les badges adjacents */
+.matrix-number-position.center-adjacent-medium .center-adjacent-badge {
+  width: 40px;
+  height: 40px;
+  font-size: 1.1rem;
+}
+
+.matrix-number-position.center-adjacent-small .center-adjacent-badge {
+  width: 30px;
+  height: 30px;
+  font-size: 0.9rem;
 }
 
 /* Animation des badges sur l'image */

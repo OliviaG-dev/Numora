@@ -1,7 +1,8 @@
 import React, { useMemo } from "react";
-import { calculateMatrixDestiny } from "../../../utils/matrixDestiny";
-import { getRelationMeaning } from "../../../utils/matrixRelations";
+import { calculateMatrixDestiny } from "../../../utils/matrixDestiny/matrixDestiny";
+import { getRelationMeaning } from "../../../utils/matrixDestiny/matrixRelations";
 import { getMatrixMeaning } from "../../../utils/matrixDestiny/getMatrixMeaning";
+import { getExternalRelationsMeaning } from "../../../utils/matrixDestiny/getExternalRelationsMeaning";
 import MatrixDestinyImage from "../../../assets/Matrix_destiny.webp";
 
 interface ReadingData {
@@ -684,6 +685,92 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
         </div>
       )}
 
+      {/* Relations Extérieures */}
+      <div className="matrix-external-relations-section">
+        <div className="section-header">
+          <div className="title-with-tooltip">
+            <h3>Relations Extérieures</h3>
+            <div className="tooltip">
+              <span className="tooltip-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <path
+                    d="M12 16V12"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                  <circle cx="12" cy="8" r="1" fill="currentColor" />
+                </svg>
+              </span>
+              <div className="tooltip-content">
+                <p>
+                  Cette section révèle la manière dont une personne ou une
+                  organisation interagit avec le monde extérieur. Elle montre
+                  comment l'énergie se manifeste dans les relations sociales,
+                  professionnelles et matérielles.
+                </p>
+                <p>
+                  Les nombres ici traduisent la capacité à influencer, donner et
+                  agir dans la société.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="matrix-external-relations-grid">
+          <div className="matrix-external-relation-item">
+            <div className="matrix-number-badge external-relation-badge">
+              {matrixDestiny.externalRelations.personalPower}
+            </div>
+            <span>Pouvoir Personnel</span>
+            <p className="external-relation-description">
+              Ce chiffre reflète la manière dont tu t’affirmes au sein des
+              groupes, au travail ou dans la société en général.
+            </p>
+            <div className="relation-meaning">
+              <p className="relation-text">
+                {getExternalRelationsMeaning(
+                  matrixDestiny.externalRelations.personalPower,
+                  "pouvoir_social"
+                )}
+              </p>
+            </div>
+          </div>
+          <div className="matrix-external-relation-item">
+            <div className="matrix-number-badge external-relation-badge">
+              {matrixDestiny.externalRelations.socialInfluence}
+            </div>
+            <span>Influence Sociale</span>
+            <p className="external-relation-description">
+              Cela montre comment ton énergie inspire et influence naturellement
+              les autres, sans avoir à imposer quoi que ce soit.
+            </p>
+            <div className="relation-meaning">
+              <p className="relation-text">
+                {getExternalRelationsMeaning(
+                  matrixDestiny.externalRelations.socialInfluence,
+                  "influence_social"
+                )}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Schéma visuel Matrix Destiny */}
       <div className="matrix-visual-section">
         <h3>Schéma de votre Matrix Destiny</h3>
@@ -700,30 +787,34 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
               {/* Nombres de base - Positionnement autour de l'image */}
               <div
                 className="matrix-number-position base-day"
-                style={{ top: "49.5%", left: "6.5%" }}
+                style={{ top: "50%", left: "6.5%" }}
               >
-                <div className="base">{matrixDestiny.base.day}</div>
+                <div className="base white-text">{matrixDestiny.base.day}</div>
               </div>
 
               <div
                 className="matrix-number-position base-month"
-                style={{ top: "6.5%", right: "44.25%" }}
+                style={{ top: "6.5%", left: "50%" }}
               >
-                <div className="base">{matrixDestiny.base.month}</div>
+                <div className="base white-text">
+                  {matrixDestiny.base.month}
+                </div>
               </div>
 
               <div
                 className="matrix-number-position base-year"
-                style={{ bottom: "42.5%", right: "3%" }}
+                style={{ bottom: "41.5%", left: "94%" }}
               >
-                <div className="base">{matrixDestiny.base.year}</div>
+                <div className="base white-text">{matrixDestiny.base.year}</div>
               </div>
 
               <div
                 className="matrix-number-position base-mission"
-                style={{ bottom: "-1%", right: "45.5%" }}
+                style={{ bottom: "-2%", left: "50%" }}
               >
-                <div className="base">{matrixDestiny.base.lifeMission}</div>
+                <div className="base white-text">
+                  {matrixDestiny.base.lifeMission}
+                </div>
               </div>
 
               {/* Centre de la Matrix */}
@@ -733,6 +824,25 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
               >
                 <div className="base black-text">
                   {matrixDestiny.center.mission}
+                </div>
+              </div>
+
+              {/* Badges à côté du centre */}
+              <div
+                className="matrix-number-position center-adjacent-medium"
+                style={{ top: "50%", left: "58.5%" }}
+              >
+                <div className="moyen center-adjacent-badge">
+                  {matrixDestiny.externalRelations.personalPower}
+                </div>
+              </div>
+
+              <div
+                className="matrix-number-position center-adjacent-small"
+                style={{ top: "50%", left: "64.5%" }}
+              >
+                <div className="petit center-adjacent-badge">
+                  {matrixDestiny.externalRelations.socialInfluence}
                 </div>
               </div>
 
@@ -748,7 +858,43 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
 
               <div
                 className="matrix-number-position male-line"
-                style={{ bottom: "11.75%", right: "13.5%" }}
+                style={{ top: "29%", left: "29.5%" }}
+              >
+                <div className="petit black-text">
+                  {matrixDestiny.karmicLines.masculineAncestry.primary}
+                </div>
+              </div>
+
+              <div
+                className="matrix-number-position male-line"
+                style={{ top: "25.1%", left: "25.2%" }}
+              >
+                <div className="moyen black-text">
+                  {matrixDestiny.karmicLines.masculineAncestry.secondary}
+                </div>
+              </div>
+
+              <div
+                className="matrix-number-position male-line"
+                style={{ bottom: "24.8%", left: "71.1%" }}
+              >
+                <div className="petit black-text">
+                  {matrixDestiny.karmicLines.masculineAncestry.tertiary}
+                </div>
+              </div>
+
+              <div
+                className="matrix-number-position male-line"
+                style={{ bottom: "19.9%", left: "75.3%" }}
+              >
+                <div className="moyen black-text">
+                  {matrixDestiny.karmicLines.masculineAncestry.quaternary}
+                </div>
+              </div>
+
+              <div
+                className="matrix-number-position male-line"
+                style={{ bottom: "10.55%", left: "80.5%" }}
               >
                 <div className="base black-text">
                   {matrixDestiny.center.maleLine.dayYear}
@@ -757,7 +903,7 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
 
               <div
                 className="matrix-number-position female-line"
-                style={{ top: "19%", right: "13.75%" }}
+                style={{ top: "19%", left: "80.5%" }}
               >
                 <div className="base black-text">
                   {matrixDestiny.center.femaleLine.monthYear}
@@ -766,7 +912,43 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
 
               <div
                 className="matrix-number-position female-line"
-                style={{ bottom: "12%", left: "19.50%" }}
+                style={{ top: "29.8%", left: "71%" }}
+              >
+                <div className="petit black-text">
+                  {matrixDestiny.karmicLines.feminineAncestry.primary}
+                </div>
+              </div>
+
+              <div
+                className="matrix-number-position female-line"
+                style={{ top: "25%", left: "75%" }}
+              >
+                <div className="moyen black-text">
+                  {matrixDestiny.karmicLines.feminineAncestry.secondary}
+                </div>
+              </div>
+
+              <div
+                className="matrix-number-position female-line"
+                style={{ bottom: "24.7%", left: "29.30%" }}
+              >
+                <div className="petit black-text">
+                  {matrixDestiny.karmicLines.feminineAncestry.tertiary}
+                </div>
+              </div>
+
+              <div
+                className="matrix-number-position female-line"
+                style={{ bottom: "20%", left: "25%" }}
+              >
+                <div className="moyen black-text">
+                  {matrixDestiny.karmicLines.feminineAncestry.quaternary}
+                </div>
+              </div>
+
+              <div
+                className="matrix-number-position female-line"
+                style={{ bottom: "10.5%", left: "19.50%" }}
               >
                 <div className="base black-text">
                   {matrixDestiny.center.femaleLine.monthDay}
@@ -776,16 +958,126 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
               {/* Domaines spéciaux */}
               <div
                 className="matrix-number-position special-love"
-                style={{ bottom: "15%", left: "50%" }}
+                style={{ bottom: "26.2%", left: "63%" }}
               >
-                <div className="base">{matrixDestiny.special.love}</div>
+                <div className="petit black-text">
+                  {matrixDestiny.special.love}
+                </div>
+              </div>
+
+              <div
+                className="matrix-number-position special-balance"
+                style={{ bottom: "32%", left: "63.5%" }}
+              >
+                <div className="petit black-text">
+                  {matrixDestiny.special.balance}
+                </div>
               </div>
 
               <div
                 className="matrix-number-position special-money"
-                style={{ top: "15%", left: "50%" }}
+                style={{ bottom: "32.5%", left: "69.6%" }}
               >
-                <div className="base">{matrixDestiny.special.money}</div>
+                <div className="petit black-text">
+                  {matrixDestiny.special.money}
+                </div>
+              </div>
+
+              {/* Heart Line */}
+              {matrixDestiny.heartLine && (
+                <>
+                  <div
+                    className="matrix-number-position heart-line"
+                    style={{ top: "34.8%", left: "50%" }}
+                  >
+                    <div className="petit black-text">
+                      {matrixDestiny.heartLine.energy}
+                    </div>
+                  </div>
+                  <div
+                    className="matrix-number-position heart-line"
+                    style={{ top: "50%", left: "35.65%" }}
+                  >
+                    <div className="petit black-text">
+                      {matrixDestiny.heartLine.physique}
+                    </div>
+                  </div>
+                </>
+              )}
+              {/* Zone de Talent */}
+              <div
+                className="matrix-number-position talent-zone"
+                style={{ top: "20.8%", left: "50.2%" }}
+              >
+                <div className="petit black-text">
+                  {matrixDestiny.karmicLines.talentZone.primary}
+                </div>
+              </div>
+
+              <div
+                className="matrix-number-position talent-zone"
+                style={{ top: "14.8%", left: "50.2%" }}
+              >
+                <div className="moyen white-text">
+                  {matrixDestiny.karmicLines.talentZone.secondary}
+                </div>
+              </div>
+
+              {/* Parents & Lien en Société */}
+              <div
+                className="matrix-number-position parents-zone"
+                style={{ top: "50%", left: "21%" }}
+              >
+                <div className="petit black-text">
+                  {matrixDestiny.karmicLines.parents.primary}
+                </div>
+              </div>
+
+              <div
+                className="matrix-number-position parents-zone"
+                style={{ top: "50%", left: "15%" }}
+              >
+                <div className="petit white-text">
+                  {matrixDestiny.karmicLines.parents.secondary}
+                </div>
+              </div>
+
+              {/*Vie Karmique */}
+              <div
+                className="matrix-number-position karmic-life"
+                style={{ bottom: "16%", left: "50%" }}
+              >
+                <div className="petit black-text">
+                  {matrixDestiny.karmicLines.karmicLife.primary}
+                </div>
+              </div>
+
+              <div
+                className="matrix-number-position karmic-life"
+                style={{ bottom: "9.5%", left: "50%" }}
+              >
+                <div className="moyen black-text">
+                  {matrixDestiny.karmicLines.karmicLife.secondary}
+                </div>
+              </div>
+
+              {/*Queue Karmique Financière*/}
+              <div
+                className="matrix-number-position financial-karmic-tail"
+                style={{ bottom: "45.5%", left: "79.5%" }}
+              >
+                <div className="petit black-text">
+                  {matrixDestiny.karmicLines.financialKarmicTail.primary}
+                </div>
+              </div>
+
+              <div
+                className="matrix-number-position financial-karmic-tail"
+                style={{ bottom: "44.8%", left: "85.8%" }}
+              >
+                <div className="moyen black-text">
+                  {matrixDestiny.karmicLines.financialKarmicTail.secondary}
+                </div>
               </div>
             </div>
           </div>
