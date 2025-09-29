@@ -2801,18 +2801,6 @@
 .matrix-destiny-image {
   width: 100%;
   height: auto;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
-}
-
-/* Désactiver les effets de hover sur l'image du schéma */
-.matrix-visual-section .matrix-destiny-image:hover {
-  transform: none;
-}
-
-.matrix-destiny-image:hover {
-  transform: scale(1.02);
 }
 
 .base {
@@ -2821,8 +2809,24 @@
   font-weight: 700;
 }
 
+.moyen {
+  font-size: 1.2rem;
+  z-index: 7;
+  font-weight: 700;
+}
+
+.petit {
+  font-size: 1rem;
+  z-index: 7;
+  font-weight: 700;
+}
+
 .black-text {
-  color: black;
+  color: rgb(12, 3, 32);
+}
+
+.white-text {
+  color: rgb(228, 219, 219);
 }
 
 /* Overlay pour positionner les chiffres */
@@ -2942,6 +2946,11 @@
 .matrix-number-position.special-love,
 .matrix-number-position.special-money {
   z-index: 7;
+}
+
+/* Styles pour les lignes du cœur */
+.matrix-number-position.heart-line {
+  z-index: 8;
 }
 
 /* Centre de la Matrix */
