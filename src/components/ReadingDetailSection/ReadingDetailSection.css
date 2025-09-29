@@ -2786,21 +2786,26 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  max-width: 600px; /* Largeur fixe pour éviter les variations */
+  margin: 0 auto; /* Centre le conteneur */
 }
 
 /* Wrapper de l'image */
 .matrix-image-wrapper {
   position: relative;
-  display: inline-block;
-  max-width: 100%;
-  width: 600px;
-  height: auto;
+  display: block; /* Change de inline-block à block */
+  width: 600px; /* Largeur fixe */
+  height: 600px; /* Hauteur fixe pour éviter les variations */
+  overflow: hidden; /* Cache les débordements */
+  flex-shrink: 0; /* Empêche la réduction de taille */
 }
 
 /* Image Matrix Destiny */
 .matrix-destiny-image {
   width: 100%;
-  height: auto;
+  height: 100%; /* Remplit le conteneur fixe */
+  object-fit: contain; /* Garde les proportions */
+  object-position: center; /* Centre l'image */
 }
 
 .base {
@@ -2834,8 +2839,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 600px; /* Largeur fixe égale au wrapper */
+  height: 600px; /* Hauteur fixe égale au wrapper */
   pointer-events: none;
 }
 

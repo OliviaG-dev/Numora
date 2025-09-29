@@ -700,30 +700,34 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
               {/* Nombres de base - Positionnement autour de l'image */}
               <div
                 className="matrix-number-position base-day"
-                style={{ top: "49.5%", left: "6.5%" }}
+                style={{ top: "50%", left: "6.5%" }}
               >
                 <div className="base white-text">{matrixDestiny.base.day}</div>
               </div>
 
               <div
                 className="matrix-number-position base-month"
-                style={{ top: "6.5%", right: "44.25%" }}
+                style={{ top: "6.5%", left: "50%" }}
               >
-                <div className="base white-text">{matrixDestiny.base.month}</div>
+                <div className="base white-text">
+                  {matrixDestiny.base.month}
+                </div>
               </div>
 
               <div
                 className="matrix-number-position base-year"
-                style={{ bottom: "42.5%", right: "3%" }}
+                style={{ bottom: "41.5%", left: "94%" }}
               >
                 <div className="base white-text">{matrixDestiny.base.year}</div>
               </div>
 
               <div
                 className="matrix-number-position base-mission"
-                style={{ bottom: "-1%", right: "45.5%" }}
+                style={{ bottom: "-2%", left: "50%" }}
               >
-                <div className="base white-text">{matrixDestiny.base.lifeMission}</div>
+                <div className="base white-text">
+                  {matrixDestiny.base.lifeMission}
+                </div>
               </div>
 
               {/* Centre de la Matrix */}
@@ -766,7 +770,7 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
 
               <div
                 className="matrix-number-position male-line"
-                style={{ bottom: "25.8%", right: "26.98%" }}
+                style={{ bottom: "24.8%", left: "71.1%" }}
               >
                 <div className="petit black-text">
                   {matrixDestiny.karmicLines.masculineAncestry.tertiary}
@@ -775,7 +779,7 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
 
               <div
                 className="matrix-number-position male-line"
-                style={{ bottom: "20.8%", right: "21.25%" }}
+                style={{ bottom: "19.9%", left: "75.3%" }}
               >
                 <div className="moyen black-text">
                   {matrixDestiny.karmicLines.masculineAncestry.quaternary}
@@ -784,7 +788,7 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
 
               <div
                 className="matrix-number-position male-line"
-                style={{ bottom: "11.75%", right: "13.5%" }}
+                style={{ bottom: "10.55%", left: "80.5%" }}
               >
                 <div className="base black-text">
                   {matrixDestiny.center.maleLine.dayYear}
@@ -793,7 +797,7 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
 
               <div
                 className="matrix-number-position female-line"
-                style={{ top: "19%", right: "13.75%" }}
+                style={{ top: "19%", left: "80.5%" }}
               >
                 <div className="base black-text">
                   {matrixDestiny.center.femaleLine.monthYear}
@@ -802,7 +806,7 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
 
               <div
                 className="matrix-number-position female-line"
-                style={{ top: "29.4%", right: "27.15%" }}
+                style={{ top: "29.8%", left: "71%" }}
               >
                 <div className="petit black-text">
                   {matrixDestiny.karmicLines.feminineAncestry.primary}
@@ -811,7 +815,7 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
 
               <div
                 className="matrix-number-position female-line"
-                style={{ top: "24.8%", right: "22.80%" }}
+                style={{ top: "25%", left: "75%" }}
               >
                 <div className="moyen black-text">
                   {matrixDestiny.karmicLines.feminineAncestry.secondary}
@@ -820,7 +824,7 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
 
               <div
                 className="matrix-number-position female-line"
-                style={{ bottom: "25.5%", left: "29.30%" }}
+                style={{ bottom: "24.7%", left: "29.30%" }}
               >
                 <div className="petit black-text">
                   {matrixDestiny.karmicLines.feminineAncestry.tertiary}
@@ -829,7 +833,7 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
 
               <div
                 className="matrix-number-position female-line"
-                style={{ bottom: "20.80%", left: "25%" }}
+                style={{ bottom: "20%", left: "25%" }}
               >
                 <div className="moyen black-text">
                   {matrixDestiny.karmicLines.feminineAncestry.quaternary}
@@ -838,7 +842,7 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
 
               <div
                 className="matrix-number-position female-line"
-                style={{ bottom: "11.5%", left: "19.50%" }}
+                style={{ bottom: "10.5%", left: "19.50%" }}
               >
                 <div className="base black-text">
                   {matrixDestiny.center.femaleLine.monthDay}
@@ -848,7 +852,7 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
               {/* Domaines spéciaux */}
               <div
                 className="matrix-number-position special-love"
-                style={{ bottom: "27.2%", right: "35.2%" }}
+                style={{ bottom: "26.2%", left: "63%" }}
               >
                 <div className="petit black-text">
                   {matrixDestiny.special.love}
@@ -857,7 +861,7 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
 
               <div
                 className="matrix-number-position special-balance"
-                style={{ bottom: "33%", right: "34.7%" }}
+                style={{ bottom: "32%", left: "63.5%" }}
               >
                 <div className="petit black-text">
                   {matrixDestiny.special.balance}
@@ -866,7 +870,7 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
 
               <div
                 className="matrix-number-position special-money"
-                style={{ bottom: "33.5%", right: "27.5%" }}
+                style={{ bottom: "32.5%", left: "69.6%" }}
               >
                 <div className="petit black-text">
                   {matrixDestiny.special.money}
@@ -878,7 +882,7 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
                 <>
                   <div
                     className="matrix-number-position heart-line"
-                    style={{ top: "34.4%", left: "50%" }}
+                    style={{ top: "34.8%", left: "50%" }}
                   >
                     <div className="petit black-text">
                       {matrixDestiny.heartLine.energy}
@@ -886,7 +890,7 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
                   </div>
                   <div
                     className="matrix-number-position heart-line"
-                    style={{ top: "49.5%", left: "35.65%" }}
+                    style={{ top: "50%", left: "35.65%" }}
                   >
                     <div className="petit black-text">
                       {matrixDestiny.heartLine.physique}
@@ -897,7 +901,7 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
               {/* Zone de Talent */}
               <div
                 className="matrix-number-position talent-zone"
-                style={{ top: "20.5%", right: "46.85%" }}
+                style={{ top: "20.8%", left: "50.2%" }}
               >
                 <div className="petit black-text">
                   {matrixDestiny.karmicLines.talentZone.primary}
@@ -906,7 +910,7 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
 
               <div
                 className="matrix-number-position talent-zone"
-                style={{ top: "14.8%", right: "47.75%" }}
+                style={{ top: "14.8%", left: "50.2%" }}
               >
                 <div className="moyen white-text">
                   {matrixDestiny.karmicLines.talentZone.secondary}
@@ -916,7 +920,7 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
               {/* Parents & Lien en Société */}
               <div
                 className="matrix-number-position parents-zone"
-                style={{ top: "49.5%", left: "21%" }}
+                style={{ top: "50%", left: "21%" }}
               >
                 <div className="petit black-text">
                   {matrixDestiny.karmicLines.parents.primary}
@@ -925,17 +929,17 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
 
               <div
                 className="matrix-number-position parents-zone"
-                style={{ top: "49.5%", left: "15%" }}
+                style={{ top: "50%", left: "15%" }}
               >
                 <div className="petit white-text">
                   {matrixDestiny.karmicLines.parents.secondary}
                 </div>
               </div>
 
-              {/*Vie Karmique */} 
+              {/*Vie Karmique */}
               <div
                 className="matrix-number-position karmic-life"
-                style={{ bottom: "17%", left: "50%" }}
+                style={{ bottom: "16%", left: "50%" }}
               >
                 <div className="petit black-text">
                   {matrixDestiny.karmicLines.karmicLife.primary}
@@ -944,17 +948,17 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
 
               <div
                 className="matrix-number-position karmic-life"
-                style={{ bottom: "10.5%", left: "50%" }}
+                style={{ bottom: "9.5%", left: "50%" }}
               >
                 <div className="moyen black-text">
                   {matrixDestiny.karmicLines.karmicLife.secondary}
                 </div>
               </div>
 
-              {/*Queue Karmique Financière*/} 
+              {/*Queue Karmique Financière*/}
               <div
                 className="matrix-number-position financial-karmic-tail"
-                style={{ bottom: "46%", right: "17.5%" }}
+                style={{ bottom: "45.5%", left: "79.5%" }}
               >
                 <div className="petit black-text">
                   {matrixDestiny.karmicLines.financialKarmicTail.primary}
@@ -963,7 +967,7 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
 
               <div
                 className="matrix-number-position financial-karmic-tail"
-                style={{ bottom: "45.5%", right: "9.95%" }}
+                style={{ bottom: "44.8%", left: "85.8%" }}
               >
                 <div className="moyen black-text">
                   {matrixDestiny.karmicLines.financialKarmicTail.secondary}
