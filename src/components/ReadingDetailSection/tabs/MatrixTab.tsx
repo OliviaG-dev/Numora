@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import { calculateMatrixDestiny } from "../../../utils/matrixDestiny/matrixDestiny";
 import { getRelationMeaning } from "../../../utils/matrixDestiny/matrixRelations";
 import { getMatrixMeaning } from "../../../utils/matrixDestiny/getMatrixMeaning";
+import { getExternalRelationsMeaning } from "../../../utils/matrixDestiny/getExternalRelationsMeaning";
 import MatrixDestinyImage from "../../../assets/Matrix_destiny.webp";
 
 interface ReadingData {
@@ -684,6 +685,92 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
         </div>
       )}
 
+      {/* Relations Extérieures */}
+      <div className="matrix-external-relations-section">
+        <div className="section-header">
+          <div className="title-with-tooltip">
+            <h3>Relations Extérieures</h3>
+            <div className="tooltip">
+              <span className="tooltip-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <path
+                    d="M12 16V12"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                  <circle cx="12" cy="8" r="1" fill="currentColor" />
+                </svg>
+              </span>
+              <div className="tooltip-content">
+                <p>
+                  Cette section révèle la manière dont une personne ou une
+                  organisation interagit avec le monde extérieur. Elle montre
+                  comment l'énergie se manifeste dans les relations sociales,
+                  professionnelles et matérielles.
+                </p>
+                <p>
+                  Les nombres ici traduisent la capacité à influencer, donner et
+                  agir dans la société.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="matrix-external-relations-grid">
+          <div className="matrix-external-relation-item">
+            <div className="matrix-number-badge external-relation-badge">
+              {matrixDestiny.externalRelations.personalPower}
+            </div>
+            <span>Pouvoir Personnel</span>
+            <p className="external-relation-description">
+              Ce chiffre reflète la manière dont tu t’affirmes au sein des
+              groupes, au travail ou dans la société en général.
+            </p>
+            <div className="relation-meaning">
+              <p className="relation-text">
+                {getExternalRelationsMeaning(
+                  matrixDestiny.externalRelations.personalPower,
+                  "pouvoir_social"
+                )}
+              </p>
+            </div>
+          </div>
+          <div className="matrix-external-relation-item">
+            <div className="matrix-number-badge external-relation-badge">
+              {matrixDestiny.externalRelations.socialInfluence}
+            </div>
+            <span>Influence Sociale</span>
+            <p className="external-relation-description">
+              Cela montre comment ton énergie inspire et influence naturellement
+              les autres, sans avoir à imposer quoi que ce soit.
+            </p>
+            <div className="relation-meaning">
+              <p className="relation-text">
+                {getExternalRelationsMeaning(
+                  matrixDestiny.externalRelations.socialInfluence,
+                  "influence_social"
+                )}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Schéma visuel Matrix Destiny */}
       <div className="matrix-visual-section">
         <h3>Schéma de votre Matrix Destiny</h3>
@@ -737,6 +824,25 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
               >
                 <div className="base black-text">
                   {matrixDestiny.center.mission}
+                </div>
+              </div>
+
+              {/* Badges à côté du centre */}
+              <div
+                className="matrix-number-position center-adjacent-medium"
+                style={{ top: "50%", left: "58.5%" }}
+              >
+                <div className="moyen center-adjacent-badge">
+                  {matrixDestiny.externalRelations.personalPower}
+                </div>
+              </div>
+
+              <div
+                className="matrix-number-position center-adjacent-small"
+                style={{ top: "50%", left: "64.5%" }}
+              >
+                <div className="petit center-adjacent-badge">
+                  {matrixDestiny.externalRelations.socialInfluence}
                 </div>
               </div>
 

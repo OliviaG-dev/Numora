@@ -23,6 +23,7 @@ import expressionBusinessData from "./numerology/DateBusiness/ExpressionBusiness
 import hereditaryBusinessData from "./numerology/NaneBusiness/HereditaryBusinessData.json";
 import matrixRelationsHeartData from "./matrixDestiny/matrixRelationsHeart.json";
 import matrixMoneyLoveData from "./matrixDestiny/matrixMoneyLove.json";
+import externalRelationsData from "./matrixDestiny/externalRelations.json";
 
 // ===== EXPORTS PRINCIPAUX =====
 export {
@@ -45,6 +46,7 @@ export {
   hereditaryBusinessData,
   matrixRelationsHeartData,
   matrixMoneyLoveData,
+  externalRelationsData,
 };
 
 // ===== ALIAS POUR COMPATIBILITÉ =====
@@ -263,6 +265,15 @@ export interface MatrixMoneyLoveData {
     [key: string]: string;
   };
   pivot: {
+    [key: string]: string;
+  };
+}
+
+export interface ExternalRelationsData {
+  pouvoir_social: {
+    [key: string]: string;
+  };
+  influence_social: {
     [key: string]: string;
   };
 }

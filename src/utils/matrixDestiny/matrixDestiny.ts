@@ -81,6 +81,10 @@ export interface MatrixDestiny {
       quaternary: number;
     };
   };
+  externalRelations: {
+    personalPower: number;
+    socialInfluence: number;
+  };
 }
 
 /**
@@ -194,6 +198,9 @@ export function calculateMatrixDestiny(
     financialKarmicTailPrimary
   );
 
+  // === RELATIONS EXTÉRIEURES ===
+  const externalRelations = calculateExternalRelations(maleLine.mission);
+
   // === ZONE D'ÉNERGIE COMMUNE ===
   const commonEnergyZone = calculateCommonEnergyZone(chakras);
 
@@ -215,6 +222,7 @@ export function calculateMatrixDestiny(
     commonEnergyZone,
     heartLine,
     karmicLines,
+    externalRelations,
   };
 }
 
@@ -588,5 +596,23 @@ function calculateHeartLine(
     physique,
     energy,
     emotions,
+  };
+}
+
+/**
+ * Calcule les relations extérieures
+ * Pouvoir Personnel : maleLine.mission + maleLine.mission (double de la mission masculine)
+ * Influence Sociale : personalPower + maleLine.mission
+ */
+function calculateExternalRelations(maleLineMission: number): {
+  personalPower: number;
+  socialInfluence: number;
+} {
+  const personalPower = reduceToMatrixNumber(maleLineMission + maleLineMission);
+  const socialInfluence = reduceToMatrixNumber(personalPower + maleLineMission);
+
+  return {
+    personalPower,
+    socialInfluence,
   };
 }
