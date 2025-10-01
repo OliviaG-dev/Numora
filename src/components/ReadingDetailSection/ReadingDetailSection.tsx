@@ -1586,7 +1586,7 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
             <section className="numerology-section karmic-section">
               <div className="section-header">
                 <div className="title-with-tooltip">
-                  <h2>Nombres Karmiques</h2>
+                  <h3>Nombres Karmiques</h3>
                   <div className="tooltip">
                     <span className="tooltip-icon">
                       <svg
@@ -1752,7 +1752,7 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
             <section className="numerology-section cycle-karmic-section">
               <div className="section-header">
                 <div className="title-with-tooltip">
-                  <h2>Cycles Karmiques</h2>
+                  <h3>Cycles Karmiques</h3>
                   <div className="tooltip">
                     <span className="tooltip-icon">
                       <svg
@@ -1933,7 +1933,7 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
             <section className="numerology-section karmic-debts-section">
               <div className="section-header">
                 <div className="title-with-tooltip">
-                  <h2>Dettes Karmiques</h2>
+                  <h3>Dettes Karmiques</h3>
                   <div className="tooltip">
                     <span className="tooltip-icon">
                       <svg

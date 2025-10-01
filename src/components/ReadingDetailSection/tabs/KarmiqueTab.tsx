@@ -43,11 +43,69 @@ const KarmiqueTab: React.FC<TabProps> = ({ numerologyResults }) => {
 
   return (
     <>
+      {/* Section Title */}
+      <section className="numerology-section section-title-container">
+        <div className="section-main-header">
+          <div className="title-with-tooltip">
+            <h2 className="section-elegant-title">
+              <span className="matrix-icon">✦</span>
+              Karmique
+              <span className="matrix-icon-end">✦</span>
+            </h2>
+            <div className="tooltip">
+              <span className="tooltip-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <path
+                    d="M12 16V12"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                  <circle cx="12" cy="8" r="1" fill="currentColor" />
+                </svg>
+              </span>
+              <div className="tooltip-content">
+                <p>
+                  Les aspects karmiques révèlent les leçons d'âme à apprendre
+                  dans cette incarnation.
+                </p>
+                <p>
+                  <strong>Nombres Karmiques</strong> : les chiffres manquants
+                  dans ta date de naissance qui révèlent des défis intérieurs.
+                </p>
+                <p>
+                  <strong>Cycles Karmiques</strong> : les expériences à intégrer
+                  basées sur les lettres manquantes dans ton nom.
+                </p>
+                <p>
+                  <strong>Dettes Karmiques</strong> : les leçons importantes
+                  liées à des abus ou négligences dans des vies passées.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Section des Nombres Karmiques */}
       <section className="numerology-section karmic-section">
         <div className="section-header">
           <div className="title-with-tooltip">
-            <h2>Nombres Karmiques</h2>
+            <h3>Nombres Karmiques</h3>
             <div className="tooltip">
               <span className="tooltip-icon">
                 <svg
@@ -122,10 +180,10 @@ const KarmiqueTab: React.FC<TabProps> = ({ numerologyResults }) => {
                   className="karmic-header accordion-header"
                   onClick={() => toggleKarmicAccordion(karmic.number)}
                 >
-                  <h3>
+                  <h4>
                     Défi Karmique {karmic.number}
                     <span className="karmic-period">(Chiffre manquant)</span>
-                  </h3>
+                  </h4>
                   <div className="header-right">
                     <div className="number-badge karmic-badge">
                       {karmic.number}
@@ -157,23 +215,23 @@ const KarmiqueTab: React.FC<TabProps> = ({ numerologyResults }) => {
                 {openKarmicAccordions.has(karmic.number) && (
                   <div className="karmic-content accordion-content">
                     <div className="karmic-summary">
-                      <h4>Résumé</h4>
+                      <h5>Résumé</h5>
                       <p>{karmic.summary}</p>
                     </div>
 
                     <div className="karmic-challenge">
-                      <h4>Défi à relever</h4>
+                      <h5>Défi à relever</h5>
                       <p>{karmic.challenge}</p>
                     </div>
 
                     <div className="karmic-details">
-                      <h4>Détails</h4>
+                      <h5>Détails</h5>
                       <p>{karmic.details}</p>
                     </div>
 
                     {karmic.keywords.length > 0 && (
                       <div className="karmic-keywords">
-                        <h4>Mots-clés</h4>
+                        <h5>Mots-clés</h5>
                         <div className="keywords-list">
                           {karmic.keywords.map((keyword, index) => (
                             <span key={index} className="keyword-tag">
@@ -189,7 +247,7 @@ const KarmiqueTab: React.FC<TabProps> = ({ numerologyResults }) => {
             ))
           ) : (
             <div className="no-karmic-challenges">
-              <h3>Félicitations !</h3>
+              <h4>Félicitations !</h4>
               <p>
                 Tous les chiffres de 1 à 9 sont présents dans votre date de
                 naissance. Vous n'avez pas de défis karmiques spécifiques à
@@ -204,7 +262,7 @@ const KarmiqueTab: React.FC<TabProps> = ({ numerologyResults }) => {
       <section className="numerology-section cycle-karmic-section">
         <div className="section-header">
           <div className="title-with-tooltip">
-            <h2>Cycles Karmiques</h2>
+            <h3>Cycles Karmiques</h3>
             <div className="tooltip">
               <span className="tooltip-icon">
                 <svg
@@ -357,7 +415,7 @@ const KarmiqueTab: React.FC<TabProps> = ({ numerologyResults }) => {
             )
           ) : (
             <div className="no-cycle-karmic-challenges">
-              <h3>Félicitations !</h3>
+              <h4>Félicitations !</h4>
               <p>
                 Tous les nombres de 1 à 9 sont présents dans votre nom complet.
                 Vous n'avez pas de cycles karmiques spécifiques à relever.
@@ -371,7 +429,7 @@ const KarmiqueTab: React.FC<TabProps> = ({ numerologyResults }) => {
       <section className="numerology-section karmic-debts-section">
         <div className="section-header">
           <div className="title-with-tooltip">
-            <h2>Dettes Karmiques</h2>
+            <h3>Dettes Karmiques</h3>
             <div className="tooltip">
               <span className="tooltip-icon">
                 <svg
@@ -442,7 +500,7 @@ const KarmiqueTab: React.FC<TabProps> = ({ numerologyResults }) => {
         </div>
 
         <div className="karmic-debts-analysis">
-          <h3>Analyse de vos nombres principaux</h3>
+          <h4>Analyse de vos nombres principaux</h4>
           <div className="debt-analysis-grid">
             <div className="debt-analysis-item">
               <h4>Chemin de Vie</h4>
@@ -528,12 +586,12 @@ const KarmiqueTab: React.FC<TabProps> = ({ numerologyResults }) => {
               return (
                 <div key={debt.karmicDebtType} className="karmic-debt-card">
                   <div className="karmic-debt-header">
-                    <h3>
+                    <h4>
                       Dette Karmique {debt.karmicDebtType}
                       <span className="karmic-debt-period">
                         (Leçon à apprendre)
                       </span>
-                    </h3>
+                    </h4>
                     <div className="number-badge karmic-debt-badge">
                       {debt.karmicDebtType}
                     </div>
@@ -578,7 +636,7 @@ const KarmiqueTab: React.FC<TabProps> = ({ numerologyResults }) => {
             (debt) => debt.isKarmicDebt
           ).length === 0 && (
             <div className="no-karmic-debts">
-              <h3>Félicitations !</h3>
+              <h4>Félicitations !</h4>
               <p>
                 Aucune dette karmique détectée dans vos nombres principaux. Vous
                 n'avez pas de leçons karmiques spécifiques à apprendre dans

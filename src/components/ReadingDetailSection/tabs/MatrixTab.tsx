@@ -33,7 +33,7 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
       <section className="numerology-section matrix-section">
         <div className="section-header">
           <div className="title-with-tooltip">
-            <h2>Matrix Destiny</h2>
+            <h3>Matrix Destiny</h3>
           </div>
         </div>
         <div className="placeholder-content">
@@ -64,55 +64,58 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
   };
 
   return (
-    <section className="numerology-section matrix-section">
-      <div className="section-header">
-        <div className="title-with-tooltip">
-          <h2 className="matrix-destiny-title">
-            <span className="matrix-icon">✦</span>
-            Matrix Destiny
-            <span className="matrix-icon-end">✦</span>
-          </h2>
-          <div className="tooltip">
-            <span className="tooltip-icon">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="2"
+    <>
+      {/* Section Title */}
+      <section className="numerology-section section-title-container">
+        <div className="section-main-header">
+          <div className="title-with-tooltip">
+            <h2 className="section-elegant-title">
+              <span className="matrix-icon">✦</span>
+              Matrix Destiny
+              <span className="matrix-icon-end">✦</span>
+            </h2>
+            <div className="tooltip">
+              <span className="tooltip-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
                   fill="none"
-                />
-                <path
-                  d="M12 16V12"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-                <circle cx="12" cy="8" r="1" fill="currentColor" />
-              </svg>
-            </span>
-            <div className="tooltip-content">
-              <p>
-                <strong>Méthode Traditionnelle</strong> - La Matrix Destiny
-                révèle votre mission de vie à travers une structure octogonale
-                complexe et des calculs non réduits.
-              </p>
-              <p>
-                Basée sur les traditions numérologiques anciennes, elle utilise
-                des nombres jusqu'à 22 et des cycles d'âge détaillés pour
-                révéler votre potentiel avec une précision maximale.
-              </p>
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <path
+                    d="M12 16V12"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                  <circle cx="12" cy="8" r="1" fill="currentColor" />
+                </svg>
+              </span>
+              <div className="tooltip-content">
+                <p>
+                  <strong>Méthode Traditionnelle</strong> - La Matrix Destiny
+                  révèle votre mission de vie à travers une structure octogonale
+                  complexe et des calculs non réduits.
+                </p>
+                <p>
+                  Basée sur les traditions numérologiques anciennes, elle
+                  utilise des nombres jusqu'à 22 et des cycles d'âge détaillés
+                  pour révéler votre potentiel avec une précision maximale.
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Base Numbers */}
       <div className="matrix-base-section">
@@ -1384,7 +1387,7 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
           </div>
         </div>
       </div>
-    </section>
+    </>
   );
 };
 
