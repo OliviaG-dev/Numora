@@ -105,7 +105,7 @@ export function calculateMatrixDestiny(
   const dayValue = reduceToMatrixNumber(day);
   const monthValue = reduceToMatrixNumber(month);
   const yearValue = reduceToMatrixNumber(year);
-  const lifeMission = calculateLifeMission(day, month, year);
+  const lifeMission = calculateLifeMission(dayValue, monthValue, yearValue);
 
   // === CENTRE DE LA MATRIX ===
   const centerMission = sumReduce(dayValue, monthValue, yearValue, lifeMission);
@@ -113,7 +113,8 @@ export function calculateMatrixDestiny(
     dayValue,
     monthValue,
     yearValue,
-    centerMission
+    centerMission,
+    lifeMission
   );
   const femaleLine = calculateFemaleLine(
     dayValue,
@@ -199,7 +200,10 @@ export function calculateMatrixDestiny(
   );
 
   // === RELATIONS EXTÉRIEURES ===
-  const externalRelations = calculateExternalRelations(maleLine.mission);
+  const externalRelations = calculateExternalRelations(
+    maleLine.mission,
+    centerMission
+  );
 
   // === ZONE D'ÉNERGIE COMMUNE ===
   const commonEnergyZone = calculateCommonEnergyZone(chakras);
@@ -230,11 +234,11 @@ export function calculateMatrixDestiny(
  * Calcule la mission de vie selon la méthode traditionnelle
  */
 function calculateLifeMission(
-  day: number,
-  month: number,
-  year: number
+  dayValue: number,
+  monthValue: number,
+  yearValue: number
 ): number {
-  const baseSum = day + month + year;
+  const baseSum = dayValue + monthValue + yearValue;
   return reduceToMatrixNumber(baseSum);
 }
 
@@ -242,22 +246,23 @@ function calculateLifeMission(
  * Calcule la ligne masculine avec 3 valeurs :
  * 1. Jour + Mois (réduit)
  * 2. Mission (centre)
- * 3. Jour + Année (réduit)
+ * 3. Année + Mission de Vie (réduit)
  */
 function calculateMaleLine(
   day: number,
   month: number,
   year: number,
-  mission: number
+  mission: number,
+  lifeMission: number
 ): {
   dayMonth: number;
   mission: number;
   dayYear: number;
 } {
   return {
-    dayMonth: day + month, // Somme brute : Jour + Mois
+    dayMonth: reduceToMatrixNumber(day + month), // Jour + Mois réduit à 22
     mission: mission,
-    dayYear: day + year, // Somme brute : Jour + Année
+    dayYear: reduceToMatrixNumber(year + lifeMission), // Année + Mission de Vie réduit à 22
   };
 }
 
@@ -279,9 +284,9 @@ function calculateFemaleLine(
   monthDay: number;
 } {
   return {
-    monthYear: month + year, // Somme brute : Mois + Année
+    monthYear: reduceToMatrixNumber(month + year), // Mois + Année réduit à 22
     mission: mission,
-    monthDay: lifeMission + day, // lifeMission + day
+    monthDay: reduceToMatrixNumber(lifeMission + day), // lifeMission + day réduit à 22
   };
 }
 
@@ -547,15 +552,17 @@ function calculateKarmicLines(
     feminineAncestry: {
       // Badge 1 : financialKarmicTail.primary + talentZone.primary
       primary: reduceToMatrixNumber(financialPrimary + talentZonePrimary),
-      // Badge 2 : (financialKarmicTail.primary + talentZone.primary) + femaleLine.monthYear
+      // Badge 2 : feminineAncestry.primary + femaleLine.monthYear
       secondary: reduceToMatrixNumber(
-        financialPrimary + talentZonePrimary + femaleLineMonthYear
+        reduceToMatrixNumber(financialPrimary + talentZonePrimary) +
+          femaleLineMonthYear
       ),
       // Badge 3 : parents.primary + karmicLife.primary
       tertiary: reduceToMatrixNumber(parentsPrimary + karmicLifePrimary),
-      // Badge 4 : (parents.primary + karmicLife.primary) + femaleLine.monthDay
+      // Badge 4 : feminineAncestry.tertiary + femaleLine.monthDay
       quaternary: reduceToMatrixNumber(
-        parentsPrimary + karmicLifePrimary + femaleLineMonthDay
+        reduceToMatrixNumber(parentsPrimary + karmicLifePrimary) +
+          femaleLineMonthDay
       ),
     },
 
@@ -563,9 +570,10 @@ function calculateKarmicLines(
     masculineAncestry: {
       // Badge 1 : parents.primary + talentZone.primary
       primary: reduceToMatrixNumber(parentsPrimary + talentZonePrimary),
-      // Badge 2 : (parents.primary + talentZone.primary) + maleLine.dayMonth
+      // Badge 2 : maleLine.dayMonth + masculineAncestry.primary
       secondary: reduceToMatrixNumber(
-        parentsPrimary + talentZonePrimary + maleLineDayMonth
+        maleLineDayMonth +
+          reduceToMatrixNumber(parentsPrimary + talentZonePrimary)
       ),
       // Badge 3 : financialKarmicTail.primary + karmicLife.primary
       tertiary: reduceToMatrixNumber(financialPrimary + karmicLifePrimary),
@@ -601,14 +609,45 @@ function calculateHeartLine(
 
 /**
  * Calcule les relations extérieures
- * Pouvoir Personnel : maleLine.mission + maleLine.mission (double de la mission masculine)
+ * Pouvoir Personnel :
+ * - Si centerMission (femaleLine.mission) ≤ 9 : centerMission × 2
+ * - Si centerMission ≥ 10 : centerMission + somme des chiffres du centre
  * Influence Sociale : personalPower + maleLine.mission
  */
-function calculateExternalRelations(maleLineMission: number): {
+function calculateExternalRelations(
+  maleLineMission: number,
+  centerMission: number
+): {
   personalPower: number;
   socialInfluence: number;
 } {
-  const personalPower = reduceToMatrixNumber(maleLineMission + maleLineMission);
+  console.log("Debug calculateExternalRelations:");
+  console.log("maleLineMission:", maleLineMission);
+  console.log("centerMission:", centerMission);
+
+  // Appliquer la nouvelle logique selon la valeur du centre (femaleLine.mission)
+  let personalPower: number;
+  if (centerMission <= 9) {
+    personalPower = centerMission * 2;
+    console.log("centerMission <= 9, multiplied by 2:", personalPower);
+  } else if (centerMission >= 10) {
+    // Calculer la somme des chiffres du centre
+    const centerSum = centerMission
+      .toString()
+      .split("")
+      .reduce((sum, digit) => sum + parseInt(digit), 0);
+    console.log("centerSum:", centerSum);
+    personalPower = centerMission + centerSum;
+    console.log("centerMission + centerSum:", personalPower);
+  } else {
+    // Fallback (ne devrait pas arriver)
+    personalPower = centerMission;
+  }
+
+  // Réduire le résultat final à la plage Matrix
+  personalPower = reduceToMatrixNumber(personalPower);
+  console.log("personalPower final:", personalPower);
+
   const socialInfluence = reduceToMatrixNumber(personalPower + maleLineMission);
 
   return {

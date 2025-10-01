@@ -1,13 +1,71 @@
 import React from "react";
 import type { TabProps } from "../shared/types";
 
-const DatesTab: React.FC<TabProps> = ({ numerologyResults, readingData }) => {
+const DatesTab: React.FC<TabProps> = ({ numerologyResults }) => {
   return (
     <>
+      {/* Section Title */}
+      <section className="numerology-section section-title-container">
+        <div className="section-main-header">
+          <div className="title-with-tooltip">
+            <h2 className="section-elegant-title">
+              <span className="matrix-icon">✦</span>
+              Dates
+              <span className="matrix-icon-end">✦</span>
+            </h2>
+            <div className="tooltip">
+              <span className="tooltip-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <path
+                    d="M12 16V12"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                  <circle cx="12" cy="8" r="1" fill="currentColor" />
+                </svg>
+              </span>
+              <div className="tooltip-content">
+                <p>
+                  Les cycles temporels révèlent les périodes clés de ton
+                  évolution personnelle.
+                </p>
+                <p>
+                  <strong>Cycles de Vie</strong> : les trois grandes phases de
+                  ton existence (0-28, 29-56, 57+ ans).
+                </p>
+                <p>
+                  <strong>Périodes de Réalisation</strong> : les moments
+                  propices pour accomplir tes objectifs.
+                </p>
+                <p>
+                  <strong>Nombres Personnels</strong> : les énergies qui
+                  t'accompagnent cette année, ce mois et aujourd'hui.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Cycles de Vie */}
       <section className="numerology-section life-cycles">
         <div className="title-with-tooltip">
-          <h2>Cycles de Vie</h2>
+          <h3>Cycles de Vie</h3>
           <div className="tooltip">
             <span className="tooltip-icon">
               <svg
@@ -52,10 +110,10 @@ const DatesTab: React.FC<TabProps> = ({ numerologyResults, readingData }) => {
         </div>
         <div className="life-cycles-grid">
           <div className="cycle-card">
-            <h3>
+            <h4>
               <span className="cycle-title">Premier Cycle</span>
               <span className="cycle-period">(Naissance → ~28 ans)</span>
-            </h3>
+            </h4>
             <div className="number-badge cycle-badge">
               {numerologyResults.lifeCycles.firstCycle.number}
             </div>
@@ -79,10 +137,10 @@ const DatesTab: React.FC<TabProps> = ({ numerologyResults, readingData }) => {
             )}
           </div>
           <div className="cycle-card">
-            <h3>
+            <h4>
               <span className="cycle-title">Deuxième Cycle</span>
               <span className="cycle-period">(29 → ~56 ans)</span>
-            </h3>
+            </h4>
             <div className="number-badge cycle-badge">
               {numerologyResults.lifeCycles.secondCycle.number}
             </div>
@@ -106,10 +164,10 @@ const DatesTab: React.FC<TabProps> = ({ numerologyResults, readingData }) => {
             )}
           </div>
           <div className="cycle-card">
-            <h3>
+            <h4>
               <span className="cycle-title">Troisième Cycle</span>
               <span className="cycle-period">(57 ans → fin de vie)</span>
-            </h3>
+            </h4>
             <div className="number-badge cycle-badge">
               {numerologyResults.lifeCycles.thirdCycle.number}
             </div>
@@ -138,7 +196,7 @@ const DatesTab: React.FC<TabProps> = ({ numerologyResults, readingData }) => {
       {/* Périodes de Réalisation */}
       <section className="numerology-section realization-periods">
         <div className="title-with-tooltip">
-          <h2>Périodes de Réalisation</h2>
+          <h3>Périodes de Réalisation</h3>
           <div className="tooltip">
             <span className="tooltip-icon">
               <svg
@@ -183,10 +241,10 @@ const DatesTab: React.FC<TabProps> = ({ numerologyResults, readingData }) => {
         </div>
         <div className="realization-periods-grid">
           <div className="period-card">
-            <h3>
+            <h4>
               <span className="period-title">Première Période</span>
               <span className="period-duration">(jusqu'à ~30 ans)</span>
-            </h3>
+            </h4>
             <div className="number-badge period-badge">
               {numerologyResults.realizationPeriods.firstPeriod.number}
             </div>
@@ -219,10 +277,10 @@ const DatesTab: React.FC<TabProps> = ({ numerologyResults, readingData }) => {
             )}
           </div>
           <div className="period-card">
-            <h3>
+            <h4>
               <span className="period-title">Deuxième Période</span>
               <span className="period-duration">(30 → 39 ans)</span>
-            </h3>
+            </h4>
             <div className="number-badge period-badge">
               {numerologyResults.realizationPeriods.secondPeriod.number}
             </div>
@@ -255,10 +313,10 @@ const DatesTab: React.FC<TabProps> = ({ numerologyResults, readingData }) => {
             )}
           </div>
           <div className="period-card">
-            <h3>
+            <h4>
               <span className="period-title">Troisième Période</span>
               <span className="period-duration">(39 → 48 ans)</span>
-            </h3>
+            </h4>
             <div className="number-badge period-badge">
               {numerologyResults.realizationPeriods.thirdPeriod.number}
             </div>
@@ -291,10 +349,10 @@ const DatesTab: React.FC<TabProps> = ({ numerologyResults, readingData }) => {
             )}
           </div>
           <div className="period-card">
-            <h3>
+            <h4>
               <span className="period-title">Quatrième Période</span>
               <span className="period-duration">(48 ans → fin de vie)</span>
-            </h3>
+            </h4>
             <div className="number-badge period-badge">
               {numerologyResults.realizationPeriods.fourthPeriod.number}
             </div>
@@ -332,7 +390,7 @@ const DatesTab: React.FC<TabProps> = ({ numerologyResults, readingData }) => {
       {/* Nombres Personnels (Année, Mois, Jour) */}
       <section className="numerology-section personal-numbers">
         <div className="title-with-tooltip">
-          <h2>Nombres Personnels</h2>
+          <h3>Nombres Personnels</h3>
           <div className="tooltip">
             <span className="tooltip-icon">
               <svg
@@ -370,12 +428,12 @@ const DatesTab: React.FC<TabProps> = ({ numerologyResults, readingData }) => {
         </div>
         <div className="personal-numbers-grid">
           <div className="personal-card">
-            <h3>
+            <h4>
               <span className="personal-title">Année Personnelle</span>
               <span className="personal-period">
                 (Janvier → Décembre {new Date().getFullYear()})
               </span>
-            </h3>
+            </h4>
             <div className="number-badge personal-badge">
               {numerologyResults.personalNumbers.year.number}
             </div>
@@ -398,7 +456,7 @@ const DatesTab: React.FC<TabProps> = ({ numerologyResults, readingData }) => {
           </div>
 
           <div className="personal-card">
-            <h3>
+            <h4>
               <span className="personal-title">Mois Personnel</span>
               <span className="personal-period">
                 (
@@ -408,7 +466,7 @@ const DatesTab: React.FC<TabProps> = ({ numerologyResults, readingData }) => {
                 })}
                 )
               </span>
-            </h3>
+            </h4>
             <div className="number-badge personal-badge">
               {numerologyResults.personalNumbers.month.number}
             </div>
@@ -433,7 +491,7 @@ const DatesTab: React.FC<TabProps> = ({ numerologyResults, readingData }) => {
           </div>
 
           <div className="personal-card">
-            <h3>
+            <h4>
               <span className="personal-title">Jour Personnel</span>
               <span className="personal-period">
                 (
@@ -444,7 +502,7 @@ const DatesTab: React.FC<TabProps> = ({ numerologyResults, readingData }) => {
                 })}
                 )
               </span>
-            </h3>
+            </h4>
             <div className="number-badge personal-badge">
               {numerologyResults.personalNumbers.day.number}
             </div>

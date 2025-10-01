@@ -1,17 +1,72 @@
 import React from "react";
 import type { TabProps } from "../shared/types";
 
-const BasiquesTab: React.FC<TabProps> = ({
-  numerologyResults,
-  readingData,
-}) => {
+const BasiquesTab: React.FC<TabProps> = ({ numerologyResults }) => {
   return (
     <>
+      {/* Section Title */}
+      <section className="numerology-section section-title-container">
+        <div className="section-main-header">
+          <div className="title-with-tooltip">
+            <h2 className="section-elegant-title">
+              <span className="matrix-icon">✦</span>
+              Basiques
+              <span className="matrix-icon-end">✦</span>
+            </h2>
+            <div className="tooltip">
+              <span className="tooltip-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <path
+                    d="M12 16V12"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                  <circle cx="12" cy="8" r="1" fill="currentColor" />
+                </svg>
+              </span>
+              <div className="tooltip-content">
+                <p>
+                  Les nombres basiques révèlent les fondements de ta
+                  personnalité et de ta mission de vie.
+                </p>
+                <p>
+                  <strong>Chemin de Vie</strong> : ta mission principale et les
+                  leçons à apprendre.
+                </p>
+                <p>
+                  <strong>Expression, Âme, Personnalité</strong> : tes talents,
+                  motivations et image extérieure.
+                </p>
+                <p>
+                  Ces nombres forment la base de ton profil numérologique
+                  complet.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Chemin de Vie */}
       <section className="numerology-section life-path">
         <div className="section-header">
           <div className="title-with-tooltip">
-            <h2>Chemin de Vie</h2>
+            <h3>Chemin de Vie</h3>
             <div className="tooltip">
               <span className="tooltip-icon">
                 <svg
@@ -95,7 +150,7 @@ const BasiquesTab: React.FC<TabProps> = ({
       <section className="numerology-section expression">
         <div className="section-header">
           <div className="title-with-tooltip">
-            <h2>Nombre d'Expression</h2>
+            <h3>Nombre d'Expression</h3>
             <div className="tooltip">
               <span className="tooltip-icon">
                 <svg
@@ -177,7 +232,7 @@ const BasiquesTab: React.FC<TabProps> = ({
 
       {/* Nombres de l'Âme, Personnalité et Jour */}
       <section className="numerology-section personal-numbers">
-        <h2>Nombres de l'Âme, Personnalité et Jour</h2>
+        <h3>Nombres de l'Âme, Personnalité et Jour</h3>
         <div className="personal-numbers-grid">
           {/* Nombre de l'Âme */}
           <div className="personal-number-card soul-urge">
