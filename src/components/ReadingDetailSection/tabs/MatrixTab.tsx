@@ -67,7 +67,11 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
     <section className="numerology-section matrix-section">
       <div className="section-header">
         <div className="title-with-tooltip">
-          <h2>Matrix Destiny</h2>
+          <h2 className="matrix-destiny-title">
+            <span className="matrix-icon">✦</span>
+            Matrix Destiny
+            <span className="matrix-icon-end">✦</span>
+          </h2>
           <div className="tooltip">
             <span className="tooltip-icon">
               <svg
@@ -110,22 +114,52 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
         </div>
       </div>
 
-      {/* Information sur la méthode */}
-      <div className="matrix-method-info">
-        <div className="method-badge">
-          <span className="method-name">Méthode Traditionnelle</span>
-          <span className="method-rating">⭐⭐⭐⭐⭐</span>
-        </div>
-        <p className="method-description">
-          Calculs basés sur les traditions numérologiques anciennes avec
-          structure octogonale et nombres non réduits pour une précision
-          maximale.
-        </p>
-      </div>
-
       {/* Base Numbers */}
       <div className="matrix-base-section">
-        <h3>Nombres de Base</h3>
+        <div className="title-with-tooltip">
+          <h3>Nombres de Base</h3>
+          <div className="tooltip">
+            <span className="tooltip-icon">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  fill="none"
+                />
+                <path
+                  d="M12 16V12"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+                <circle cx="12" cy="8" r="1" fill="currentColor" />
+              </svg>
+            </span>
+            <div className="tooltip-content">
+              <p>
+                Les nombres de base sont les éléments fondamentaux de ta Matrix
+                Destiny.
+              </p>
+              <p>
+                <strong>Jour, Mois, Année</strong> : représentent les énergies
+                de ta date de naissance qui façonnent ton essence.
+              </p>
+              <p>
+                Ces trois nombres forment la base de tous les autres calculs de
+                ta matrice personnelle.
+              </p>
+            </div>
+          </div>
+        </div>
         <div className="matrix-base-grid">
           <div className="matrix-base-item">
             <div className="matrix-number-badge day-badge">
@@ -156,7 +190,51 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
 
       {/* Center */}
       <div className="matrix-center-section">
-        <h3>Centre de la Matrix</h3>
+        <div className="title-with-tooltip">
+          <h3>Centre de la Matrix</h3>
+          <div className="tooltip">
+            <span className="tooltip-icon">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  fill="none"
+                />
+                <path
+                  d="M12 16V12"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+                <circle cx="12" cy="8" r="1" fill="currentColor" />
+              </svg>
+            </span>
+            <div className="tooltip-content">
+              <p>
+                Le centre de la Matrix représente ton essence spirituelle et ta
+                mission de vie.
+              </p>
+              <p>
+                Les <strong>lignes de génération</strong> (masculine et
+                féminine) montrent les héritages énergétiques de tes lignées
+                paternelle et maternelle.
+              </p>
+              <p>
+                Le <strong>nombre central</strong> est ton point d'ancrage, le
+                cœur de ton identité spirituelle et ta mission principale.
+              </p>
+            </div>
+          </div>
+        </div>
 
         {/* Lignes de génération */}
         <div className="generation-lines-container">
@@ -214,7 +292,50 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
 
       {/* Lignes Karmiques */}
       <div className="matrix-karmic-section">
-        <h3>Lignes Karmiques</h3>
+        <div className="title-with-tooltip">
+          <h3>Lignes Karmiques</h3>
+          <div className="tooltip">
+            <span className="tooltip-icon">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  fill="none"
+                />
+                <path
+                  d="M12 16V12"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+                <circle cx="12" cy="8" r="1" fill="currentColor" />
+              </svg>
+            </span>
+            <div className="tooltip-content">
+              <p>
+                Les lignes karmiques révèlent les schémas hérités de tes
+                ancêtres et les leçons karmiques à apprendre.
+              </p>
+              <p>
+                Elles représentent les énergies familiales transmises à travers
+                les générations et leur impact sur ta vie.
+              </p>
+              <p>
+                Comprendre ces lignes t'aide à identifier les patterns à
+                transformer et les héritages énergétiques à libérer.
+              </p>
+            </div>
+          </div>
+        </div>
         <div className="matrix-karmic-grid">
           {/* Ligne 1 */}
           <div className="matrix-karmic-row">
@@ -331,7 +452,50 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
 
       {/* Chakras */}
       <div className="matrix-chakras-section">
-        <h3>Chakras et Énergies</h3>
+        <div className="title-with-tooltip">
+          <h3>Chakras et Énergies</h3>
+          <div className="tooltip">
+            <span className="tooltip-icon">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  fill="none"
+                />
+                <path
+                  d="M12 16V12"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+                <circle cx="12" cy="8" r="1" fill="currentColor" />
+              </svg>
+            </span>
+            <div className="tooltip-content">
+              <p>
+                Les chakras représentent les 7 centres énergétiques de ton corps
+                et leur influence sur ta vie.
+              </p>
+              <p>
+                Chaque chakra combine des aspects physiques, énergétiques et
+                émotionnels qui définissent ton équilibre intérieur.
+              </p>
+              <p>
+                De la racine (Muladhara) à la couronne (Sahasrara), ils forment
+                une carte de ton évolution spirituelle et énergétique.
+              </p>
+            </div>
+          </div>
+        </div>
         <div className="matrix-chakras-grid">
           {/* Sahasrara */}
           <div className="matrix-chakra-card">
@@ -601,7 +765,54 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
 
       {/* Special */}
       <div className="matrix-special-section">
-        <h3>Domaines Spéciaux</h3>
+        <div className="title-with-tooltip">
+          <h3>Domaines Spéciaux</h3>
+          <div className="tooltip">
+            <span className="tooltip-icon">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  fill="none"
+                />
+                <path
+                  d="M12 16V12"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+                <circle cx="12" cy="8" r="1" fill="currentColor" />
+              </svg>
+            </span>
+            <div className="tooltip-content">
+              <p>
+                Les domaines spéciaux représentent trois aspects fondamentaux de
+                ta vie.
+              </p>
+              <p>
+                <strong>Amour</strong> : ta capacité à aimer et être aimé, tes
+                relations affectives.
+              </p>
+              <p>
+                <strong>Balance</strong> : l'équilibre entre l'amour et
+                l'argent, ton centre de stabilité.
+              </p>
+              <p>
+                <strong>Argent</strong> : ta relation à l'abondance matérielle
+                et ta prospérité financière.
+              </p>
+            </div>
+          </div>
+        </div>
         <div className="matrix-special-grid">
           <div className="matrix-special-item">
             <div className="special-icon">💕</div>
@@ -645,7 +856,53 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
       {/* Heart Line */}
       {matrixDestiny.heartLine && (
         <div className="matrix-health-section">
-          <h3>Ligne du Cœur</h3>
+          <div className="title-with-tooltip">
+            <h3>Ligne du Cœur</h3>
+            <div className="tooltip">
+              <span className="tooltip-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <path
+                    d="M12 16V12"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                  <circle cx="12" cy="8" r="1" fill="currentColor" />
+                </svg>
+              </span>
+              <div className="tooltip-content">
+                <p>
+                  La ligne du cœur révèle ta relation à l'amour et aux émotions.
+                </p>
+                <p>
+                  <strong>Physique</strong> indique comment tu reçois l'amour et
+                  ton monde émotionnel interne.
+                </p>
+                <p>
+                  <strong>Énergie</strong> montre comment tu donnes l'amour et
+                  ton rapport aux autres.
+                </p>
+                <p>
+                  Ces deux aspects forment le chakra Anahata, centre de l'amour
+                  universel.
+                </p>
+              </div>
+            </div>
+          </div>
           <div className="matrix-health-grid">
             <div className="matrix-health-item">
               <div className="matrix-number-badge health-badge">
@@ -773,7 +1030,51 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
 
       {/* Schéma visuel Matrix Destiny */}
       <div className="matrix-visual-section">
-        <h3>Schéma de votre Matrix Destiny</h3>
+        <div className="title-with-tooltip">
+          <h3>Schéma de votre Matrix Destiny</h3>
+          <div className="tooltip">
+            <span className="tooltip-icon">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  fill="none"
+                />
+                <path
+                  d="M12 16V12"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+                <circle cx="12" cy="8" r="1" fill="currentColor" />
+              </svg>
+            </span>
+            <div className="tooltip-content">
+              <p>
+                Le schéma octogonal de la Matrix Destiny représente visuellement
+                tous les aspects de ton être.
+              </p>
+              <p>
+                Chaque position a une signification précise : du centre (ta
+                mission de vie) aux lignes karmiques, en passant par les chakras
+                et les domaines spéciaux.
+              </p>
+              <p>
+                Les nombres sont positionnés selon la méthode traditionnelle
+                pour révéler la structure énergétique complète de ta destinée.
+              </p>
+            </div>
+          </div>
+        </div>
         <div className="matrix-visual-container">
           <div className="matrix-image-wrapper">
             <img

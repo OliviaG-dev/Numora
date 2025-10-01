@@ -157,6 +157,202 @@
   text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
 }
 
+/* Section Title Container - similar to other sections */
+.section-title-container {
+  margin-bottom: 2rem;
+}
+
+/* Section Main Header - centering container */
+.section-main-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-title-container .title-with-tooltip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* Section Elegant Title - for section titles (Basiques, Dates, Karmique) */
+.section-elegant-title {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  font-size: 2.5rem !important;
+  font-weight: 300 !important;
+  color: transparent !important;
+  background: linear-gradient(
+    90deg,
+    #d4af37 0%,
+    #f8e5a0 25%,
+    #d4af37 50%,
+    #f8e5a0 75%,
+    #d4af37 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none !important;
+  animation: matrix-shimmer 4s linear infinite;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  position: relative;
+  font-family: "Cinzel", "Georgia", serif;
+  padding: 0.5rem 2rem;
+  margin: 0;
+}
+
+.section-elegant-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #d4af37 20%,
+    #f8e5a0 50%,
+    #d4af37 80%,
+    transparent 100%
+  );
+  animation: matrix-line-glow 3s ease-in-out infinite;
+}
+
+.section-elegant-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -10px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(212, 175, 55, 0.3) 20%,
+    rgba(248, 229, 160, 0.3) 50%,
+    rgba(212, 175, 55, 0.3) 80%,
+    transparent 100%
+  );
+  filter: blur(2px);
+}
+
+/* Matrix Destiny Title Special Design */
+.matrix-destiny-title {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  font-size: 2.5rem !important;
+  font-weight: 300 !important;
+  color: transparent !important;
+  background: linear-gradient(
+    90deg,
+    #d4af37 0%,
+    #f8e5a0 25%,
+    #d4af37 50%,
+    #f8e5a0 75%,
+    #d4af37 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none !important;
+  animation: matrix-shimmer 4s linear infinite;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  position: relative;
+  font-family: "Cinzel", "Georgia", serif;
+  padding: 0.5rem 2rem;
+}
+
+.matrix-destiny-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #d4af37 20%,
+    #f8e5a0 50%,
+    #d4af37 80%,
+    transparent 100%
+  );
+  animation: matrix-line-glow 3s ease-in-out infinite;
+}
+
+.matrix-destiny-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -10px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(212, 175, 55, 0.3) 20%,
+    rgba(248, 229, 160, 0.3) 50%,
+    rgba(212, 175, 55, 0.3) 80%,
+    transparent 100%
+  );
+  filter: blur(2px);
+}
+
+.matrix-icon,
+.matrix-icon-end {
+  font-size: 1.5rem;
+  display: inline-block;
+  color: #d4af37;
+  animation: matrix-sparkle 2s ease-in-out infinite;
+  opacity: 0.9;
+}
+
+.matrix-icon-end {
+  animation-delay: 1s;
+}
+
+@keyframes matrix-shimmer {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes matrix-line-glow {
+  0%,
+  100% {
+    opacity: 0.6;
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 16px rgba(248, 229, 160, 0.6);
+  }
+}
+
+@keyframes matrix-sparkle {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
 /* Tooltip Styles */
 .title-with-tooltip {
   display: flex;
@@ -216,10 +412,16 @@
 .life-cycles .title-with-tooltip,
 .realization-periods .title-with-tooltip,
 .personal-numbers .title-with-tooltip,
+.matrix-section .section-header,
+.arbre-section .section-header {
+  justify-content: center;
+}
+
 .matrix-section .title-with-tooltip,
 .arbre-section .title-with-tooltip {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
 }
 
@@ -2186,6 +2388,58 @@
   text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
 }
 
+.matrix-special-section .title-with-tooltip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.matrix-special-section .title-with-tooltip h3 {
+  margin: 0;
+  line-height: 1;
+}
+
+.matrix-chakras-section .title-with-tooltip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.matrix-chakras-section .title-with-tooltip h3 {
+  margin: 0;
+  line-height: 1;
+}
+
+.matrix-base-section .title-with-tooltip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.matrix-base-section .title-with-tooltip h3 {
+  margin: 0;
+  line-height: 1;
+}
+
+.matrix-center-section .title-with-tooltip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.matrix-center-section .title-with-tooltip h3 {
+  margin: 0;
+  line-height: 1;
+}
+
 /* Grid des nombres de base */
 .matrix-base-grid {
   display: grid;
@@ -2346,6 +2600,19 @@
   margin-bottom: 1.5rem;
   text-align: center;
   text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+}
+
+.matrix-health-section .title-with-tooltip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.matrix-health-section .title-with-tooltip h3 {
+  margin: 0;
+  line-height: 1;
 }
 
 .matrix-health-grid {
@@ -2892,6 +3159,19 @@
   text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
 }
 
+.matrix-visual-section .title-with-tooltip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.matrix-visual-section .title-with-tooltip h3 {
+  margin: 0;
+  line-height: 1;
+}
+
 /* Conteneur du schéma */
 .matrix-visual-container {
   display: flex;
@@ -3197,6 +3477,19 @@
   margin-bottom: 2rem;
   text-align: center;
   text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+}
+
+.matrix-karmic-section .title-with-tooltip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.matrix-karmic-section .title-with-tooltip h3 {
+  margin: 0;
+  line-height: 1;
 }
 
 /* Grid des lignes karmiques */

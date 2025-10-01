@@ -511,6 +511,64 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
         {/* ONGLET BASIQUES */}
         {activeTab === "basiques" && (
           <>
+            {/* Section Title */}
+            <section className="numerology-section section-title-container">
+              <div className="section-main-header">
+                <div className="title-with-tooltip">
+                  <h2 className="section-elegant-title">
+                    <span className="matrix-icon">✦</span>
+                    Basiques
+                    <span className="matrix-icon-end">✦</span>
+                  </h2>
+                  <div className="tooltip">
+                    <span className="tooltip-icon">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <circle
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          fill="none"
+                        />
+                        <path
+                          d="M12 16V12"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                        />
+                        <circle cx="12" cy="8" r="1" fill="currentColor" />
+                      </svg>
+                    </span>
+                    <div className="tooltip-content">
+                      <p>
+                        Les nombres basiques révèlent les fondements de ta
+                        personnalité et de ta mission de vie.
+                      </p>
+                      <p>
+                        <strong>Chemin de Vie</strong> : ta mission principale
+                        et les leçons à apprendre.
+                      </p>
+                      <p>
+                        <strong>Expression, Âme, Personnalité</strong> : tes
+                        talents, motivations et image extérieure.
+                      </p>
+                      <p>
+                        Ces nombres forment la base de ton profil numérologique
+                        complet.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
             {/* Chemin de Vie */}
             <section className="numerology-section life-path">
               <div className="section-header">
@@ -898,6 +956,64 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
         {/* ONGLET DATES */}
         {activeTab === "dates" && (
           <>
+            {/* Section Title */}
+            <section className="numerology-section section-title-container">
+              <div className="section-main-header">
+                <div className="title-with-tooltip">
+                  <h2 className="section-elegant-title">
+                    <span className="matrix-icon">✦</span>
+                    Dates
+                    <span className="matrix-icon-end">✦</span>
+                  </h2>
+                  <div className="tooltip">
+                    <span className="tooltip-icon">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <circle
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          fill="none"
+                        />
+                        <path
+                          d="M12 16V12"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                        />
+                        <circle cx="12" cy="8" r="1" fill="currentColor" />
+                      </svg>
+                    </span>
+                    <div className="tooltip-content">
+                      <p>
+                        Les cycles temporels révèlent les périodes clés de ton
+                        évolution personnelle.
+                      </p>
+                      <p>
+                        <strong>Cycles de Vie</strong> : les trois grandes
+                        phases de ton existence (0-28, 29-56, 57+ ans).
+                      </p>
+                      <p>
+                        <strong>Périodes de Réalisation</strong> : les moments
+                        propices pour accomplir tes objectifs.
+                      </p>
+                      <p>
+                        <strong>Nombres Personnels</strong> : les énergies qui
+                        t'accompagnent cette année, ce mois et aujourd'hui.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
             {/* Cycles de Vie */}
             <section className="numerology-section life-cycles">
               <div className="title-with-tooltip">
@@ -1406,6 +1522,66 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
         {/* ONGLET KARMIQUE */}
         {activeTab === "karmique" && (
           <>
+            {/* Section Title */}
+            <section className="numerology-section section-title-container">
+              <div className="section-main-header">
+                <div className="title-with-tooltip">
+                  <h2 className="section-elegant-title">
+                    <span className="matrix-icon">✦</span>
+                    Karmique
+                    <span className="matrix-icon-end">✦</span>
+                  </h2>
+                  <div className="tooltip">
+                    <span className="tooltip-icon">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <circle
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          fill="none"
+                        />
+                        <path
+                          d="M12 16V12"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                        />
+                        <circle cx="12" cy="8" r="1" fill="currentColor" />
+                      </svg>
+                    </span>
+                    <div className="tooltip-content">
+                      <p>
+                        Les aspects karmiques révèlent les leçons d'âme à
+                        apprendre dans cette incarnation.
+                      </p>
+                      <p>
+                        <strong>Nombres Karmiques</strong> : les chiffres
+                        manquants dans ta date de naissance qui révèlent des
+                        défis intérieurs.
+                      </p>
+                      <p>
+                        <strong>Cycles Karmiques</strong> : les expériences à
+                        intégrer basées sur les lettres manquantes dans ton nom.
+                      </p>
+                      <p>
+                        <strong>Dettes Karmiques</strong> : les leçons
+                        importantes liées à des abus ou négligences dans des
+                        vies passées.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
             {/* Section des Nombres Karmiques */}
             <section className="numerology-section karmic-section">
               <div className="section-header">
