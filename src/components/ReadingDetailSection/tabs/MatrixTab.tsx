@@ -54,13 +54,13 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
   };
 
   const chakraColors = {
-    sahasrara: "#9c27b0",
-    ajna: "#673ab7",
-    vissudha: "#2196f3",
-    anahata: "#4caf50",
-    manipura: "#ff9800",
-    svadhisthana: "#f44336",
-    muladhara: "#795548",
+    sahasrara: "#9e4492", // Violet magenta du schéma Matrix Destiny
+    ajna: "#1e4396", // Bleu foncé du schéma Matrix Destiny
+    vissudha: "#00ade3", // Bleu cyan du schéma Matrix Destiny
+    anahata: "#5fb228", // Vert du schéma Matrix Destiny
+    manipura: "#f5eb3a", // Jaune du schéma Matrix Destiny
+    svadhisthana: "#FAB632", // Orange du schéma Matrix Destiny
+    muladhara: "#e83b11", // Rouge-orange du schéma Matrix Destiny
   };
 
   return (

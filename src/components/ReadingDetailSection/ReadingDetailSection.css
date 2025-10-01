@@ -2666,6 +2666,15 @@
   font-size: 1rem;
 }
 
+/* Couleur de texte spécifique pour certains chakras */
+.matrix-chakra-card:nth-child(3) .chakra-badge, /* Vishuddha */
+.matrix-chakra-card:nth-child(4) .chakra-badge, /* Anahata */
+.matrix-chakra-card:nth-child(5) .chakra-badge, /* Manipura */
+.matrix-chakra-card:nth-child(6) .chakra-badge {
+  /* Svadhisthana */
+  color: rgb(12, 3, 32);
+}
+
 .cycle-badge {
   background: linear-gradient(135deg, #ff9800 0%, #ef6c00 100%);
 }
@@ -3086,8 +3095,6 @@
   align-items: center;
   justify-content: center;
 }
-
-
 
 /* Tailles spécifiques pour les badges adjacents */
 .matrix-number-position.center-adjacent-medium .center-adjacent-badge {
