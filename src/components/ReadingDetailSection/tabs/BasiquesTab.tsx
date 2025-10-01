@@ -1,5 +1,6 @@
 import React from "react";
 import type { TabProps } from "../shared/types";
+import "./BasiquesTab.css";
 
 const BasiquesTab: React.FC<TabProps> = ({ numerologyResults }) => {
   return (
@@ -232,7 +233,6 @@ const BasiquesTab: React.FC<TabProps> = ({ numerologyResults }) => {
 
       {/* Nombres de l'Âme, Personnalité et Jour */}
       <section className="numerology-section personal-numbers">
-        <h3>Nombres de l'Âme, Personnalité et Jour</h3>
         <div className="personal-numbers-grid">
           {/* Nombre de l'Âme */}
           <div className="personal-number-card soul-urge">
