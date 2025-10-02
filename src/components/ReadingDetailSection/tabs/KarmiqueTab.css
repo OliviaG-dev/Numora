@@ -1,0 +1,1153 @@
+/* KarmiqueTab.css */
+
+/* ===== STYLES POUR L'ONGLET KARMIQUE ===== */
+
+/* Section Title Container - similar to other sections */
+.section-title-container {
+  margin-bottom: 2rem;
+  background: var(--bg-primary);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid var(--bg-tertiary);
+}
+
+/* Section Main Header - centered container for elegant titles */
+.section-main-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-title-container .title-with-tooltip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* Section Elegant Title - for section titles (Karmique) */
+.section-elegant-title {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: transparent;
+  background: linear-gradient(
+    90deg,
+    #d4af37 0%,
+    #f8e5a0 25%,
+    #d4af37 50%,
+    #f8e5a0 75%,
+    #d4af37 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+  animation: matrix-shimmer 4s linear infinite;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  position: relative;
+  font-family: "Cinzel", "Georgia", serif;
+  padding: 0.5rem 2rem;
+  margin: 0;
+}
+
+.section-elegant-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #d4af37 20%,
+    #f8e5a0 50%,
+    #d4af37 80%,
+    transparent 100%
+  );
+  animation: matrix-line-glow 3s ease-in-out infinite;
+}
+
+.section-elegant-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -10px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(212, 175, 55, 0.3) 20%,
+    rgba(248, 229, 160, 0.3) 50%,
+    rgba(212, 175, 55, 0.3) 80%,
+    transparent 100%
+  );
+  filter: blur(2px);
+}
+
+.matrix-icon,
+.matrix-icon-end {
+  font-size: 1.5rem;
+  display: inline-block;
+  color: #d4af37;
+  animation: matrix-sparkle 2s ease-in-out infinite;
+  opacity: 0.9;
+}
+
+.matrix-icon-end {
+  animation-delay: 1s;
+}
+
+@keyframes matrix-shimmer {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes matrix-line-glow {
+  0%,
+  100% {
+    opacity: 0.6;
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 16px rgba(248, 229, 160, 0.6);
+  }
+}
+
+@keyframes matrix-sparkle {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+/* Tooltip Styles */
+.title-with-tooltip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: help;
+  z-index: 99998;
+}
+
+.tooltip-icon {
+  font-size: 1.2rem;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-purple-light);
+}
+
+.tooltip:hover .tooltip-icon {
+  opacity: 1;
+  color: var(--secondary-gold);
+  transform: scale(1.1);
+}
+
+.tooltip-content {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  z-index: 99999;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--primary-purple);
+  backdrop-filter: blur(20px);
+  width: 300px;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.tooltip-content::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--primary-purple) transparent transparent transparent;
+}
+
+.tooltip:hover .tooltip-content {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.tooltip-content p {
+  margin: 0 0 0.5rem 0;
+  color: var(--text-primary);
+}
+
+.tooltip-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Section headers for karmic sections should be centered */
+.karmic-section .section-header,
+.cycle-karmic-section .section-header,
+.karmic-debts-section .section-header {
+  justify-content: center;
+  text-align: center;
+}
+
+/* ===== STYLES POUR LES NOMBRES KARMIQUES ===== */
+
+.karmic-overview {
+  margin-bottom: 2rem;
+  background: var(--bg-secondary);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid var(--bg-tertiary);
+}
+
+.karmic-stats {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 1.5rem;
+  background: var(--bg-secondary);
+  border-radius: 20px;
+  border: 1px solid var(--bg-tertiary);
+  min-width: 140px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.stat-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.2);
+  border-color: var(--primary-purple-light);
+}
+
+.stat-number {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: var(--gradient-secondary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.present-numbers {
+  text-align: center;
+  background: rgba(139, 92, 246, 0.05);
+  border-radius: 20px;
+  padding: 1.5rem;
+  border: 1px solid rgba(139, 92, 246, 0.1);
+}
+
+.present-numbers h4 {
+  color: var(--secondary-gold);
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.number-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.number-tag {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 1rem;
+  border: 2px solid;
+}
+
+.number-tag.present {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  border-color: #f093fb;
+  color: white;
+}
+
+.karmic-definitions {
+  display: grid;
+  gap: 2rem;
+  width: 100%;
+}
+
+.karmic-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--bg-tertiary);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  position: relative;
+  min-width: 100%;
+  width: 100%;
+}
+
+.karmic-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+/* Styles pour l'accordéon karmique */
+.accordion-header {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 0 !important;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.accordion-arrow {
+  transition: transform 0.3s ease;
+  color: var(--secondary-gold);
+}
+
+.accordion-arrow.open {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  animation: slideDown 0.3s ease-out;
+  margin-top: 1.5rem;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.karmic-header h4 {
+  color: var(--secondary-gold);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0;
+  flex: 1;
+  min-width: 200px;
+}
+
+.karmic-period {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  display: block;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+.karmic-badge {
+  background: linear-gradient(135deg, #c54343, #b91c1c);
+  color: white;
+  border: 1px solid #dc2626;
+  font-size: 1.3rem;
+  font-weight: 700;
+  min-width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.karmic-content {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.karmic-summary,
+.karmic-challenge,
+.karmic-details {
+  padding: 1.5rem;
+  background: var(--bg-primary);
+  border-radius: 15px;
+  border-left: 4px solid;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.karmic-summary {
+  border-left-color: var(--secondary-gold);
+  background: linear-gradient(
+    135deg,
+    rgba(245, 158, 11, 0.05),
+    rgba(245, 158, 11, 0.02)
+  );
+}
+
+.karmic-challenge {
+  border-left-color: #dc2626;
+  background: linear-gradient(
+    135deg,
+    rgba(220, 38, 38, 0.05),
+    rgba(220, 38, 38, 0.02)
+  );
+}
+
+.karmic-details {
+  border-left-color: var(--primary-purple-light);
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.05),
+    rgba(139, 92, 246, 0.02)
+  );
+}
+
+.karmic-summary:hover,
+.karmic-challenge:hover,
+.karmic-details:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.karmic-summary h5,
+.karmic-challenge h5,
+.karmic-details h5 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.karmic-summary h5 {
+  color: var(--secondary-gold);
+}
+
+.karmic-challenge h5 {
+  color: #dc2626;
+  text-shadow: 0 1px 2px rgba(220, 38, 38, 0.3);
+}
+
+.karmic-details h5 {
+  color: var(--primary-purple-light);
+  text-shadow: 0 1px 2px rgba(139, 92, 246, 0.3);
+}
+
+.karmic-summary p,
+.karmic-challenge p,
+.karmic-details p {
+  color: var(--text-primary);
+  line-height: 1.7;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.karmic-keywords {
+  padding: 1.5rem;
+  background: var(--bg-primary);
+  border-radius: 15px;
+  border: 1px solid rgba(139, 92, 246, 0.1);
+}
+
+.karmic-keywords h5 {
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.keywords-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.keyword-tag {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: var(--gradient-secondary);
+  color: var(--bg-primary);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.keyword-tag:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(
+    135deg,
+    var(--secondary-gold-light),
+    var(--secondary-gold)
+  );
+}
+
+.no-karmic-challenges {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(
+    135deg,
+    rgba(16, 185, 129, 0.05),
+    rgba(16, 185, 129, 0.02)
+  );
+  border: 2px solid rgba(16, 185, 129, 0.2);
+  border-radius: 20px;
+}
+
+.no-karmic-challenges h4 {
+  color: #10b981;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
+}
+
+.no-karmic-challenges p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  max-width: 500px;
+  margin: 0 auto;
+  font-weight: 500;
+}
+
+/* ===== STYLES POUR LES CYCLES KARMIQUES ===== */
+
+.cycle-karmic-overview {
+  margin-bottom: 2rem;
+  background: var(--bg-secondary);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid var(--bg-tertiary);
+}
+
+.cycle-karmic-stats {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cycle-karmic-definitions {
+  display: grid;
+  gap: 2rem;
+  width: 100%;
+}
+
+/* Cartes des cycles karmiques */
+.cycle-karmic-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--bg-tertiary);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  position: relative;
+  margin-bottom: 2rem;
+  min-width: 100%;
+  width: 100%;
+}
+
+.cycle-karmic-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.cycle-karmic-header h3 {
+  color: var(--secondary-gold);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0;
+  flex: 1;
+  min-width: 200px;
+}
+
+.cycle-karmic-period {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  display: block;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+.cycle-karmic-badge {
+  background: linear-gradient(135deg, #c54343, #b91c1c);
+  color: white;
+  border: 1px solid #dc2626;
+  font-size: 1.3rem;
+  font-weight: 700;
+  min-width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.cycle-karmic-content {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.cycle-karmic-summary,
+.cycle-karmic-challenge,
+.cycle-karmic-details {
+  padding: 1.5rem;
+  background: var(--bg-primary);
+  border-radius: 15px;
+  border-left: 4px solid;
+  position: relative;
+  overflow: hidden;
+}
+
+.cycle-karmic-summary {
+  border-left-color: var(--secondary-gold);
+  background: linear-gradient(
+    135deg,
+    rgba(245, 158, 11, 0.05),
+    rgba(245, 158, 11, 0.02)
+  );
+}
+
+.cycle-karmic-challenge {
+  border-left-color: #dc2626;
+  background: linear-gradient(
+    135deg,
+    rgba(220, 38, 38, 0.05),
+    rgba(220, 38, 38, 0.02)
+  );
+}
+
+.cycle-karmic-details {
+  border-left-color: var(--primary-purple-light);
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.05),
+    rgba(139, 92, 246, 0.02)
+  );
+}
+
+.cycle-karmic-summary:hover,
+.cycle-karmic-challenge:hover,
+.cycle-karmic-details:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.cycle-karmic-summary h4,
+.cycle-karmic-challenge h4,
+.cycle-karmic-details h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cycle-karmic-summary h4 {
+  color: var(--secondary-gold);
+}
+
+.cycle-karmic-challenge h4 {
+  color: #dc2626;
+  text-shadow: 0 1px 2px rgba(220, 38, 38, 0.3);
+}
+
+.cycle-karmic-details h4 {
+  color: var(--primary-purple-light);
+  text-shadow: 0 1px 2px rgba(139, 92, 246, 0.3);
+}
+
+.cycle-karmic-summary p,
+.cycle-karmic-challenge p,
+.cycle-karmic-details p {
+  color: var(--text-primary);
+  line-height: 1.7;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.cycle-karmic-keywords {
+  padding: 1.5rem;
+  background: var(--bg-primary);
+  border-radius: 15px;
+  border: 1px solid rgba(139, 92, 246, 0.1);
+}
+
+.cycle-karmic-keywords h4 {
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.keywords-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: flex-start;
+}
+
+.keyword-tag {
+  background: linear-gradient(135deg, var(--secondary-gold), #f59e0b);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.keyword-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(251, 191, 36, 0.4);
+}
+
+/* Message quand pas de cycles karmiques */
+.no-cycle-karmic-challenges {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(
+    135deg,
+    rgba(16, 185, 129, 0.05),
+    rgba(16, 185, 129, 0.02)
+  );
+  border: 2px solid rgba(16, 185, 129, 0.2);
+  border-radius: 20px;
+}
+
+.no-cycle-karmic-challenges h4 {
+  color: #10b981;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
+}
+
+.no-cycle-karmic-challenges p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  max-width: 500px;
+  margin: 0 auto;
+  font-weight: 500;
+}
+
+/* ===== STYLES POUR LES DETTES KARMIQUES ===== */
+
+/* Section des dettes karmiques */
+.karmic-debts-section {
+  background: var(--bg-primary);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--bg-tertiary);
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.karmic-debts-section:hover {
+  transform: translateY(-5px);
+}
+
+.karmic-debts-section h2 {
+  color: var(--primary-purple);
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+}
+
+.karmic-debts-overview {
+  margin-bottom: 2rem;
+  background: var(--bg-primary);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid var(--bg-tertiary);
+}
+
+.karmic-debts-stats {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.karmic-debts-analysis {
+  margin-bottom: 2rem;
+  background: var(--bg-primary);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid var(--bg-tertiary);
+}
+
+.karmic-debts-analysis h4 {
+  color: var(--secondary-gold);
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.debt-analysis-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.debt-analysis-item {
+  background: var(--bg-secondary);
+  border-radius: 15px;
+  padding: 1.5rem;
+  text-align: center;
+  border: 1px solid var(--bg-tertiary);
+  transition: all 0.3s ease;
+}
+
+.debt-analysis-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.2);
+  border-color: var(--primary-purple-light);
+}
+
+.debt-analysis-item h4 {
+  color: var(--secondary-gold);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.debt-number {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.debt-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  background: linear-gradient(
+    135deg,
+    var(--primary-purple),
+    var(--primary-purple-light)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.karmic-debt-badge {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid #dc2626;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
+}
+
+.karmic-debts-definitions {
+  display: grid;
+  gap: 2rem;
+  width: 100%;
+}
+
+.karmic-debt-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--bg-tertiary);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  position: relative;
+  min-width: 100%;
+  width: 100%;
+}
+
+.karmic-debt-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+.karmic-debt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.karmic-debt-header h4 {
+  color: var(--secondary-gold);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0;
+  flex: 1;
+  min-width: 200px;
+}
+
+.karmic-debt-period {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  display: block;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+.karmic-debt-content {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.karmic-debt-summary,
+.karmic-debt-challenge,
+.karmic-debt-details {
+  padding: 1.5rem;
+  background: var(--bg-primary);
+  border-radius: 15px;
+  border-left: 4px solid;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.karmic-debt-summary {
+  border-left-color: var(--secondary-gold);
+  background: linear-gradient(
+    135deg,
+    rgba(245, 158, 11, 0.05),
+    rgba(245, 158, 11, 0.02)
+  );
+}
+
+.karmic-debt-challenge {
+  border-left-color: #dc2626;
+  background: linear-gradient(
+    135deg,
+    rgba(220, 38, 38, 0.05),
+    rgba(220, 38, 38, 0.02)
+  );
+}
+
+.karmic-debt-details {
+  border-left-color: var(--primary-purple-light);
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.05),
+    rgba(139, 92, 246, 0.02)
+  );
+}
+
+.karmic-debt-summary:hover,
+.karmic-debt-challenge:hover,
+.karmic-debt-details:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.karmic-debt-summary h4,
+.karmic-debt-challenge h4,
+.karmic-debt-details h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.karmic-debt-summary h4 {
+  color: var(--secondary-gold);
+}
+
+.karmic-debt-challenge h4 {
+  color: #dc2626;
+  text-shadow: 0 1px 2px rgba(220, 38, 38, 0.3);
+}
+
+.karmic-debt-details h4 {
+  color: var(--primary-purple-light);
+  text-shadow: 0 1px 2px rgba(139, 92, 246, 0.3);
+}
+
+.karmic-debt-summary p,
+.karmic-debt-challenge p,
+.karmic-debt-details p {
+  color: var(--text-primary);
+  line-height: 1.7;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.karmic-debt-keywords {
+  padding: 1.5rem;
+  background: var(--bg-primary);
+  border-radius: 15px;
+  border: 1px solid rgba(139, 92, 246, 0.1);
+}
+
+.karmic-debt-keywords h4 {
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.no-karmic-debts {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(
+    135deg,
+    rgba(16, 185, 129, 0.05),
+    rgba(16, 185, 129, 0.02)
+  );
+  border: 2px solid rgba(16, 185, 129, 0.2);
+  border-radius: 20px;
+}
+
+.no-karmic-debts h4 {
+  color: #10b981;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
+}
+
+.no-karmic-debts p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  max-width: 500px;
+  margin: 0 auto;
+  font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .karmic-debts-section {
+    padding: 1.5rem;
+  }
+
+  .karmic-debts-overview,
+  .karmic-debts-analysis {
+    padding: 1.5rem;
+  }
+
+  .karmic-debts-stats {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .debt-analysis-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .karmic-debt-header {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .karmic-debt-header h4 {
+    min-width: auto;
+  }
+
+  .karmic-debt-card {
+    padding: 1.5rem;
+  }
+
+  .tooltip-content {
+    width: 250px;
+    font-size: 0.85rem;
+    padding: 0.8rem;
+  }
+}

@@ -150,11 +150,6 @@
 }
 
 /* Section headers for h3 subsections should be left aligned */
-.karmic-section .section-header,
-.cycle-karmic-section .section-header,
-.karmic-debts-section .section-header {
-  justify-content: flex-start;
-}
 
 /* Section headers for Chemin de Vie and Expression need space-between */
 .life-path .section-header,
@@ -713,71 +708,35 @@
   }
 }
 
-/* ===== STYLES POUR LES NOMBRES KARMIQUES ===== */
+/* ===== STYLES POUR LA NAVIGATION PAR ONGLETS ===== */
 
-/* Les sections karmiques utilisent maintenant les styles de base de .numerology-section */
-
-.karmic-overview {
-  margin-bottom: 2rem;
-  background: var(--bg-secondary);
-  border-radius: 20px;
-  padding: 2rem;
-  border: 1px solid var(--bg-tertiary);
-}
-
-.karmic-stats {
+/* Navigation par onglets */
+.tab-navigation {
   display: flex;
-  gap: 2rem;
-  margin-bottom: 2rem;
   justify-content: center;
-}
-
-.stat-item {
-  text-align: center;
-  padding: 1.5rem;
+  margin-bottom: 2rem;
   background: var(--bg-secondary);
   border-radius: 20px;
+  padding: 1rem;
   border: 1px solid var(--bg-tertiary);
-  min-width: 140px;
-  transition: all 0.3s ease;
   backdrop-filter: blur(10px);
 }
 
-.stat-item:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.2);
-  border-color: var(--primary-purple-light);
+.tab-list {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.tab-item {
+  position: relative;
+}
+.tab-item {
+  position: relative;
 }
 
-.stat-number {
-  display: block;
-  font-size: 2.5rem;
-  font-weight: 700;
-  background: var(--gradient-secondary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 0.5rem;
-  text-shadow: 0 2px 4px rgba(245, 158, 11, 0.3);
-}
-
-.stat-label {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  font-weight: 600;
-}
-
-.present-numbers {
-  text-align: center;
-  background: rgba(139, 92, 246, 0.05);
-  border-radius: 20px;
-  padding: 1.5rem;
-  border: 1px solid rgba(139, 92, 246, 0.1);
-}
-
-.present-numbers h4 {
+.tab-button {
   color: var(--secondary-gold);
   margin-bottom: 1.5rem;
   font-size: 1.2rem;
