@@ -1,4 +1,5 @@
 import React from "react";
+import "./DatesTab.css";
 import type { TabProps } from "../shared/types";
 
 const DatesTab: React.FC<TabProps> = ({ numerologyResults }) => {

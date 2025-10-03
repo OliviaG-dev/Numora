@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./KarmiqueTab.css";
 import type { TabProps } from "../shared/types";
 import { karmicDebtsData } from "../../../data";
 

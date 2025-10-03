@@ -8,7 +8,7 @@ export interface ReadingData {
   thirdGivenName: string;
   familyName: string;
   birthDate: string;
-  birthTime: string;
+  gender: string;
 }
 
 export interface NumerologyResults {
@@ -75,5 +75,5 @@ export interface NumerologyResults {
 
 export interface TabProps {
   numerologyResults: NumerologyResults;
-  readingData: ReadingData;
+  readingData?: ReadingData;
 }
