@@ -1,0 +1,1185 @@
+/* MatrixTab.css */
+
+/* ===== STYLES POUR MATRIX DESTINY ===== */
+
+/* Section Matrix Destiny */
+.matrix-section {
+  background: var(--bg-secondary);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--bg-tertiary);
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+  width: 1200px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.matrix-section:hover {
+  transform: translateY(-5px);
+}
+
+/* ===== SECTIONS DE MATRIX ===== */
+
+/* Sections de Matrix */
+.matrix-base-section,
+.matrix-center-section,
+.matrix-chakras-section,
+.matrix-cycles-section,
+.matrix-special-section {
+  margin-bottom: 3rem;
+  background: var(--bg-primary);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid var(--bg-tertiary);
+}
+
+/* Styles spécifiques pour les titres Matrix Destiny */
+.matrix-base-section .title-with-tooltip h3,
+.matrix-center-section .title-with-tooltip h3,
+.matrix-chakras-section .title-with-tooltip h3,
+.matrix-cycles-section .title-with-tooltip h3,
+.matrix-special-section .title-with-tooltip h3 {
+  color: var(--primary-purple);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+}
+
+.matrix-special-section .title-with-tooltip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.matrix-special-section .title-with-tooltip h3 {
+  margin: 0;
+  line-height: 1;
+}
+
+.matrix-chakras-section .title-with-tooltip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.matrix-chakras-section .title-with-tooltip h3 {
+  margin: 0;
+  line-height: 1;
+}
+
+.matrix-base-section .title-with-tooltip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.matrix-base-section .title-with-tooltip h3 {
+  margin: 0;
+  line-height: 1;
+}
+
+.matrix-center-section .title-with-tooltip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.matrix-center-section .title-with-tooltip h3 {
+  margin: 0;
+  line-height: 1;
+}
+
+/* ===== GRID DES NOMBRES DE BASE ===== */
+
+.matrix-base-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.matrix-base-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.matrix-base-item span {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ===== GRID DU CENTRE ===== */
+
+.matrix-center-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.matrix-center-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.matrix-center-item span {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* ===== STYLES POUR LES LIGNES DE GÉNÉRATION ===== */
+
+/* Container des lignes de génération */
+.generation-lines-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Styles pour les lignes de génération */
+.matrix-generation-line {
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid var(--bg-tertiary);
+  transition: all 0.3s ease;
+}
+
+.matrix-generation-line:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+.generation-line-title {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-align: center;
+  justify-content: center;
+}
+
+.generation-line-title.male-title {
+  color: #2196f3;
+}
+
+.generation-line-title.female-title {
+  color: #e91e63;
+}
+
+.generation-icon {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+/* Styles pour les lignes de génération horizontales */
+.generation-line-horizontal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.generation-number {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.generation-number span {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* ===== STYLES POUR LES LIGNES KARMIQUES ===== */
+
+/* Section des lignes karmiques */
+.matrix-karmic-section {
+  margin-bottom: 3rem;
+  background: var(--bg-primary);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid var(--bg-tertiary);
+}
+
+.matrix-karmic-section .title-with-tooltip h3 {
+  color: var(--primary-purple);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+}
+
+.matrix-karmic-section .title-with-tooltip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.matrix-karmic-section .title-with-tooltip h3 {
+  margin: 0;
+  line-height: 1;
+}
+
+/* Grid des lignes karmiques */
+.matrix-karmic-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+/* Ligne de cartes karmiques */
+.matrix-karmic-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+/* Item de ligne karmique */
+.matrix-karmic-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  border: 1px solid var(--bg-tertiary);
+  transition: all 0.3s ease;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.matrix-karmic-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+/* Container des badges karmiques */
+.karmic-badges {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+/* Titre de la ligne karmique */
+.matrix-karmic-item span {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+}
+
+/* Description karmique */
+.karmic-description {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+  font-weight: 500;
+  text-align: center;
+  max-width: 250px;
+}
+
+/* ===== GRID DES CHAKRAS ===== */
+
+.matrix-chakras-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.matrix-chakra-card {
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid var(--bg-tertiary);
+  transition: all 0.3s ease;
+}
+
+.matrix-chakra-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+.chakra-header h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.chakra-values {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.chakra-value {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.value-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ===== GRID DES DOMAINES SPÉCIAUX ===== */
+
+.matrix-special-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.matrix-special-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  border: 1px solid var(--bg-tertiary);
+  transition: all 0.3s ease;
+}
+
+.matrix-special-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+}
+
+.special-icon {
+  font-size: 2rem;
+}
+
+.matrix-special-item span {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.special-description {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(139, 92, 246, 0.1);
+  border-radius: 12px;
+  border-left: 4px solid var(--primary-purple);
+  backdrop-filter: blur(5px);
+}
+
+.special-text {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+  font-weight: 500;
+  font-style: italic;
+  text-align: center;
+}
+
+/* ===== SECTION LIGNE DE SANTÉ ===== */
+
+.matrix-health-section {
+  margin-bottom: 3rem;
+  background: var(--bg-primary);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid var(--bg-tertiary);
+}
+
+.matrix-health-section .title-with-tooltip h3 {
+  color: var(--primary-purple);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+}
+
+.matrix-health-section .title-with-tooltip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.matrix-health-section .title-with-tooltip h3 {
+  margin: 0;
+  line-height: 1;
+}
+
+.matrix-health-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.matrix-health-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  border: 1px solid var(--bg-tertiary);
+  transition: all 0.3s ease;
+}
+
+.matrix-health-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.matrix-health-item span {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.health-description {
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  font-weight: 400;
+  text-align: center;
+  line-height: 1.4;
+  margin-top: 0.5rem;
+  opacity: 0.9;
+}
+
+.health-badge {
+  background: linear-gradient(135deg, #4caf50, #2e7d32);
+  color: white;
+  font-weight: 700;
+  font-size: 1.2rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.relation-meaning {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(76, 175, 80, 0.1);
+  border-radius: 12px;
+  border-left: 4px solid #4caf50;
+  backdrop-filter: blur(5px);
+}
+
+.relation-text {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+  font-weight: 500;
+  font-style: italic;
+  text-align: center;
+}
+
+/* ===== SECTION RELATIONS EXTÉRIEURES ===== */
+
+.matrix-external-relations-section {
+  margin-bottom: 3rem;
+  background: var(--bg-primary);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid var(--bg-tertiary);
+}
+
+.matrix-external-relations-section .section-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.matrix-external-relations-section h3 {
+  color: var(--primary-purple);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+}
+
+.matrix-external-relations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.matrix-external-relation-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  border: 1px solid var(--bg-tertiary);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(107, 70, 193, 0.1);
+}
+
+.matrix-external-relation-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(107, 70, 193, 0.2);
+}
+
+.matrix-external-relation-item span {
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.external-relation-description {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  text-align: center;
+  margin: 0.5rem 0;
+}
+
+.matrix-external-relation-item .matrix-number-badge {
+  width: 50px;
+  height: 50px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(
+    135deg,
+    var(--primary-purple) 0%,
+    var(--primary-purple-light) 100%
+  );
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(107, 70, 193, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.matrix-external-relation-item .relation-meaning {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(107, 70, 193, 0.1);
+  border-radius: 12px;
+  border-left: 4px solid var(--primary-purple);
+  backdrop-filter: blur(5px);
+}
+
+.matrix-external-relation-item .relation-text {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+  font-weight: 500;
+  font-style: italic;
+  text-align: center;
+}
+
+/* ===== BADGES MATRIX ===== */
+
+.matrix-number-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.matrix-number-badge:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== BADGES KARMIQUES ===== */
+
+.karmic-badge-primary {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  width: 50px;
+  height: 50px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.karmic-badge-secondary {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  width: 50px;
+  height: 50px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== COULEURS DES BADGES MATRIX ===== */
+
+.day-badge {
+  background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+}
+
+.month-badge {
+  background: linear-gradient(135deg, #2196f3 0%, #1565c0 100%);
+}
+
+.year-badge {
+  background: linear-gradient(135deg, #ff9800 0%, #ef6c00 100%);
+}
+
+.mission-badge {
+  background: linear-gradient(135deg, #9c27b0 0%, #6a1b9a 100%);
+}
+
+.male-badge {
+  background: linear-gradient(135deg, #2196f3 0%, #1565c0 100%);
+}
+
+.female-badge {
+  background: linear-gradient(135deg, #e91e63 0%, #ad1457 100%);
+}
+
+.chakra-badge {
+  width: 40px;
+  height: 40px;
+  font-size: 1rem;
+}
+
+/* Couleur de texte spécifique pour certains chakras */
+.matrix-chakra-card:nth-child(3) .chakra-badge, /* Vishuddha */
+.matrix-chakra-card:nth-child(4) .chakra-badge, /* Anahata */
+.matrix-chakra-card:nth-child(5) .chakra-badge, /* Manipura */
+.matrix-chakra-card:nth-child(6) .chakra-badge {
+  /* Svadhisthana */
+  color: rgb(12, 3, 32);
+}
+
+.love-badge {
+  background: linear-gradient(135deg, #e91e63 0%, #ad1457 100%);
+}
+
+.balance-badge {
+  background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+}
+
+.money-badge {
+  background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+}
+
+/* ===== STYLES POUR LE SCHÉMA VISUEL MATRIX DESTINY ===== */
+
+/* Section du schéma visuel */
+.matrix-visual-section {
+  margin-top: 3rem;
+  background: var(--bg-primary);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid var(--bg-tertiary);
+}
+
+.matrix-visual-section .title-with-tooltip h3 {
+  color: var(--primary-purple);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+}
+
+.matrix-visual-section .title-with-tooltip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.matrix-visual-section .title-with-tooltip h3 {
+  margin: 0;
+  line-height: 1;
+}
+
+/* Conteneur du schéma */
+.matrix-visual-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 600px; /* Largeur fixe pour éviter les variations */
+  margin: 0 auto; /* Centre le conteneur */
+}
+
+/* Wrapper de l'image */
+.matrix-image-wrapper {
+  position: relative;
+  display: block; /* Change de inline-block à block */
+  width: 600px; /* Largeur fixe */
+  height: 600px; /* Hauteur fixe pour éviter les variations */
+  overflow: hidden; /* Cache les débordements */
+  flex-shrink: 0; /* Empêche la réduction de taille */
+}
+
+/* Image Matrix Destiny */
+.matrix-destiny-image {
+  width: 100%;
+  height: 100%; /* Remplit le conteneur fixe */
+  object-fit: contain; /* Garde les proportions */
+  object-position: center; /* Centre l'image */
+}
+
+.base {
+  font-size: 2rem;
+  z-index: 7;
+  font-weight: 700;
+}
+
+.moyen {
+  font-size: 1.2rem;
+  z-index: 7;
+  font-weight: 700;
+}
+
+.petit {
+  font-size: 1rem;
+  z-index: 7;
+  font-weight: 700;
+}
+
+.black-text {
+  color: rgb(12, 3, 32);
+}
+
+.white-text {
+  color: rgb(228, 219, 219);
+}
+
+/* Overlay pour positionner les chiffres */
+.matrix-numbers-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 600px; /* Largeur fixe égale au wrapper */
+  height: 600px; /* Hauteur fixe égale au wrapper */
+  pointer-events: none;
+}
+
+/* Positionnement des chiffres */
+.matrix-number-position {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+  z-index: 5;
+}
+
+/* Styles spécifiques pour les chakras */
+.matrix-number-position.sahasrara,
+.matrix-number-position.ajna,
+.matrix-number-position.vissudha,
+.matrix-number-position.anahata,
+.matrix-number-position.manipura,
+.matrix-number-position.svadhisthana,
+.matrix-number-position.muladhara {
+  flex-direction: row;
+  gap: 0.2rem;
+}
+
+/* Styles pour les chakras dans le schéma visuel */
+.chakra-number {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+  padding: 0.3rem;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.chakra-physique,
+.chakra-energy,
+.chakra-emotions {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+  min-width: 1.2rem;
+  text-align: center;
+}
+
+.chakra-physique {
+  color: #ff6b6b; /* Rouge pour physique */
+}
+
+.chakra-energy {
+  color: #4ecdc4; /* Turquoise pour énergie */
+}
+
+.chakra-emotions {
+  color: #ffe66d; /* Jaune pour émotions */
+}
+
+/* Positionnement spécifique des chakras */
+.chakra-sahasrara {
+  z-index: 8;
+}
+
+.chakra-ajna {
+  z-index: 8;
+}
+
+.chakra-vissudha {
+  z-index: 8;
+}
+
+.chakra-anahata {
+  z-index: 8;
+}
+
+.chakra-manipura {
+  z-index: 8;
+}
+
+.chakra-svadhisthana {
+  z-index: 8;
+}
+
+.chakra-muladhara {
+  z-index: 8;
+}
+
+/* Styles pour les nombres de base */
+.matrix-number-position.base-day,
+.matrix-number-position.base-month,
+.matrix-number-position.base-year,
+.matrix-number-position.base-mission {
+  z-index: 6;
+}
+
+/* Styles pour les lignes masculine et féminine */
+.matrix-number-position.male-line,
+.matrix-number-position.female-line {
+  z-index: 4;
+}
+
+/* Styles pour les domaines spéciaux */
+.matrix-number-position.special-love,
+.matrix-number-position.special-money {
+  z-index: 7;
+}
+
+/* Styles pour les lignes du cœur */
+.matrix-number-position.heart-line {
+  z-index: 8;
+}
+
+/* Centre de la Matrix */
+.matrix-number-position.center-mission {
+  z-index: 10;
+}
+
+/* Badge central plus grand */
+.center-badge {
+  width: 60px;
+  height: 60px;
+  font-size: 1.4rem;
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+  border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Badges adjacents au centre */
+.center-adjacent-badge {
+  background: white;
+  border: 2px solid #0f4d94;
+  color: rgb(12, 3, 32);
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Tailles spécifiques pour les badges adjacents */
+.matrix-number-position.center-adjacent-medium .center-adjacent-badge {
+  width: 40px;
+  height: 40px;
+  font-size: 1.1rem;
+}
+
+.matrix-number-position.center-adjacent-small .center-adjacent-badge {
+  width: 30px;
+  height: 30px;
+  font-size: 0.9rem;
+}
+
+/* Animation des badges sur l'image */
+.matrix-number-position .matrix-number-badge {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Désactiver les effets de hover sur le schéma */
+.matrix-visual-section .matrix-number-badge:hover {
+  transform: none;
+  box-shadow: none;
+  z-index: auto;
+}
+
+/* Styles spécifiques pour les nombres du schéma Matrix Destiny */
+.matrix-visual-section .matrix-number-badge {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  color: #ffffff;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+/* Styles pour tous les types de badges dans le schéma */
+.matrix-visual-section .day-badge,
+.matrix-visual-section .month-badge,
+.matrix-visual-section .year-badge,
+.matrix-visual-section .mission-badge,
+.matrix-visual-section .male-badge,
+.matrix-visual-section .female-badge,
+.matrix-visual-section .love-badge,
+.matrix-visual-section .money-badge,
+.matrix-visual-section .chakra-badge,
+.matrix-visual-section .center-badge {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.matrix-number-position .matrix-number-badge:hover {
+  transform: scale(1.2);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+/* Légende pour les chakras */
+.matrix-number-position .chakra-badge::after {
+  content: attr(data-chakra);
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Désactiver les effets de hover sur les chakras du schéma */
+.matrix-visual-section .matrix-number-position .chakra-badge:hover::after {
+  opacity: 0;
+}
+
+.matrix-number-position .chakra-badge:hover::after {
+  opacity: 1;
+}
+
+/* ===== RESPONSIVE POUR MATRIX DESTINY ===== */
+
+@media (max-width: 768px) {
+  .matrix-section {
+    padding: 1.5rem;
+    width: 100%;
+  }
+
+  .matrix-base-grid,
+  .matrix-center-grid,
+  .matrix-special-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .matrix-chakras-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chakra-values {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .matrix-number-badge {
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
+  }
+
+  .chakra-badge {
+    width: 35px;
+    height: 35px;
+    font-size: 0.9rem;
+  }
+
+  .generation-line-horizontal {
+    gap: 1rem;
+  }
+
+  .matrix-karmic-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .matrix-karmic-item {
+    padding: 1rem;
+  }
+
+  .karmic-badges {
+    gap: 0.8rem;
+  }
+
+  .karmic-badge,
+  .karmic-badge-secondary {
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
+  }
+
+  .matrix-karmic-item span {
+    font-size: 1rem;
+  }
+
+  .karmic-description {
+    font-size: 0.85rem;
+    max-width: 200px;
+  }
+
+  /* Responsive pour le schéma visuel */
+  .matrix-visual-container {
+    max-width: 100%;
+  }
+
+  .matrix-image-wrapper {
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+  }
+
+  .matrix-numbers-overlay {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .matrix-base-grid,
+  .matrix-center-grid,
+  .matrix-special-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .matrix-karmic-row {
+    grid-template-columns: 1fr;
+  }
+
+  .karmic-badges {
+    gap: 0.5rem;
+  }
+
+  .karmic-badge,
+  .karmic-badge-secondary {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+}
