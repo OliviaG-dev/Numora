@@ -4,6 +4,7 @@ import { getRelationMeaning } from "../../../utils/matrixDestiny/matrixRelations
 import { getMatrixMeaning } from "../../../utils/matrixDestiny/getMatrixMeaning";
 import { getExternalRelationsMeaning } from "../../../utils/matrixDestiny/getExternalRelationsMeaning";
 import MatrixDestinyImage from "../../../assets/Matrix_destiny.webp";
+import "./MatrixTab.css";
 
 interface ReadingData {
   readingName: string;
