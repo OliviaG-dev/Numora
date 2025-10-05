@@ -1501,7 +1501,7 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
 
               <div
                 className="matrix-number-position male-line"
-                style={{ top: "81 %", left: "80.5%" }}
+                style={{ top: "81%", left: "80.5%" }}
               >
                 <div className="base black-text">
                   {matrixDestiny.center.maleLine.dayYear}
@@ -1510,7 +1510,7 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
 
               <div
                 className="matrix-number-position female-line"
-                style={{ top: "19%", left: "80.5%" }}
+                style={{ top: "19.5%", left: "80.5%" }}
               >
                 <div className="base black-text">
                   {matrixDestiny.center.femaleLine.monthYear}
