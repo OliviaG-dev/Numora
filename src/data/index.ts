@@ -24,6 +24,10 @@ import hereditaryBusinessData from "./numerology/NaneBusiness/HereditaryBusiness
 import matrixRelationsHeartData from "./matrixDestiny/matrixRelationsHeart.json";
 import matrixMoneyLoveData from "./matrixDestiny/matrixMoneyLove.json";
 import externalRelationsData from "./matrixDestiny/externalRelations.json";
+import baseNumberData from "./matrixDestiny/baseNumber.json";
+import centralMissionData from "./matrixDestiny/centralMission.json";
+import feminineLineData from "./matrixDestiny/feminineLine.json";
+import masculineLineData from "./matrixDestiny/masculineLine.json";
 
 // ===== EXPORTS PRINCIPAUX =====
 export {
@@ -47,6 +51,10 @@ export {
   matrixRelationsHeartData,
   matrixMoneyLoveData,
   externalRelationsData,
+  baseNumberData,
+  centralMissionData,
+  feminineLineData,
+  masculineLineData,
 };
 
 // ===== ALIAS POUR COMPATIBILITÉ =====
@@ -275,6 +283,89 @@ export interface ExternalRelationsData {
   };
   influence_social: {
     [key: string]: string;
+  };
+}
+
+// ===== INTERFACES MATRIX DESTINY =====
+
+/**
+ * Interface pour les données de base Matrix Destiny
+ */
+export interface BaseNumberDetail {
+  mots_cles: string;
+  description: string;
+}
+
+export interface BaseNumberData {
+  jour: {
+    [key: string]: BaseNumberDetail;
+  };
+  mois: {
+    [key: string]: BaseNumberDetail;
+  };
+  annee: {
+    [key: string]: BaseNumberDetail;
+  };
+  mission_vie: {
+    [key: string]: BaseNumberDetail;
+  };
+}
+
+/**
+ * Interface pour les données de mission centrale Matrix Destiny
+ */
+export interface CentralMissionDetail {
+  keyword: string;
+  interpretation: string;
+}
+
+export interface CentralMissionData {
+  central_balance: {
+    [key: string]: CentralMissionDetail;
+  };
+}
+
+/**
+ * Interface pour les données de ligne féminine Matrix Destiny
+ */
+export interface FeminineLineDetail {
+  keyword: string;
+  interpretation: string;
+}
+
+export interface FeminineLineData {
+  feminine_line: {
+    spirit: {
+      [key: string]: FeminineLineDetail;
+    };
+    heart: {
+      [key: string]: FeminineLineDetail;
+    };
+    energy: {
+      [key: string]: FeminineLineDetail;
+    };
+  };
+}
+
+/**
+ * Interface pour les données de ligne masculine Matrix Destiny
+ */
+export interface MasculineLineDetail {
+  keyword: string;
+  interpretation: string;
+}
+
+export interface MasculineLineData {
+  masculine_line: {
+    spirit: {
+      [key: string]: MasculineLineDetail;
+    };
+    heart: {
+      [key: string]: MasculineLineDetail;
+    };
+    energy: {
+      [key: string]: MasculineLineDetail;
+    };
   };
 }
 

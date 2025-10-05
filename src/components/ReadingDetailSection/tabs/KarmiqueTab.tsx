@@ -508,7 +508,7 @@ const KarmiqueTab: React.FC<TabProps> = ({ numerologyResults }) => {
               <div className="debt-number">
                 {numerologyResults.karmicDebts.lifePathDebt.number}
                 {numerologyResults.karmicDebts.lifePathDebt.isKarmicDebt && (
-                  <span className="karmic-debt-badge">
+                  <span className="karmic-debt-highlight">
                     Dette{" "}
                     {numerologyResults.karmicDebts.lifePathDebt.karmicDebtType}
                   </span>

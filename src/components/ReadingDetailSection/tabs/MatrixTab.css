@@ -127,6 +127,154 @@
   letter-spacing: 0.5px;
 }
 
+/* ===== SECTION SIGNIFICATIONS DES NOMBRES DE BASE ===== */
+
+.matrix-base-meanings-section {
+  margin-bottom: 3rem;
+  background: var(--bg-primary);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid var(--bg-tertiary);
+}
+
+.matrix-base-meanings-section .title-with-tooltip h3 {
+  color: var(--primary-purple);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+}
+
+.matrix-base-meanings-section .title-with-tooltip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 0;
+}
+
+.matrix-base-meanings-section .title-with-tooltip h3 {
+  margin: 0;
+  line-height: 1;
+}
+
+/* Grid des significations */
+.matrix-base-meanings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+/* Carte de signification */
+.matrix-base-meaning-card {
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid var(--bg-tertiary);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.matrix-base-meaning-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+/* En-tête de la carte */
+.meaning-card-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--bg-tertiary);
+}
+
+.meaning-card-header .title-with-tooltip {
+  display: flex;
+  align-items: center;
+}
+
+.meaning-card-header h4 {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Tooltip spécifique pour les titres des cartes */
+.meaning-card-header .tooltip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.meaning-card-header .tooltip-icon {
+  font-size: 1rem;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  color: var(--secondary-gold);
+}
+
+.meaning-card-header .tooltip:hover .tooltip-icon {
+  opacity: 1;
+  color: var(--secondary-gold);
+  transform: scale(1.1);
+}
+
+.meaning-card-header .tooltip-content {
+  width: 280px;
+  font-size: 0.85rem;
+  padding: 0.8rem;
+  background: var(--bg-primary);
+  border: 1px solid var(--secondary-gold);
+  box-shadow: 0 8px 32px rgba(245, 158, 11, 0.2);
+}
+
+/* Contenu de la carte */
+.meaning-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Sections mots-clés et description */
+.keywords-section,
+.description-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.keywords-section h5,
+.description-section h5 {
+  color: var(--secondary-gold);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0;
+  text-shadow: 0 1px 2px rgba(245, 158, 11, 0.3);
+}
+
+.keywords-text,
+.description-text {
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+  font-weight: 500;
+  padding: 0.75rem;
+  background: rgba(139, 92, 246, 0.05);
+  border-radius: 8px;
+  border-left: 3px solid var(--primary-purple);
+  font-style: italic;
+}
+
 /* ===== GRID DU CENTRE ===== */
 
 .matrix-center-grid {
@@ -795,16 +943,17 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 600px; /* Largeur fixe pour éviter les variations */
+  max-width: min(600px, 90vw);
+  aspect-ratio: 1;
   margin: 0 auto; /* Centre le conteneur */
 }
 
 /* Wrapper de l'image */
 .matrix-image-wrapper {
   position: relative;
-  display: block; /* Change de inline-block à block */
-  width: 600px; /* Largeur fixe */
-  height: 600px; /* Hauteur fixe pour éviter les variations */
+  display: block;
+  width: 100%;
+  height: 100%;
   overflow: hidden; /* Cache les débordements */
   flex-shrink: 0; /* Empêche la réduction de taille */
 }
@@ -818,19 +967,19 @@
 }
 
 .base {
-  font-size: 2rem;
+  font-size: clamp(1.2rem, 3.5vw, 1.8rem);
   z-index: 7;
   font-weight: 700;
 }
 
 .moyen {
-  font-size: 1.2rem;
+  font-size: clamp(0.6rem, 2vw, 1rem);
   z-index: 7;
   font-weight: 700;
 }
 
 .petit {
-  font-size: 1rem;
+  font-size: clamp(0.6rem, 1.7vw, 0.9rem);
   z-index: 7;
   font-weight: 700;
 }
@@ -848,8 +997,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 600px; /* Largeur fixe égale au wrapper */
-  height: 600px; /* Hauteur fixe égale au wrapper */
+  width: 100%;
+  height: 100%;
   pointer-events: none;
 }
 
@@ -882,10 +1031,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.1rem;
+  gap: clamp(0.05rem, 0.2vw, 0.1rem);
   background: rgba(0, 0, 0, 0.7);
-  border-radius: 8px;
-  padding: 0.3rem;
+  border-radius: clamp(4px, 1vw, 8px);
+  padding: clamp(0.2rem, 0.5vw, 0.3rem);
   backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
@@ -893,11 +1042,11 @@
 .chakra-physique,
 .chakra-energy,
 .chakra-emotions {
-  font-size: 0.8rem;
+  font-size: clamp(0.6rem, 1.5vw, 0.8rem);
   font-weight: 700;
   color: white;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
-  min-width: 1.2rem;
+  min-width: clamp(1rem, 2vw, 1.2rem);
   text-align: center;
 }
 
@@ -974,9 +1123,9 @@
 
 /* Badge central plus grand */
 .center-badge {
-  width: 60px;
-  height: 60px;
-  font-size: 1.4rem;
+  width: clamp(40px, 10vw, 60px);
+  height: clamp(40px, 10vw, 60px);
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
   box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
   border: 3px solid rgba(255, 255, 255, 0.3);
 }
@@ -995,15 +1144,15 @@
 
 /* Tailles spécifiques pour les badges adjacents */
 .matrix-number-position.center-adjacent-medium .center-adjacent-badge {
-  width: 40px;
-  height: 40px;
-  font-size: 1.1rem;
+  width: clamp(30px, 7vw, 40px);
+  height: clamp(30px, 7vw, 40px);
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
 }
 
 .matrix-number-position.center-adjacent-small .center-adjacent-badge {
-  width: 30px;
-  height: 30px;
-  font-size: 0.9rem;
+  width: clamp(25px, 5vw, 30px);
+  height: clamp(25px, 5vw, 30px);
+  font-size: clamp(0.8rem, 1.8vw, 0.9rem);
 }
 
 /* Animation des badges sur l'image */
@@ -1028,6 +1177,19 @@
   color: #ffffff;
   font-weight: bold;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+/* Amélioration du contraste sur mobile */
+@media (max-width: 768px) {
+  .matrix-visual-section .matrix-number-badge {
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
+    font-weight: 800;
+  }
+
+  .chakra-number {
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
 }
 
 /* Styles pour tous les types de badges dans le schéma */
@@ -1078,15 +1240,35 @@
 
 /* ===== RESPONSIVE POUR MATRIX DESTINY ===== */
 
+/* Large screens */
+@media (min-width: 1200px) {
+  .matrix-visual-container {
+    max-width: 600px;
+  }
+}
+
+/* Desktop */
+@media (max-width: 1199px) {
+  .matrix-visual-container {
+    max-width: 500px;
+  }
+}
+
+/* Tablet */
 @media (max-width: 768px) {
   .matrix-section {
     padding: 1.5rem;
     width: 100%;
   }
 
+  .matrix-visual-container {
+    max-width: 400px;
+  }
+
   .matrix-base-grid,
   .matrix-center-grid,
-  .matrix-special-grid {
+  .matrix-special-grid,
+  .matrix-base-meanings-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -1143,28 +1325,18 @@
     font-size: 0.85rem;
     max-width: 200px;
   }
-
-  /* Responsive pour le schéma visuel */
-  .matrix-visual-container {
-    max-width: 100%;
-  }
-
-  .matrix-image-wrapper {
-    width: 100%;
-    height: auto;
-    max-width: 400px;
-  }
-
-  .matrix-numbers-overlay {
-    width: 100%;
-    height: 100%;
-  }
 }
 
+/* Mobile large */
 @media (max-width: 480px) {
+  .matrix-visual-container {
+    max-width: 300px;
+  }
+
   .matrix-base-grid,
   .matrix-center-grid,
-  .matrix-special-grid {
+  .matrix-special-grid,
+  .matrix-base-meanings-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1181,5 +1353,16 @@
     width: 40px;
     height: 40px;
     font-size: 1rem;
+  }
+}
+
+/* Mobile small */
+@media (max-width: 360px) {
+  .matrix-visual-container {
+    max-width: 280px;
+  }
+
+  .matrix-visual-section {
+    padding: 1rem;
   }
 }
