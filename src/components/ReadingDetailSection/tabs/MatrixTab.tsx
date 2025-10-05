@@ -4,6 +4,9 @@ import { getRelationMeaning } from "../../../utils/matrixDestiny/matrixRelations
 import { getMatrixMeaning } from "../../../utils/matrixDestiny/getMatrixMeaning";
 import { getExternalRelationsMeaning } from "../../../utils/matrixDestiny/getExternalRelationsMeaning";
 import { getBaseNumberMeaning } from "../../../utils/matrixDestiny/getBaseNumberMeaning";
+import { getCentralMissionMeaning } from "../../../utils/matrixDestiny/getCentralMissionMeaning";
+import { getFeminineLineMeaning } from "../../../utils/matrixDestiny/getFeminineLineMeaning";
+import { getMasculineLineMeaning } from "../../../utils/matrixDestiny/getMasculineLineMeaning";
 import MatrixDestinyImage from "../../../assets/Matrix_destiny.webp";
 import "./MatrixTab.css";
 
@@ -590,6 +593,265 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
                 <div className="matrix-number-badge female-badge">
                   {matrixDestiny.center.femaleLine.monthDay}
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Significations des Lignes */}
+      <div className="matrix-lines-meanings-section">
+        <div className="title-with-tooltip">
+          <h3>Significations des Lignes</h3>
+          <div className="tooltip">
+            <span className="tooltip-icon">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  fill="none"
+                />
+                <path
+                  d="M12 16V12"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+                <circle cx="12" cy="8" r="1" fill="currentColor" />
+              </svg>
+            </span>
+            <div className="tooltip-content">
+              <p>
+                Les lignes masculine, féminine et la mission centrale révèlent
+                les aspects profonds de ton identité spirituelle.
+              </p>
+              <p>
+                <strong>Mission Centrale</strong> : ton équilibre intérieur et
+                ta mission de vie ultime.
+              </p>
+              <p>
+                <strong>Ligne Masculine</strong> : ton héritage paternel et tes
+                énergies d'action.
+              </p>
+              <p>
+                <strong>Ligne Féminine</strong> : ton héritage maternel et tes
+                énergies réceptives.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="matrix-lines-meanings-grid">
+          {/* Ligne Masculine - Spirit */}
+          <div className="matrix-line-meaning-card">
+            <div className="line-meaning-card-header">
+              <div className="line-masculine-badge">
+                {matrixDestiny.center.maleLine.dayMonth}
+              </div>
+              <h4>Masculin - Esprit</h4>
+            </div>
+            <div className="line-meaning-card-content">
+              <div className="line-keywords-section">
+                <h5>Mot-clé</h5>
+                <p className="line-keywords-text">
+                  {getMasculineLineMeaning(
+                    matrixDestiny.center.maleLine.dayMonth,
+                    "spirit"
+                  )?.keyword || "N/A"}
+                </p>
+              </div>
+              <div className="line-interpretation-section">
+                <h5>Interprétation</h5>
+                <p className="line-interpretation-text">
+                  {getMasculineLineMeaning(
+                    matrixDestiny.center.maleLine.dayMonth,
+                    "spirit"
+                  )?.interpretation || "N/A"}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Ligne Masculine - Heart */}
+          <div className="matrix-line-meaning-card">
+            <div className="line-meaning-card-header">
+              <div className="line-masculine-badge">
+                {matrixDestiny.center.maleLine.mission}
+              </div>
+              <h4>Masculin - Cœur</h4>
+            </div>
+            <div className="line-meaning-card-content">
+              <div className="line-keywords-section">
+                <h5>Mot-clé</h5>
+                <p className="line-keywords-text">
+                  {getMasculineLineMeaning(
+                    matrixDestiny.center.maleLine.mission,
+                    "heart"
+                  )?.keyword || "N/A"}
+                </p>
+              </div>
+              <div className="line-interpretation-section">
+                <h5>Interprétation</h5>
+                <p className="line-interpretation-text">
+                  {getMasculineLineMeaning(
+                    matrixDestiny.center.maleLine.mission,
+                    "heart"
+                  )?.interpretation || "N/A"}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Ligne Masculine - Energy */}
+          <div className="matrix-line-meaning-card">
+            <div className="line-meaning-card-header">
+              <div className="line-masculine-badge">
+                {matrixDestiny.center.maleLine.dayYear}
+              </div>
+              <h4>Masculin - Énergie</h4>
+            </div>
+            <div className="line-meaning-card-content">
+              <div className="line-keywords-section">
+                <h5>Mot-clé</h5>
+                <p className="line-keywords-text">
+                  {getMasculineLineMeaning(
+                    matrixDestiny.center.maleLine.dayYear,
+                    "energy"
+                  )?.keyword || "N/A"}
+                </p>
+              </div>
+              <div className="line-interpretation-section">
+                <h5>Interprétation</h5>
+                <p className="line-interpretation-text">
+                  {getMasculineLineMeaning(
+                    matrixDestiny.center.maleLine.dayYear,
+                    "energy"
+                  )?.interpretation || "N/A"}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Ligne Féminine - Spirit */}
+          <div className="matrix-line-meaning-card">
+            <div className="line-meaning-card-header">
+              <div className="line-feminine-badge">
+                {matrixDestiny.center.femaleLine.monthYear}
+              </div>
+              <h4>Féminin - Esprit</h4>
+            </div>
+            <div className="line-meaning-card-content">
+              <div className="line-keywords-section">
+                <h5>Mot-clé</h5>
+                <p className="line-keywords-text">
+                  {getFeminineLineMeaning(
+                    matrixDestiny.center.femaleLine.monthYear,
+                    "spirit"
+                  )?.keyword || "N/A"}
+                </p>
+              </div>
+              <div className="line-interpretation-section">
+                <h5>Interprétation</h5>
+                <p className="line-interpretation-text">
+                  {getFeminineLineMeaning(
+                    matrixDestiny.center.femaleLine.monthYear,
+                    "spirit"
+                  )?.interpretation || "N/A"}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Ligne Féminine - Heart */}
+          <div className="matrix-line-meaning-card">
+            <div className="line-meaning-card-header">
+              <div className="line-feminine-badge">
+                {matrixDestiny.center.femaleLine.mission}
+              </div>
+              <h4>Féminin - Cœur</h4>
+            </div>
+            <div className="line-meaning-card-content">
+              <div className="line-keywords-section">
+                <h5>Mot-clé</h5>
+                <p className="line-keywords-text">
+                  {getFeminineLineMeaning(
+                    matrixDestiny.center.femaleLine.mission,
+                    "heart"
+                  )?.keyword || "N/A"}
+                </p>
+              </div>
+              <div className="line-interpretation-section">
+                <h5>Interprétation</h5>
+                <p className="line-interpretation-text">
+                  {getFeminineLineMeaning(
+                    matrixDestiny.center.femaleLine.mission,
+                    "heart"
+                  )?.interpretation || "N/A"}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Ligne Féminine - Energy */}
+          <div className="matrix-line-meaning-card">
+            <div className="line-meaning-card-header">
+              <div className="line-feminine-badge">
+                {matrixDestiny.center.femaleLine.monthDay}
+              </div>
+              <h4>Féminin - Énergie</h4>
+            </div>
+            <div className="line-meaning-card-content">
+              <div className="line-keywords-section">
+                <h5>Mot-clé</h5>
+                <p className="line-keywords-text">
+                  {getFeminineLineMeaning(
+                    matrixDestiny.center.femaleLine.monthDay,
+                    "energy"
+                  )?.keyword || "N/A"}
+                </p>
+              </div>
+              <div className="line-interpretation-section">
+                <h5>Interprétation</h5>
+                <p className="line-interpretation-text">
+                  {getFeminineLineMeaning(
+                    matrixDestiny.center.femaleLine.monthDay,
+                    "energy"
+                  )?.interpretation || "N/A"}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Mission Centrale - Carte en pleine largeur */}
+          <div className="central-mission-full-card">
+            <div className="central-mission-full-header">
+              <div className="central-mission-badge">
+                {matrixDestiny.center.mission}
+              </div>
+              <h4>Mission Centrale</h4>
+            </div>
+            <div className="central-mission-full-content">
+              <div className="central-mission-full-keywords">
+                <h5>Mot-clé</h5>
+                <p className="central-mission-full-keywords-text">
+                  {getCentralMissionMeaning(matrixDestiny.center.mission)
+                    ?.keyword || "N/A"}
+                </p>
+              </div>
+              <div className="central-mission-full-interpretation">
+                <h5>Interprétation</h5>
+                <p className="central-mission-full-interpretation-text">
+                  {getCentralMissionMeaning(matrixDestiny.center.mission)
+                    ?.interpretation || "N/A"}
+                </p>
               </div>
             </div>
           </div>
