@@ -3,6 +3,7 @@ import { calculateMatrixDestiny } from "../../../utils/matrixDestiny/matrixDesti
 import { getRelationMeaning } from "../../../utils/matrixDestiny/matrixRelations";
 import { getMatrixMeaning } from "../../../utils/matrixDestiny/getMatrixMeaning";
 import { getExternalRelationsMeaning } from "../../../utils/matrixDestiny/getExternalRelationsMeaning";
+import { getBaseNumberMeaning } from "../../../utils/matrixDestiny/getBaseNumberMeaning";
 import MatrixDestinyImage from "../../../assets/Matrix_destiny.webp";
 import "./MatrixTab.css";
 
@@ -188,6 +189,307 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
               {matrixDestiny.base.lifeMission}
             </div>
             <span>Mission de Vie</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Significations des Nombres de Base */}
+      <div className="matrix-base-meanings-section">
+        <div className="title-with-tooltip">
+          <h3>Significations des Nombres de Base</h3>
+          <div className="tooltip">
+            <span className="tooltip-icon">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  fill="none"
+                />
+                <path
+                  d="M12 16V12"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+                <circle cx="12" cy="8" r="1" fill="currentColor" />
+              </svg>
+            </span>
+            <div className="tooltip-content">
+              <p>
+                Chaque nombre de base porte une signification profonde et des
+                mots-clés spécifiques.
+              </p>
+              <p>
+                Ces significations révèlent les énergies fondamentales qui
+                influencent ta destinée et ton chemin de vie.
+              </p>
+              <p>
+                Comprendre ces significations t'aide à mieux saisir l'essence de
+                ta Matrix Destiny.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="matrix-base-meanings-grid">
+          {/* Jour */}
+          <div className="matrix-base-meaning-card">
+            <div className="meaning-card-header">
+              <div className="matrix-number-badge day-badge">
+                {matrixDestiny.base.day}
+              </div>
+              <div className="title-with-tooltip">
+                <h4>Essence intérieure</h4>
+                <div className="tooltip">
+                  <span className="tooltip-icon">
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        fill="none"
+                      />
+                      <path
+                        d="M12 16V12"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                      <circle cx="12" cy="8" r="1" fill="currentColor" />
+                    </svg>
+                  </span>
+                  <div className="tooltip-content">
+                    <p>
+                      <strong>Essence intérieure</strong> : Ta nature profonde,
+                      ton être authentique qui se manifeste dans tes actions et
+                      tes choix de vie.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="meaning-card-content">
+              <div className="keywords-section">
+                <h5>Mots-clés</h5>
+                <p className="keywords-text">
+                  {getBaseNumberMeaning(matrixDestiny.base.day, "jour")
+                    ?.mots_cles || "N/A"}
+                </p>
+              </div>
+              <div className="description-section">
+                <h5>Description</h5>
+                <p className="description-text">
+                  {getBaseNumberMeaning(matrixDestiny.base.day, "jour")
+                    ?.description || "N/A"}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Mois */}
+          <div className="matrix-base-meaning-card">
+            <div className="meaning-card-header">
+              <div className="matrix-number-badge month-badge">
+                {matrixDestiny.base.month}
+              </div>
+              <div className="title-with-tooltip">
+                <h4>Personnalité</h4>
+                <div className="tooltip">
+                  <span className="tooltip-icon">
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        fill="none"
+                      />
+                      <path
+                        d="M12 16V12"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                      <circle cx="12" cy="8" r="1" fill="currentColor" />
+                    </svg>
+                  </span>
+                  <div className="tooltip-content">
+                    <p>
+                      <strong>Personnalité</strong> : Tes traits de caractère,
+                      tes comportements et la façon dont tu interagis avec le
+                      monde qui t'entoure.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="meaning-card-content">
+              <div className="keywords-section">
+                <h5>Mots-clés</h5>
+                <p className="keywords-text">
+                  {getBaseNumberMeaning(matrixDestiny.base.month, "mois")
+                    ?.mots_cles || "N/A"}
+                </p>
+              </div>
+              <div className="description-section">
+                <h5>Description</h5>
+                <p className="description-text">
+                  {getBaseNumberMeaning(matrixDestiny.base.month, "mois")
+                    ?.description || "N/A"}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Année */}
+          <div className="matrix-base-meaning-card">
+            <div className="meaning-card-header">
+              <div className="matrix-number-badge year-badge">
+                {matrixDestiny.base.year}
+              </div>
+              <div className="title-with-tooltip">
+                <h4>Le monde extérieur</h4>
+                <div className="tooltip">
+                  <span className="tooltip-icon">
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        fill="none"
+                      />
+                      <path
+                        d="M12 16V12"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                      <circle cx="12" cy="8" r="1" fill="currentColor" />
+                    </svg>
+                  </span>
+                  <div className="tooltip-content">
+                    <p>
+                      <strong>Le monde extérieur</strong> : Ton rapport à la
+                      société, à l'environnement et aux influences extérieures
+                      qui façonnent ta vie.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="meaning-card-content">
+              <div className="keywords-section">
+                <h5>Mots-clés</h5>
+                <p className="keywords-text">
+                  {getBaseNumberMeaning(matrixDestiny.base.year, "annee")
+                    ?.mots_cles || "N/A"}
+                </p>
+              </div>
+              <div className="description-section">
+                <h5>Description</h5>
+                <p className="description-text">
+                  {getBaseNumberMeaning(matrixDestiny.base.year, "annee")
+                    ?.description || "N/A"}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Mission de Vie */}
+          <div className="matrix-base-meaning-card">
+            <div className="meaning-card-header">
+              <div className="matrix-number-badge mission-badge">
+                {matrixDestiny.base.lifeMission}
+              </div>
+              <div className="title-with-tooltip">
+                <h4>But spirituel global</h4>
+                <div className="tooltip">
+                  <span className="tooltip-icon">
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        fill="none"
+                      />
+                      <path
+                        d="M12 16V12"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                      <circle cx="12" cy="8" r="1" fill="currentColor" />
+                    </svg>
+                  </span>
+                  <div className="tooltip-content">
+                    <p>
+                      <strong>But spirituel global</strong> : Ta mission de vie
+                      ultime, ton objectif spirituel et le sens profond de ton
+                      existence sur cette terre.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="meaning-card-content">
+              <div className="keywords-section">
+                <h5>Mots-clés</h5>
+                <p className="keywords-text">
+                  {getBaseNumberMeaning(
+                    matrixDestiny.base.lifeMission,
+                    "mission_vie"
+                  )?.mots_cles || "N/A"}
+                </p>
+              </div>
+              <div className="description-section">
+                <h5>Description</h5>
+                <p className="description-text">
+                  {getBaseNumberMeaning(
+                    matrixDestiny.base.lifeMission,
+                    "mission_vie"
+                  )?.description || "N/A"}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1235,7 +1537,7 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
 
               <div
                 className="matrix-number-position female-line"
-                style={{top: "70.8%", left: "29.30%" }}
+                style={{ top: "70.8%", left: "29.30%" }}
               >
                 <div className="petit black-text">
                   {matrixDestiny.karmicLines.feminineAncestry.tertiary}

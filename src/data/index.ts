@@ -24,6 +24,7 @@ import hereditaryBusinessData from "./numerology/NaneBusiness/HereditaryBusiness
 import matrixRelationsHeartData from "./matrixDestiny/matrixRelationsHeart.json";
 import matrixMoneyLoveData from "./matrixDestiny/matrixMoneyLove.json";
 import externalRelationsData from "./matrixDestiny/externalRelations.json";
+import baseNumberData from "./matrixDestiny/baseNumber.json";
 
 // ===== EXPORTS PRINCIPAUX =====
 export {
@@ -47,6 +48,7 @@ export {
   matrixRelationsHeartData,
   matrixMoneyLoveData,
   externalRelationsData,
+  baseNumberData,
 };
 
 // ===== ALIAS POUR COMPATIBILITÉ =====
@@ -275,6 +277,31 @@ export interface ExternalRelationsData {
   };
   influence_social: {
     [key: string]: string;
+  };
+}
+
+// ===== INTERFACES MATRIX DESTINY =====
+
+/**
+ * Interface pour les données de base Matrix Destiny
+ */
+export interface BaseNumberDetail {
+  mots_cles: string;
+  description: string;
+}
+
+export interface BaseNumberData {
+  jour: {
+    [key: string]: BaseNumberDetail;
+  };
+  mois: {
+    [key: string]: BaseNumberDetail;
+  };
+  annee: {
+    [key: string]: BaseNumberDetail;
+  };
+  mission_vie: {
+    [key: string]: BaseNumberDetail;
   };
 }
 

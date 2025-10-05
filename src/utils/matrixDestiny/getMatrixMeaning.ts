@@ -17,5 +17,6 @@ export function getMatrixMeaning(
   }
 
   const data = matrixMoneyLoveData[category];
-  return data[number.toString()] || "Aucune donnée disponible.";
+  const numberKey = number.toString() as keyof typeof data;
+  return data[numberKey] || "Aucune donnée disponible.";
 }
