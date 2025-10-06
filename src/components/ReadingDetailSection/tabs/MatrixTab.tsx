@@ -4,6 +4,9 @@ import { getRelationMeaning } from "../../../utils/matrixDestiny/matrixRelations
 import { getMatrixMeaning } from "../../../utils/matrixDestiny/getMatrixMeaning";
 import { getExternalRelationsMeaning } from "../../../utils/matrixDestiny/getExternalRelationsMeaning";
 import { getBaseNumberMeaning } from "../../../utils/matrixDestiny/getBaseNumberMeaning";
+import { getCentralMissionMeaning } from "../../../utils/matrixDestiny/getCentralMissionMeaning";
+import { getFeminineLineMeaning } from "../../../utils/matrixDestiny/getFeminineLineMeaning";
+import { getMasculineLineMeaning } from "../../../utils/matrixDestiny/getMasculineLineMeaning";
 import MatrixDestinyImage from "../../../assets/Matrix_destiny.webp";
 import "./MatrixTab.css";
 
@@ -590,6 +593,569 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
                 <div className="matrix-number-badge female-badge">
                   {matrixDestiny.center.femaleLine.monthDay}
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Significations des Lignes */}
+      <div className="matrix-lines-meanings-section">
+        <div className="title-with-tooltip">
+          <h3>Significations des Lignes</h3>
+          <div className="tooltip">
+            <span className="tooltip-icon">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  fill="none"
+                />
+                <path
+                  d="M12 16V12"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+                <circle cx="12" cy="8" r="1" fill="currentColor" />
+              </svg>
+            </span>
+            <div className="tooltip-content">
+              <p>
+                Les lignes masculine, féminine et la mission centrale révèlent
+                les aspects profonds de ton identité spirituelle.
+              </p>
+              <p>
+                <strong>Mission Centrale</strong> : ton équilibre intérieur et
+                ta mission de vie ultime.
+              </p>
+              <p>
+                <strong>Ligne Masculine</strong> : ton héritage paternel et tes
+                énergies d'action.
+              </p>
+              <p>
+                <strong>Ligne Féminine</strong> : ton héritage maternel et tes
+                énergies réceptives.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="matrix-lines-meanings-grid">
+          {/* Ligne Masculine - Spirit */}
+          <div className="matrix-line-meaning-card">
+            <div className="line-meaning-card-header">
+              <div className="line-masculine-badge">
+                {matrixDestiny.center.maleLine.dayMonth}
+              </div>
+              <div className="title-with-tooltip">
+                <h4>Masculin - Esprit</h4>
+                <div className="tooltip">
+                  <span className="tooltip-icon">
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        fill="none"
+                      />
+                      <path
+                        d="M12 16V12"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                      <circle cx="12" cy="8" r="1" fill="currentColor" />
+                    </svg>
+                  </span>
+                  <div className="tooltip-content">
+                    <p>
+                      <strong>Esprit</strong> : L'aspect mental et intellectuel
+                      de ta ligne masculine.
+                    </p>
+                    <p>
+                      Représente ta capacité de réflexion, d'analyse et de
+                      compréhension des concepts abstraits.
+                    </p>
+                    <p>
+                      C'est l'énergie de la pensée logique et de la vision
+                      stratégique héritée de ta lignée paternelle.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="line-meaning-card-content">
+              <div className="line-keywords-section">
+                <h5>Mot-clé</h5>
+                <p className="line-keywords-text">
+                  {getMasculineLineMeaning(
+                    matrixDestiny.center.maleLine.dayMonth,
+                    "spirit"
+                  )?.keyword || "N/A"}
+                </p>
+              </div>
+              <div className="line-interpretation-section">
+                <h5>Interprétation</h5>
+                <p className="line-interpretation-text">
+                  {getMasculineLineMeaning(
+                    matrixDestiny.center.maleLine.dayMonth,
+                    "spirit"
+                  )?.interpretation || "N/A"}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Ligne Masculine - Heart */}
+          <div className="matrix-line-meaning-card">
+            <div className="line-meaning-card-header">
+              <div className="line-masculine-badge">
+                {matrixDestiny.center.maleLine.mission}
+              </div>
+              <div className="title-with-tooltip">
+                <h4>Masculin - Cœur</h4>
+                <div className="tooltip">
+                  <span className="tooltip-icon">
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        fill="none"
+                      />
+                      <path
+                        d="M12 16V12"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                      <circle cx="12" cy="8" r="1" fill="currentColor" />
+                    </svg>
+                  </span>
+                  <div className="tooltip-content">
+                    <p>
+                      <strong>Cœur</strong> : L'aspect émotionnel et relationnel
+                      de ta ligne masculine.
+                    </p>
+                    <p>
+                      Représente ta capacité à exprimer tes émotions et à créer
+                      des liens profonds avec les autres.
+                    </p>
+                    <p>
+                      C'est l'énergie de l'amour, de la compassion et de
+                      l'empathie héritée de ta lignée paternelle.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="line-meaning-card-content">
+              <div className="line-keywords-section">
+                <h5>Mot-clé</h5>
+                <p className="line-keywords-text">
+                  {getMasculineLineMeaning(
+                    matrixDestiny.center.maleLine.mission,
+                    "heart"
+                  )?.keyword || "N/A"}
+                </p>
+              </div>
+              <div className="line-interpretation-section">
+                <h5>Interprétation</h5>
+                <p className="line-interpretation-text">
+                  {getMasculineLineMeaning(
+                    matrixDestiny.center.maleLine.mission,
+                    "heart"
+                  )?.interpretation || "N/A"}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Ligne Masculine - Energy */}
+          <div className="matrix-line-meaning-card">
+            <div className="line-meaning-card-header">
+              <div className="line-masculine-badge">
+                {matrixDestiny.center.maleLine.dayYear}
+              </div>
+              <div className="title-with-tooltip">
+                <h4>Masculin - Manifestation</h4>
+                <div className="tooltip">
+                  <span className="tooltip-icon">
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        fill="none"
+                      />
+                      <path
+                        d="M12 16V12"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                      <circle cx="12" cy="8" r="1" fill="currentColor" />
+                    </svg>
+                  </span>
+                  <div className="tooltip-content">
+                    <p>
+                      <strong>Manifestation</strong> : L'aspect action et
+                      réalisation de ta ligne masculine.
+                    </p>
+                    <p>
+                      Représente ta capacité à transformer tes idées en actions
+                      concrètes et à manifester tes projets.
+                    </p>
+                    <p>
+                      C'est l'énergie de la volonté, de la persévérance et de
+                      l'accomplissement héritée de ta lignée paternelle.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="line-meaning-card-content">
+              <div className="line-keywords-section">
+                <h5>Mot-clé</h5>
+                <p className="line-keywords-text">
+                  {getMasculineLineMeaning(
+                    matrixDestiny.center.maleLine.dayYear,
+                    "energy"
+                  )?.keyword || "N/A"}
+                </p>
+              </div>
+              <div className="line-interpretation-section">
+                <h5>Interprétation</h5>
+                <p className="line-interpretation-text">
+                  {getMasculineLineMeaning(
+                    matrixDestiny.center.maleLine.dayYear,
+                    "energy"
+                  )?.interpretation || "N/A"}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Ligne Féminine - Spirit */}
+          <div className="matrix-line-meaning-card">
+            <div className="line-meaning-card-header">
+              <div className="line-feminine-badge">
+                {matrixDestiny.center.femaleLine.monthYear}
+              </div>
+              <div className="title-with-tooltip">
+                <h4>Féminin - Âme</h4>
+                <div className="tooltip">
+                  <span className="tooltip-icon">
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        fill="none"
+                      />
+                      <path
+                        d="M12 16V12"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                      <circle cx="12" cy="8" r="1" fill="currentColor" />
+                    </svg>
+                  </span>
+                  <div className="tooltip-content">
+                    <p>
+                      <strong>Âme</strong> : L'aspect spirituel et intuitif de
+                      ta ligne féminine.
+                    </p>
+                    <p>
+                      Représente ta connexion à l'inconscient, à l'intuition et
+                      à la sagesse intérieure.
+                    </p>
+                    <p>
+                      C'est l'énergie de la sensibilité, de la réceptivité et de
+                      la guidance spirituelle héritée de ta lignée maternelle.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="line-meaning-card-content">
+              <div className="line-keywords-section">
+                <h5>Mot-clé</h5>
+                <p className="line-keywords-text">
+                  {getFeminineLineMeaning(
+                    matrixDestiny.center.femaleLine.monthYear,
+                    "spirit"
+                  )?.keyword || "N/A"}
+                </p>
+              </div>
+              <div className="line-interpretation-section">
+                <h5>Interprétation</h5>
+                <p className="line-interpretation-text">
+                  {getFeminineLineMeaning(
+                    matrixDestiny.center.femaleLine.monthYear,
+                    "spirit"
+                  )?.interpretation || "N/A"}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Ligne Féminine - Heart */}
+          <div className="matrix-line-meaning-card">
+            <div className="line-meaning-card-header">
+              <div className="line-feminine-badge">
+                {matrixDestiny.center.femaleLine.mission}
+              </div>
+              <div className="title-with-tooltip">
+                <h4>Féminin - Cœur</h4>
+                <div className="tooltip">
+                  <span className="tooltip-icon">
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        fill="none"
+                      />
+                      <path
+                        d="M12 16V12"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                      <circle cx="12" cy="8" r="1" fill="currentColor" />
+                    </svg>
+                  </span>
+                  <div className="tooltip-content">
+                    <p>
+                      <strong>Cœur</strong> : L'aspect émotionnel et relationnel
+                      de ta ligne féminine.
+                    </p>
+                    <p>
+                      Représente ta capacité à ressentir profondément et à créer
+                      des liens authentiques avec les autres.
+                    </p>
+                    <p>
+                      C'est l'énergie de l'amour inconditionnel, de la
+                      compassion et de la guérison héritée de ta lignée
+                      maternelle.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="line-meaning-card-content">
+              <div className="line-keywords-section">
+                <h5>Mot-clé</h5>
+                <p className="line-keywords-text">
+                  {getFeminineLineMeaning(
+                    matrixDestiny.center.femaleLine.mission,
+                    "heart"
+                  )?.keyword || "N/A"}
+                </p>
+              </div>
+              <div className="line-interpretation-section">
+                <h5>Interprétation</h5>
+                <p className="line-interpretation-text">
+                  {getFeminineLineMeaning(
+                    matrixDestiny.center.femaleLine.mission,
+                    "heart"
+                  )?.interpretation || "N/A"}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Ligne Féminine - Energy */}
+          <div className="matrix-line-meaning-card">
+            <div className="line-meaning-card-header">
+              <div className="line-feminine-badge">
+                {matrixDestiny.center.femaleLine.monthDay}
+              </div>
+              <div className="title-with-tooltip">
+                <h4>Féminin - Réalisation</h4>
+                <div className="tooltip">
+                  <span className="tooltip-icon">
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        fill="none"
+                      />
+                      <path
+                        d="M12 16V12"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                      <circle cx="12" cy="8" r="1" fill="currentColor" />
+                    </svg>
+                  </span>
+                  <div className="tooltip-content">
+                    <p>
+                      <strong>Réalisation</strong> : L'aspect créatif et
+                      nourricier de ta ligne féminine.
+                    </p>
+                    <p>
+                      Représente ta capacité à créer, à donner naissance et à
+                      nourrir tes projets et relations.
+                    </p>
+                    <p>
+                      C'est l'énergie de la fertilité, de la créativité et de
+                      l'accomplissement maternel héritée de ta lignée
+                      maternelle.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="line-meaning-card-content">
+              <div className="line-keywords-section">
+                <h5>Mot-clé</h5>
+                <p className="line-keywords-text">
+                  {getFeminineLineMeaning(
+                    matrixDestiny.center.femaleLine.monthDay,
+                    "energy"
+                  )?.keyword || "N/A"}
+                </p>
+              </div>
+              <div className="line-interpretation-section">
+                <h5>Interprétation</h5>
+                <p className="line-interpretation-text">
+                  {getFeminineLineMeaning(
+                    matrixDestiny.center.femaleLine.monthDay,
+                    "energy"
+                  )?.interpretation || "N/A"}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Mission Centrale - Carte en pleine largeur */}
+          <div className="central-mission-full-card">
+            <div className="central-mission-full-header">
+              <div className="central-mission-badge">
+                {matrixDestiny.center.mission}
+              </div>
+              <div className="title-with-tooltip">
+                <h4>Mission Centrale</h4>
+                <div className="tooltip">
+                  <span className="tooltip-icon">
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        fill="none"
+                      />
+                      <path
+                        d="M12 16V12"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                      <circle cx="12" cy="8" r="1" fill="currentColor" />
+                    </svg>
+                  </span>
+                  <div className="tooltip-content">
+                    <p>
+                      <strong>Mission Centrale</strong> : Le cœur de ta Matrix
+                      Destiny et ton équilibre intérieur.
+                    </p>
+                    <p>
+                      Représente ta mission de vie ultime, l'essence de ton être
+                      et le point d'ancrage de ton identité spirituelle.
+                    </p>
+                    <p>
+                      C'est l'énergie qui unifie tous les aspects de ta
+                      personnalité et guide tes choix de vie les plus
+                      importants.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="central-mission-full-content">
+              <div className="central-mission-full-keywords">
+                <h5>Mot-clé</h5>
+                <p className="central-mission-full-keywords-text">
+                  {getCentralMissionMeaning(matrixDestiny.center.mission)
+                    ?.keyword || "N/A"}
+                </p>
+              </div>
+              <div className="central-mission-full-interpretation">
+                <h5>Interprétation</h5>
+                <p className="central-mission-full-interpretation-text">
+                  {getCentralMissionMeaning(matrixDestiny.center.mission)
+                    ?.interpretation || "N/A"}
+                </p>
               </div>
             </div>
           </div>
@@ -1214,10 +1780,46 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
               <div className="matrix-number-badge health-badge">
                 {matrixDestiny.heartLine.physique}
               </div>
-              <span>Physique</span>
-              <p className="health-description">
-                Comment tu reçois l'amour / ton monde émotionnel interne.
-              </p>
+              <div className="title-with-tooltip">
+                <span>Physique</span>
+                <div className="tooltip">
+                  <span className="tooltip-icon">
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        fill="none"
+                      />
+                      <path
+                        d="M12 16V12"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                      <circle cx="12" cy="8" r="1" fill="currentColor" />
+                    </svg>
+                  </span>
+                  <div className="tooltip-content">
+                    <p>
+                      <strong>Physique</strong> : Comment tu reçois l'amour et
+                      ton monde émotionnel interne.
+                    </p>
+                    <p>
+                      Représente ta capacité à accueillir l'amour des autres et
+                      à ressentir les émotions profondément.
+                    </p>
+                  </div>
+                </div>
+              </div>
               <div className="relation-meaning">
                 <p className="relation-text">
                   {getRelationMeaning(
@@ -1231,10 +1833,46 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
               <div className="matrix-number-badge health-badge">
                 {matrixDestiny.heartLine.energy}
               </div>
-              <span>Énergie</span>
-              <p className="health-description">
-                Comment tu donnes l'amour / ton rapport aux autres.
-              </p>
+              <div className="title-with-tooltip">
+                <span>Énergie</span>
+                <div className="tooltip">
+                  <span className="tooltip-icon">
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        fill="none"
+                      />
+                      <path
+                        d="M12 16V12"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                      <circle cx="12" cy="8" r="1" fill="currentColor" />
+                    </svg>
+                  </span>
+                  <div className="tooltip-content">
+                    <p>
+                      <strong>Énergie</strong> : Comment tu donnes l'amour et
+                      ton rapport aux autres.
+                    </p>
+                    <p>
+                      Représente ta capacité à exprimer ton amour et à créer des
+                      liens émotionnels avec autrui.
+                    </p>
+                  </div>
+                </div>
+              </div>
               <div className="relation-meaning">
                 <p className="relation-text">
                   {getRelationMeaning(
@@ -1299,11 +1937,47 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
             <div className="matrix-number-badge external-relation-badge">
               {matrixDestiny.externalRelations.personalPower}
             </div>
-            <span>Pouvoir Personnel</span>
-            <p className="external-relation-description">
-              Ce chiffre reflète la manière dont tu t’affirmes au sein des
-              groupes, au travail ou dans la société en général.
-            </p>
+            <div className="title-with-tooltip">
+              <span>Pouvoir Personnel</span>
+              <div className="tooltip">
+                <span className="tooltip-icon">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      fill="none"
+                    />
+                    <path
+                      d="M12 16V12"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                    <circle cx="12" cy="8" r="1" fill="currentColor" />
+                  </svg>
+                </span>
+                <div className="tooltip-content">
+                  <p>
+                    <strong>Pouvoir Personnel</strong> : Ce chiffre reflète la
+                    manière dont tu t'affirmes au sein des groupes, au travail
+                    ou dans la société en général.
+                  </p>
+                  <p>
+                    Représente ta capacité à prendre des décisions, à diriger et
+                    à exercer ton autorité naturelle.
+                  </p>
+                </div>
+              </div>
+            </div>
             <div className="relation-meaning">
               <p className="relation-text">
                 {getExternalRelationsMeaning(
@@ -1317,11 +1991,47 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
             <div className="matrix-number-badge external-relation-badge">
               {matrixDestiny.externalRelations.socialInfluence}
             </div>
-            <span>Influence Sociale</span>
-            <p className="external-relation-description">
-              Cela montre comment ton énergie inspire et influence naturellement
-              les autres, sans avoir à imposer quoi que ce soit.
-            </p>
+            <div className="title-with-tooltip">
+              <span>Influence Sociale</span>
+              <div className="tooltip">
+                <span className="tooltip-icon">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      fill="none"
+                    />
+                    <path
+                      d="M12 16V12"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                    <circle cx="12" cy="8" r="1" fill="currentColor" />
+                  </svg>
+                </span>
+                <div className="tooltip-content">
+                  <p>
+                    <strong>Influence Sociale</strong> : Cela montre comment ton
+                    énergie inspire et influence naturellement les autres, sans
+                    avoir à imposer quoi que ce soit.
+                  </p>
+                  <p>
+                    Représente ton charisme, ton pouvoir de persuasion et ta
+                    capacité à motiver les autres.
+                  </p>
+                </div>
+              </div>
+            </div>
             <div className="relation-meaning">
               <p className="relation-text">
                 {getExternalRelationsMeaning(

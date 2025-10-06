@@ -2,8 +2,8 @@
 
 > **Ton âme a un code, les nombres l'éclairent.**
 
-![Version](https://img.shields.io/badge/version-0.3.0-green.svg)
-![Status](https://img.shields.io/badge/status-🔮_Architecture_Modulaire_Complète-brightgreen.svg)
+![Version](https://img.shields.io/badge/version-0.4.0-green.svg)
+![Status](https://img.shields.io/badge/status-🌟_Matrix_Destiny_Complète-brightgreen.svg)
 ![React](https://img.shields.io/badge/React-18+-61dafb.svg)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5+-3178c6.svg)
 ![Vite](https://img.shields.io/badge/Vite-7+-646cff.svg)
@@ -12,7 +12,7 @@
 
 **Numora** est ton compagnion numérique de numérologie moderne. Cette application web révolutionnaire combine la sagesse ancestrale de la numérologie avec une interface utilisateur moderne et intuitive pour t'aider à découvrir les secrets cachés de ton chemin de vie.
 
-> 🔮 **Version 0.3.0 terminée !** Architecture modulaire complète avec calculs numérologiques avancés, authentification Supabase, fonctionnalités karmiques et analyseurs business.
+> 🌟 **Version 0.4.0 terminée !** Matrix Destiny complète avec schéma visuel interactif, calculs avancés, significations détaillées et interface responsive parfaite.
 
 ## 🔮 Fonctionnalités principales
 
@@ -83,6 +83,21 @@
 - [x] **Expression Business** - Analyse de l'expression d'entreprise
 - [x] **Héréditaire Business** - Analyse des nombres héréditaires
 - [x] **Interface dédiée** - Pages spécialisées pour l'analyse business
+
+### 🌟 **Matrix Destiny** ✅
+
+- [x] **Calculs Matrix Destiny** - Calculs complets de la matrice octogonale
+- [x] **Nombres de Base** - Jour, Mois, Année et Mission de Vie
+- [x] **Lignes Générationnelles** - Lignes masculine et féminine
+- [x] **Mission Centrale** - Point d'ancrage spirituel
+- [x] **Lignes Karmiques** - Héritages ancestraux et dettes karmiques
+- [x] **Chakras** - 7 centres énergétiques avec physique/énergie/émotions
+- [x] **Domaines Spéciaux** - Amour, Balance et Argent
+- [x] **Ligne du Cœur** - Relations intérieures et extérieures
+- [x] **Relations Extérieures** - Pouvoir personnel et influence sociale
+- [x] **Schéma Visuel** - Représentation graphique interactive
+- [x] **Significations Détaillées** - Interprétations complètes avec tooltips
+- [x] **Interface Responsive** - Adaptée à tous les écrans
 
 ### 🔮 **Fonctionnalités à venir** 🚧
 
@@ -287,7 +302,15 @@ numora/
 │   │   │   ├── personal.ts     # Nombres personnels
 │   │   │   ├── karmic.ts       # Calculs karmiques
 │   │   │   └── business.ts     # Calculs business
-│   │   └── matrixDestiny/      # Module Matrix Destiny (à venir)
+│   │   └── matrixDestiny/      # Module Matrix Destiny complet
+│   │       ├── matrixDestiny.ts           # Calculs principaux
+│   │       ├── matrixRelations.ts         # Relations du cœur
+│   │       ├── getBaseNumberMeaning.ts    # Significations nombres de base
+│   │       ├── getCentralMissionMeaning.ts # Mission centrale
+│   │       ├── getMasculineLineMeaning.ts  # Ligne masculine
+│   │       ├── getFeminineLineMeaning.ts   # Ligne féminine
+│   │       ├── getExternalRelationsMeaning.ts # Relations extérieures
+│   │       └── getMatrixMeaning.ts        # Domaines spéciaux
 │   ├── data/                   # Données JSON organisées
 │   │   ├── numerology/         # Interprétations numérologiques
 │   │   │   ├── Basique/        # Calculs de base
@@ -312,7 +335,14 @@ numora/
 │   │   │   │   └── HereditaryBusinessData.json
 │   │   │   └── DateBusiness/   # Analyse business (dates)
 │   │   │       └── ExpressionBusinessData.json
-│   │   ├── matrixDestiny/      # Données Matrix Destiny (à venir)
+│   │   ├── matrixDestiny/      # Données Matrix Destiny
+│   │   │   ├── baseNumber.json              # Nombres de base
+│   │   │   ├── centralMission.json          # Mission centrale
+│   │   │   ├── masculineLine.json           # Ligne masculine
+│   │   │   ├── feminineLine.json            # Ligne féminine
+│   │   │   ├── externalRelations.json       # Relations extérieures
+│   │   │   ├── matrixMoneyLove.json         # Domaines spéciaux
+│   │   │   └── matrixRelationsHeart.json    # Ligne du cœur
 │   │   └── index.ts            # Exports centralisés
 │   ├── lib/                    # Bibliothèques externes
 │   │   └── supabase.ts         # Client Supabase et authentification
@@ -464,23 +494,31 @@ Le projet suit une **architecture modulaire avancée** organisée en couches :
 - [x] **Documentation technique** - Guide d'architecture modulaire
 - [x] **Optimisation des imports** - Exports centralisés et alias
 
-### Version 0.4.0 🚧 **EN COURS**
+### Version 0.4.0 ✅ **TERMINÉE**
+
+- [x] **Matrix Destiny** - Implémentation complète du module Matrix Destiny
+- [x] **Schéma visuel** - Représentation octogonale interactive avec positionnement précis
+- [x] **Calculs avancés** - Nombres de base, lignes, chakras, domaines spéciaux
+- [x] **Significations détaillées** - Sections explicatives avec tooltips informatifs
+- [x] **Interface responsive** - Optimisation mobile et desktop
+- [x] **Design harmonisé** - Bordures colorées et tooltips cohérents
+
+### Version 0.5.0 🚧 **EN COURS**
 
 - [ ] **Sauvegarde Supabase** - Stockage persistant des lectures
 - [ ] **Rapports PDF** - Génération de profils détaillés
 - [ ] **Historique** - Suivi des lectures précédentes
 - [ ] **Export/Partage** - Fonctionnalités de partage social
 
-### Version 0.5.0 📋 **PLANIFIÉE**
+### Version 0.6.0 📋 **PLANIFIÉE**
 
 - [ ] **Compatibilité** - Tests d'harmonie entre personnes
 - [ ] **Cycles de vie** - Analyse des années personnelles
 - [ ] **Notifications** - Rappels et insights personnalisés
 - [ ] **API avancée** - Endpoints pour intégrations tierces
 
-### Version 0.6.0 🔮 **FUTURE**
+### Version 0.7.0 🔮 **FUTURE**
 
-- [ ] **Matrix Destiny** - Module Matrix Destiny complet
 - [ ] **Paiements** - Fonctionnalités premium
 - [ ] **Mobile App** - Application mobile native
 - [ ] **IA** - Insights personnalisés avec intelligence artificielle
@@ -507,7 +545,8 @@ Le projet Numora est maintenant dans une phase avancée avec une **architecture 
 - 🎨 **Design** - Amélioration de l'interface utilisateur
 - 🔧 **Performance** - Optimisation des calculs et de l'interface
 - 💼 **Business** - Développement des fonctionnalités business
-- 🔮 **Matrix Destiny** - Implémentation du module Matrix Destiny
+- 🔮 **Matrix Destiny** - Amélioration et enrichissement du module
+- 💾 **Sauvegarde** - Implémentation de la persistance des données
 
 ## 📄 Licence
 
