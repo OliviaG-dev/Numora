@@ -49,6 +49,7 @@
 /* Content */
 .reading-content {
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -125,13 +126,19 @@
   transition: transform 0.3s ease;
   position: relative;
   z-index: 1;
-  width: 1200px;
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 768px) {
   .numerology-section {
-    width: 100%;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .numerology-section {
     padding: 1rem;
   }
 }
@@ -677,5 +684,3 @@
 /* Responsive pour les cycles karmiques - géré par les styles généraux */
 
 /* ===== STYLES POUR LES DETTES KARMIQUES ===== */
-
-

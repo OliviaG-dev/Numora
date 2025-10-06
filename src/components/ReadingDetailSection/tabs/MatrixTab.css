@@ -211,6 +211,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  position: relative;
 }
 
 .meaning-card-header .tooltip-icon {
@@ -218,6 +219,7 @@
   opacity: 0.6;
   transition: opacity 0.3s ease;
   color: var(--secondary-gold);
+  cursor: pointer;
 }
 
 .meaning-card-header .tooltip:hover .tooltip-icon {
@@ -227,12 +229,40 @@
 }
 
 .meaning-card-header .tooltip-content {
-  width: 280px;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
   font-size: 0.85rem;
-  padding: 0.8rem;
+  padding: 1rem;
   background: var(--bg-primary);
-  border: 1px solid var(--secondary-gold);
-  box-shadow: 0 8px 32px rgba(245, 158, 11, 0.2);
+  border: 1px solid var(--primary-purple);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  z-index: 1000;
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.meaning-card-header .tooltip:hover .tooltip-content {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Flèche du tooltip */
+.meaning-card-header .tooltip-content::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--primary-purple);
 }
 
 /* Contenu de la carte */
@@ -273,6 +303,24 @@
   border-radius: 8px;
   border-left: 3px solid var(--primary-purple);
   font-style: italic;
+}
+
+/* Match keywords/description border color to the badge inside the base meaning card */
+.matrix-base-meaning-card:has(.day-badge) .keywords-text,
+.matrix-base-meaning-card:has(.day-badge) .description-text {
+  border-left-color: #4caf50;
+}
+.matrix-base-meaning-card:has(.month-badge) .keywords-text,
+.matrix-base-meaning-card:has(.month-badge) .description-text {
+  border-left-color: #2196f3;
+}
+.matrix-base-meaning-card:has(.year-badge) .keywords-text,
+.matrix-base-meaning-card:has(.year-badge) .description-text {
+  border-left-color: #ff9800;
+}
+.matrix-base-meaning-card:has(.mission-badge) .keywords-text,
+.matrix-base-meaning-card:has(.mission-badge) .description-text {
+  border-left-color: #9c27b0;
 }
 
 /* ===== GRID DU CENTRE ===== */
@@ -612,7 +660,7 @@
 /* Grid des significations des lignes */
 .matrix-lines-meanings-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: 1.5rem;
   margin-top: 1rem;
   margin-bottom: 2rem;
@@ -645,6 +693,73 @@
   align-items: center;
   gap: 1rem;
   flex-shrink: 0;
+  position: relative;
+}
+
+/* Tooltip pour la mission centrale */
+.central-mission-full-header .title-with-tooltip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.central-mission-full-header .tooltip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.central-mission-full-header .tooltip-icon {
+  font-size: 1rem;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  color: var(--secondary-gold);
+  cursor: pointer;
+}
+
+.central-mission-full-header .tooltip:hover .tooltip-icon {
+  opacity: 1;
+  color: var(--secondary-gold);
+  transform: scale(1.1);
+}
+
+.central-mission-full-header .tooltip-content {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  font-size: 0.85rem;
+  padding: 1rem;
+  background: var(--bg-primary);
+  border: 1px solid var(--primary-purple);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  z-index: 1000;
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.central-mission-full-header .tooltip:hover .tooltip-content {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Flèche du tooltip pour la mission centrale */
+.central-mission-full-header .tooltip-content::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--primary-purple);
 }
 
 .central-mission-full-header h4 {
@@ -695,6 +810,14 @@
   font-style: italic;
 }
 
+/* Match central mission texts border color to its badge */
+.central-mission-full-card:has(.central-mission-badge)
+  .central-mission-full-keywords-text,
+.central-mission-full-card:has(.central-mission-badge)
+  .central-mission-full-interpretation-text {
+  border-left-color: #8b5cf6;
+}
+
 /* Carte de signification des lignes */
 .matrix-line-meaning-card {
   background: var(--bg-secondary);
@@ -720,6 +843,73 @@
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--bg-tertiary);
+  position: relative;
+}
+
+/* Tooltip pour les cartes de lignes */
+.line-meaning-card-header .title-with-tooltip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.line-meaning-card-header .tooltip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.line-meaning-card-header .tooltip-icon {
+  font-size: 1rem;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  color: var(--secondary-gold);
+  cursor: pointer;
+}
+
+.line-meaning-card-header .tooltip:hover .tooltip-icon {
+  opacity: 1;
+  color: var(--secondary-gold);
+  transform: scale(1.1);
+}
+
+.line-meaning-card-header .tooltip-content {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  font-size: 0.85rem;
+  padding: 1rem;
+  background: var(--bg-primary);
+  border: 1px solid var(--primary-purple);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  z-index: 1000;
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.line-meaning-card-header .tooltip:hover .tooltip-content {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Flèche du tooltip pour les lignes */
+.line-meaning-card-header .tooltip-content::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--primary-purple);
 }
 
 .line-meaning-card-header h4 {
@@ -837,6 +1027,16 @@
   font-style: italic;
 }
 
+/* Match line keywords/interpretation border color to the corresponding badge */
+.matrix-line-meaning-card:has(.line-masculine-badge) .line-keywords-text,
+.matrix-line-meaning-card:has(.line-masculine-badge) .line-interpretation-text {
+  border-left-color: #2196f3;
+}
+.matrix-line-meaning-card:has(.line-feminine-badge) .line-keywords-text,
+.matrix-line-meaning-card:has(.line-feminine-badge) .line-interpretation-text {
+  border-left-color: #e91e63;
+}
+
 /* ===== SECTION LIGNE DE SANTÉ ===== */
 
 .matrix-health-section {
@@ -899,6 +1099,73 @@
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+}
+
+/* Tooltip pour les titres de la ligne du cœur */
+.matrix-health-item .title-with-tooltip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  justify-content: center;
+}
+
+.matrix-health-item .tooltip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.matrix-health-item .tooltip-icon {
+  font-size: 1rem;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  color: var(--secondary-gold);
+  cursor: pointer;
+}
+
+.matrix-health-item .tooltip:hover .tooltip-icon {
+  opacity: 1;
+  color: var(--secondary-gold);
+  transform: scale(1.1);
+}
+
+.matrix-health-item .tooltip-content {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280px;
+  font-size: 0.85rem;
+  padding: 1rem;
+  background: var(--bg-primary);
+  border: 1px solid var(--primary-purple);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  z-index: 1000;
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.matrix-health-item .tooltip:hover .tooltip-content {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Flèche du tooltip pour la ligne du cœur */
+.matrix-health-item .tooltip-content::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--primary-purple);
 }
 
 .health-description {
@@ -1001,6 +1268,73 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+}
+
+/* Tooltip pour les titres des relations extérieures */
+.matrix-external-relation-item .title-with-tooltip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  justify-content: center;
+}
+
+.matrix-external-relation-item .tooltip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.matrix-external-relation-item .tooltip-icon {
+  font-size: 1rem;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  color: var(--secondary-gold);
+  cursor: pointer;
+}
+
+.matrix-external-relation-item .tooltip:hover .tooltip-icon {
+  opacity: 1;
+  color: var(--secondary-gold);
+  transform: scale(1.1);
+}
+
+.matrix-external-relation-item .tooltip-content {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280px;
+  font-size: 0.85rem;
+  padding: 1rem;
+  background: var(--bg-primary);
+  border: 1px solid var(--primary-purple);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  z-index: 1000;
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.matrix-external-relation-item .tooltip:hover .tooltip-content {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Flèche du tooltip pour les relations extérieures */
+.matrix-external-relation-item .tooltip-content::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--primary-purple);
 }
 
 .external-relation-description {
@@ -1527,14 +1861,11 @@
 
   .matrix-base-grid,
   .matrix-center-grid,
-  .matrix-special-grid,
-  .matrix-base-meanings-grid {
+  .matrix-special-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .matrix-lines-meanings-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  /* Les grids des significations utilisent auto-fit, pas besoin de les redéfinir */
 
   .central-mission-full-card {
     flex-direction: column;
@@ -1615,14 +1946,13 @@
     grid-template-columns: 1fr;
   }
 
-  .matrix-lines-meanings-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  /* Les grids s'adaptent automatiquement avec minmax(min(100%, Xpx), 1fr) */
 
   .central-mission-full-card {
     flex-direction: column;
     text-align: center;
     gap: 1.5rem;
+    padding: 1.5rem;
   }
 
   .central-mission-full-content {
@@ -1644,6 +1974,17 @@
     height: 40px;
     font-size: 1rem;
   }
+
+  /* Ajuster les cartes de signification sur mobile */
+  .matrix-base-meaning-card,
+  .matrix-line-meaning-card {
+    padding: 1.25rem;
+  }
+
+  .meaning-card-header,
+  .line-meaning-card-header {
+    gap: 0.75rem;
+  }
 }
 
 /* Mobile small */
@@ -1654,5 +1995,35 @@
 
   .matrix-visual-section {
     padding: 1rem;
+  }
+
+  /* Réduire le padding des cartes sur très petit écran */
+  .matrix-base-meaning-card,
+  .matrix-line-meaning-card {
+    padding: 1rem;
+  }
+
+  .central-mission-full-card {
+    padding: 1rem;
+  }
+
+  /* Ajustements des tooltips sur mobile */
+  .meaning-card-header .tooltip-content,
+  .line-meaning-card-header .tooltip-content,
+  .central-mission-full-header .tooltip-content {
+    width: 250px;
+    font-size: 0.8rem;
+    padding: 0.8rem;
+  }
+}
+
+/* Ajustements pour les tooltips sur tablette */
+@media (max-width: 768px) {
+  .meaning-card-header .tooltip-content,
+  .line-meaning-card-header .tooltip-content,
+  .central-mission-full-header .tooltip-content {
+    width: 280px;
+    font-size: 0.8rem;
+    padding: 0.9rem;
   }
 }
