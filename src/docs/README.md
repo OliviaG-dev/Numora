@@ -108,31 +108,115 @@ src/
 │   └── ...
 ├── utils/              # Utilitaires et calculs
 │   ├── numerology/     # Calculs de numérologie
+│   │   ├── index.ts    # Point d'entrée
+│   │   ├── types.ts    # Types TypeScript
+│   │   ├── core.ts     # Calculs de base
+│   │   ├── business.ts # Calculs business
+│   │   ├── challenges.ts # Défis et cycles
+│   │   ├── karmic.ts   # Analyses karmiques
+│   │   ├── personal.ts # Dates personnelles
+│   │   └── utils.ts    # Utilitaires communs
 │   └── matrixDestiny/  # Calculs Matrix Destiny
 │       ├── matrixDestiny.ts      # Calculs principaux
 │       ├── matrixRelations.ts    # Relations du cœur
-│       └── getMatrixMeaning.ts   # Significations des domaines
+│       ├── getMatrixMeaning.ts   # Significations des domaines
+│       ├── getBaseNumberMeaning.ts
+│       ├── getCentralMissionMeaning.ts
+│       ├── getExternalRelationsMeaning.ts
+│       ├── getFeminineLineMeaning.ts
+│       └── getMasculineLineMeaning.ts
 ├── docs/               # Documentation
-├── data/               # Données statiques
+│   ├── fonctionsdoc.md          # Documentation complète des utilitaires ⭐
+│   ├── numerology-api.md        # API de numérologie
+│   ├── numerology-guide.md      # Guide utilisateur
+│   ├── matrix-destiny-methods.md
+│   ├── matrix-destiny-technical.md
+│   ├── matrix-destiny-features.md
+│   ├── matrix-destiny-calculations.md
+│   ├── matrix-destiny-traditional.md
+│   ├── supabase-auth.md
+│   ├── SUPABASE_SETUP.md
+│   └── README.md (ce fichier)
+├── data/               # Données statiques JSON
+│   ├── numerology/
+│   │   ├── Basique/
+│   │   ├── Dates/
+│   │   ├── Karmique/
+│   │   ├── DateBusiness/
+│   │   └── NameBusiness/
+│   └── matrixDestiny/
 └── types/              # Types TypeScript
 ```
 
 ## API Reference
 
-### Matrix Destiny
+### 📝 Documentation Complète des Utilitaires
+
+**Consultez [fonctionsdoc.md](./fonctionsdoc.md) pour la documentation complète** comprenant:
+
+- 📖 Documentation détaillée de chaque fonction
+- 💡 Exemples d'utilisation pratiques
+- 🔧 Guide d'intégration
+- 📝 Types TypeScript complets
+- ✅ Bonnes pratiques
+
+### Aperçu Rapide
+
+#### Module: `utils/numerology`
 
 ```typescript
-calculateMatrixDestiny(day: number, month: number, year: number): MatrixDestiny
-getMatrixMeaning(number: number, category: "love" | "money" | "pivot"): string
-getRelationMeaning(number: number, type: "interior" | "exterior"): string
+// Calculs de base
+calculateLifePathNumber(dateString: string, reduce?: boolean): number
+calculateExpressionNumber(fullName: string, reduce?: boolean): number
+calculateSoulUrgeNumber(fullName: string, reduce?: boolean): number
+calculatePersonalityNumber(fullName: string, reduce?: boolean): number
+calculateBirthdayNumber(day: number): number
+
+// Défis et cycles
+calculateChallengeNumbers(day, month, year): ChallengeNumbersResult
+calculateLifeCycles(day, month, year): LifeCyclesResult
+calculateRealizationPeriods(day, month, year): RealizationPeriodsResult
+
+// Analyses karmiques
+calculateKarmicNumbers(dateString: string): KarmicNumbersResult
+calculateCycleKarmicNumbers(fullName: string): CycleKarmicNumbersResult
+checkKarmicDebt(value: number): KarmicDebtResult
+calculateKarmicDebts(birthDate, fullName): KarmicDebtsResult
+
+// Dates personnelles
+calculatePersonalYear(day, month, year): number
+calculatePersonalMonth(personalYear, month): number
+calculatePersonalDay(personalMonth, day): number
+calculatePersonalNumbers(birthDay, birthMonth, currentDate?): PersonalNumbersResult
+getDateVibration(date: Date, allowMaster?: boolean): number
+
+// Calculs business
+calculateWordValue(word: string): number
+calculateBusinessNumbers(fullName: string): BusinessNumbersResult
+analyzeBusinessName(fullName: string): BusinessNameAnalysis
+
+// Utilitaires
+getLetterValue(letter: string): number
+reduceToSingleDigit(num: number, allowMasterNumbers?: boolean): number
+normalizeName(name: string): string
+validateDateString(dateString: string): void
+validateName(name: string): void
 ```
 
-### Numérologie traditionnelle
+#### Module: `utils/matrixDestiny`
 
 ```typescript
-calculateLifePath(day: number, month: number, year: number): number
-calculateExpressionNumber(name: string): number
-calculateSoulUrgeNumber(name: string): number
+// Matrix Destiny
+calculateMatrixDestiny(day: number, month: number, year: number): MatrixDestiny
+
+// Significations
+getMatrixMeaning(number: number, category: "love" | "money" | "pivot"): string
+getRelationMeaning(number: number, type: "interior" | "exterior"): string
+getBaseNumberMeaning(number: number): string
+getCentralMissionMeaning(number: number): string
+getExternalRelationsMeaning(number: number): string
+getFeminineLineMeaning(number: number): string
+getMasculineLineMeaning(number: number): string
 ```
 
 ## Tests
