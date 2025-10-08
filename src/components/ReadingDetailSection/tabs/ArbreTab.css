@@ -1,0 +1,545 @@
+/* ===========================
+   ARBRE DE VIE - STYLES
+   =========================== */
+
+.arbre-section {
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.arbre-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ===========================
+   VISUALISATION DE L'ARBRE
+   =========================== */
+
+.tree-of-life-visual {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  height: 850px;
+  margin: 3rem auto;
+  padding: 3rem 2rem;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.3),
+    rgba(20, 20, 40, 0.2)
+  );
+  border-radius: 24px;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+/* SVG Container */
+.tree-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Lignes des Piliers - Design minimaliste */
+.pillar-line {
+  transition: stroke-opacity 0.3s ease;
+}
+
+.pillar-mercy {
+  stroke-opacity: 0.5;
+}
+
+.pillar-severity {
+  stroke-opacity: 0.5;
+}
+
+.pillar-equilibrium {
+  stroke-opacity: 0.5;
+}
+
+/* Chemins entre Sephiroth - Très subtils */
+.tree-path {
+  stroke: rgba(139, 92, 246, 0.15);
+  stroke-width: 1.5;
+  fill: none;
+}
+
+/* ===========================
+   SEPHIROTH (Sphères) - Design élégant et simple
+   =========================== */
+
+.sephira {
+  position: absolute;
+  z-index: 2;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.sephira:hover {
+  opacity: 0.9;
+}
+
+.sephira-circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.25),
+    rgba(99, 102, 241, 0.35)
+  );
+  border: 2px solid rgba(139, 92, 246, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+.sephira-number {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  margin-bottom: 0.2rem;
+}
+
+.sephira-name {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  text-align: center;
+}
+
+/* Couleurs spécifiques pour chaque Sephira - Design épuré */
+.sephira.kether .sephira-circle {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.4),
+    rgba(240, 240, 250, 0.5)
+  );
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 2px 16px rgba(255, 255, 255, 0.2);
+}
+
+.sephira.chokhmah .sephira-circle {
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.35),
+    rgba(79, 70, 229, 0.45)
+  );
+  border-color: rgba(99, 102, 241, 0.7);
+  box-shadow: 0 2px 16px rgba(99, 102, 241, 0.2);
+}
+
+.sephira.binah .sephira-circle {
+  background: linear-gradient(
+    135deg,
+    rgba(147, 51, 234, 0.35),
+    rgba(126, 34, 206, 0.45)
+  );
+  border-color: rgba(147, 51, 234, 0.7);
+  box-shadow: 0 2px 16px rgba(147, 51, 234, 0.2);
+}
+
+.sephira.chesed .sephira-circle {
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.35),
+    rgba(37, 99, 235, 0.45)
+  );
+  border-color: rgba(59, 130, 246, 0.7);
+  box-shadow: 0 2px 16px rgba(59, 130, 246, 0.2);
+}
+
+.sephira.gevurah .sephira-circle {
+  background: linear-gradient(
+    135deg,
+    rgba(239, 68, 68, 0.35),
+    rgba(220, 38, 38, 0.45)
+  );
+  border-color: rgba(239, 68, 68, 0.7);
+  box-shadow: 0 2px 16px rgba(239, 68, 68, 0.2);
+}
+
+.sephira.tipheret .sephira-circle {
+  background: linear-gradient(
+    135deg,
+    rgba(251, 191, 36, 0.35),
+    rgba(245, 158, 11, 0.45)
+  );
+  border-color: rgba(251, 191, 36, 0.7);
+  box-shadow: 0 2px 20px rgba(251, 191, 36, 0.25);
+  width: 110px;
+  height: 110px;
+}
+
+.sephira.netzach .sephira-circle {
+  background: linear-gradient(
+    135deg,
+    rgba(34, 197, 94, 0.35),
+    rgba(22, 163, 74, 0.45)
+  );
+  border-color: rgba(34, 197, 94, 0.7);
+  box-shadow: 0 2px 16px rgba(34, 197, 94, 0.2);
+}
+
+.sephira.hod .sephira-circle {
+  background: linear-gradient(
+    135deg,
+    rgba(249, 115, 22, 0.35),
+    rgba(234, 88, 12, 0.45)
+  );
+  border-color: rgba(249, 115, 22, 0.7);
+  box-shadow: 0 2px 16px rgba(249, 115, 22, 0.2);
+}
+
+.sephira.yesod .sephira-circle {
+  background: linear-gradient(
+    135deg,
+    rgba(168, 85, 247, 0.35),
+    rgba(147, 51, 234, 0.45)
+  );
+  border-color: rgba(168, 85, 247, 0.7);
+  box-shadow: 0 2px 16px rgba(168, 85, 247, 0.2);
+}
+
+.sephira.malkuth .sephira-circle {
+  background: linear-gradient(
+    135deg,
+    rgba(115, 70, 50, 0.35),
+    rgba(92, 56, 40, 0.45)
+  );
+  border-color: rgba(115, 70, 50, 0.7);
+  box-shadow: 0 2px 16px rgba(115, 70, 50, 0.2);
+}
+
+/* Positions des Sephiroth - Alignement parfait */
+.sephira.kether {
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.sephira.chokhmah {
+  top: 160px;
+  left: 20%;
+  transform: translateX(-50%);
+}
+
+.sephira.binah {
+  top: 160px;
+  left: 80%;
+  transform: translateX(-50%);
+}
+
+.sephira.chesed {
+  top: 300px;
+  left: 20%;
+  transform: translateX(-50%);
+}
+
+.sephira.gevurah {
+  top: 300px;
+  left: 80%;
+  transform: translateX(-50%);
+}
+
+.sephira.tipheret {
+  top: 375px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.sephira.netzach {
+  top: 520px;
+  left: 20%;
+  transform: translateX(-50%);
+}
+
+.sephira.hod {
+  top: 520px;
+  left: 80%;
+  transform: translateX(-50%);
+}
+
+.sephira.yesod {
+  top: 660px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.sephira.malkuth {
+  top: 780px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ===========================
+   SECTION D'INTERPRÉTATION
+   =========================== */
+
+.sephiroth-interpretations {
+  margin-top: 4rem;
+}
+
+.sephira-card {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.06)
+  );
+  border: 1.5px solid rgba(139, 92, 246, 0.25);
+  border-radius: 20px;
+  padding: 2.5rem;
+  margin-bottom: 2.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.sephira-card:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0.09)
+  );
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+}
+
+.sephira-card-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.sephira-card-number {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  border: 2px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+}
+
+.sephira-card-title {
+  flex: 1;
+}
+
+.sephira-card-title h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.25rem 0;
+}
+
+.sephira-card-subtitle {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+}
+
+.sephira-card-content {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+}
+
+.sephira-card-content p {
+  margin-bottom: 1rem;
+}
+
+.sephira-keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.sephira-keyword-tag {
+  background: rgba(139, 92, 246, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 16px;
+  padding: 0.45rem 1.1rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.sephira-keyword-tag:hover {
+  background: rgba(139, 92, 246, 0.25);
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+.sephira-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.sephira-detail-item {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 16px;
+  padding: 1.75rem;
+  border: 1px solid rgba(139, 92, 246, 0.15);
+}
+
+.sephira-detail-item h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: rgba(139, 92, 246, 0.9);
+  margin: 0 0 0.75rem 0;
+  letter-spacing: 0.3px;
+}
+
+.sephira-detail-item p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ===========================
+   SECTION INTRODUCTION
+   =========================== */
+
+.arbre-intro {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.06)
+  );
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  border-radius: 20px;
+  padding: 2.5rem;
+  margin-bottom: 3rem;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.arbre-intro h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.arbre-intro p {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto 0.75rem auto;
+}
+
+/* ===========================
+   LÉGENDE DES CHEMINS
+   =========================== */
+
+.tree-legend {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.06)
+  );
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-top: 2rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.tree-legend h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 1rem 0;
+}
+
+.legend-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.legend-line {
+  width: 36px;
+  height: 3px;
+  background: rgba(139, 92, 246, 0.6);
+  border-radius: 2px;
+}
+
+.legend-text {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+
+@media (max-width: 768px) {
+  .tree-of-life-visual {
+    height: 650px;
+    padding: 2rem 1rem;
+  }
+
+  .sephira-circle {
+    width: 75px;
+    height: 75px;
+  }
+
+  .sephira.tipheret .sephira-circle {
+    width: 85px;
+    height: 85px;
+  }
+
+  .sephira-number {
+    font-size: 1.4rem;
+  }
+
+  .sephira-name {
+    font-size: 0.65rem;
+  }
+
+  .sephira-card {
+    padding: 1.75rem;
+  }
+
+  .sephira-card-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .sephira-details-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===========================
+   ÉTAT SÉLECTIONNÉ (pas d'animation)
+   =========================== */
+
+.sephira.active .sephira-circle {
+  box-shadow: 0 4px 24px rgba(139, 92, 246, 0.4);
+  border-width: 2.5px;
+}

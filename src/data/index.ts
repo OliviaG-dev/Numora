@@ -28,6 +28,8 @@ import baseNumberData from "./matrixDestiny/baseNumber.json";
 import centralMissionData from "./matrixDestiny/centralMission.json";
 import feminineLineData from "./matrixDestiny/feminineLine.json";
 import masculineLineData from "./matrixDestiny/masculineLine.json";
+import sephirothData from "./arbreDeVie/sephirothData.json";
+import sephirothNumberData from "./arbreDeVie/sephirothNumberData.json";
 
 // ===== EXPORTS PRINCIPAUX =====
 export {
@@ -55,6 +57,8 @@ export {
   centralMissionData,
   feminineLineData,
   masculineLineData,
+  sephirothData,
+  sephirothNumberData,
 };
 
 // ===== ALIAS POUR COMPATIBILITÉ =====
@@ -366,6 +370,42 @@ export interface MasculineLineData {
     energy: {
       [key: string]: MasculineLineDetail;
     };
+  };
+}
+
+// ===== INTERFACES ARBRE DE VIE =====
+
+/**
+ * Interface pour les données des Sephiroth de l'Arbre de Vie
+ */
+export interface SephiraMeaning {
+  name: string;
+  hebrewName: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  domain: string;
+}
+
+export interface SephirothData {
+  [key: string]: SephiraMeaning;
+}
+
+/**
+ * Interface pour les interprétations personnalisées Sephira + Nombre
+ */
+export interface SephiraNumberMeaning {
+  summary: string;
+  description: string;
+  keywords: string[];
+  strengths: string;
+  challenges: string;
+  guidance: string;
+}
+
+export interface SephirothNumberData {
+  [sephiraName: string]: {
+    [numberKey: string]: SephiraNumberMeaning;
   };
 }
 

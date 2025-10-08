@@ -20,6 +20,7 @@ import MatrixTab from "./tabs/MatrixTab";
 import BasiquesTab from "./tabs/BasiquesTab";
 import DatesTab from "./tabs/DatesTab";
 import KarmiqueTab from "./tabs/KarmiqueTab";
+import ArbreTab from "./tabs/ArbreTab";
 import {
   lifePathData,
   expressionData,
@@ -485,6 +486,13 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
         {/* ONGLET MATRIX DESTINY */}
         {activeTab === "matrix" && readingData && (
           <MatrixTab readingData={readingData} />
+        )}
+        {/* ONGLET ARBRE DE VIE */}
+        {activeTab === "arbre" && readingData && (
+          <ArbreTab
+            numerologyResults={numerologyResults}
+            readingData={readingData}
+          />
         )}
       </div>
 
