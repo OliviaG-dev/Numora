@@ -30,6 +30,8 @@ import feminineLineData from "./matrixDestiny/feminineLine.json";
 import masculineLineData from "./matrixDestiny/masculineLine.json";
 import sephirothData from "./arbreDeVie/sephirothData.json";
 import sephirothNumberData from "./arbreDeVie/sephirothNumberData.json";
+import pathsData from "./arbreDeVie/pathsData.json";
+import pathsNumberData from "./arbreDeVie/pathsNumberData.json";
 
 // ===== EXPORTS PRINCIPAUX =====
 export {
@@ -59,6 +61,8 @@ export {
   masculineLineData,
   sephirothData,
   sephirothNumberData,
+  pathsData,
+  pathsNumberData,
 };
 
 // ===== ALIAS POUR COMPATIBILITÉ =====
@@ -406,6 +410,39 @@ export interface SephiraNumberMeaning {
 export interface SephirothNumberData {
   [sephiraName: string]: {
     [numberKey: string]: SephiraNumberMeaning;
+  };
+}
+
+/**
+ * Interface pour les données des chemins de l'Arbre de Vie
+ */
+export interface PathMeaning {
+  name: string;
+  title: string;
+  description: string;
+  arcana: string;
+  pillar: string;
+}
+
+export interface PathsData {
+  [pathKey: string]: PathMeaning;
+}
+
+/**
+ * Interface pour les interprétations personnalisées Chemin + Nombre
+ */
+export interface PathNumberMeaning {
+  summary: string;
+  description: string;
+  keywords: string[];
+  strengths: string;
+  challenges: string;
+  guidance: string;
+}
+
+export interface PathsNumberData {
+  [pathKey: string]: {
+    [numberKey: string]: PathNumberMeaning;
   };
 }
 

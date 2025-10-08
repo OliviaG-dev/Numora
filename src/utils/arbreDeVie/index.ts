@@ -29,3 +29,12 @@ export {
   SEPHIRA_KEY_MAPPING,
   type SephiraNumberMeaning,
 } from "./getSephiraNumberMeaning";
+
+export {
+  getPathMeaning,
+  getPathNumberMeaning,
+  createPathKey,
+  getAllPathMeanings,
+  type PathMeaning,
+  type PathNumberMeaning,
+} from "./getPathMeaning";
