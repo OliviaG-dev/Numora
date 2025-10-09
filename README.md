@@ -99,6 +99,19 @@
 - [x] **Significations Détaillées** - Interprétations complètes avec tooltips
 - [x] **Interface Responsive** - Adaptée à tous les écrans
 
+### 🌳 **Arbre de Vie Kabbalistique** ✅
+
+- [x] **Calculs des 10 Sephiroth** - Système simple basé sur la date de naissance
+- [x] **Visualisation Interactive** - Schéma SVG avec les 22 chemins
+- [x] **3 Piliers** - Miséricorde, Rigueur et Équilibre
+- [x] **Chemins Significatifs** - Identification des 5 chemins les plus importants
+- [x] **Analyse des Piliers** - Détermination du pilier dominant
+- [x] **Interprétations Complètes** - Significations détaillées pour chaque Sephira
+- [x] **Interprétations par Nombre** - Descriptions personnalisées selon le nombre calculé
+- [x] **Sphères Interactives** - Hover et click pour explorer chaque Sephira
+- [x] **Transparence Totale** - Documentation claire sur le système moderne
+- [x] **Gestion des Doublons** - Explication de la signature numérologique unique
+
 ### 🔮 **Fonctionnalités à venir** 🚧
 
 - [ ] **Sauvegarde Supabase** - Stockage persistant des lectures créées
@@ -246,6 +259,41 @@ const nameAnalysis = {
 };
 ```
 
+#### 🌳 Arbre de Vie Kabbalistique
+
+```typescript
+// Exemple d'utilisation du module Arbre de Vie
+import {
+  analyzeTreeOfLife,
+  calculateSephirothValues,
+  type TreeOfLifeAnalysis,
+} from "./src/utils/arbreDeVie";
+
+// Calcul des 10 Sephiroth basé sur la date de naissance
+const sephirothValues = calculateSephirothValues("1989-10-18");
+console.log(sephirothValues);
+// {
+//   kether: 1,      // La Couronne - Mission de vie
+//   chokhmah: 9,    // La Sagesse - Année
+//   binah: 1,       // L'Intelligence - Mois
+//   chesed: 9,      // La Miséricorde - Jour
+//   gevurah: 1,     // La Rigueur - Jour + Mois
+//   tipheret: 1,    // La Beauté - Centre (chemin de vie)
+//   netzach: 9,     // La Victoire - Jour + Année
+//   hod: 1,         // La Splendeur - Mois + Année
+//   yesod: 1,       // Le Fondement - Tous les chiffres
+//   malkuth: 1      // Le Royaume - Date complète
+// }
+
+// Analyse complète de l'Arbre de Vie
+const treeAnalysis: TreeOfLifeAnalysis = analyzeTreeOfLife("1989-10-18");
+console.log(`Pilier dominant: ${treeAnalysis.dominantPillar}`);
+console.log(`5 chemins les plus importants:`, treeAnalysis.significantPaths);
+
+// Note: Les doublons sont normaux et révèlent vos énergies dominantes
+// Dans cet exemple, le nombre 1 apparaît 7 fois = Forte énergie de leadership
+```
+
 ### Scripts disponibles
 
 ```bash
@@ -302,15 +350,21 @@ numora/
 │   │   │   ├── personal.ts     # Nombres personnels
 │   │   │   ├── karmic.ts       # Calculs karmiques
 │   │   │   └── business.ts     # Calculs business
-│   │   └── matrixDestiny/      # Module Matrix Destiny complet
-│   │       ├── matrixDestiny.ts           # Calculs principaux
-│   │       ├── matrixRelations.ts         # Relations du cœur
-│   │       ├── getBaseNumberMeaning.ts    # Significations nombres de base
-│   │       ├── getCentralMissionMeaning.ts # Mission centrale
-│   │       ├── getMasculineLineMeaning.ts  # Ligne masculine
-│   │       ├── getFeminineLineMeaning.ts   # Ligne féminine
-│   │       ├── getExternalRelationsMeaning.ts # Relations extérieures
-│   │       └── getMatrixMeaning.ts        # Domaines spéciaux
+│   │   ├── matrixDestiny/      # Module Matrix Destiny complet
+│   │   │   ├── matrixDestiny.ts           # Calculs principaux
+│   │   │   ├── matrixRelations.ts         # Relations du cœur
+│   │   │   ├── getBaseNumberMeaning.ts    # Significations nombres de base
+│   │   │   ├── getCentralMissionMeaning.ts # Mission centrale
+│   │   │   ├── getMasculineLineMeaning.ts  # Ligne masculine
+│   │   │   ├── getFeminineLineMeaning.ts   # Ligne féminine
+│   │   │   ├── getExternalRelationsMeaning.ts # Relations extérieures
+│   │   │   └── getMatrixMeaning.ts        # Domaines spéciaux
+│   │   └── arbreDeVie/         # Module Arbre de Vie
+│   │       ├── calculateSephiroth.ts      # Calculs des 10 Sephiroth
+│   │       ├── getSephiraMeaning.ts       # Significations des Sephiroth
+│   │       ├── getSephiraNumberMeaning.ts # Significations par nombre
+│   │       ├── getPathMeaning.ts          # Significations des chemins
+│   │       └── index.ts                   # Exports centralisés
 │   ├── data/                   # Données JSON organisées
 │   │   ├── numerology/         # Interprétations numérologiques
 │   │   │   ├── Basique/        # Calculs de base
@@ -343,6 +397,10 @@ numora/
 │   │   │   ├── externalRelations.json       # Relations extérieures
 │   │   │   ├── matrixMoneyLove.json         # Domaines spéciaux
 │   │   │   └── matrixRelationsHeart.json    # Ligne du cœur
+│   │   ├── arbreDeVie/         # Données Arbre de Vie
+│   │   │   ├── sephirothData.json           # Significations des 10 Sephiroth
+│   │   │   ├── sephirothNumberData.json     # Interprétations par nombre
+│   │   │   └── pathsNumberData.json         # Significations des chemins
 │   │   └── index.ts            # Exports centralisés
 │   ├── lib/                    # Bibliothèques externes
 │   │   └── supabase.ts         # Client Supabase et authentification
@@ -362,6 +420,8 @@ numora/
 │   │   ├── SUPABASE_SETUP.md   # Guide configuration Supabase
 │   │   ├── supabase_users_table.sql # Script SQL
 │   │   ├── fonctionsdoc.md     # Documentation du code
+│   │   ├── arbre-de-vie.md     # Documentation Arbre de Vie
+│   │   ├── matrix-destiny-*.md # Documentation Matrix Destiny
 │   │   └── README.md           # Index de la documentation
 │   ├── assets/                 # Ressources statiques
 │   │   ├── logo.png           # Logo de l'application
@@ -502,6 +562,10 @@ Le projet suit une **architecture modulaire avancée** organisée en couches :
 - [x] **Significations détaillées** - Sections explicatives avec tooltips informatifs
 - [x] **Interface responsive** - Optimisation mobile et desktop
 - [x] **Design harmonisé** - Bordures colorées et tooltips cohérents
+- [x] **Arbre de Vie Kabbalistique** - Module complet des 10 Sephiroth
+- [x] **Visualisation interactive** - Schéma SVG avec les 22 chemins
+- [x] **Système simple et transparent** - Basé uniquement sur la date de naissance
+- [x] **Documentation complète** - Guide avec transparence sur les doublons
 
 ### Version 0.5.0 🚧 **EN COURS**
 
@@ -546,6 +610,7 @@ Le projet Numora est maintenant dans une phase avancée avec une **architecture 
 - 🔧 **Performance** - Optimisation des calculs et de l'interface
 - 💼 **Business** - Développement des fonctionnalités business
 - 🔮 **Matrix Destiny** - Amélioration et enrichissement du module
+- 🌳 **Arbre de Vie** - Enrichissement des interprétations
 - 💾 **Sauvegarde** - Implémentation de la persistance des données
 
 ## 📄 Licence
