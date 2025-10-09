@@ -12,7 +12,6 @@ interface ReadingData {
   thirdGivenName: string;
   familyName: string;
   birthDate: string;
-  gender: string;
 }
 
 interface NewReadingProps {

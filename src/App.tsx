@@ -18,7 +18,6 @@ interface ReadingData {
   thirdGivenName: string;
   familyName: string;
   birthDate: string;
-  birthTime: string;
 }
 
 function App() {
