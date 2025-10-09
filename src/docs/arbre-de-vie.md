@@ -2,7 +2,17 @@
 
 ## Vue d'ensemble
 
-L'Arbre de Vie est une fonctionnalité de numérologie kabbalistique qui cartographie les 10 Sephiroth (sphères) et les 22 chemins qui les relient, basés sur la date de naissance d'une personne.
+L'Arbre de Vie est une fonctionnalité de numérologie qui cartographie les 10 Sephiroth (sphères) et les 22 chemins qui les relient, basés sur la date de naissance d'une personne.
+
+**⚠️ IMPORTANT - Note de Transparence:**
+
+Ce système est une **interprétation moderne** de la numérologie kabbalistique, créée à des fins d'exploration personnelle. Il ne prétend pas refléter la Kabbale traditionnelle authentique, qui :
+
+- Utilise la gématrie (valeurs des lettres hébraïques)
+- Est un outil de méditation symbolique
+- Ne calcule pas des "Arbres personnels" basés sur les dates de naissance
+
+Les **doublons de valeurs sont normaux** dans ce système et font partie de votre signature numérologique unique. Chaque Sephira conserve sa signification propre même si le nombre est répété.
 
 ## Architecture
 
@@ -14,7 +24,9 @@ src/
 │   ├── ArbreTab.tsx              # Composant principal
 │   └── ArbreTab.css              # Styles de l'Arbre de Vie
 ├── data/arbreDeVie/
-│   └── sephirothData.json        # Interprétations des 10 Sephiroth
+│   ├── sephirothData.json        # Interprétations des 10 Sephiroth
+│   ├── sephirothNumberData.json  # Interprétations par nombre
+│   └── pathsNumberData.json      # Interprétations des chemins
 ├── utils/arbreDeVie/
 │   ├── calculateSephiroth.ts     # Calculs des valeurs
 │   ├── getSephiraMeaning.ts      # Récupération des significations
@@ -27,18 +39,18 @@ src/
 
 L'Arbre de Vie kabbalistique est composé de 10 sphères (Sephiroth) qui représentent différents aspects de l'existence :
 
-| #   | Nom      | Hébreu     | Signification  | Calcul            |
-| --- | -------- | ---------- | -------------- | ----------------- |
-| 1   | Kether   | כֶּתֶר     | La Couronne    | Chemin de vie     |
-| 2   | Chokhmah | חָכְמָה    | La Sagesse     | Jour + Mois       |
-| 3   | Binah    | בִּינָה    | L'Intelligence | Année réduite     |
-| 4   | Chesed   | חֶסֶד      | La Miséricorde | Jour de naissance |
-| 5   | Gevurah  | גְּבוּרָה  | La Rigueur     | Mois de naissance |
-| 6   | Tipheret | תִּפְאֶרֶת | La Beauté      | Chemin de vie     |
-| 7   | Netzach  | נֶצַח      | La Victoire    | Jour de naissance |
-| 8   | Hod      | הוֹד       | La Splendeur   | Mois de naissance |
-| 9   | Yesod    | יְסוֹד     | Le Fondement   | Jour + Mois       |
-| 10  | Malkuth  | מַלְכוּת   | Le Royaume     | Total date réduit |
+| #   | Nom      | Hébreu     | Signification  | Calcul (Système Simple)     |
+| --- | -------- | ---------- | -------------- | --------------------------- |
+| 1   | Kether   | כֶּתֶר     | La Couronne    | Chemin de vie               |
+| 2   | Chokhmah | חָכְמָה    | La Sagesse     | Année réduite               |
+| 3   | Binah    | בִּינָה    | L'Intelligence | Mois réduit                 |
+| 4   | Chesed   | חֶסֶד      | La Miséricorde | Jour réduit                 |
+| 5   | Gevurah  | גְּבוּרָה  | La Rigueur     | Jour + Mois                 |
+| 6   | Tipheret | תִּפְאֶרֶת | La Beauté      | Chemin de vie (centre)      |
+| 7   | Netzach  | נֶצַח      | La Victoire    | Jour + Année                |
+| 8   | Hod      | הוֹד       | La Splendeur   | Mois + Année                |
+| 9   | Yesod    | יְסוֹד     | Le Fondement   | Somme de tous les chiffres  |
+| 10  | Malkuth  | מַלְכוּת   | Le Royaume     | Jour + Mois + Année réduits |
 
 ## Les 3 Piliers
 
@@ -75,28 +87,57 @@ Les 22 chemins relient les Sephiroth entre elles et sont associés aux 22 arcane
 
 ## Méthode de calcul
 
-### Calcul des Sephiroth
+### Calcul des Sephiroth (SYSTÈME SIMPLE)
 
-La fonction `calculateSephirothValues()` prend une date de naissance et calcule :
+La fonction `calculateSephirothValues()` prend **uniquement une date de naissance** :
 
 ```typescript
-// Exemple : 15/03/1990
-const sephirothValues = calculateSephirothValues("1990-03-15");
+// Exemple : 18/10/1989 - Carlos David
+const sephirothValues = calculateSephirothValues("1989-10-18");
 
 // Résultat :
 {
-  kether: 1,      // Chemin de vie : 1+5+0+3+1+9+9+0 = 28 → 10 → 1
-  chokhmah: 9,    // Jour + Mois : 15 + 3 = 18 → 9
-  binah: 1,       // Année : 1990 → 19 → 10 → 1
-  chesed: 6,      // Jour : 15 → 6
-  gevurah: 3,     // Mois : 3
-  tipheret: 1,    // Chemin de vie
-  netzach: 6,     // Jour : 15 → 6
-  hod: 3,         // Mois : 3
-  yesod: 9,       // Jour + Mois : 18 → 9
-  malkuth: 1      // Total : 1+5+3+1+9+9+0 = 28 → 10 → 1
+  kether: 1,      // Chemin de vie : 1+9+8+9+1+0+1+8 = 37 → 10 → 1
+  chokhmah: 9,    // Année : 1989 → 1+9+8+9 = 27 → 9
+  binah: 1,       // Mois : 10 → 1
+  chesed: 9,      // Jour : 18 → 9
+  gevurah: 1,     // Jour + Mois : 18+10 = 28 → 1
+  tipheret: 1,    // Chemin de vie (centre)
+  netzach: 8,     // Jour + Année : 18+1989 = 2007 → 9
+  hod: 9,         // Mois + Année : 10+1989 = 1999 → 1+9+9+9 = 28 → 1
+  yesod: 1,       // Tous les chiffres : 1+9+8+9+1+0+1+8 = 37 → 10 → 1
+  malkuth: 1      // Date totale : 18+10+1989 = 2017 → 10 → 1
 }
 ```
+
+**Note sur les doublons:**
+
+Dans cet exemple, le nombre **1** apparaît 6 fois et le nombre **9** apparaît 4 fois. C'est **normal et attendu** ! Cela signifie que :
+
+- **L'énergie du 1** (leadership, indépendance, nouveaux départs) est très forte
+- **L'énergie du 9** (sagesse, finalisation, humanitarisme) est également marquante
+- Ces répétitions créent votre **signature énergétique unique**
+
+Chaque Sephira où le nombre apparaît garde sa signification propre :
+
+- Kether (1) = Mission de vie d'indépendance
+- Gevurah (1) = Discipline par l'autonomie
+- Tipheret (1) = Harmonie dans le leadership
+- Etc.
+
+### Pourquoi des doublons ?
+
+**Raison mathématique:**
+
+- 9 chiffres possibles (1-9) + nombres maîtres (11, 22, 33)
+- 10 Sephiroth à calculer
+- Par le principe des tiroirs, des doublons sont inévitables
+
+**Raison spirituelle:**
+
+- Les répétitions montrent vos **énergies dominantes**
+- Chaque Sephira a un **contexte unique** même avec le même nombre
+- Les doublons révèlent votre **thème de vie principal**
 
 ### Calcul des chemins significatifs
 
@@ -137,7 +178,7 @@ import {
 ```typescript
 const treeAnalysis = useMemo(() => {
   if (!readingData?.birthDate) return null;
-  return analyzeTreeOfLife(readingData.birthDate, fullName);
+  return analyzeTreeOfLife(readingData.birthDate);
 }, [readingData]);
 ```
 
@@ -181,11 +222,7 @@ Le composant `ArbreTab` crée une visualisation interactive de l'Arbre de Vie :
     "title": "La Couronne",
     "subtitle": "Connexion Divine & Mission Suprême",
     "description": "...",
-    "domain": "Connexion divine, but suprême, mission de vie",
-    "keywords": ["Conscience divine", "Unité cosmique", ...],
-    "strengths": "...",
-    "challenges": "...",
-    "guidance": "..."
+    "domain": "Connexion divine, but suprême, mission de vie"
   },
   ...
 }
@@ -203,24 +240,42 @@ Le composant `ArbreTab` crée une visualisation interactive de l'Arbre de Vie :
 1. Éditer `src/utils/arbreDeVie/calculateSephiroth.ts`
 2. Ajuster les formules dans `calculateSephirothValues()`
 
+**Important:** Gardez les formules **simples et fixes**. Évitez la logique conditionnelle complexe.
+
 ### Personnaliser les styles
 
 1. Modifier `src/components/ReadingDetailSection/tabs/ArbreTab.css`
 2. Ajuster les couleurs, tailles, animations
 
-## Philosophie kabbalistique
+## Philosophie du système
 
-L'Arbre de Vie représente :
+### Ce que représente l'Arbre de Vie
 
 - **La descente de la lumière divine** : De Kether (couronne) à Malkuth (royaume)
 - **L'équilibre des forces** : Entre expansion et contraction
 - **Le parcours de l'âme** : De la source divine à l'incarnation terrestre
 - **Les 22 lettres hébraïques** : Associées aux 22 chemins
 
+### Interpréter les doublons
+
+Quand un nombre se répète plusieurs fois dans votre arbre :
+
+1. **C'est votre thème principal** - Cette énergie est dominante dans votre vie
+2. **Regardez les positions** - Où apparaît le nombre ? Dans quelle Sephira ?
+3. **Analysez les piliers** - Le doublon affecte-t-il un pilier en particulier ?
+4. **Considérez les chemins** - Les Sephiroth dupliquées créent quels chemins ?
+
+**Exemple:** Si le 1 apparaît 6 fois :
+
+- Forte énergie de **leadership et d'indépendance**
+- Besoin de **créer votre propre voie**
+- Challenge de **ne pas être trop isolé**
+- Opportunité d'**inspirer les autres**
+
 ## Références
 
-- Numérologie kabbalistique moderne
-- Sefer Yetzirah (Livre de la Formation)
+- Numérologie moderne adaptée
+- Symbolisme kabbalistique
 - Système des Sephiroth
 - Correspondances avec le Tarot de Marseille
 
@@ -244,10 +299,24 @@ L'Arbre de Vie représente :
 - Tailles ajustées pour petits écrans
 - Simplification de la visualisation mobile
 
-## TODO Future
+## FAQ
 
-- [ ] Ajouter des interprétations détaillées pour les 22 chemins
-- [ ] Créer des animations pour les transitions entre Sephiroth
-- [ ] Implémenter un mode "méditation" interactif
-- [ ] Ajouter des correspondances avec les chakras
-- [ ] Créer une vue 3D de l'Arbre de Vie
+### Pourquoi ai-je autant de doublons ?
+
+C'est mathématiquement normal ! Avec seulement 9 nombres possibles et 10 Sephiroth, des répétitions sont inévitables. Les doublons révèlent vos énergies dominantes.
+
+### Est-ce conforme à la Kabbale traditionnelle ?
+
+Non. C'est une **adaptation moderne** à des fins d'exploration personnelle. La Kabbale authentique ne fait pas de calculs personnels basés sur les dates de naissance.
+
+### Puis-je me fier à ces résultats ?
+
+Utilisez-les comme **outil de réflexion personnelle** et d'exploration de soi, pas comme vérité absolue. C'est un miroir symbolique, pas une science exacte.
+
+### Comment utiliser mon Arbre de Vie ?
+
+1. Identifiez vos nombres dominants (ceux qui se répètent)
+2. Lisez les interprétations de chaque Sephira
+3. Regardez votre pilier dominant
+4. Explorez les chemins significatifs
+5. Méditez sur les connexions et thèmes qui émergent

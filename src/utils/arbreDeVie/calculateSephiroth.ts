@@ -1,7 +1,12 @@
 /**
  * @fileoverview Calculs de l'Arbre de Vie Kabbalistique
  * Ce fichier contient les fonctions pour calculer les valeurs des 10 Sephiroth
- * basées sur les données numérologiques de la date de naissance
+ * basées sur la date de naissance
+ *
+ * NOTE IMPORTANTE: Ce système est une interprétation moderne de la numérologie
+ * kabbalistique. Les doublons de valeurs sont normaux et font partie de votre
+ * signature numérologique unique. Chaque Sephira garde sa signification propre
+ * même si le nombre est répété.
  */
 
 import { reduceToSingleDigit } from "../numerology/utils";
@@ -11,67 +16,74 @@ import { calculateLifePathNumber } from "../numerology/core";
  * Interface pour les valeurs des Sephiroth
  */
 export interface SephirothValues {
-  kether: number; // 1 - Mission de vie / Expression
-  chokhmah: number; // 2 - Esprit masculin (jour + mois)
-  binah: number; // 3 - Esprit féminin (année réduite)
-  chesed: number; // 4 - Jour de naissance
-  gevurah: number; // 5 - Mois de naissance
-  tipheret: number; // 6 - Centre du cœur (chemin de vie)
-  netzach: number; // 7 - Émotion masculine (jour de naissance)
-  hod: number; // 8 - Émotion féminine (mois de naissance)
-  yesod: number; // 9 - Subconscient / Karma (somme jour + mois)
-  malkuth: number; // 10 - Incarnation (somme totale de la date)
+  kether: number; // 1 - La Couronne (Chemin de Vie)
+  chokhmah: number; // 2 - La Sagesse (Année réduite)
+  binah: number; // 3 - L'Intelligence (Mois réduit)
+  chesed: number; // 4 - La Miséricorde (Jour réduit)
+  gevurah: number; // 5 - La Rigueur (Jour + Mois)
+  tipheret: number; // 6 - La Beauté (Chemin de Vie - centre)
+  netzach: number; // 7 - La Victoire (Jour + Année)
+  hod: number; // 8 - La Splendeur (Mois + Année)
+  yesod: number; // 9 - Le Fondement (Total de tous les chiffres)
+  malkuth: number; // 10 - Le Royaume (Réduction finale de la date)
 }
 
 /**
  * Calcule les valeurs des 10 Sephiroth basées sur la date de naissance
+ * Système simple et transparent basé uniquement sur la date
  * PRÉSERVE LES NOMBRES MAÎTRES (11, 22, 33)
+ *
  * @param birthDate - Date de naissance au format "YYYY-MM-DD"
  * @returns Les valeurs des 10 Sephiroth
+ *
+ * @example
+ * calculateSephirothValues("1989-10-18")
+ * // Retourne les 10 valeurs pour chaque Sephira
  */
 export function calculateSephirothValues(birthDate: string): SephirothValues {
   const [year, month, day] = birthDate.split("-").map(Number);
 
-  // 1. KETHER - Mission de vie / Connexion divine
-  // Utilise le chemin de vie comme expression de la mission divine
+  // 1. KETHER - La Couronne / Mission de vie
+  // Le Chemin de Vie représente ta mission divine suprême
   const kether = calculateLifePathNumber(birthDate);
 
-  // 2. CHOKHMAH - Inspiration & Élan créatif (Esprit masculin)
-  // Combinaison du jour et du mois pour l'élan créatif
-  const chokhmah = reduceToSingleDigit(day + month); // Préserve 11, 22, 33
+  // 2. CHOKHMAH - La Sagesse / Inspiration créative
+  // L'année réduite représente ta sagesse générationnelle
+  const chokhmah = reduceToSingleDigit(year);
 
-  // 3. BINAH - Intuition & Structure intérieure (Esprit féminin)
-  // L'année représente la structure profonde
-  const binah = reduceToSingleDigit(year); // Préserve 11, 22, 33
+  // 3. BINAH - L'Intelligence / Compréhension
+  // Le mois réduit représente ton intelligence cyclique
+  const binah = reduceToSingleDigit(month);
 
-  // 4. CHESED - Expansion & Amour actif
-  // Le jour de naissance représente l'expansion naturelle
-  const chesed = reduceToSingleDigit(day, false); // Pas de nombres maîtres pour un jour seul
+  // 4. CHESED - La Miséricorde / Amour expansif
+  // Le jour réduit représente ton amour et ta générosité
+  const chesed = reduceToSingleDigit(day);
 
-  // 5. GEVURAH - Discipline & Rigueur
-  // Le mois représente la rigueur et les cycles
-  const gevurah = reduceToSingleDigit(month, false); // Pas de nombres maîtres pour un mois seul
+  // 5. GEVURAH - La Rigueur / Force et discipline
+  // Jour + Mois pour la discipline et les limites
+  const gevurah = reduceToSingleDigit(day + month);
 
-  // 6. TIPHERET - Harmonie & Cœur (Centre de l'Arbre)
-  // Le chemin de vie au centre, équilibrant tout
+  // 6. TIPHERET - La Beauté / Harmonie centrale
+  // Le Chemin de Vie au centre, point d'équilibre parfait
   const tipheret = calculateLifePathNumber(birthDate);
 
-  // 7. NETZACH - Passion & Motivation émotionnelle (côté masculin)
-  // Le jour de naissance pour l'énergie passionnelle
-  const netzach = reduceToSingleDigit(day, false); // Pas de nombres maîtres pour un jour seul
+  // 7. NETZACH - La Victoire / Passion et persévérance
+  // Jour + Année pour l'énergie passionnelle
+  const netzach = reduceToSingleDigit(day + year);
 
-  // 8. HOD - Raison & Communication (côté féminin)
-  // Le mois pour la structure mentale
-  const hod = reduceToSingleDigit(month, false); // Pas de nombres maîtres pour un mois seul
+  // 8. HOD - La Splendeur / Communication et intellect
+  // Mois + Année pour la structure mentale
+  const hod = reduceToSingleDigit(month + year);
 
-  // 9. YESOD - Subconscient & Fondation de l'âme
-  // Somme jour + mois pour le karma et l'inconscient
-  const yesod = reduceToSingleDigit(day + month); // Préserve 11, 22, 33
+  // 9. YESOD - Le Fondement / Subconscient et âme
+  // Somme de TOUS les chiffres de la date (avant réduction finale)
+  const allDigits = birthDate.replace(/-/g, "").split("").map(Number);
+  const totalSum = allDigits.reduce((acc, val) => acc + val, 0);
+  const yesod = reduceToSingleDigit(totalSum);
 
-  // 10. MALKUTH - Incarnation & Réalité physique
-  // Somme totale de la date
-  const totalDate = day + month + year;
-  const malkuth = reduceToSingleDigit(totalDate); // Préserve 11, 22, 33
+  // 10. MALKUTH - Le Royaume / Manifestation physique
+  // Réduction finale de la date complète
+  const malkuth = reduceToSingleDigit(day + month + year);
 
   return {
     kether,
