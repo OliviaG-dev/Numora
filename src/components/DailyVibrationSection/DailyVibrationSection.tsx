@@ -33,10 +33,14 @@ const DailyVibrationSection: React.FC<DailyVibrationSectionProps> = ({
   const [monthVibration, setMonthVibration] = useState<number>(0);
   const [yearVibration, setYearVibration] = useState<number>(0);
   const [universalVibration, setUniversalVibration] = useState<number>(0);
-  const [dayExpanded, setDayExpanded] = useState(false);
-  const [monthExpanded, setMonthExpanded] = useState(false);
-  const [yearExpanded, setYearExpanded] = useState(false);
-  const [universalExpanded, setUniversalExpanded] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState<{
+    type: "universal" | "day" | "month" | "year";
+    vibration: number;
+    info: DateVibeDetail | null;
+    title: string;
+    subtitle: string;
+  } | null>(null);
 
   useEffect(() => {
     const now = new Date();
@@ -111,6 +115,22 @@ const DailyVibrationSection: React.FC<DailyVibrationSectionProps> = ({
   const yearInfo = getYearInfo();
   const universalInfo = getUniversalInfo();
 
+  const openModal = (
+    type: "universal" | "day" | "month" | "year",
+    vibration: number,
+    info: DateVibeDetail | null,
+    title: string,
+    subtitle: string
+  ) => {
+    setModalContent({ type, vibration, info, title, subtitle });
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    setTimeout(() => setModalContent(null), 300);
+  };
+
   return (
     <section className="daily-vibration-section">
       <div className="daily-vibration-container">
@@ -155,42 +175,23 @@ const DailyVibrationSection: React.FC<DailyVibrationSectionProps> = ({
             </div>
             {universalInfo && (
               <>
-                <div className="vibration-summary">
+                <div className="daily-vib-summary">
                   <p>{universalInfo.summary}</p>
                 </div>
-                {!universalExpanded ? (
-                  <button
-                    className="see-more-btn"
-                    onClick={() => setUniversalExpanded(true)}
-                  >
-                    Voir plus
-                  </button>
-                ) : (
-                  <div className="vibration-details">
-                    <div className="detail-item">
-                      <h4>Forces</h4>
-                      <p>{universalInfo.strength}</p>
-                    </div>
-                    <div className="detail-item">
-                      <h4>Défis</h4>
-                      <p>{universalInfo.challenge}</p>
-                    </div>
-                    <div className="detail-item">
-                      <h4>Favorable pour</h4>
-                      <p>{universalInfo.favorable_for}</p>
-                    </div>
-                    <div className="detail-item">
-                      <h4>Défavorable pour</h4>
-                      <p>{universalInfo.unfavorable_for}</p>
-                    </div>
-                    <button
-                      className="see-less-btn"
-                      onClick={() => setUniversalExpanded(false)}
-                    >
-                      Voir moins
-                    </button>
-                  </div>
-                )}
+                <button
+                  className="see-more-btn"
+                  onClick={() =>
+                    openModal(
+                      "universal",
+                      universalVibration,
+                      universalInfo,
+                      "Vibration Universelle",
+                      formatDate(currentDate)
+                    )
+                  }
+                >
+                  Voir plus
+                </button>
               </>
             )}
           </div>
@@ -214,42 +215,23 @@ const DailyVibrationSection: React.FC<DailyVibrationSectionProps> = ({
             </div>
             {dayInfo && (
               <>
-                <div className="vibration-summary">
+                <div className="daily-vib-summary">
                   <p>{dayInfo.summary}</p>
                 </div>
-                {!dayExpanded ? (
-                  <button
-                    className="see-more-btn"
-                    onClick={() => setDayExpanded(true)}
-                  >
-                    Voir plus
-                  </button>
-                ) : (
-                  <div className="vibration-details">
-                    <div className="detail-item">
-                      <h4>Forces</h4>
-                      <p>{dayInfo.strength}</p>
-                    </div>
-                    <div className="detail-item">
-                      <h4>Défis</h4>
-                      <p>{dayInfo.challenge}</p>
-                    </div>
-                    <div className="detail-item">
-                      <h4>Favorable pour</h4>
-                      <p>{dayInfo.favorable_for}</p>
-                    </div>
-                    <div className="detail-item">
-                      <h4>Défavorable pour</h4>
-                      <p>{dayInfo.unfavorable_for}</p>
-                    </div>
-                    <button
-                      className="see-less-btn"
-                      onClick={() => setDayExpanded(false)}
-                    >
-                      Voir moins
-                    </button>
-                  </div>
-                )}
+                <button
+                  className="see-more-btn"
+                  onClick={() =>
+                    openModal(
+                      "day",
+                      dayVibration,
+                      dayInfo,
+                      "Vibration du Jour",
+                      `${getDayName(currentDate)} - ${currentDate.getDate()}`
+                    )
+                  }
+                >
+                  Voir plus
+                </button>
               </>
             )}
           </div>
@@ -273,42 +255,25 @@ const DailyVibrationSection: React.FC<DailyVibrationSectionProps> = ({
             </div>
             {monthInfo && (
               <>
-                <div className="vibration-summary">
+                <div className="daily-vib-summary">
                   <p>{monthInfo.summary}</p>
                 </div>
-                {!monthExpanded ? (
-                  <button
-                    className="see-more-btn"
-                    onClick={() => setMonthExpanded(true)}
-                  >
-                    Voir plus
-                  </button>
-                ) : (
-                  <div className="vibration-details">
-                    <div className="detail-item">
-                      <h4>Forces</h4>
-                      <p>{monthInfo.strength}</p>
-                    </div>
-                    <div className="detail-item">
-                      <h4>Défis</h4>
-                      <p>{monthInfo.challenge}</p>
-                    </div>
-                    <div className="detail-item">
-                      <h4>Favorable pour</h4>
-                      <p>{monthInfo.favorable_for}</p>
-                    </div>
-                    <div className="detail-item">
-                      <h4>Défavorable pour</h4>
-                      <p>{monthInfo.unfavorable_for}</p>
-                    </div>
-                    <button
-                      className="see-less-btn"
-                      onClick={() => setMonthExpanded(false)}
-                    >
-                      Voir moins
-                    </button>
-                  </div>
-                )}
+                <button
+                  className="see-more-btn"
+                  onClick={() =>
+                    openModal(
+                      "month",
+                      monthVibration,
+                      monthInfo,
+                      "Vibration du Mois",
+                      `${getMonthName(currentDate)} - ${
+                        currentDate.getMonth() + 1
+                      }`
+                    )
+                  }
+                >
+                  Voir plus
+                </button>
               </>
             )}
           </div>
@@ -330,46 +295,84 @@ const DailyVibrationSection: React.FC<DailyVibrationSectionProps> = ({
             </div>
             {yearInfo && (
               <>
-                <div className="vibration-summary">
+                <div className="daily-vib-summary">
                   <p>{yearInfo.summary}</p>
                 </div>
-                {!yearExpanded ? (
-                  <button
-                    className="see-more-btn"
-                    onClick={() => setYearExpanded(true)}
-                  >
-                    Voir plus
-                  </button>
-                ) : (
-                  <div className="vibration-details">
-                    <div className="detail-item">
-                      <h4>Forces</h4>
-                      <p>{yearInfo.strength}</p>
-                    </div>
-                    <div className="detail-item">
-                      <h4>Défis</h4>
-                      <p>{yearInfo.challenge}</p>
-                    </div>
-                    <div className="detail-item">
-                      <h4>Favorable pour</h4>
-                      <p>{yearInfo.favorable_for}</p>
-                    </div>
-                    <div className="detail-item">
-                      <h4>Défavorable pour</h4>
-                      <p>{yearInfo.unfavorable_for}</p>
-                    </div>
-                    <button
-                      className="see-less-btn"
-                      onClick={() => setYearExpanded(false)}
-                    >
-                      Voir moins
-                    </button>
-                  </div>
-                )}
+                <button
+                  className="see-more-btn"
+                  onClick={() =>
+                    openModal(
+                      "year",
+                      yearVibration,
+                      yearInfo,
+                      "Vibration de l'Année",
+                      `${currentDate.getFullYear()}`
+                    )
+                  }
+                >
+                  Voir plus
+                </button>
               </>
             )}
           </div>
         </div>
+
+        {/* Modal */}
+        {modalOpen && modalContent && (
+          <div className="vibration-modal-overlay" onClick={closeModal}>
+            <div
+              className={`vibration-modal ${
+                modalContent.type === "universal" ? "modal-universal" : ""
+              }`}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button className="modal-close" onClick={closeModal}>
+                ×
+              </button>
+
+              <div className="modal-header">
+                <h2>{modalContent.title}</h2>
+                <p className="modal-subtitle">{modalContent.subtitle}</p>
+                <div className="modal-badge">
+                  {modalContent.vibration}
+                  <span className="star">✦</span>
+                  <span className="star">✧</span>
+                  <span className="star">✦</span>
+                  <span className="star">✧</span>
+                  <span className="star">✦</span>
+                  <span className="star">✧</span>
+                </div>
+              </div>
+
+              {modalContent.info && (
+                <div className="modal-content">
+                  <div className="daily-modal-summary">
+                    <p>{modalContent.info.summary}</p>
+                  </div>
+
+                  <div className="modal-details-grid">
+                    <div className="modal-detail-item">
+                      <h4>Forces</h4>
+                      <p>{modalContent.info.strength}</p>
+                    </div>
+                    <div className="modal-detail-item">
+                      <h4>Défis</h4>
+                      <p>{modalContent.info.challenge}</p>
+                    </div>
+                    <div className="modal-detail-item">
+                      <h4>Favorable pour</h4>
+                      <p>{modalContent.info.favorable_for}</p>
+                    </div>
+                    <div className="modal-detail-item">
+                      <h4>Défavorable pour</h4>
+                      <p>{modalContent.info.unfavorable_for}</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
