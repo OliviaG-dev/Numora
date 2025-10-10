@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Home from "./pages/Home/Home";
 import Signup from "./pages/Signup/Signup";
 import Login from "./pages/Login/Login";
@@ -9,6 +9,7 @@ import Readings from "./pages/Readings/Readings";
 import ReadingDetail from "./pages/ReadingDetail/ReadingDetail";
 import DateAnalyzer from "./pages/DateAnalyzer/DateAnalyzer";
 import NameAnalyzer from "./pages/NameAnalyzer/NameAnalyzer";
+import DailyVibration from "./pages/DailyVibration/DailyVibration";
 
 interface ReadingData {
   readingName: string;
@@ -73,7 +74,7 @@ function App() {
       {currentPage === "readingDetail" && (
         <ReadingDetail
           onNavigate={navigateToPage}
-          readingData={currentReadingData}
+          readingData={currentReadingData || undefined}
         />
       )}
       {currentPage === "dateAnalyzer" && (
@@ -81,6 +82,9 @@ function App() {
       )}
       {currentPage === "nameAnalyzer" && (
         <NameAnalyzer onNavigate={navigateToPage} />
+      )}
+      {currentPage === "dailyVibration" && (
+        <DailyVibration onNavigate={navigateToPage} />
       )}
     </>
   );
