@@ -9,6 +9,8 @@ import {
   getSephiraMeaning,
   getPillarDescription,
   getSephiraNumberMeaning,
+  getPathNumberMeaning,
+  createPathKey,
 } from "../../../utils/arbreDeVie";
 import "./ArbreTab.css";
 
@@ -584,48 +586,155 @@ const ArbreTab: React.FC<TabProps> = ({ readingData }) => {
 
       {/* Chemins Significatifs */}
       <section className="numerology-section arbre-section">
-        <div className="sephira-card">
-          <div className="sephira-card-header">
-            <div className="sephira-card-title">
-              <h3>Tes 5 Chemins les Plus Importants</h3>
-              <p className="sephira-card-subtitle">
-                Les dynamiques énergétiques les plus actives dans ta vie
-              </p>
-            </div>
-          </div>
-          <div className="sephira-card-content">
-            <p>
-              Les chemins de l'Arbre de Vie représentent les connexions et les
-              dynamiques entre les différentes sphères de ton existence. Voici
-              les chemins les plus puissants dans ton arbre personnel :
-            </p>
-            <div className="sephira-details-grid">
-              {significantPaths.map(({ path, value }, index) => {
-                const fromName =
-                  sephirothNames[path.from as keyof typeof sephirothNames];
-                const toName =
-                  sephirothNames[path.to as keyof typeof sephirothNames];
-
-                return (
-                  <div key={index} className="sephira-detail-item">
-                    <h4>
-                      {fromName} ↔ {toName}
-                    </h4>
-                    <p>
-                      <strong>Valeur: {value}</strong>
-                      {path.arcana && ` - ${path.arcana}`}
-                    </p>
-                    <p style={{ fontSize: "0.85rem", marginTop: "0.5rem" }}>
-                      Ce chemin représente la dynamique entre{" "}
-                      {fromName.toLowerCase()} et {toName.toLowerCase()} dans ta
-                      vie.
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+        <div style={{ marginBottom: "2rem", textAlign: "center" }}>
+          <h3
+            style={{
+              fontSize: "1.75rem",
+              fontWeight: 700,
+              color: "#fff",
+              marginBottom: "1rem",
+            }}
+          >
+            Tes 5 Chemins les Plus Importants
+          </h3>
+          <p
+            style={{
+              color: "rgba(255,255,255,0.7)",
+              maxWidth: "800px",
+              margin: "0 auto",
+            }}
+          >
+            Les chemins de l'Arbre de Vie représentent les connexions et les
+            dynamiques entre les différentes sphères de ton existence. Voici les
+            5 flux d'énergie les plus puissants dans ton arbre personnel.
+          </p>
         </div>
+
+        {significantPaths.map(({ path, value }, index) => {
+          const pathKey = createPathKey(path.from, path.to);
+          const pathNumberMeaning = getPathNumberMeaning(pathKey, value);
+
+          return (
+            <div key={index} className="sephira-card">
+              <div className="sephira-card-header">
+                <div
+                  className="sephira-card-number"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(99, 102, 241, 0.4))",
+                    borderColor: "rgba(139, 92, 246, 0.7)",
+                  }}
+                >
+                  {value}
+                </div>
+                <div className="sephira-card-title">
+                  <h3>
+                    #{index + 1} -{" "}
+                    {sephirothNames[path.from as keyof typeof sephirothNames]} ↔{" "}
+                    {sephirothNames[path.to as keyof typeof sephirothNames]}
+                  </h3>
+                  <p className="sephira-card-subtitle">
+                    {path.arcana && `${path.arcana} - `}Chemin d'intensité{" "}
+                    {value}
+                  </p>
+                </div>
+              </div>
+
+              {pathNumberMeaning ? (
+                <div className="sephira-card-content">
+                  <div
+                    style={{
+                      background: "rgba(0, 0, 0, 0.2)",
+                      borderLeft: "4px solid rgba(139, 92, 246, 0.7)",
+                      padding: "1.5rem",
+                      borderRadius: "8px",
+                      marginBottom: "1.5rem",
+                    }}
+                  >
+                    <h4
+                      style={{
+                        color: "rgba(139, 92, 246, 0.9)",
+                        fontSize: "1.2rem",
+                        marginBottom: "0.75rem",
+                      }}
+                    >
+                      ✨ {pathNumberMeaning.summary}
+                    </h4>
+                    <p
+                      style={{
+                        fontSize: "1rem",
+                        lineHeight: 1.6,
+                        marginBottom: "1rem",
+                      }}
+                    >
+                      {pathNumberMeaning.description}
+                    </p>
+
+                    <div
+                      className="sephira-keywords"
+                      style={{ marginBottom: "1.5rem" }}
+                    >
+                      {pathNumberMeaning.keywords.map((keyword, idx) => (
+                        <span
+                          key={idx}
+                          className="sephira-keyword-tag"
+                          style={{
+                            borderColor: "rgba(139, 92, 246, 0.5)",
+                            background: "rgba(139, 92, 246, 0.2)",
+                          }}
+                        >
+                          {keyword}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="sephira-details-grid">
+                      <div className="sephira-detail-item">
+                        <h4 style={{ color: "rgba(139, 92, 246, 0.9)" }}>
+                          ⚡ Forces
+                        </h4>
+                        <p>{pathNumberMeaning.strengths}</p>
+                      </div>
+                      <div className="sephira-detail-item">
+                        <h4 style={{ color: "rgba(139, 92, 246, 0.9)" }}>
+                          ⚠️ Défis
+                        </h4>
+                        <p>{pathNumberMeaning.challenges}</p>
+                      </div>
+                    </div>
+
+                    <div
+                      style={{
+                        background: "rgba(255, 255, 255, 0.05)",
+                        padding: "1rem",
+                        borderRadius: "6px",
+                        borderLeft: "3px solid rgba(139, 92, 246, 0.7)",
+                        marginTop: "1rem",
+                      }}
+                    >
+                      <p
+                        style={{
+                          fontSize: "0.95rem",
+                          fontStyle: "italic",
+                          margin: 0,
+                        }}
+                      >
+                        🌟 <strong>Guidance :</strong>{" "}
+                        {pathNumberMeaning.guidance}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="sephira-card-content">
+                  <p>
+                    Interprétation en cours de développement pour ce chemin.
+                  </p>
+                </div>
+              )}
+            </div>
+          );
+        })}
       </section>
     </>
   );

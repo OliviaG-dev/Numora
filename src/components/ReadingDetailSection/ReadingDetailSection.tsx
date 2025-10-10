@@ -47,7 +47,6 @@ interface ReadingData {
   thirdGivenName: string;
   familyName: string;
   birthDate: string;
-  gender: string;
 }
 
 interface ReadingDetailSectionProps {
@@ -452,12 +451,6 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
               <span className="info-value">
                 {readingData?.birthDate &&
                   new Date(readingData.birthDate).toLocaleDateString("fr-FR")}
-              </span>
-            </div>
-            <div className="info-item">
-              <span className="info-label">Sexe:</span>
-              <span className="info-value">
-                {readingData?.gender === "M" ? "Masculin" : "Féminin"}
               </span>
             </div>
             <div className="info-item">

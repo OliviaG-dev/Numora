@@ -13,6 +13,7 @@ interface HomeSectionProps {
       | "readings"
       | "dateAnalyzer"
       | "nameAnalyzer"
+      | "dailyVibration"
   ) => void;
 }
 
@@ -32,6 +33,15 @@ const HomeSection: React.FC<HomeSectionProps> = ({ onNavigate }) => {
 
         <div className="home-description">
           <h2>Ton compagnon numérique de numérologie</h2>
+        </div>
+
+        <div className="vibration-cta">
+          <button
+            className="vibration-button"
+            onClick={() => onNavigate("dailyVibration")}
+          >
+            Vibration du Jour
+          </button>
         </div>
 
         <div className="analyzer-sections">

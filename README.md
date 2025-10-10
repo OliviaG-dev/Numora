@@ -99,6 +99,19 @@
 - [x] **Significations Détaillées** - Interprétations complètes avec tooltips
 - [x] **Interface Responsive** - Adaptée à tous les écrans
 
+### 🌳 **Arbre de Vie Kabbalistique** ✅
+
+- [x] **Calculs des 10 Sephiroth** - Système simple basé sur la date de naissance
+- [x] **Visualisation Interactive** - Schéma SVG avec les 22 chemins
+- [x] **3 Piliers** - Miséricorde, Rigueur et Équilibre
+- [x] **Chemins Significatifs** - Identification des 5 chemins les plus importants
+- [x] **Analyse des Piliers** - Détermination du pilier dominant
+- [x] **Interprétations Complètes** - Significations détaillées pour chaque Sephira
+- [x] **Interprétations par Nombre** - Descriptions personnalisées selon le nombre calculé
+- [x] **Sphères Interactives** - Hover et click pour explorer chaque Sephira
+- [x] **Transparence Totale** - Documentation claire sur le système moderne
+- [x] **Gestion des Doublons** - Explication de la signature numérologique unique
+
 ### 🔮 **Fonctionnalités à venir** 🚧
 
 - [ ] **Sauvegarde Supabase** - Stockage persistant des lectures créées
@@ -161,90 +174,6 @@ npm run dev
 
 L'application sera accessible sur [http://localhost:5173](http://localhost:5173)
 
-### 🎯 Fonctionnalités principales
-
-#### 🔮 Calculs Numérologiques Complets
-
-```typescript
-// Exemple d'utilisation des calculs modulaires
-import {
-  calculateLifePathNumber,
-  calculateExpressionNumber,
-  calculateKarmicDebts,
-  calculatePersonalNumbers,
-  calculateBusinessNumbers,
-} from "./src/utils/numerology";
-
-// Calculs de base
-const lifePath = calculateLifePathNumber("1990-03-15"); // Retourne 1
-const expression = calculateExpressionNumber("Marie Dupont"); // Retourne 9
-
-// Analyse des dettes karmiques
-const karmicDebts = calculateKarmicDebts("1990-03-15", "Marie Dupont");
-if (karmicDebts.lifePathDebt.isKarmicDebt) {
-  console.log(
-    `Dette karmique détectée: ${karmicDebts.lifePathDebt.karmicDebtType}`
-  );
-}
-
-// Nombres personnels
-const personalNumbers = calculatePersonalNumbers("1990-03-15", 2024, 3, 15);
-console.log(`Année personnelle: ${personalNumbers.year.number}`);
-
-// Analyse business
-const businessAnalysis = calculateBusinessNumbers("Entreprise ABC");
-console.log(`Nombre business: ${businessAnalysis.businessNumber}`);
-```
-
-#### 🔐 Authentification Sécurisée
-
-```typescript
-// Utilisation du contexte d'authentification
-import { useAuth } from "./src/contexts/AuthContext";
-
-const MyComponent = () => {
-  const { isAuthenticated, user, signIn, signOut } = useAuth();
-
-  // Gestion de l'authentification
-  const handleLogin = async () => {
-    const { data, error } = await signIn(email, password);
-    if (!error) {
-      console.log("Connexion réussie !");
-    }
-  };
-};
-```
-
-#### 🔮 Analyseurs Rapides
-
-```typescript
-// Exemple d'utilisation des analyseurs modulaires
-import { DateAnalyzerSection } from "./src/components/DateAnalyzerSection/DateAnalyzerSection";
-import { NameAnalyzerSection } from "./src/components/NameAnalyzerSection/NameAnalyzerSection";
-import {
-  calculateLifePathNumber,
-  calculatePersonalNumbers,
-  calculateExpressionNumber,
-  calculateSoulUrgeNumber,
-  calculatePersonalityNumber,
-} from "./src/utils/numerology";
-
-// Analyse rapide d'une date avec nombres personnels
-const personalNumbers = calculatePersonalNumbers("1990-03-15", 2024, 3, 15);
-const dateAnalysis = {
-  lifePath: calculateLifePathNumber("1990-03-15"),
-  personalYear: personalNumbers.year.number,
-  personalMonth: personalNumbers.month.number,
-  personalDay: personalNumbers.day.number,
-};
-
-// Analyse rapide d'un nom avec calculs complets
-const nameAnalysis = {
-  expression: calculateExpressionNumber("Marie Dupont"),
-  soulUrge: calculateSoulUrgeNumber("Marie Dupont"),
-  personality: calculatePersonalityNumber("Marie Dupont"),
-};
-```
 
 ### Scripts disponibles
 
@@ -302,15 +231,21 @@ numora/
 │   │   │   ├── personal.ts     # Nombres personnels
 │   │   │   ├── karmic.ts       # Calculs karmiques
 │   │   │   └── business.ts     # Calculs business
-│   │   └── matrixDestiny/      # Module Matrix Destiny complet
-│   │       ├── matrixDestiny.ts           # Calculs principaux
-│   │       ├── matrixRelations.ts         # Relations du cœur
-│   │       ├── getBaseNumberMeaning.ts    # Significations nombres de base
-│   │       ├── getCentralMissionMeaning.ts # Mission centrale
-│   │       ├── getMasculineLineMeaning.ts  # Ligne masculine
-│   │       ├── getFeminineLineMeaning.ts   # Ligne féminine
-│   │       ├── getExternalRelationsMeaning.ts # Relations extérieures
-│   │       └── getMatrixMeaning.ts        # Domaines spéciaux
+│   │   ├── matrixDestiny/      # Module Matrix Destiny complet
+│   │   │   ├── matrixDestiny.ts           # Calculs principaux
+│   │   │   ├── matrixRelations.ts         # Relations du cœur
+│   │   │   ├── getBaseNumberMeaning.ts    # Significations nombres de base
+│   │   │   ├── getCentralMissionMeaning.ts # Mission centrale
+│   │   │   ├── getMasculineLineMeaning.ts  # Ligne masculine
+│   │   │   ├── getFeminineLineMeaning.ts   # Ligne féminine
+│   │   │   ├── getExternalRelationsMeaning.ts # Relations extérieures
+│   │   │   └── getMatrixMeaning.ts        # Domaines spéciaux
+│   │   └── arbreDeVie/         # Module Arbre de Vie
+│   │       ├── calculateSephiroth.ts      # Calculs des 10 Sephiroth
+│   │       ├── getSephiraMeaning.ts       # Significations des Sephiroth
+│   │       ├── getSephiraNumberMeaning.ts # Significations par nombre
+│   │       ├── getPathMeaning.ts          # Significations des chemins
+│   │       └── index.ts                   # Exports centralisés
 │   ├── data/                   # Données JSON organisées
 │   │   ├── numerology/         # Interprétations numérologiques
 │   │   │   ├── Basique/        # Calculs de base
@@ -343,6 +278,10 @@ numora/
 │   │   │   ├── externalRelations.json       # Relations extérieures
 │   │   │   ├── matrixMoneyLove.json         # Domaines spéciaux
 │   │   │   └── matrixRelationsHeart.json    # Ligne du cœur
+│   │   ├── arbreDeVie/         # Données Arbre de Vie
+│   │   │   ├── sephirothData.json           # Significations des 10 Sephiroth
+│   │   │   ├── sephirothNumberData.json     # Interprétations par nombre
+│   │   │   └── pathsNumberData.json         # Significations des chemins
 │   │   └── index.ts            # Exports centralisés
 │   ├── lib/                    # Bibliothèques externes
 │   │   └── supabase.ts         # Client Supabase et authentification
@@ -362,6 +301,8 @@ numora/
 │   │   ├── SUPABASE_SETUP.md   # Guide configuration Supabase
 │   │   ├── supabase_users_table.sql # Script SQL
 │   │   ├── fonctionsdoc.md     # Documentation du code
+│   │   ├── arbre-de-vie.md     # Documentation Arbre de Vie
+│   │   ├── matrix-destiny-*.md # Documentation Matrix Destiny
 │   │   └── README.md           # Index de la documentation
 │   ├── assets/                 # Ressources statiques
 │   │   ├── logo.png           # Logo de l'application
@@ -502,6 +443,10 @@ Le projet suit une **architecture modulaire avancée** organisée en couches :
 - [x] **Significations détaillées** - Sections explicatives avec tooltips informatifs
 - [x] **Interface responsive** - Optimisation mobile et desktop
 - [x] **Design harmonisé** - Bordures colorées et tooltips cohérents
+- [x] **Arbre de Vie Kabbalistique** - Module complet des 10 Sephiroth
+- [x] **Visualisation interactive** - Schéma SVG avec les 22 chemins
+- [x] **Système simple et transparent** - Basé uniquement sur la date de naissance
+- [x] **Documentation complète** - Guide avec transparence sur les doublons
 
 ### Version 0.5.0 🚧 **EN COURS**
 
@@ -546,6 +491,7 @@ Le projet Numora est maintenant dans une phase avancée avec une **architecture 
 - 🔧 **Performance** - Optimisation des calculs et de l'interface
 - 💼 **Business** - Développement des fonctionnalités business
 - 🔮 **Matrix Destiny** - Amélioration et enrichissement du module
+- 🌳 **Arbre de Vie** - Enrichissement des interprétations
 - 💾 **Sauvegarde** - Implémentation de la persistance des données
 
 ## 📄 Licence

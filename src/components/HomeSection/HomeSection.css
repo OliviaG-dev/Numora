@@ -1,29 +1,58 @@
 /* Home Section */
+/* Note: La hauteur du header est de 70px (définie dans Header.css) */
 .home {
-  min-height: 100vh;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 2rem;
+  padding: 1rem 1.5rem;
   background: transparent;
   position: relative;
-  overflow: hidden;
+  overflow: hidden; /* Pas de scroll sur desktop/tablette */
   z-index: 3;
+}
+
+/* Mobile: Permettre le scroll et un affichage confortable */
+@media (max-width: 767px) {
+  .home {
+    height: auto;
+    min-height: calc(100vh - 70px); /* Hauteur viewport moins le header */
+    overflow: visible;
+    padding: 2rem 1rem;
+    padding-top: 3rem; /* Espace supplémentaire sous le header */
+  }
+
+  .home-content {
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .home-title {
+    margin-top: 1rem; /* Espace supplémentaire pour bien voir le titre */
+  }
 }
 
 .home-content {
   max-width: 1800px;
+  width: 100%;
   margin: 0 auto;
   position: relative;
   z-index: 3;
   animation: fadeInUp 1s ease-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
 }
 
 .home-title {
-  font-size: clamp(3rem, 8vw, 6rem);
+  font-size: clamp(2.5rem, 6vw, 5rem);
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
   background: var(--gradient-primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -59,16 +88,16 @@
 }
 
 .home-subtitle {
-  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
   color: var(--secondary-gold);
-  margin-bottom: 2rem;
+  margin-bottom: 1.2rem;
   font-style: italic;
   font-weight: 500;
 }
 
 .home-description h2 {
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
-  margin-bottom: 1.5rem;
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  margin-bottom: 1rem;
   color: var(--text-primary);
   position: relative;
   text-align: center;
@@ -129,16 +158,17 @@
 /* Analyzer Sections */
 .analyzer-sections {
   display: flex;
-  gap: 2rem;
-  margin-top: 3rem;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
   max-width: 1400px;
   margin-left: auto;
   margin-right: auto;
   justify-content: center;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   align-items: stretch;
   animation: fadeIn 0.8s ease-out 0.3s both;
   position: relative;
+  flex-shrink: 1;
 }
 
 .left-card {
@@ -165,11 +195,11 @@
 .analyzer-card {
   flex: 1;
   min-width: 250px;
-  max-width: 400px;
+  max-width: 380px;
   background: transparent;
   border: none;
   border-radius: 0;
-  padding: 2rem;
+  padding: 1.5rem;
   text-align: center;
   position: relative;
   display: flex;
@@ -189,8 +219,8 @@
 }
 
 .analyzer-card h3 {
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -230,10 +260,10 @@
 }
 
 .analyzer-card p {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #d1d5db;
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
   flex-grow: 1;
   font-weight: 400;
   opacity: 1;
@@ -267,114 +297,414 @@
   );
 }
 
+/* Vibration CTA Button */
+.vibration-cta {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.8s ease-out 0.4s both;
+}
+
+.vibration-button {
+  background: rgba(139, 92, 246, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  color: var(--text-primary);
+  padding: 1rem 3rem;
+  font-size: 1.1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.vibration-button:hover {
+  background: rgba(139, 92, 246, 0.25);
+  border-color: var(--primary-purple-light);
+  transform: translateY(-2px);
+}
+
 /* Responsive Design */
+
+/* Extra Large Screens (1400px+) */
 @media (min-width: 1400px) {
   .analyzer-sections {
     max-width: 1600px;
-    gap: 2rem;
+    gap: 2.5rem;
   }
 
   .analyzer-card {
-    min-width: 300px;
+    min-width: 350px;
     max-width: 450px;
-    padding: 2rem;
+    padding: 2.5rem;
   }
 
   .analyzer-card h3 {
-    font-size: 1.6rem;
+    font-size: 2rem;
+    margin-bottom: 1.8rem;
   }
 
   .analyzer-card p {
     font-size: 1.1rem;
+    line-height: 1.8;
+  }
+
+  .analyzer-button {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
   }
 }
 
-@media (max-width: 1200px) {
+/* Large Screens (1024px - 1399px) */
+@media (max-width: 1399px) and (min-width: 1024px) {
   .analyzer-sections {
-    gap: 0;
-    max-width: 100%;
-    padding: 0 1rem;
+    gap: 2rem;
+    max-width: 1200px;
   }
 
   .analyzer-card {
-    min-width: 220px;
+    flex: 1 1 calc(33.333% - 2rem);
+    min-width: 280px;
+    max-width: 380px;
+  }
+}
+
+/* Medium Screens - Tablet Landscape (900px - 1023px) */
+@media (max-width: 1023px) and (min-width: 900px) {
+  .home {
+    padding: 1rem 1.5rem;
+  }
+
+  .analyzer-sections {
+    gap: 1.2rem;
+    max-width: 100%;
+    padding: 0 1rem;
+    margin-top: 1.2rem;
+  }
+
+  .analyzer-card {
+    flex: 1 1 calc(33.333% - 1.5rem);
+    min-width: 240px;
+    max-width: 320px;
     padding: 1.2rem;
   }
 
   .analyzer-card h3 {
     font-size: 1.4rem;
+    margin-bottom: 0.8rem;
   }
 
   .analyzer-card p {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-bottom: 0.8rem;
+  }
+
+  .analyzer-button {
+    padding: 0.65rem 1.3rem;
     font-size: 0.9rem;
   }
 }
 
-@media (max-width: 768px) {
+/* Tablet Portrait (768px - 899px) - Stack cards vertically, NO SCROLL */
+@media (max-width: 899px) and (min-width: 768px) {
   .home {
-    padding: 1rem;
+    margin-top: 4rem;
+    min-height: 100vh;
+  }
+
+  .home-content {
+    justify-content: center;
   }
 
   .home-title {
-    flex-direction: column;
-    gap: 0.5rem;
+    margin-bottom: 0.6rem;
   }
 
-  .cta-button {
-    padding: 0.8rem 2rem;
+  .home-subtitle {
+    margin-bottom: 0.6rem;
+  }
+
+  .home-description h2 {
+    margin-bottom: 0.8rem;
   }
 
   .analyzer-sections {
-    gap: 0;
-    margin-top: 2rem;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 1rem;
+    padding: 0 1.5rem;
+    align-items: center;
   }
 
   .analyzer-card {
-    min-width: 200px;
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: 450px;
+    min-width: auto;
     padding: 1rem;
   }
 
   .analyzer-card h3 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    margin-bottom: 0.6rem;
   }
 
   .analyzer-card p {
     font-size: 0.8rem;
     line-height: 1.4;
+    margin-bottom: 0.6rem;
   }
 
   .analyzer-button {
-    padding: 0.6rem 1rem;
-    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
   }
 }
 
-@media (max-width: 480px) {
-  .home-description p {
-    font-size: 1rem;
+/* Mobile Landscape & Large Mobile (600px - 767px) - AVEC SCROLL */
+@media (max-width: 767px) and (min-width: 600px) {
+  .home-title {
+    flex-direction: row;
+    gap: 0.8rem;
+    margin-top: 1.5rem; /* Espace visible sous le header */
+    margin-bottom: 1rem;
+  }
+
+  .home-subtitle {
+    margin-bottom: 1.2rem;
+  }
+
+  .home-description h2 {
+    margin-bottom: 1.2rem;
   }
 
   .analyzer-sections {
-    gap: 0;
-    padding: 0 0.5rem;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    padding: 0 1rem;
   }
 
   .analyzer-card {
-    min-width: 150px;
-    padding: 0.8rem;
+    width: 100%;
+    max-width: 500px;
+    min-width: auto;
+    padding: 1.8rem;
+    margin: 0 auto;
   }
 
   .analyzer-card h3 {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
   }
 
   .analyzer-card p {
-    font-size: 0.75rem;
-    line-height: 1.3;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
   }
 
   .analyzer-button {
-    padding: 0.5rem 0.8rem;
-    font-size: 0.8rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .vibration-cta {
+    margin-top: 2rem;
+  }
+
+  .vibration-button {
+    padding: 0.9rem 2.5rem;
+    font-size: 1rem;
+  }
+}
+
+/* Mobile Portrait (480px - 599px) - AVEC SCROLL */
+@media (max-width: 599px) and (min-width: 480px) {
+  .home-title {
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1.5rem; /* Espace visible sous le header */
+    margin-bottom: 1rem;
+  }
+
+  .home-subtitle {
+    margin-bottom: 1.2rem;
+  }
+
+  .home-description h2 {
+    margin-bottom: 1.2rem;
+  }
+
+  .analyzer-sections {
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    padding: 0 1rem;
+  }
+
+  .analyzer-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: auto;
+    padding: 1.5rem;
+  }
+
+  .analyzer-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .analyzer-card p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  .analyzer-button {
+    padding: 0.7rem 1.3rem;
+    font-size: 0.9rem;
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .vibration-cta {
+    margin-top: 2rem;
+  }
+
+  .vibration-button {
+    padding: 0.85rem 2rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* Small Mobile (320px - 479px) - AVEC SCROLL */
+@media (max-width: 479px) {
+  .home-title {
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 2rem; /* Espace encore plus visible sous le header */
+    margin-bottom: 1rem;
+  }
+
+  .home-logo {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .home-subtitle {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+  }
+
+  .home-description h2 {
+    margin-bottom: 1.2rem;
+    font-size: 1.4rem;
+  }
+
+  .home-description p {
+    font-size: 0.9rem;
+    padding-top: 0.8rem;
+    /* On garde la description visible sur mobile pour une meilleure lecture */
+  }
+
+  .analyzer-sections {
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    padding: 0 0.8rem;
+  }
+
+  .analyzer-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: auto;
+    padding: 1.5rem;
+  }
+
+  .analyzer-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .analyzer-card h3::after {
+    width: 40px;
+    bottom: -6px;
+  }
+
+  .analyzer-card p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  .analyzer-button {
+    padding: 0.7rem 1.3rem;
+    font-size: 0.9rem;
+    width: 100%;
+    max-width: 200px;
+    border-radius: 10px;
+  }
+
+  .vibration-cta {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .vibration-button {
+    padding: 0.8rem 1.8rem;
+    font-size: 0.9rem;
+    width: 90%;
+    max-width: 280px;
+  }
+}
+
+/* Extra Small Mobile (< 320px) - AVEC SCROLL */
+@media (max-width: 319px) {
+  .home-title {
+    font-size: 1.6rem;
+    margin-top: 2rem; /* Espace visible sous le header */
+    margin-bottom: 0.8rem;
+  }
+
+  .home-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .home-description h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .analyzer-sections {
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+  }
+
+  .analyzer-card {
+    padding: 1.2rem;
+  }
+
+  .analyzer-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .analyzer-card p {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-bottom: 0.8rem;
+  }
+
+  .analyzer-button {
+    font-size: 0.85rem;
+    padding: 0.65rem 1.1rem;
   }
 }

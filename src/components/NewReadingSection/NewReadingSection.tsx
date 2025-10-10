@@ -10,7 +10,6 @@ interface ReadingData {
   thirdGivenName: string;
   familyName: string;
   birthDate: string;
-  gender: string;
 }
 
 interface NewReadingSectionProps {
@@ -46,7 +45,6 @@ const NewReadingSection: React.FC<NewReadingSectionProps> = ({
 
     // Données de naissance
     birthDate: "",
-    gender: "M", // M ou F
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -95,10 +93,6 @@ const NewReadingSection: React.FC<NewReadingSectionProps> = ({
 
     if (!formData.birthDate) {
       newErrors.birthDate = "La date de naissance est requise";
-    }
-
-    if (!formData.gender) {
-      newErrors.gender = "Le sexe est requis pour les calculs Matrix Destiny";
     }
 
     setErrors(newErrors);
@@ -342,42 +336,6 @@ const NewReadingSection: React.FC<NewReadingSectionProps> = ({
                   {errors.birthDate && (
                     <span className="new-reading-error-message">
                       {errors.birthDate}
-                    </span>
-                  )}
-                </div>
-
-                <div className="new-reading-form-group">
-                  <label htmlFor="gender" className="new-reading-form-label">
-                    Sexe
-                  </label>
-                  <div className="gender-selection">
-                    <label className="gender-option">
-                      <input
-                        type="radio"
-                        name="gender"
-                        value="M"
-                        checked={formData.gender === "M"}
-                        onChange={handleInputChange}
-                      />
-                      <span className="gender-label">Masculin</span>
-                    </label>
-                    <label className="gender-option">
-                      <input
-                        type="radio"
-                        name="gender"
-                        value="F"
-                        checked={formData.gender === "F"}
-                        onChange={handleInputChange}
-                      />
-                      <span className="gender-label">Féminin</span>
-                    </label>
-                  </div>
-                  <span className="new-reading-form-hint">
-                    Nécessaire pour les calculs Matrix Destiny
-                  </span>
-                  {errors.gender && (
-                    <span className="new-reading-form-error">
-                      {errors.gender}
                     </span>
                   )}
                 </div>
