@@ -1,0 +1,688 @@
+.daily-vibration-section {
+  min-height: calc(100vh - 70px);
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 70px;
+  position: relative;
+}
+
+.daily-vibration-container {
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.daily-vibration-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.daily-vibration-header::after {
+  content: "";
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background: var(--gradient-secondary);
+  border-radius: 2px;
+}
+
+.daily-vibration-header h1 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  color: var(--text-primary);
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* Fallback pour les navigateurs qui ne supportent pas background-clip */
+@supports not (background-clip: text) {
+  .daily-vibration-header h1 {
+    background: none;
+    -webkit-text-fill-color: var(--text-primary);
+    color: var(--text-primary);
+  }
+}
+
+.current-date {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  color: var(--secondary-gold);
+  font-weight: 600;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+}
+
+.auth-warning {
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.warning-content {
+  text-align: center;
+}
+
+.warning-message {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.highlight-text {
+  color: var(--secondary-gold-light);
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.highlight-text:hover {
+  color: var(--secondary-gold);
+}
+
+.vibration-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* Card Universelle - Style spécial */
+.daily-vibration-section .universal-card {
+  grid-column: span 1;
+  border-color: rgba(245, 158, 11, 0.4) !important;
+}
+
+.daily-vibration-section .universal-card:hover {
+  border-color: rgba(245, 158, 11, 0.6) !important;
+}
+
+.daily-vibration-section .universal-card .card-header h2 {
+  color: var(--secondary-gold-light) !important;
+  text-shadow: 0 2px 10px rgba(245, 158, 11, 0.3) !important;
+}
+
+.daily-vibration-section .universal-card .see-more-btn,
+.daily-vibration-section .universal-card .see-less-btn {
+  border-color: var(--secondary-gold) !important;
+  color: var(--secondary-gold) !important;
+}
+
+.daily-vibration-section .universal-card .see-more-btn::before,
+.daily-vibration-section .universal-card .see-less-btn::before {
+  background: var(--gradient-secondary) !important;
+}
+
+.daily-vibration-section .universal-card .see-more-btn:hover,
+.daily-vibration-section .universal-card .see-less-btn:hover {
+  box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3) !important;
+  color: var(--bg-primary) !important;
+}
+
+.vibration-card {
+  background: rgba(15, 15, 35, 0.7);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  border-radius: 20px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.vibration-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gradient-primary);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.vibration-card:hover::before {
+  opacity: 1;
+}
+
+.vibration-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(139, 92, 246, 0.5);
+  background: rgba(15, 15, 35, 0.9);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4), 0 0 40px rgba(139, 92, 246, 0.15);
+}
+
+.card-header {
+  text-align: center;
+  border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+  padding-bottom: 1rem;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-header h2 {
+  font-size: 1.4rem;
+  color: var(--primary-purple-light);
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(139, 92, 246, 0.3);
+}
+
+.card-date {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  text-transform: capitalize;
+  margin-bottom: 0;
+  font-weight: 500;
+  min-height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-date-combined {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  text-transform: capitalize;
+  margin-bottom: 0;
+  font-weight: 500;
+  min-height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-number {
+  font-size: 2rem;
+  font-weight: 700;
+  background: var(--gradient-secondary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 2px 8px rgba(245, 158, 11, 0.3));
+}
+
+.vibration-badge {
+  width: 100px;
+  height: 100px;
+  margin: 1rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: 700;
+  background: var(--gradient-primary);
+  color: var(--text-primary);
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.vibration-badge::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.vibration-badge::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #667eea, #764ba2, #667eea);
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -2;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.vibration-badge:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3),
+    0 4px 15px rgba(118, 75, 162, 0.2);
+}
+
+.vibration-badge:hover::before {
+  opacity: 0.1;
+}
+
+.vibration-badge:hover::after {
+  opacity: 1;
+}
+
+/* Étoiles qui s'échappent du badge */
+.vibration-badge:hover .star {
+  animation: starEscape 1.5s ease-out forwards;
+}
+
+.star {
+  position: absolute;
+  color: var(--secondary-gold);
+  font-size: 0.8rem;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.star:nth-child(2) {
+  top: 20%;
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.star:nth-child(3) {
+  top: 30%;
+  right: 20%;
+  animation-delay: 0.1s;
+}
+
+.star:nth-child(4) {
+  bottom: 30%;
+  left: 25%;
+  animation-delay: 0.2s;
+}
+
+.star:nth-child(5) {
+  bottom: 20%;
+  right: 25%;
+  animation-delay: 0.3s;
+}
+
+.star:nth-child(6) {
+  top: 50%;
+  left: 10%;
+  animation-delay: 0.4s;
+}
+
+.star:nth-child(7) {
+  top: 50%;
+  right: 10%;
+  animation-delay: 0.5s;
+}
+
+@keyframes starEscape {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1) rotate(180deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5) rotate(360deg) translateY(-60px);
+  }
+}
+
+.vibration-summary {
+  text-align: center;
+  padding: 1.5rem;
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.08) 0%,
+    rgba(139, 92, 246, 0.15) 100%
+  );
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vibration-summary::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(
+    circle,
+    rgba(139, 92, 246, 0.2) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  transform: translate(30%, -30%);
+}
+
+.vibration-summary p {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  font-size: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.see-more-btn,
+.see-less-btn {
+  width: 100%;
+  padding: 1rem;
+  background: transparent;
+  border: 2px solid var(--primary-purple-light);
+  color: var(--primary-purple-light);
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.85rem;
+  position: relative;
+  overflow: hidden;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.see-more-btn::before,
+.see-less-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--gradient-primary);
+  transition: left 0.4s ease;
+  z-index: -1;
+}
+
+.see-more-btn:hover::before,
+.see-less-btn:hover::before {
+  left: 0;
+}
+
+.see-more-btn:hover,
+.see-less-btn:hover {
+  color: var(--text-primary);
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+}
+
+.vibration-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.detail-item {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+  padding: 1.25rem;
+  border-radius: 12px;
+  border-left: 4px solid var(--secondary-gold);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.detail-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(245, 158, 11, 0.05) 0%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.detail-item:hover::before {
+  opacity: 1;
+}
+
+.detail-item:hover {
+  transform: translateX(4px);
+  border-left-width: 6px;
+}
+
+.detail-item h4 {
+  color: var(--secondary-gold-light);
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.detail-item p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+  .vibration-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .universal-card {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 1024px) {
+  .vibration-cards {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .universal-card {
+    grid-column: span 1;
+  }
+
+  .vibration-card {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .daily-vibration-section {
+    padding: 1.5rem 1rem;
+  }
+
+  .daily-vibration-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .daily-vibration-header::after {
+    bottom: -0.75rem;
+    width: 60px;
+  }
+
+  .vibration-card {
+    padding: 2rem;
+  }
+
+  .card-header {
+    min-height: 110px;
+  }
+
+  .card-header h2 {
+    font-size: 1.2rem;
+    letter-spacing: 1.5px;
+  }
+
+  .card-number {
+    font-size: 1.5rem;
+  }
+
+  .vibration-badge {
+    width: 85px;
+    height: 85px;
+    font-size: 2.5rem;
+  }
+
+  .vibration-summary {
+    padding: 1.2rem;
+    min-height: 110px;
+  }
+
+  .vibration-summary p {
+    font-size: 0.95rem;
+  }
+
+  .see-more-btn,
+  .see-less-btn {
+    padding: 0.9rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .daily-vibration-section {
+    padding: 1rem;
+  }
+
+  .daily-vibration-header {
+    margin-bottom: 2rem;
+  }
+
+  .daily-vibration-header h1 {
+    font-size: 2rem;
+  }
+
+  .current-date {
+    font-size: 1rem;
+  }
+
+  .vibration-card {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+
+  .card-header {
+    min-height: 100px;
+  }
+
+  .card-header h2 {
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+  }
+
+  .card-number {
+    font-size: 1.3rem;
+  }
+
+  .vibration-badge {
+    width: 75px;
+    height: 75px;
+    font-size: 2rem;
+  }
+
+  .vibration-summary {
+    padding: 1rem;
+    min-height: 100px;
+  }
+
+  .vibration-summary p {
+    font-size: 0.9rem;
+  }
+
+  .detail-item {
+    padding: 1rem;
+  }
+
+  .detail-item h4 {
+    font-size: 0.8rem;
+  }
+
+  .detail-item p {
+    font-size: 0.9rem;
+  }
+
+  .see-more-btn,
+  .see-less-btn {
+    padding: 0.8rem;
+    font-size: 0.75rem;
+    border-radius: 10px;
+    min-height: 44px;
+  }
+}

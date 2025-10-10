@@ -34,6 +34,15 @@ export {
   getDateVibration,
 } from "./personal";
 
+// ===== EXPORTS DES VIBRATIONS QUOTIDIENNES =====
+export {
+  calculateDayVibration,
+  calculateMonthVibration,
+  calculateYearVibration,
+  calculateUniversalVibration,
+  calculateAllVibrations,
+} from "./daily";
+
 // ===== EXPORTS DES CALCULS KARMIQUES =====
 export {
   calculateKarmicNumbers,
