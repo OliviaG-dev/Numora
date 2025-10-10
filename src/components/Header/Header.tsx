@@ -14,12 +14,14 @@ interface HeaderProps {
       | "readings"
       | "dateAnalyzer"
       | "nameAnalyzer"
+      | "dailyVibration"
   ) => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
   const { isAuthenticated, signOut } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAnalysisMenuOpen, setIsAnalysisMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -70,6 +72,10 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
     onNavigate("nameAnalyzer");
   };
 
+  const handleDailyVibration = () => {
+    onNavigate("dailyVibration");
+  };
+
   return (
     <header className="header">
       <div className="header-container">
@@ -101,35 +107,53 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
               >
                 Mes Lectures
               </a>
+              <div className="analysis-menu">
+                <button className="analysis-button">
+                  <span>Nouvelle Analyse</span>
+                  <span className="dropdown-arrow">▼</span>
+                </button>
+                <div className="analysis-dropdown">
+                  <a
+                    href="#"
+                    className="dropdown-link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNewReading();
+                    }}
+                  >
+                    Lecture Complète
+                  </a>
+                  <a
+                    href="#"
+                    className="dropdown-link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleDateAnalyzer();
+                    }}
+                  >
+                    Analyse de Date
+                  </a>
+                  <a
+                    href="#"
+                    className="dropdown-link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNameAnalyzer();
+                    }}
+                  >
+                    Analyse de Nom
+                  </a>
+                </div>
+              </div>
               <a
                 href="#"
-                className="nav-link"
+                className="nav-link vibration-link"
                 onClick={(e) => {
                   e.preventDefault();
-                  handleNewReading();
+                  handleDailyVibration();
                 }}
               >
-                Nouvelle Lecture
-              </a>
-              <a
-                href="#"
-                className="nav-link"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleDateAnalyzer();
-                }}
-              >
-                Date Analyser
-              </a>
-              <a
-                href="#"
-                className="nav-link"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNameAnalyzer();
-                }}
-              >
-                Nom Analyser
+                Vibration du Jour
               </a>
               <div className="user-menu">
                 <button className="user-button">
@@ -216,34 +240,69 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                 className="mobile-nav-link"
                 onClick={(e) => {
                   e.preventDefault();
-                  handleNewReading();
+                  handleDailyVibration();
                   toggleMenu();
                 }}
               >
-                Nouvelle Lecture
+                Vibration du Jour
               </a>
-              <a
-                href="#"
-                className="mobile-nav-link"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleDateAnalyzer();
-                  toggleMenu();
-                }}
-              >
-                Date Analyzer
-              </a>
-              <a
-                href="#"
-                className="mobile-nav-link"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNameAnalyzer();
-                  toggleMenu();
-                }}
-              >
-                Nom Analyzer
-              </a>
+              <div className="mobile-analysis-section">
+                <button
+                  className="mobile-nav-link mobile-analysis-toggle"
+                  onClick={() => setIsAnalysisMenuOpen(!isAnalysisMenuOpen)}
+                >
+                  Nouvelle Analyse
+                  <span
+                    className={`mobile-arrow ${
+                      isAnalysisMenuOpen ? "open" : ""
+                    }`}
+                  >
+                    ›
+                  </span>
+                </button>
+                <div
+                  className={`mobile-analysis-submenu ${
+                    isAnalysisMenuOpen ? "open" : ""
+                  }`}
+                >
+                  <a
+                    href="#"
+                    className="mobile-submenu-link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNewReading();
+                      toggleMenu();
+                      setIsAnalysisMenuOpen(false);
+                    }}
+                  >
+                    Lecture Complète
+                  </a>
+                  <a
+                    href="#"
+                    className="mobile-submenu-link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleDateAnalyzer();
+                      toggleMenu();
+                      setIsAnalysisMenuOpen(false);
+                    }}
+                  >
+                    Analyse de Date
+                  </a>
+                  <a
+                    href="#"
+                    className="mobile-submenu-link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNameAnalyzer();
+                      toggleMenu();
+                      setIsAnalysisMenuOpen(false);
+                    }}
+                  >
+                    Analyse de Nom
+                  </a>
+                </div>
+              </div>
               <a
                 href="#profil"
                 className="mobile-nav-link"

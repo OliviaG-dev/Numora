@@ -32,6 +32,7 @@ function App() {
     | "readingDetail"
     | "dateAnalyzer"
     | "nameAnalyzer"
+    | "dailyVibration"
   >("home");
 
   const [currentReadingData, setCurrentReadingData] =
@@ -48,7 +49,8 @@ function App() {
       | "readings"
       | "readingDetail"
       | "dateAnalyzer"
-      | "nameAnalyzer",
+      | "nameAnalyzer"
+      | "dailyVibration",
     readingData?: ReadingData
   ) => {
     setCurrentPage(page);
