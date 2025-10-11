@@ -146,29 +146,6 @@
   transform: translateY(0);
 }
 
-/* Vibration Link Special Style */
-.vibration-link {
-  position: relative;
-}
-
-.vibration-link::before {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  border-radius: 8px;
-  padding: 2px;
-  background: var(--gradient-primary);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.vibration-link:hover::before {
-  opacity: 0.5;
-}
-
 /* User Menu */
 .user-menu {
   position: relative;

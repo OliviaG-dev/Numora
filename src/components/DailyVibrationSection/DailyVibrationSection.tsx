@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./DailyVibrationSection.css";
-import { useAuth } from "../../hooks/useAuth";
 import {
   calculateDayVibration,
   calculateMonthVibration,
@@ -10,24 +9,7 @@ import {
 import { dateVibeData } from "../../data";
 import type { DateVibeDetail } from "../../data";
 
-interface DailyVibrationSectionProps {
-  onNavigate: (
-    page:
-      | "home"
-      | "signup"
-      | "login"
-      | "newReading"
-      | "profile"
-      | "settings"
-      | "readings"
-      | "readingDetail"
-  ) => void;
-}
-
-const DailyVibrationSection: React.FC<DailyVibrationSectionProps> = ({
-  onNavigate,
-}) => {
-  const { isAuthenticated } = useAuth();
+const DailyVibrationSection: React.FC = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [dayVibration, setDayVibration] = useState<number>(0);
   const [monthVibration, setMonthVibration] = useState<number>(0);
@@ -138,24 +120,6 @@ const DailyVibrationSection: React.FC<DailyVibrationSectionProps> = ({
           <h1>Vibration du Jour</h1>
           <p className="current-date">{formatDate(currentDate)}</p>
         </div>
-
-        {!isAuthenticated && (
-          <div className="auth-warning">
-            <div className="warning-content">
-              <p className="warning-message">
-                Pour sauvegarder vos vibrations et accéder à toutes les
-                fonctionnalités,{" "}
-                <span
-                  className="highlight-text"
-                  onClick={() => onNavigate("login")}
-                >
-                  connectez-vous
-                </span>
-                .
-              </p>
-            </div>
-          </div>
-        )}
 
         <div className="vibration-cards">
           {/* Card Vibration Universelle */}

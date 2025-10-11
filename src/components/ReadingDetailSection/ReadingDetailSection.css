@@ -631,7 +631,7 @@
 
 .keyword-tag {
   background: linear-gradient(135deg, var(--secondary-gold), #f59e0b);
-  color: white;
+  color: var(--bg-primary);
   padding: 0.5rem 1rem;
   border-radius: 20px;
   font-size: 0.9rem;
