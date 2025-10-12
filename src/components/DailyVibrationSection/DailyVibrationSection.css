@@ -107,6 +107,7 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
   margin-top: 2rem;
+  align-items: stretch;
 }
 
 /* Card Universelle - Style spécial */
@@ -167,6 +168,7 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   position: relative;
   overflow: hidden;
+  height: 100%;
 }
 
 .vibration-card::before {
@@ -398,6 +400,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex: 1;
 }
 
 .daily-vib-summary p {
@@ -778,6 +781,7 @@
   .vibration-card {
     max-width: 600px;
     margin: 0 auto;
+    width: 100%;
   }
 }
 

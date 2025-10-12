@@ -171,7 +171,15 @@
 }
 
 .user-icon {
-  font-size: 1.2rem;
+  width: 20px;
+  height: 20px;
+  color: var(--primary-purple-light);
+  transition: all 0.3s ease;
+}
+
+.user-button:hover .user-icon {
+  color: var(--secondary-gold-light);
+  transform: scale(1.1);
 }
 
 .dropdown-arrow {
@@ -198,6 +206,7 @@
   transform: translateY(-10px);
   transition: all 0.3s ease;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  margin-top: 0.5rem;
 }
 
 .user-menu:hover .user-dropdown {
@@ -207,7 +216,9 @@
 }
 
 .dropdown-link {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   color: var(--text-secondary);
   text-decoration: none;
   padding: 0.75rem 1rem;
@@ -218,6 +229,19 @@
 .dropdown-link:hover {
   color: var(--primary-purple-light);
   background: rgba(139, 92, 246, 0.1);
+  padding-left: 1.25rem;
+}
+
+.dropdown-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+}
+
+.dropdown-link:hover .dropdown-icon {
+  color: var(--primary-purple-light);
+  transform: scale(1.1);
 }
 
 .dropdown-link.logout {
@@ -230,22 +254,22 @@
   margin-top: 0.5rem;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-}
-
-.dropdown-link.logout::before {
-  content: "🚪";
-  font-size: 0.8rem;
-  opacity: 0.7;
+  gap: 0.75rem;
 }
 
 .dropdown-link.logout:hover {
-  color: var(--primary-purple-light);
-  background: rgba(139, 92, 246, 0.1);
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+  padding-left: 1.25rem;
 }
 
-.dropdown-link.logout:hover::before {
-  opacity: 1;
+.logout-icon {
+  color: var(--text-secondary);
+}
+
+.dropdown-link.logout:hover .logout-icon {
+  color: #ef4444;
+  transform: scale(1.1) translateX(2px);
 }
 
 /* Auth Buttons */
@@ -385,11 +409,30 @@
   text-align: left;
   cursor: pointer;
   width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .mobile-nav-link:hover {
   color: var(--primary-purple-light);
   padding-left: 1rem;
+}
+
+.mobile-nav-link .dropdown-icon {
+  width: 20px;
+  height: 20px;
+  transition: all 0.3s ease;
+}
+
+.mobile-nav-link:hover .dropdown-icon {
+  color: var(--primary-purple-light);
+  transform: scale(1.1);
+}
+
+.mobile-nav-link.logout:hover .logout-icon {
+  color: #ef4444;
+  transform: scale(1.1) translateX(2px);
 }
 
 /* Mobile Analysis Section */
@@ -464,22 +507,12 @@
   padding-top: 1.5rem;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-}
-
-.mobile-nav-link.logout::before {
-  content: "🚪";
-  font-size: 1rem;
-  opacity: 0.7;
+  gap: 0.75rem;
 }
 
 .mobile-nav-link.logout:hover {
-  color: var(--primary-purple-light);
+  color: #ef4444;
   padding-left: 1rem;
-}
-
-.mobile-nav-link.logout:hover::before {
-  opacity: 1;
 }
 
 .mobile-auth-buttons {
