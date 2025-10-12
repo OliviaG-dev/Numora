@@ -2,19 +2,11 @@ import React from "react";
 import Header from "../../components/Header/Header";
 import ReadingsSection from "../../components/ReadingsSection/ReadingsSection";
 import NumerologyBackground from "../../components/NumerologyBackground/NumerologyBackground";
+import type { NavigateFunction } from "../../types/navigation";
 import "./Readings.css";
 
 interface ReadingsProps {
-  onNavigate: (
-    page:
-      | "home"
-      | "signup"
-      | "login"
-      | "newReading"
-      | "profile"
-      | "settings"
-      | "readings"
-  ) => void;
+  onNavigate: NavigateFunction;
 }
 
 const Readings: React.FC<ReadingsProps> = ({ onNavigate }) => {

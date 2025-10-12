@@ -11,18 +11,10 @@ import {
 import { dateVibeData } from "../../data";
 import type { DateVibeDetail } from "../../data";
 
+import type { NavigateFunction } from "../../types/navigation";
+
 interface DateAnalyzerSectionProps {
-  onNavigate: (
-    page:
-      | "home"
-      | "signup"
-      | "login"
-      | "newReading"
-      | "profile"
-      | "settings"
-      | "readings"
-      | "readingDetail"
-  ) => void;
+  onNavigate: NavigateFunction;
 }
 
 interface DateAnalysisResult {

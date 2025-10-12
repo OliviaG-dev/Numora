@@ -18,7 +18,8 @@ export function getBaseNumberMeaning(
   }
 
   const data = baseNumberData[category];
-  return data[number.toString()] || null;
+  const key = number.toString() as keyof typeof data;
+  return data[key] || null;
 }
 
 /**

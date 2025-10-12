@@ -2,19 +2,11 @@ import React from "react";
 import Header from "../../components/Header/Header";
 import SignupSection from "../../components/SignupSection/SignupSection";
 import NumerologyBackground from "../../components/NumerologyBackground/NumerologyBackground";
+import type { NavigateFunction } from "../../types/navigation";
 import "./Signup.css";
 
 interface SignupProps {
-  onNavigate: (
-    page:
-      | "home"
-      | "signup"
-      | "login"
-      | "newReading"
-      | "profile"
-      | "settings"
-      | "readings"
-  ) => void;
+  onNavigate: NavigateFunction;
 }
 
 const Signup: React.FC<SignupProps> = ({ onNavigate }) => {

@@ -8,6 +8,7 @@ export interface ReadingData {
   thirdGivenName: string;
   familyName: string;
   birthDate: string;
+  birthTime?: string;
 }
 
 export interface NumerologyResults {

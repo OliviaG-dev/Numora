@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import "./SignupSection.css";
 import { useAuth } from "../../hooks/useAuth";
+import type { NavigateFunction } from "../../types/navigation";
 
 interface SignupSectionProps {
-  onNavigate: (
-    page: "home" | "signup" | "login" | "newReading" | "profile" | "settings"
-  ) => void;
+  onNavigate: NavigateFunction;
 }
 
 const SignupSection: React.FC<SignupSectionProps> = ({ onNavigate }) => {

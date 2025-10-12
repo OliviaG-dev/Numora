@@ -14,17 +14,10 @@ interface Reading {
   insights: string[];
 }
 
+import type { NavigateFunction } from "../../types/navigation";
+
 interface ReadingsSectionProps {
-  onNavigate: (
-    page:
-      | "home"
-      | "signup"
-      | "login"
-      | "newReading"
-      | "profile"
-      | "settings"
-      | "readings"
-  ) => void;
+  onNavigate: NavigateFunction;
 }
 
 const ReadingsSection: React.FC<ReadingsSectionProps> = ({ onNavigate }) => {

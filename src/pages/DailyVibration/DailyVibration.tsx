@@ -2,23 +2,11 @@ import React from "react";
 import Header from "../../components/Header/Header";
 import DailyVibrationSection from "../../components/DailyVibrationSection/DailyVibrationSection";
 import NumerologyBackground from "../../components/NumerologyBackground/NumerologyBackground";
+import type { NavigateFunction } from "../../types/navigation";
 import "./DailyVibration.css";
 
 interface DailyVibrationProps {
-  onNavigate: (
-    page:
-      | "home"
-      | "signup"
-      | "login"
-      | "newReading"
-      | "profile"
-      | "settings"
-      | "readings"
-      | "readingDetail"
-      | "dateAnalyzer"
-      | "nameAnalyzer"
-      | "dailyVibration"
-  ) => void;
+  onNavigate: NavigateFunction;
 }
 
 const DailyVibration: React.FC<DailyVibrationProps> = ({ onNavigate }) => {

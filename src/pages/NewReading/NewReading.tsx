@@ -2,31 +2,11 @@ import React from "react";
 import Header from "../../components/Header/Header";
 import NewReadingSection from "../../components/NewReadingSection/NewReadingSection";
 import NumerologyBackground from "../../components/NumerologyBackground/NumerologyBackground";
+import type { NavigateFunction } from "../../types/navigation";
 import "./NewReading.css";
 
-interface ReadingData {
-  readingName: string;
-  category: string;
-  firstGivenName: string;
-  secondGivenName: string;
-  thirdGivenName: string;
-  familyName: string;
-  birthDate: string;
-}
-
 interface NewReadingProps {
-  onNavigate: (
-    page:
-      | "home"
-      | "signup"
-      | "login"
-      | "newReading"
-      | "profile"
-      | "settings"
-      | "readings"
-      | "readingDetail",
-    readingData?: ReadingData
-  ) => void;
+  onNavigate: NavigateFunction;
 }
 
 const NewReading: React.FC<NewReadingProps> = ({ onNavigate }) => {

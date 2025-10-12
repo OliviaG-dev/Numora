@@ -2,30 +2,10 @@ import React from "react";
 import Header from "../../components/Header/Header";
 import ReadingDetailSection from "../../components/ReadingDetailSection/ReadingDetailSection";
 import NumerologyBackground from "../../components/NumerologyBackground/NumerologyBackground";
-
-interface ReadingData {
-  readingName: string;
-  category: string;
-  firstGivenName: string;
-  secondGivenName: string;
-  thirdGivenName: string;
-  familyName: string;
-  birthDate: string;
-}
+import type { NavigateFunction, ReadingData } from "../../types/navigation";
 
 interface ReadingDetailProps {
-  onNavigate: (
-    page:
-      | "home"
-      | "signup"
-      | "login"
-      | "newReading"
-      | "profile"
-      | "settings"
-      | "readings"
-      | "readingDetail",
-    readingData?: ReadingData
-  ) => void;
+  onNavigate: NavigateFunction;
   readingData?: ReadingData;
 }
 

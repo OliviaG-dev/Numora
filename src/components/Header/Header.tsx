@@ -1,21 +1,10 @@
 import React, { useState } from "react";
 import "./Header.css";
 import { useAuth } from "../../hooks/useAuth";
+import type { NavigateFunction } from "../../types/navigation";
 
 interface HeaderProps {
-  onNavigate: (
-    page:
-      | "home"
-      | "signup"
-      | "login"
-      | "newReading"
-      | "profile"
-      | "settings"
-      | "readings"
-      | "dateAnalyzer"
-      | "nameAnalyzer"
-      | "dailyVibration"
-  ) => void;
+  onNavigate: NavigateFunction;
 }
 
 const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
