@@ -2,19 +2,11 @@ import React from "react";
 import Header from "../../components/Header/Header";
 import LoginSection from "../../components/LoginSection/LoginSection";
 import NumerologyBackground from "../../components/NumerologyBackground/NumerologyBackground";
+import type { NavigateFunction } from "../../types/navigation";
 import "./Login.css";
 
 interface LoginProps {
-  onNavigate: (
-    page:
-      | "home"
-      | "signup"
-      | "login"
-      | "newReading"
-      | "profile"
-      | "settings"
-      | "readings"
-  ) => void;
+  onNavigate: NavigateFunction;
 }
 
 const Login: React.FC<LoginProps> = ({ onNavigate }) => {

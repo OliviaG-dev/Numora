@@ -2,21 +2,11 @@ import React from "react";
 import Header from "../../components/Header/Header";
 import HomeSection from "../../components/HomeSection/HomeSection";
 import NumerologyBackground from "../../components/NumerologyBackground/NumerologyBackground";
+import type { NavigateFunction } from "../../types/navigation";
 import "./Home.css";
 
 interface HomeProps {
-  onNavigate: (
-    page:
-      | "home"
-      | "signup"
-      | "login"
-      | "newReading"
-      | "profile"
-      | "settings"
-      | "readings"
-      | "dateAnalyzer"
-      | "nameAnalyzer"
-  ) => void;
+  onNavigate: NavigateFunction;
 }
 
 const Home: React.FC<HomeProps> = ({ onNavigate }) => {

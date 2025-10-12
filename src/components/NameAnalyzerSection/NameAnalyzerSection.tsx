@@ -11,18 +11,10 @@ import {
   type HereditaryBusinessDetail,
 } from "../../data";
 
+import type { NavigateFunction } from "../../types/navigation";
+
 interface NameAnalyzerSectionProps {
-  onNavigate: (
-    page:
-      | "home"
-      | "signup"
-      | "login"
-      | "newReading"
-      | "profile"
-      | "settings"
-      | "readings"
-      | "readingDetail"
-  ) => void;
+  onNavigate: NavigateFunction;
 }
 
 interface BusinessAnalysisResult {

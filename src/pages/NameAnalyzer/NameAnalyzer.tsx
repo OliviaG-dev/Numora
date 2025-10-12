@@ -3,20 +3,10 @@ import "./NameAnalyzer.css";
 import NameAnalyzerSection from "../../components/NameAnalyzerSection/NameAnalyzerSection";
 import Header from "../../components/Header/Header";
 import NumerologyBackground from "../../components/NumerologyBackground/NumerologyBackground";
+import type { NavigateFunction } from "../../types/navigation";
 
 interface NameAnalyzerProps {
-  onNavigate: (
-    page:
-      | "home"
-      | "signup"
-      | "login"
-      | "newReading"
-      | "profile"
-      | "settings"
-      | "readings"
-      | "dateAnalyzer"
-      | "nameAnalyzer"
-  ) => void;
+  onNavigate: NavigateFunction;
 }
 
 const NameAnalyzer: React.FC<NameAnalyzerProps> = ({ onNavigate }) => {

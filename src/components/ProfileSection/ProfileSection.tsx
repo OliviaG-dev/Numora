@@ -281,7 +281,13 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ onNavigate }) => {
         <div className="profile-actions">
           <button
             className="edit-btn"
-            onClick={() => setIsEditing(!isEditing)}
+            onClick={() => {
+              if (isEditing) {
+                handleCancel();
+              } else {
+                setIsEditing(true);
+              }
+            }}
             disabled={isLoading}
           >
             {isEditing ? "Annuler" : "Modifier"}

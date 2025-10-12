@@ -10,50 +10,15 @@ import ReadingDetail from "./pages/ReadingDetail/ReadingDetail";
 import DateAnalyzer from "./pages/DateAnalyzer/DateAnalyzer";
 import NameAnalyzer from "./pages/NameAnalyzer/NameAnalyzer";
 import DailyVibration from "./pages/DailyVibration/DailyVibration";
-
-interface ReadingData {
-  readingName: string;
-  category: string;
-  firstGivenName: string;
-  secondGivenName: string;
-  thirdGivenName: string;
-  familyName: string;
-  birthDate: string;
-}
+import type { PageType, ReadingData } from "./types/navigation";
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<
-    | "home"
-    | "signup"
-    | "login"
-    | "newReading"
-    | "profile"
-    | "settings"
-    | "readings"
-    | "readingDetail"
-    | "dateAnalyzer"
-    | "nameAnalyzer"
-    | "dailyVibration"
-  >("home");
+  const [currentPage, setCurrentPage] = useState<PageType>("home");
 
   const [currentReadingData, setCurrentReadingData] =
     useState<ReadingData | null>(null);
 
-  const navigateToPage = (
-    page:
-      | "home"
-      | "signup"
-      | "login"
-      | "newReading"
-      | "profile"
-      | "settings"
-      | "readings"
-      | "readingDetail"
-      | "dateAnalyzer"
-      | "nameAnalyzer"
-      | "dailyVibration",
-    readingData?: ReadingData
-  ) => {
+  const navigateToPage = (page: PageType, readingData?: ReadingData) => {
     setCurrentPage(page);
     if (readingData) {
       setCurrentReadingData(readingData);

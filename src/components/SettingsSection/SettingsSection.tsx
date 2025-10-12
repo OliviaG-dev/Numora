@@ -7,7 +7,7 @@ interface SettingsSectionProps {
   ) => void;
 }
 
-const SettingsSection: React.FC<SettingsSectionProps> = ({ onNavigate }) => {
+const SettingsSection: React.FC<SettingsSectionProps> = () => {
   const [settings, setSettings] = useState({
     privacy: {
       profileVisibility: "public",

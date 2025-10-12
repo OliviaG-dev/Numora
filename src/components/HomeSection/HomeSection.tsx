@@ -1,20 +1,9 @@
 import React from "react";
 import "./HomeSection.css";
+import type { NavigateFunction } from "../../types/navigation";
 
 interface HomeSectionProps {
-  onNavigate: (
-    page:
-      | "home"
-      | "signup"
-      | "login"
-      | "newReading"
-      | "profile"
-      | "settings"
-      | "readings"
-      | "dateAnalyzer"
-      | "nameAnalyzer"
-      | "dailyVibration"
-  ) => void;
+  onNavigate: NavigateFunction;
 }
 
 const HomeSection: React.FC<HomeSectionProps> = ({ onNavigate }) => {

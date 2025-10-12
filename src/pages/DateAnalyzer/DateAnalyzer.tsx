@@ -3,20 +3,10 @@ import "./DateAnalyzer.css";
 import DateAnalyzerSection from "../../components/DateAnalyzerSection/DateAnalyzerSection";
 import Header from "../../components/Header/Header";
 import NumerologyBackground from "../../components/NumerologyBackground/NumerologyBackground";
+import type { NavigateFunction } from "../../types/navigation";
 
 interface DateAnalyzerProps {
-  onNavigate: (
-    page:
-      | "home"
-      | "signup"
-      | "login"
-      | "newReading"
-      | "profile"
-      | "settings"
-      | "readings"
-      | "dateAnalyzer"
-      | "nameAnalyzer"
-  ) => void;
+  onNavigate: NavigateFunction;
 }
 
 const DateAnalyzer: React.FC<DateAnalyzerProps> = ({ onNavigate }) => {
