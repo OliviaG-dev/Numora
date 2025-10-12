@@ -107,38 +107,52 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
   margin-top: 2rem;
+  align-items: stretch;
 }
 
 /* Card Universelle - Style spécial */
 .daily-vibration-section .universal-card {
   grid-column: span 1;
-  border-color: rgba(245, 158, 11, 0.4) !important;
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+.daily-vibration-section .universal-card::before {
+  background: var(--gradient-secondary);
 }
 
 .daily-vibration-section .universal-card:hover {
-  border-color: rgba(245, 158, 11, 0.6) !important;
+  border-color: rgba(245, 158, 11, 0.6);
 }
 
 .daily-vibration-section .universal-card .card-header h2 {
-  color: var(--secondary-gold-light) !important;
-  text-shadow: 0 2px 10px rgba(245, 158, 11, 0.3) !important;
+  color: var(--secondary-gold-light);
+}
+
+.daily-vibration-section .universal-card .vibration-badge {
+  background: var(--gradient-secondary);
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+}
+
+.daily-vibration-section .universal-card .vibration-badge:hover {
+  background: var(--gradient-secondary);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5);
 }
 
 .daily-vibration-section .universal-card .see-more-btn,
 .daily-vibration-section .universal-card .see-less-btn {
-  border-color: var(--secondary-gold) !important;
-  color: var(--secondary-gold) !important;
+  border-color: var(--secondary-gold);
+  color: var(--secondary-gold);
 }
 
 .daily-vibration-section .universal-card .see-more-btn::before,
 .daily-vibration-section .universal-card .see-less-btn::before {
-  background: var(--gradient-secondary) !important;
+  background: var(--gradient-secondary);
 }
 
 .daily-vibration-section .universal-card .see-more-btn:hover,
 .daily-vibration-section .universal-card .see-less-btn:hover {
-  box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3) !important;
-  color: var(--bg-primary) !important;
+  box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
+  color: var(--bg-primary);
 }
 
 .vibration-card {
@@ -154,6 +168,7 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   position: relative;
   overflow: hidden;
+  height: 100%;
 }
 
 .vibration-card::before {
@@ -385,6 +400,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex: 1;
 }
 
 .daily-vib-summary p {
@@ -765,6 +781,7 @@
   .vibration-card {
     max-width: 600px;
     margin: 0 auto;
+    width: 100%;
   }
 }
 

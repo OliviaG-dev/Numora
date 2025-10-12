@@ -26,7 +26,7 @@ const DailyVibration: React.FC<DailyVibrationProps> = ({ onNavigate }) => {
     <div className="daily-vibration-page">
       <NumerologyBackground />
       <Header onNavigate={onNavigate} />
-      <DailyVibrationSection onNavigate={onNavigate} />
+      <DailyVibrationSection />
     </div>
   );
 };

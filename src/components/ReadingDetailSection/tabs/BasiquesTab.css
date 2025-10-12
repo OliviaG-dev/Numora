@@ -348,24 +348,6 @@
   margin-bottom: 1.5rem;
 }
 
-.keyword-tag {
-  background: var(--gradient-secondary);
-  color: var(--bg-primary);
-  padding: 0.4rem 0.8rem;
-  border-radius: 15px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
-  transition: all 0.3s ease;
-}
-
-.keyword-tag:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
-}
-
 /* ===== STYLES POUR LA GRILLE DE DÉTAILS ===== */
 
 .details-grid {
