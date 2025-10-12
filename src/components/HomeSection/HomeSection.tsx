@@ -12,7 +12,7 @@ const HomeSection: React.FC<HomeSectionProps> = ({ onNavigate }) => {
       <div className="home-content">
         <h1 className="home-title">
           <img
-            src="/src/assets/logo.png"
+            src="/logo.png"
             alt="Numora Logo"
             className="home-logo"
           />
