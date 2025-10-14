@@ -74,9 +74,27 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
         <div className="section-main-header">
           <div className="title-with-tooltip">
             <h2 className="section-elegant-title">
-              <span className="matrix-icon">✦</span>
+              <span className="matrix-icon">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7-6.3-4.6-6.3 4.6 2.3-7-6-4.6h7.6z" />
+                </svg>
+              </span>
               Matrix Destiny
-              <span className="matrix-icon-end">✦</span>
+              <span className="matrix-icon-end">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7-6.3-4.6-6.3 4.6 2.3-7-6-4.6h7.6z" />
+                </svg>
+              </span>
             </h2>
             <div className="tooltip">
               <span className="tooltip-icon">
@@ -1686,7 +1704,16 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
         </div>
         <div className="matrix-special-grid">
           <div className="matrix-special-item">
-            <div className="special-icon">💕</div>
+            <div className="special-icon">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+              </svg>
+            </div>
             <div className="matrix-number-badge love-badge">
               {matrixDestiny.special.love}
             </div>
@@ -1698,7 +1725,22 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
             </div>
           </div>
           <div className="matrix-special-item">
-            <div className="special-icon">⚖️</div>
+            <div className="special-icon">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="16" />
+                <line x1="8" y1="12" x2="16" y2="12" />
+              </svg>
+            </div>
             <div className="matrix-number-badge balance-badge">
               {matrixDestiny.special.balance}
             </div>
@@ -1710,7 +1752,23 @@ const MatrixTab: React.FC<MatrixTabProps> = ({ readingData }) => {
             </div>
           </div>
           <div className="matrix-special-item">
-            <div className="special-icon">💰</div>
+            <div className="special-icon">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M16 8h-6a4 4 0 1 0 0 8h6" />
+                <line x1="12" y1="2" x2="12" y2="6" />
+                <line x1="12" y1="18" x2="12" y2="22" />
+              </svg>
+            </div>
             <div className="matrix-number-badge money-badge">
               {matrixDestiny.special.money}
             </div>

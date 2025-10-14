@@ -170,9 +170,27 @@ const ArbreTab: React.FC<TabProps> = ({ readingData }) => {
         <div className="section-main-header">
           <div className="title-with-tooltip">
             <h2 className="section-elegant-title">
-              <span className="matrix-icon">✦</span>
+              <span className="matrix-icon">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7-6.3-4.6-6.3 4.6 2.3-7-6-4.6h7.6z" />
+                </svg>
+              </span>
               Arbre de Vie
-              <span className="matrix-icon-end">✦</span>
+              <span className="matrix-icon-end">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7-6.3-4.6-6.3 4.6 2.3-7-6-4.6h7.6z" />
+                </svg>
+              </span>
             </h2>
             <div className="tooltip">
               <span className="tooltip-icon">
@@ -456,9 +474,20 @@ const ArbreTab: React.FC<TabProps> = ({ readingData }) => {
                         color: colors.border,
                         fontSize: "1rem",
                         marginBottom: "0.5rem",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.5rem",
                       }}
                     >
-                      💫 Essence philosophique
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7-6.3-4.6-6.3 4.6 2.3-7-6-4.6h7.6z" />
+                      </svg>
+                      Essence philosophique
                     </h4>
                     <p
                       style={{
@@ -502,7 +531,16 @@ const ArbreTab: React.FC<TabProps> = ({ readingData }) => {
                           gap: "0.5rem",
                         }}
                       >
-                        ✨ {numberMeaning.summary}
+                        <svg
+                          width="18"
+                          height="18"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
+                          <path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7-6.3-4.6-6.3 4.6 2.3-7-6-4.6h7.6z" />
+                          <circle cx="12" cy="12" r="2" fill="currentColor" />
+                        </svg>
+                        {numberMeaning.summary}
                       </h4>
                       <p
                         style={{
@@ -539,11 +577,54 @@ const ArbreTab: React.FC<TabProps> = ({ readingData }) => {
                         style={{ marginBottom: "1.5rem" }}
                       >
                         <div className="sephira-detail-item">
-                          <h4 style={{ color: colors.border }}>⚡ Forces</h4>
+                          <h4
+                            style={{
+                              color: colors.border,
+                              display: "flex",
+                              alignItems: "center",
+                              gap: "0.5rem",
+                            }}
+                          >
+                            <svg
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                            >
+                              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                            </svg>
+                            Forces
+                          </h4>
                           <p>{numberMeaning.strengths}</p>
                         </div>
                         <div className="sephira-detail-item">
-                          <h4 style={{ color: colors.border }}>⚠️ Défis</h4>
+                          <h4
+                            style={{
+                              color: colors.border,
+                              display: "flex",
+                              alignItems: "center",
+                              gap: "0.5rem",
+                            }}
+                          >
+                            <svg
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                            >
+                              <path d="M12 2L2 22h20L12 2z" />
+                              <line x1="12" y1="9" x2="12" y2="13" />
+                              <circle
+                                cx="12"
+                                cy="17"
+                                r="1"
+                                fill="currentColor"
+                              />
+                            </svg>
+                            Défis
+                          </h4>
                           <p>{numberMeaning.challenges}</p>
                         </div>
                       </div>
@@ -562,10 +643,23 @@ const ArbreTab: React.FC<TabProps> = ({ readingData }) => {
                             fontSize: "0.95rem",
                             fontStyle: "italic",
                             margin: 0,
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "0.5rem",
                           }}
                         >
-                          🌟 <strong>Guidance :</strong>{" "}
-                          {numberMeaning.guidance}
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            style={{ flexShrink: 0 }}
+                          >
+                            <path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7-6.3-4.6-6.3 4.6 2.3-7-6-4.6h7.6z" />
+                          </svg>
+                          <span>
+                            <strong>Guidance :</strong> {numberMeaning.guidance}
+                          </span>
                         </p>
                       </div>
                     </div>
@@ -656,9 +750,21 @@ const ArbreTab: React.FC<TabProps> = ({ readingData }) => {
                         color: "rgba(139, 92, 246, 0.9)",
                         fontSize: "1.2rem",
                         marginBottom: "0.75rem",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.5rem",
                       }}
                     >
-                      ✨ {pathNumberMeaning.summary}
+                      <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7-6.3-4.6-6.3 4.6 2.3-7-6-4.6h7.6z" />
+                        <circle cx="12" cy="12" r="2" fill="currentColor" />
+                      </svg>
+                      {pathNumberMeaning.summary}
                     </h4>
                     <p
                       style={{
@@ -690,14 +796,48 @@ const ArbreTab: React.FC<TabProps> = ({ readingData }) => {
 
                     <div className="sephira-details-grid">
                       <div className="sephira-detail-item">
-                        <h4 style={{ color: "rgba(139, 92, 246, 0.9)" }}>
-                          ⚡ Forces
+                        <h4
+                          style={{
+                            color: "rgba(139, 92, 246, 0.9)",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "0.5rem",
+                          }}
+                        >
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                          >
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                          </svg>
+                          Forces
                         </h4>
                         <p>{pathNumberMeaning.strengths}</p>
                       </div>
                       <div className="sephira-detail-item">
-                        <h4 style={{ color: "rgba(139, 92, 246, 0.9)" }}>
-                          ⚠️ Défis
+                        <h4
+                          style={{
+                            color: "rgba(139, 92, 246, 0.9)",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "0.5rem",
+                          }}
+                        >
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                          >
+                            <path d="M12 2L2 22h20L12 2z" />
+                            <line x1="12" y1="9" x2="12" y2="13" />
+                            <circle cx="12" cy="17" r="1" fill="currentColor" />
+                          </svg>
+                          Défis
                         </h4>
                         <p>{pathNumberMeaning.challenges}</p>
                       </div>
@@ -717,10 +857,24 @@ const ArbreTab: React.FC<TabProps> = ({ readingData }) => {
                           fontSize: "0.95rem",
                           fontStyle: "italic",
                           margin: 0,
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "0.5rem",
                         }}
                       >
-                        🌟 <strong>Guidance :</strong>{" "}
-                        {pathNumberMeaning.guidance}
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                          style={{ flexShrink: 0 }}
+                        >
+                          <path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7-6.3-4.6-6.3 4.6 2.3-7-6-4.6h7.6z" />
+                        </svg>
+                        <span>
+                          <strong>Guidance :</strong>{" "}
+                          {pathNumberMeaning.guidance}
+                        </span>
                       </p>
                     </div>
                   </div>
