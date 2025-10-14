@@ -2,8 +2,8 @@
 
 > **Ton âme a un code, les nombres l'éclairent.**
 
-![Version](https://img.shields.io/badge/version-0.4.0-green.svg)
-![Status](https://img.shields.io/badge/status-🌟_Matrix_Destiny_Complète-brightgreen.svg)
+![Version](https://img.shields.io/badge/version-0.4.1-green.svg)
+![Status](https://img.shields.io/badge/status-🎨_UI_Améliorée-brightgreen.svg)
 ![React](https://img.shields.io/badge/React-18+-61dafb.svg)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5+-3178c6.svg)
 ![Vite](https://img.shields.io/badge/Vite-7+-646cff.svg)
@@ -12,7 +12,7 @@
 
 **Numora** est ton compagnion numérique de numérologie moderne. Cette application web révolutionnaire combine la sagesse ancestrale de la numérologie avec une interface utilisateur moderne et intuitive pour t'aider à découvrir les secrets cachés de ton chemin de vie.
 
-> 🌟 **Version 0.4.0 terminée !** Matrix Destiny complète avec schéma visuel interactif, calculs avancés, significations détaillées et interface responsive parfaite.
+> 🎨 **Version 0.4.1 terminée !** Design des onglets amélioré avec nouvelles icônes SVG mystiques, effets visuels subtils et navigation repensée pour une expérience utilisateur encore plus fluide.
 
 ## 🔮 Fonctionnalités principales
 
@@ -23,6 +23,8 @@
 - [x] **Design System** - Thème cohérent avec variables CSS
 - [x] **Responsive Design** - Adaptation mobile et desktop
 - [x] **Animations** - Transitions fluides et effets visuels
+- [x] **Navigation par onglets** - Design moderne avec glassmorphism et effets hover
+- [x] **Icônes SVG personnalisées** - Icônes mystiques pour Arbre de Vie et Karmique
 
 ### 🔐 **Authentification Supabase** ✅
 
@@ -61,6 +63,7 @@
 - [x] **Dettes Karmiques** - Analyse complète des dettes karmiques
 - [x] **Descriptions détaillées** - Interprétations et leçons à apprendre
 - [x] **Interface dédiée** - Onglet "Karmique" avec accordéons exclusifs
+- [x] **Icône Roue Karmique** - Représentation visuelle des cycles et du temps
 
 ### 👤 **Profil utilisateur** ✅
 
@@ -111,6 +114,7 @@
 - [x] **Sphères Interactives** - Hover et click pour explorer chaque Sephira
 - [x] **Transparence Totale** - Documentation claire sur le système moderne
 - [x] **Gestion des Doublons** - Explication de la signature numérologique unique
+- [x] **Icône personnalisée** - Représentation des 10 Sephiroth dans le menu de navigation
 
 ### 🔮 **Fonctionnalités à venir** 🚧
 
@@ -173,7 +177,6 @@ npm run dev
 ```
 
 L'application sera accessible sur [http://localhost:5173](http://localhost:5173)
-
 
 ### Scripts disponibles
 
@@ -447,6 +450,15 @@ Le projet suit une **architecture modulaire avancée** organisée en couches :
 - [x] **Visualisation interactive** - Schéma SVG avec les 22 chemins
 - [x] **Système simple et transparent** - Basé uniquement sur la date de naissance
 - [x] **Documentation complète** - Guide avec transparence sur les doublons
+
+### Version 0.4.1 ✅ **TERMINÉE**
+
+- [x] **Amélioration des onglets** - Design moderne avec effets glassmorphism subtils
+- [x] **Icônes SVG personnalisées** - Nouvelles icônes pour Arbre de Vie et Karmique
+- [x] **Effets visuels optimisés** - Hover, transitions et animations fluides
+- [x] **Navigation responsive** - Icônes uniquement sur mobile, texte sur desktop
+- [x] **Blur discret** - Effets de transparence subtils et élégants
+- [x] **Ombres raffinées** - Effets de profondeur ajustés pour plus de légèreté
 
 ### Version 0.5.0 🚧 **EN COURS**
 

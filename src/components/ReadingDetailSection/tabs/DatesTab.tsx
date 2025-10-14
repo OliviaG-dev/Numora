@@ -10,9 +10,27 @@ const DatesTab: React.FC<TabProps> = ({ numerologyResults }) => {
         <div className="section-main-header">
           <div className="title-with-tooltip">
             <h2 className="section-elegant-title">
-              <span className="matrix-icon">✦</span>
+              <span className="matrix-icon">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7-6.3-4.6-6.3 4.6 2.3-7-6-4.6h7.6z" />
+                </svg>
+              </span>
               Dates
-              <span className="matrix-icon-end">✦</span>
+              <span className="matrix-icon-end">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7-6.3-4.6-6.3 4.6 2.3-7-6-4.6h7.6z" />
+                </svg>
+              </span>
             </h2>
             <div className="tooltip">
               <span className="tooltip-icon">

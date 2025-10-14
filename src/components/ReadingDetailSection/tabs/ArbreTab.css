@@ -20,7 +20,7 @@
   position: relative;
   width: 100%;
   max-width: 700px;
-  height: 850px;
+  aspect-ratio: 7 / 9;
   margin: 3rem auto;
   padding: 3rem 2rem;
   background: linear-gradient(
@@ -82,8 +82,8 @@
 }
 
 .sephira-circle {
-  width: 100px;
-  height: 100px;
+  width: clamp(55px, 14vw, 100px);
+  height: clamp(55px, 14vw, 100px);
   border-radius: 50%;
   background: linear-gradient(
     135deg,
@@ -101,7 +101,7 @@
 }
 
 .sephira-number {
-  font-size: 1.75rem;
+  font-size: clamp(1rem, 2.5vw, 1.75rem);
   font-weight: 600;
   color: #fff;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
@@ -109,7 +109,7 @@
 }
 
 .sephira-name {
-  font-size: 0.7rem;
+  font-size: clamp(0.45rem, 1.2vw, 0.7rem);
   font-weight: 500;
   color: rgba(255, 255, 255, 0.85);
   text-transform: uppercase;
@@ -176,8 +176,8 @@
   );
   border-color: rgba(251, 191, 36, 0.7);
   box-shadow: 0 2px 20px rgba(251, 191, 36, 0.25);
-  width: 110px;
-  height: 110px;
+  width: clamp(62px, 15vw, 110px);
+  height: clamp(62px, 15vw, 110px);
 }
 
 .sephira.netzach .sephira-circle {
@@ -220,63 +220,63 @@
   box-shadow: 0 2px 16px rgba(115, 70, 50, 0.2);
 }
 
-/* Positions des Sephiroth - Alignement parfait */
+/* Positions des Sephiroth - Alignement parfait avec pourcentages */
 .sephira.kether {
-  top: 30px;
+  top: 3.5%;
   left: 50%;
   transform: translateX(-50%);
 }
 
 .sephira.chokhmah {
-  top: 160px;
+  top: 18.8%;
   left: 20%;
   transform: translateX(-50%);
 }
 
 .sephira.binah {
-  top: 160px;
+  top: 18.8%;
   left: 80%;
   transform: translateX(-50%);
 }
 
 .sephira.chesed {
-  top: 300px;
+  top: 35.3%;
   left: 20%;
   transform: translateX(-50%);
 }
 
 .sephira.gevurah {
-  top: 300px;
+  top: 35.3%;
   left: 80%;
   transform: translateX(-50%);
 }
 
 .sephira.tipheret {
-  top: 375px;
+  top: 44.1%;
   left: 50%;
   transform: translateX(-50%);
 }
 
 .sephira.netzach {
-  top: 520px;
+  top: 61.2%;
   left: 20%;
   transform: translateX(-50%);
 }
 
 .sephira.hod {
-  top: 520px;
+  top: 61.2%;
   left: 80%;
   transform: translateX(-50%);
 }
 
 .sephira.yesod {
-  top: 660px;
+  top: 77.6%;
   left: 50%;
   transform: translateX(-50%);
 }
 
 .sephira.malkuth {
-  top: 780px;
+  top: 91.8%;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -317,6 +317,9 @@
   align-items: center;
   gap: 1.5rem;
   margin-bottom: 1.5rem;
+  padding: 0.5rem;
+  border-radius: 12px;
+  transition: background 0.3s ease;
 }
 
 .sephira-card-number {
@@ -498,27 +501,13 @@
    =========================== */
 
 @media (max-width: 768px) {
+  .arbre-section {
+    padding: 1.5rem;
+  }
+
   .tree-of-life-visual {
-    height: 650px;
     padding: 2rem 1rem;
-  }
-
-  .sephira-circle {
-    width: 75px;
-    height: 75px;
-  }
-
-  .sephira.tipheret .sephira-circle {
-    width: 85px;
-    height: 85px;
-  }
-
-  .sephira-number {
-    font-size: 1.4rem;
-  }
-
-  .sephira-name {
-    font-size: 0.65rem;
+    margin: 2rem auto;
   }
 
   .sephira-card {
@@ -526,12 +515,84 @@
   }
 
   .sephira-card-header {
-    flex-direction: column;
-    text-align: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: left;
+    gap: 1rem;
+  }
+
+  .accordion-arrow {
+    width: 30px;
+    height: 30px;
   }
 
   .sephira-details-grid {
     grid-template-columns: 1fr;
+  }
+
+  .arbre-intro {
+    padding: 1.75rem;
+  }
+
+  .tree-legend {
+    padding: 1.5rem;
+  }
+
+  .legend-items {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .arbre-section {
+    padding: 1rem;
+  }
+
+  .tree-of-life-visual {
+    padding: 1.5rem 0.5rem;
+    margin: 1.5rem auto;
+    border-radius: 16px;
+  }
+
+  .sephira-circle {
+    border-width: 1.5px;
+  }
+
+  .sephira-card {
+    padding: 1.25rem;
+    border-radius: 16px;
+  }
+
+  .sephira-card-number {
+    width: 55px;
+    height: 55px;
+    font-size: 1.4rem;
+  }
+
+  .sephira-card-title h3 {
+    font-size: 1.25rem;
+  }
+
+  .arbre-intro {
+    padding: 1.25rem;
+    border-radius: 16px;
+  }
+
+  .arbre-intro h3 {
+    font-size: 1.4rem;
+  }
+
+  .tree-legend {
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+
+  .tree-legend h4 {
+    font-size: 1.1rem;
+  }
+
+  .legend-text {
+    font-size: 0.8rem;
   }
 }
 
@@ -542,4 +603,52 @@
 .sephira.active .sephira-circle {
   box-shadow: 0 4px 24px rgba(139, 92, 246, 0.4);
   border-width: 2.5px;
+}
+
+/* ===========================
+   ACCORDÉONS SEPHIROTH
+   =========================== */
+
+.accordion-header {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 0 !important;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.accordion-header:hover {
+  background: rgba(139, 92, 246, 0.05);
+  border-radius: 12px;
+}
+
+.accordion-arrow {
+  transition: transform 0.3s ease;
+  color: var(--secondary-gold);
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.accordion-arrow.open {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  animation: slideDown 0.3s ease-out;
+  margin-top: 1.5rem;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
