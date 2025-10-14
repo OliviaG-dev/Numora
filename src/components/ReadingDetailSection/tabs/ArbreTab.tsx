@@ -17,6 +17,44 @@ import "./ArbreTab.css";
 const ArbreTab: React.FC<TabProps> = ({ readingData }) => {
   const [selectedSephira, setSelectedSephira] = useState<number | null>(null);
 
+  // État pour gérer l'ouverture/fermeture des accordéons des Sephiroth
+  const [openSephirothAccordions, setOpenSephirothAccordions] = useState<
+    Set<string>
+  >(new Set());
+
+  // État pour gérer l'ouverture/fermeture des accordéons des chemins
+  const [openPathsAccordions, setOpenPathsAccordions] = useState<Set<number>>(
+    new Set()
+  );
+
+  // Fonction pour gérer l'ouverture/fermeture des accordéons Sephiroth
+  const toggleSephiraAccordion = (key: string) => {
+    setOpenSephirothAccordions((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(key)) {
+        newSet.delete(key);
+      } else {
+        newSet.clear();
+        newSet.add(key);
+      }
+      return newSet;
+    });
+  };
+
+  // Fonction pour gérer l'ouverture/fermeture des accordéons des chemins
+  const togglePathAccordion = (index: number) => {
+    setOpenPathsAccordions((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(index)) {
+        newSet.delete(index);
+      } else {
+        newSet.clear();
+        newSet.add(index);
+      }
+      return newSet;
+    });
+  };
+
   // Calculer l'analyse de l'Arbre de Vie
   const treeAnalysis: TreeOfLifeAnalysis | null = useMemo(() => {
     if (!readingData?.birthDate) return null;
@@ -447,7 +485,10 @@ const ArbreTab: React.FC<TabProps> = ({ readingData }) => {
                   borderColor: colors.border,
                 }}
               >
-                <div className="sephira-card-header">
+                <div
+                  className="sephira-card-header accordion-header"
+                  onClick={() => toggleSephiraAccordion(key)}
+                >
                   <div
                     className={`sephira-card-number`}
                     style={{
@@ -465,121 +506,206 @@ const ArbreTab: React.FC<TabProps> = ({ readingData }) => {
                       {meaning.hebrewName} - {meaning.subtitle}
                     </p>
                   </div>
-                </div>
-                <div className="sephira-card-content">
-                  {/* Description de l'essence philosophique de la Sephira */}
-                  <div style={{ marginBottom: "1.5rem" }}>
-                    <h4
-                      style={{
-                        color: colors.border,
-                        fontSize: "1rem",
-                        marginBottom: "0.5rem",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "0.5rem",
-                      }}
+                  <div
+                    className={`accordion-arrow ${
+                      openSephirothAccordions.has(key) ? "open" : ""
+                    }`}
+                  >
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
                     >
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                      >
-                        <path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7-6.3-4.6-6.3 4.6 2.3-7-6-4.6h7.6z" />
-                      </svg>
-                      Essence philosophique
-                    </h4>
-                    <p
-                      style={{
-                        fontSize: "0.95rem",
-                        opacity: 0.85,
-                        fontStyle: "italic",
-                      }}
-                    >
-                      {meaning.description}
-                    </p>
-                    <p
-                      style={{
-                        fontSize: "0.85rem",
-                        opacity: 0.7,
-                        marginTop: "0.5rem",
-                        color: colors.border,
-                      }}
-                    >
-                      <strong>Domaine :</strong> {meaning.domain}
-                    </p>
+                      <path
+                        d="M6 9L12 15L18 9"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
                   </div>
-
-                  {/* Interprétation personnalisée selon le nombre calculé */}
-                  {numberMeaning ? (
-                    <div
-                      style={{
-                        background: "rgba(0, 0, 0, 0.2)",
-                        borderLeft: `4px solid ${colors.border}`,
-                        padding: "1.5rem",
-                        borderRadius: "8px",
-                        marginBottom: "1.5rem",
-                      }}
-                    >
+                </div>
+                {openSephirothAccordions.has(key) && (
+                  <div className="sephira-card-content accordion-content">
+                    {/* Description de l'essence philosophique de la Sephira */}
+                    <div style={{ marginBottom: "1.5rem" }}>
                       <h4
                         style={{
                           color: colors.border,
-                          fontSize: "1.2rem",
-                          marginBottom: "0.75rem",
+                          fontSize: "1rem",
+                          marginBottom: "0.5rem",
                           display: "flex",
                           alignItems: "center",
                           gap: "0.5rem",
                         }}
                       >
                         <svg
-                          width="18"
-                          height="18"
+                          width="16"
+                          height="16"
                           viewBox="0 0 24 24"
                           fill="currentColor"
                         >
                           <path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7-6.3-4.6-6.3 4.6 2.3-7-6-4.6h7.6z" />
-                          <circle cx="12" cy="12" r="2" fill="currentColor" />
                         </svg>
-                        {numberMeaning.summary}
+                        Essence philosophique
                       </h4>
                       <p
                         style={{
-                          fontSize: "1rem",
-                          lineHeight: 1.6,
-                          marginBottom: "1rem",
+                          fontSize: "0.95rem",
+                          opacity: 0.85,
+                          fontStyle: "italic",
                         }}
                       >
-                        {numberMeaning.description}
+                        {meaning.description}
                       </p>
-
-                      {/* Mots-clés personnalisés */}
-                      <div
-                        className="sephira-keywords"
-                        style={{ marginBottom: "1.5rem" }}
+                      <p
+                        style={{
+                          fontSize: "0.85rem",
+                          opacity: 0.7,
+                          marginTop: "0.5rem",
+                          color: colors.border,
+                        }}
                       >
-                        {numberMeaning.keywords.map((keyword, idx) => (
-                          <span
-                            key={idx}
-                            className="sephira-keyword-tag"
-                            style={{
-                              borderColor: colors.border,
-                              background: colors.gradient,
-                            }}
+                        <strong>Domaine :</strong> {meaning.domain}
+                      </p>
+                    </div>
+
+                    {/* Interprétation personnalisée selon le nombre calculé */}
+                    {numberMeaning ? (
+                      <div
+                        style={{
+                          background: "rgba(0, 0, 0, 0.2)",
+                          borderLeft: `4px solid ${colors.border}`,
+                          padding: "1.5rem",
+                          borderRadius: "8px",
+                          marginBottom: "1.5rem",
+                        }}
+                      >
+                        <h4
+                          style={{
+                            color: colors.border,
+                            fontSize: "1.2rem",
+                            marginBottom: "0.75rem",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "0.5rem",
+                          }}
+                        >
+                          <svg
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
                           >
-                            {keyword}
-                          </span>
-                        ))}
-                      </div>
+                            <path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7-6.3-4.6-6.3 4.6 2.3-7-6-4.6h7.6z" />
+                            <circle cx="12" cy="12" r="2" fill="currentColor" />
+                          </svg>
+                          {numberMeaning.summary}
+                        </h4>
+                        <p
+                          style={{
+                            fontSize: "1rem",
+                            lineHeight: 1.6,
+                            marginBottom: "1rem",
+                          }}
+                        >
+                          {numberMeaning.description}
+                        </p>
 
-                      {/* Forces et Défis personnalisés */}
-                      <div
-                        className="sephira-details-grid"
-                        style={{ marginBottom: "1.5rem" }}
-                      >
-                        <div className="sephira-detail-item">
-                          <h4
+                        {/* Mots-clés personnalisés */}
+                        <div
+                          className="sephira-keywords"
+                          style={{ marginBottom: "1.5rem" }}
+                        >
+                          {numberMeaning.keywords.map((keyword, idx) => (
+                            <span
+                              key={idx}
+                              className="sephira-keyword-tag"
+                              style={{
+                                borderColor: colors.border,
+                                background: colors.gradient,
+                              }}
+                            >
+                              {keyword}
+                            </span>
+                          ))}
+                        </div>
+
+                        {/* Forces et Défis personnalisés */}
+                        <div
+                          className="sephira-details-grid"
+                          style={{ marginBottom: "1.5rem" }}
+                        >
+                          <div className="sephira-detail-item">
+                            <h4
+                              style={{
+                                color: colors.border,
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "0.5rem",
+                              }}
+                            >
+                              <svg
+                                width="16"
+                                height="16"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                              >
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                              </svg>
+                              Forces
+                            </h4>
+                            <p>{numberMeaning.strengths}</p>
+                          </div>
+                          <div className="sephira-detail-item">
+                            <h4
+                              style={{
+                                color: colors.border,
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "0.5rem",
+                              }}
+                            >
+                              <svg
+                                width="16"
+                                height="16"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                              >
+                                <path d="M12 2L2 22h20L12 2z" />
+                                <line x1="12" y1="9" x2="12" y2="13" />
+                                <circle
+                                  cx="12"
+                                  cy="17"
+                                  r="1"
+                                  fill="currentColor"
+                                />
+                              </svg>
+                              Défis
+                            </h4>
+                            <p>{numberMeaning.challenges}</p>
+                          </div>
+                        </div>
+
+                        {/* Guidance personnalisée */}
+                        <div
+                          style={{
+                            background: "rgba(255, 255, 255, 0.05)",
+                            padding: "1rem",
+                            borderRadius: "6px",
+                            borderLeft: `3px solid ${colors.border}`,
+                          }}
+                        >
+                          <p
                             style={{
-                              color: colors.border,
+                              fontSize: "0.95rem",
+                              fontStyle: "italic",
+                              margin: 0,
                               display: "flex",
                               alignItems: "center",
                               gap: "0.5rem",
@@ -590,88 +716,27 @@ const ArbreTab: React.FC<TabProps> = ({ readingData }) => {
                               height="16"
                               viewBox="0 0 24 24"
                               fill="currentColor"
+                              style={{ flexShrink: 0 }}
                             >
-                              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                              <path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7-6.3-4.6-6.3 4.6 2.3-7-6-4.6h7.6z" />
                             </svg>
-                            Forces
-                          </h4>
-                          <p>{numberMeaning.strengths}</p>
-                        </div>
-                        <div className="sephira-detail-item">
-                          <h4
-                            style={{
-                              color: colors.border,
-                              display: "flex",
-                              alignItems: "center",
-                              gap: "0.5rem",
-                            }}
-                          >
-                            <svg
-                              width="16"
-                              height="16"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="2"
-                            >
-                              <path d="M12 2L2 22h20L12 2z" />
-                              <line x1="12" y1="9" x2="12" y2="13" />
-                              <circle
-                                cx="12"
-                                cy="17"
-                                r="1"
-                                fill="currentColor"
-                              />
-                            </svg>
-                            Défis
-                          </h4>
-                          <p>{numberMeaning.challenges}</p>
+                            <span>
+                              <strong>Guidance :</strong>{" "}
+                              {numberMeaning.guidance}
+                            </span>
+                          </p>
                         </div>
                       </div>
-
-                      {/* Guidance personnalisée */}
-                      <div
-                        style={{
-                          background: "rgba(255, 255, 255, 0.05)",
-                          padding: "1rem",
-                          borderRadius: "6px",
-                          borderLeft: `3px solid ${colors.border}`,
-                        }}
-                      >
-                        <p
-                          style={{
-                            fontSize: "0.95rem",
-                            fontStyle: "italic",
-                            margin: 0,
-                            display: "flex",
-                            alignItems: "center",
-                            gap: "0.5rem",
-                          }}
-                        >
-                          <svg
-                            width="16"
-                            height="16"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                            style={{ flexShrink: 0 }}
-                          >
-                            <path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7-6.3-4.6-6.3 4.6 2.3-7-6-4.6h7.6z" />
-                          </svg>
-                          <span>
-                            <strong>Guidance :</strong> {numberMeaning.guidance}
-                          </span>
+                    ) : (
+                      <div className="placeholder-content">
+                        <p>
+                          Aucune interprétation personnalisée disponible pour ce
+                          nombre.
                         </p>
                       </div>
-                    </div>
-                  ) : (
-                    <div className="placeholder-content">
-                      <p>
-                        Aucune interprétation personnalisée disponible pour ce
-                        nombre.
-                      </p>
-                    </div>
-                  )}
-                </div>
+                    )}
+                  </div>
+                )}
               </div>
             );
           })}
@@ -710,7 +775,10 @@ const ArbreTab: React.FC<TabProps> = ({ readingData }) => {
 
           return (
             <div key={index} className="sephira-card">
-              <div className="sephira-card-header">
+              <div
+                className="sephira-card-header accordion-header"
+                onClick={() => togglePathAccordion(index)}
+              >
                 <div
                   className="sephira-card-number"
                   style={{
@@ -732,10 +800,31 @@ const ArbreTab: React.FC<TabProps> = ({ readingData }) => {
                     {value}
                   </p>
                 </div>
+                <div
+                  className={`accordion-arrow ${
+                    openPathsAccordions.has(index) ? "open" : ""
+                  }`}
+                >
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6 9L12 15L18 9"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </div>
               </div>
 
-              {pathNumberMeaning ? (
-                <div className="sephira-card-content">
+              {openPathsAccordions.has(index) && pathNumberMeaning && (
+                <div className="sephira-card-content accordion-content">
                   <div
                     style={{
                       background: "rgba(0, 0, 0, 0.2)",
@@ -879,8 +968,9 @@ const ArbreTab: React.FC<TabProps> = ({ readingData }) => {
                     </div>
                   </div>
                 </div>
-              ) : (
-                <div className="sephira-card-content">
+              )}
+              {openPathsAccordions.has(index) && !pathNumberMeaning && (
+                <div className="sephira-card-content accordion-content">
                   <p>
                     Interprétation en cours de développement pour ce chemin.
                   </p>

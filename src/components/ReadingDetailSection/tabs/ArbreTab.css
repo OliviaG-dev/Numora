@@ -317,6 +317,9 @@
   align-items: center;
   gap: 1.5rem;
   margin-bottom: 1.5rem;
+  padding: 0.5rem;
+  border-radius: 12px;
+  transition: background 0.3s ease;
 }
 
 .sephira-card-number {
@@ -512,8 +515,15 @@
   }
 
   .sephira-card-header {
-    flex-direction: column;
-    text-align: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: left;
+    gap: 1rem;
+  }
+
+  .accordion-arrow {
+    width: 30px;
+    height: 30px;
   }
 
   .sephira-details-grid {
@@ -593,4 +603,52 @@
 .sephira.active .sephira-circle {
   box-shadow: 0 4px 24px rgba(139, 92, 246, 0.4);
   border-width: 2.5px;
+}
+
+/* ===========================
+   ACCORDÉONS SEPHIROTH
+   =========================== */
+
+.accordion-header {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 0 !important;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.accordion-header:hover {
+  background: rgba(139, 92, 246, 0.05);
+  border-radius: 12px;
+}
+
+.accordion-arrow {
+  transition: transform 0.3s ease;
+  color: var(--secondary-gold);
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.accordion-arrow.open {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  animation: slideDown 0.3s ease-out;
+  margin-top: 1.5rem;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
