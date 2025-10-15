@@ -135,11 +135,30 @@
   .numerology-section {
     padding: 1.5rem;
   }
+
+  .tooltip-content {
+    width: 250px;
+    font-size: 0.85rem;
+    padding: 0.8rem;
+    /* Repositionner le tooltip à gauche sur tablette */
+    left: auto;
+    right: 0;
+    transform: none;
+  }
 }
 
 @media (max-width: 480px) {
   .numerology-section {
     padding: 1rem;
+  }
+
+  .tooltip-content {
+    width: 200px;
+    font-size: 0.8rem;
+    padding: 0.7rem;
+    /* Positionnement optimisé pour téléphones */
+    right: -10px;
+    max-width: calc(100vw - 40px);
   }
 }
 
@@ -342,12 +361,6 @@
   .section-header {
     flex-direction: column;
     align-items: flex-start;
-  }
-
-  .tooltip-content {
-    width: 250px;
-    font-size: 0.85rem;
-    padding: 0.8rem;
   }
 
   .info-grid {

@@ -167,8 +167,11 @@ cd numora
 # Installer les dépendances
 npm install
 
-# Configurer Supabase (optionnel pour les calculs de base)
-# Créer un fichier .env à la racine avec vos clés Supabase :
+# Configurer Supabase (requis pour l'authentification)
+# 1. Copiez .env.local.example en .env
+cp .env.local.example .env
+
+# 2. Éditez .env et ajoutez vos clés Supabase
 # VITE_SUPABASE_URL=https://your-project-id.supabase.co
 # VITE_SUPABASE_ANON_KEY=your_anon_key_here
 
@@ -177,6 +180,12 @@ npm run dev
 ```
 
 L'application sera accessible sur [http://localhost:5173](http://localhost:5173)
+
+### Déploiement sur Vercel
+
+Pour déployer sur Vercel, consultez le guide détaillé : [VERCEL_DEPLOYMENT.md](VERCEL_DEPLOYMENT.md)
+
+**Important** : Vous devez configurer les variables d'environnement Supabase sur Vercel pour que l'authentification fonctionne.
 
 ### Scripts disponibles
 

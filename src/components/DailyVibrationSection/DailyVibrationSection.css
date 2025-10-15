@@ -389,11 +389,10 @@
 
 .daily-vib-summary {
   text-align: center;
-  padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.02);
+  padding: 2rem;
+  background: var(--bg-secondary);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
+  border-radius: 20px;
   position: relative;
   overflow: hidden;
   min-height: 120px;
@@ -401,15 +400,55 @@
   align-items: center;
   justify-content: center;
   flex: 1;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.daily-vib-summary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 3px;
+  background: linear-gradient(
+    45deg,
+    var(--primary-purple),
+    var(--secondary-gold),
+    #ec4899,
+    var(--primary-purple-light),
+    var(--secondary-gold)
+  );
+  background-size: 300% 300%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  animation: borderAnimation 3s linear infinite;
+}
+
+@keyframes borderAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.daily-vib-summary:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 40px rgba(139, 92, 246, 0.3);
 }
 
 .daily-vib-summary p {
   color: var(--text-primary);
   line-height: 1.8;
-  font-size: 1rem;
+  font-size: 1.1rem;
   position: relative;
   z-index: 1;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .see-more-btn {
@@ -643,22 +682,61 @@
 
 .daily-modal-summary {
   text-align: center;
-  padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.02);
+  padding: 2rem;
+  background: var(--bg-secondary);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
+  border-radius: 20px;
   position: relative;
   overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.daily-modal-summary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 3px;
+  background: linear-gradient(
+    45deg,
+    var(--primary-purple),
+    var(--secondary-gold),
+    #ec4899,
+    var(--primary-purple-light),
+    var(--secondary-gold)
+  );
+  background-size: 300% 300%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  animation: borderAnimationModal 3s linear infinite;
+}
+
+@keyframes borderAnimationModal {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.daily-modal-summary:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 40px rgba(139, 92, 246, 0.3);
 }
 
 .daily-modal-summary p {
   color: var(--text-primary);
-  line-height: 1.6;
-  font-size: 1rem;
+  line-height: 1.8;
+  font-size: 1.1rem;
   position: relative;
   z-index: 1;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .modal-details-grid {
@@ -823,12 +901,12 @@
   }
 
   .daily-vib-summary {
-    padding: 1.2rem;
+    padding: 1.5rem;
     min-height: 110px;
   }
 
   .daily-vib-summary p {
-    font-size: 0.95rem;
+    font-size: 1rem;
   }
 
   .see-more-btn {
@@ -861,11 +939,11 @@
   }
 
   .daily-modal-summary {
-    padding: 1.2rem;
+    padding: 1.5rem;
   }
 
   .daily-modal-summary p {
-    font-size: 0.95rem;
+    font-size: 1rem;
   }
 
   .modal-details-grid {
@@ -929,12 +1007,12 @@
   }
 
   .daily-vib-summary {
-    padding: 1rem;
+    padding: 1.2rem;
     min-height: 100px;
   }
 
   .daily-vib-summary p {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
 
   .see-more-btn {
@@ -993,8 +1071,8 @@
   }
 
   .daily-modal-summary p {
-    font-size: 0.9rem;
-    line-height: 1.5;
+    font-size: 0.95rem;
+    line-height: 1.6;
   }
 
   .modal-details-grid {
