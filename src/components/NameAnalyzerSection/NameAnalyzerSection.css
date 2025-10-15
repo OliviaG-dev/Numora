@@ -481,130 +481,89 @@
 }
 
 .vibration-summary {
-  background: linear-gradient(
-    135deg,
-    rgba(139, 92, 246, 0.08) 0%,
-    rgba(245, 158, 11, 0.05) 50%,
-    rgba(139, 92, 246, 0.03) 100%
-  );
-  border-radius: 25px;
-  padding: 3.5rem 3rem;
-  border: 2px solid transparent;
-  background-clip: padding-box;
-  margin-bottom: 3rem;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(15px);
+  background: var(--bg-secondary);
+  border-radius: 20px;
+  padding: 3rem;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(10px);
   text-align: center;
-  max-width: 900px;
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 10px 40px rgba(139, 92, 246, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .vibration-summary::before {
   content: "";
   position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
+  inset: 0;
+  border-radius: 20px;
+  padding: 3px;
   background: linear-gradient(
     45deg,
     var(--primary-purple),
     var(--secondary-gold),
+    #ec4899,
     var(--primary-purple-light),
     var(--secondary-gold)
   );
-  border-radius: 25px;
-  z-index: -1;
-  opacity: 0.6;
-  transition: opacity 0.3s ease;
+  background-size: 300% 300%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: borderAnimation 3s linear infinite;
 }
 
-.vibration-summary:hover::before {
-  opacity: 0.8;
-}
-
-.vibration-summary::after {
-  content: "✦";
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 1.5rem;
-  color: var(--secondary-gold);
-  opacity: 0.3;
-  animation: float 3s ease-in-out infinite;
-}
-
-.vibration-summary:hover::after {
-  opacity: 0.6;
-  animation: float 2s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
+@keyframes borderAnimation {
+  0% {
+    background-position: 0% 50%;
   }
   50% {
-    transform: translateY(-10px);
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
 
 .vibration-summary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.15);
-  border-color: rgba(139, 92, 246, 0.3);
+  transform: scale(1.02);
+  box-shadow: 0 10px 40px rgba(139, 92, 246, 0.3);
 }
 
 .vibration-summary h4 {
   background: linear-gradient(
-    135deg,
-    var(--secondary-gold) 0%,
-    var(--primary-purple) 50%,
-    var(--secondary-gold) 100%
+    90deg,
+    var(--primary-purple),
+    var(--secondary-gold),
+    var(--primary-purple)
   );
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  font-size: 1.8rem;
-  margin-bottom: 2rem;
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
   font-weight: 700;
-  text-shadow: none;
-  position: relative;
-  letter-spacing: 0.5px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  animation: shimmer 3s linear infinite;
 }
 
-.vibration-summary h4::after {
-  content: "";
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 3px;
-  background: linear-gradient(
-    90deg,
-    var(--primary-purple) 0%,
-    var(--secondary-gold) 100%
-  );
-  border-radius: 2px;
+@keyframes shimmer {
+  to {
+    background-position: 200% center;
+  }
 }
 
 .vibration-summary p {
   color: var(--text-primary);
-  line-height: 1.9;
-  margin-bottom: 0;
-  font-size: 1.4rem;
-  font-weight: 600;
-  font-style: italic;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  position: relative;
-  z-index: 1;
-  text-align: center;
+  line-height: 1.8;
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 500;
 }
 
 .name-analyzer-section .vibration-details-grid {
