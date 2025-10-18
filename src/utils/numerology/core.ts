@@ -142,3 +142,34 @@ export function calculateBirthdayNumber(day: number): number {
   return reduceToSingleDigit(day, false); // Pas de nombres maîtres pour les dates
 }
 
+/**
+ * Calcule le nombre de Réalisation (également appelé nombre de Destinée)
+ * Le nombre de réalisation est calculé en réduisant n'importe quel nombre donné
+ * à un chiffre unique ou à un nombre maître (11, 22, 33).
+ *
+ * @param number - Nombre à réduire (peut être n'importe quel entier positif)
+ * @param reduce - Si true, réduit le nombre à un chiffre ou nombre maître (défaut: true)
+ * @returns Le nombre de Réalisation (1-9, 11, 22, ou 33)
+ *
+ * @example
+ * calculateRealisationNumber(29) // Retourne 11 (car 2+9=11, nombre maître)
+ * calculateRealisationNumber(123) // Retourne 6 (car 1+2+3=6)
+ * calculateRealisationNumber(44) // Retourne 8 (car 4+4=8)
+ */
+export function calculateRealisationNumber(
+  number: number,
+  reduce: boolean = true
+): number {
+  // Validation basique
+  if (number < 0 || !Number.isInteger(number)) {
+    throw new Error("Le nombre de réalisation doit être un entier positif");
+  }
+
+  // Si le nombre est déjà un chiffre unique ou nombre maître, le retourner directement
+  if (number <= 9 || number === 11 || number === 22 || number === 33) {
+    return number;
+  }
+
+  // Réduction du nombre si demandée
+  return reduce ? reduceToSingleDigit(number) : number;
+}
