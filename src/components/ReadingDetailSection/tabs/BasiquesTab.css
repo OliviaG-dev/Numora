@@ -187,8 +187,21 @@
 
 /* Headers avec espacement pour Chemin de Vie et Expression */
 .life-path .section-header,
-.expression .section-header {
+.expression .section-header,
+.realisation .section-header {
   justify-content: space-between;
+}
+
+.personal-numbers .section-header {
+  justify-content: center;
+}
+
+.section-header h2 {
+  color: var(--primary-purple);
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
 }
 
 /* Header pour la section des nombres personnels */
@@ -326,6 +339,11 @@
 
 .birthday-badge {
   background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+.realisation-badge {
+  background: linear-gradient(135deg, #9333ea 0%, #6b21a8 100%);
+  box-shadow: 0 4px 15px rgba(147, 51, 234, 0.3);
 }
 
 /* ===== STYLES POUR LE CONTENU DES SECTIONS ===== */

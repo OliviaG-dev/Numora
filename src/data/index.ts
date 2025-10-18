@@ -10,6 +10,7 @@ import challengeData from "./numerology/Basique/ChallengeData.json";
 import soulUrgeData from "./numerology/Basique/SoulUrgeData.json";
 import personalityData from "./numerology/Basique/PersonalityData.json";
 import birthdayData from "./numerology/Basique/BirthdayData.json";
+import realisationNumberData from "./numerology/Basique/RealisationNumber.json";
 import lifeCycleData from "./numerology/Dates/LifeCycleData.json";
 import realizationPeriodData from "./numerology/Dates/RealizationPeriodData.json";
 import personelCycleData from "./numerology/Dates/PersonelCycleData.json";
@@ -33,6 +34,9 @@ import sephirothNumberData from "./arbreDeVie/sephirothNumberData.json";
 import pathsData from "./arbreDeVie/pathsData.json";
 import pathsNumberData from "./arbreDeVie/pathsNumberData.json";
 
+// Import des fonctions utilitaires pour les calculs
+import { reduceToSingleDigit } from "../utils/numerology/utils";
+
 // ===== EXPORTS PRINCIPAUX =====
 export {
   lifePathData,
@@ -41,6 +45,7 @@ export {
   soulUrgeData,
   personalityData,
   birthdayData,
+  realisationNumberData,
   lifeCycleData,
   realizationPeriodData,
   personelCycleData,
@@ -71,6 +76,7 @@ export { expressionData as expressionNumberData };
 export { soulUrgeData as soulUrgeNumberData };
 export { personalityData as personalityNumberData };
 export { birthdayData as birthdayNumberData };
+export { realisationNumberData as realisationNumberDetail };
 
 // ===== TYPES TYPESCRIPT =====
 
@@ -155,6 +161,14 @@ export interface PersonalityData {
 export interface BirthdayData {
   [key: string]: string[];
 }
+
+export interface RealisationNumberData {
+  realisation_numbers: {
+    [key: string]: RealisationNumberDetail;
+  };
+}
+
+export type RealisationNumberDetail = BaseNumerologyDetail;
 
 export interface LifeCycleData {
   [key: string]: LifeCycleDetail;
@@ -457,6 +471,7 @@ export type ExpressionBusinessNumberData = ExpressionBusinessData;
 export type ExpressionBusinessNumberDetail = ExpressionBusinessDetail;
 export type HereditaryBusinessNumberData = HereditaryBusinessData;
 export type HereditaryBusinessNumberDetail = HereditaryBusinessDetail;
+export type RealisationNumberDetailData = RealisationNumberData;
 
 // ===== UTILITAIRES =====
 
@@ -495,4 +510,35 @@ export const getNumerologyData = <T>(
   number: string
 ): T | null => {
   return isValidNumerologyNumber(number) ? data[number] || null : null;
+};
+
+/**
+ * Récupère les données de réalisation pour un nombre donné
+ * @param number - Le nombre de réalisation calculé (peut être n'importe quel nombre)
+ * @returns RealisationNumberDetail | null - Les détails de réalisation ou null si non trouvé
+ *
+ * @example
+ * const myRealisation = 29; // par ex. ton calcul numérologique
+ * const data = getRealisationNumberData(myRealisation);
+ * console.log(data?.title); // ➜ "Le Réalisateur Inspiré" (car 29 → 2+9 = 11, maître nombre)
+ */
+export const getRealisationNumberData = (
+  number: number
+): RealisationNumberDetail | null => {
+  // Validation basique
+  if (number < 0 || !Number.isInteger(number)) {
+    return null;
+  }
+
+  // Réduire le nombre à un chiffre ou nombre maître
+  const reducedNumber = reduceToSingleDigit(number);
+  const numberKey = reducedNumber.toString();
+
+  // Récupérer les données depuis la structure JSON
+  const realisationData =
+    realisationNumberData.realisation_numbers[
+      numberKey as keyof typeof realisationNumberData.realisation_numbers
+    ];
+
+  return realisationData || null;
 };

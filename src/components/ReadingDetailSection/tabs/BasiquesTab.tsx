@@ -249,6 +249,87 @@ const BasiquesTab: React.FC<TabProps> = ({ numerologyResults }) => {
         )}
       </section>
 
+      {/* Nombre de Réalisation */}
+      <section className="numerology-section realisation">
+        <div className="realisation section-header">
+          <div className="title-with-tooltip">
+            <h3>Nombre de Réalisation</h3>
+            <div className="tooltip">
+              <span className="tooltip-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <path
+                    d="M12 16V12"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                  <circle cx="12" cy="8" r="1" fill="currentColor" />
+                </svg>
+              </span>
+              <div className="tooltip-content">
+                <p>
+                  Le nombre de réalisation représente le but de ta vie concrète : ce que tu es appelé à construire, manifester et accomplir dans le monde matériel.
+                </p>
+                <p>
+                C’est comme le résumé du film de ta vie.
+                </p>
+                <p>
+                il montre comment ton potentiel intérieur (ton essence, ton cœur, ton mental) se concrétise dans la réalité.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="number-badge realisation-badge">
+            {numerologyResults.realisation.number}
+          </div>
+        </div>
+        {numerologyResults.realisation.info && (
+          <div className="section-content">
+            <h3>{numerologyResults.realisation.info.title}</h3>
+            <p className="description">
+              {numerologyResults.realisation.info.description}
+            </p>
+            <div className="keywords">
+              {numerologyResults.realisation.info.keywords.map(
+                (keyword: string, index: number) => (
+                  <span key={index} className="keyword-tag">
+                    {keyword}
+                  </span>
+                )
+              )}
+            </div>
+            <div className="details-grid">
+              <div className="detail-item">
+                <h4>Forces</h4>
+                <p>{numerologyResults.realisation.info.strengths}</p>
+              </div>
+              <div className="detail-item">
+                <h4>Défis</h4>
+                <p>{numerologyResults.realisation.info.challenges}</p>
+              </div>
+              <div className="detail-item">
+                <h4>Mission</h4>
+                <p>{numerologyResults.realisation.info.mission}</p>
+              </div>
+            </div>
+          </div>
+        )}
+      </section>
+
       {/* Nombres de l'Âme, Personnalité et Jour */}
       <section className="numerology-section personal-numbers">
         <div className="personal-numbers-grid">
