@@ -47,6 +47,7 @@
 
 - [x] **Chemin de Vie** - Calcul automatique à partir de la date de naissance
 - [x] **Nombre d'Expression** - Calcul à partir du nom complet
+- [x] **Nombre de Réalisation** - Calcul basé sur Chemin de Vie + Expression
 - [x] **Nombre de l'Âme** - Calcul des voyelles du nom
 - [x] **Nombre de Personnalité** - Calcul des consonnes du nom
 - [x] **Jour de Naissance** - Calcul du jour de naissance
@@ -263,6 +264,7 @@ numora/
 │   │   │   ├── Basique/        # Calculs de base
 │   │   │   │   ├── LifePathData.json
 │   │   │   │   ├── ExpressionNumberData.json
+│   │   │   │   ├── RealisationNumber.json
 │   │   │   │   ├── ChallengeData.json
 │   │   │   │   ├── SoulUrgeData.json
 │   │   │   │   ├── PersonalityData.json
@@ -347,7 +349,7 @@ Le projet suit une **architecture modulaire avancée** organisée en couches :
 #### 📁 **Couche Logique Métier**
 
 - **📁 `utils/numerology/`** - Module numérologie modulaire complet
-  - `core.ts` - Calculs de base (Chemin de Vie, Expression, etc.)
+  - `core.ts` - Calculs de base (Chemin de Vie, Expression, Réalisation, etc.)
   - `challenges.ts` - Défis et cycles de vie
   - `personal.ts` - Nombres personnels et vibrations
   - `karmic.ts` - Calculs karmiques et dettes
@@ -384,7 +386,7 @@ Le projet suit une **architecture modulaire avancée** organisée en couches :
 
 **Calculs numérologiques modulaires** : Architecture modulaire avec séparation des responsabilités :
 
-- **Calculs de base** : Chemin de Vie, Expression, Âme, Personnalité
+- **Calculs de base** : Chemin de Vie, Expression, Réalisation, Âme, Personnalité
 - **Calculs temporels** : Cycles, défis, périodes de réalisation
 - **Calculs personnels** : Année/mois/jour personnels, vibrations
 - **Calculs karmiques** : Nombres karmiques, cycles karmiques, dettes
@@ -468,6 +470,7 @@ Le projet suit une **architecture modulaire avancée** organisée en couches :
 - [x] **Navigation responsive** - Icônes uniquement sur mobile, texte sur desktop
 - [x] **Blur discret** - Effets de transparence subtils et élégants
 - [x] **Ombres raffinées** - Effets de profondeur ajustés pour plus de légèreté
+- [x] **Nombre de Réalisation** - Nouveau calcul basé sur Chemin de Vie + Expression
 
 ### Version 0.5.0 🚧 **EN COURS**
 

@@ -282,13 +282,14 @@ const BasiquesTab: React.FC<TabProps> = ({ numerologyResults }) => {
               </span>
               <div className="tooltip-content">
                 <p>
-                  Le nombre de réalisation représente le but de ta vie concrète : ce que tu es appelé à construire, manifester et accomplir dans le monde matériel.
+                  Le nombre de réalisation représente le but de ta vie concrète
+                  : ce que tu es appelé à construire, manifester et accomplir
+                  dans le monde matériel.
                 </p>
+                <p>C’est comme le résumé du film de ta vie.</p>
                 <p>
-                C’est comme le résumé du film de ta vie.
-                </p>
-                <p>
-                il montre comment ton potentiel intérieur (ton essence, ton cœur, ton mental) se concrétise dans la réalité.
+                  il montre comment ton potentiel intérieur (ton essence, ton
+                  cœur, ton mental) se concrétise dans la réalité.
                 </p>
               </div>
             </div>
