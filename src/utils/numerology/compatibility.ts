@@ -1,8 +1,10 @@
 import { reduceToSingleDigit, validateDateString } from "./utils";
-import { lifePathLoveData } from "../../data";
+import { lifePathLoveData, unionNumberData } from "../../data";
 import type {
   LifePathLoveData as LifePathLoveDataType,
   LifePathLoveDetail,
+  UnionNumberData as UnionNumberDataType,
+  UnionNumberDetail,
 } from "../../data";
 
 export type RelationshipType = "love" | "friendship" | "work";
@@ -27,12 +29,18 @@ export interface CompatibilityBreakdown {
   personalityCompatibility: CompatibilityDetail;
 }
 
+export interface UnionNumberResult {
+  unionNumber: number;
+  detail: UnionNumberDetail | null;
+}
+
 export interface CompatibilityResult {
   overallScore: number;
   compatibility: CompatibilityBreakdown;
   strengths: string[];
   challenges: string[];
   recommendations: string[];
+  unionNumber?: UnionNumberResult; // Optionnel pour maintenir la compatibilité
 }
 
 export function calculateLifePathNumber(birthDate: string): number {
@@ -74,6 +82,19 @@ function getLoveDetailForLifePaths(
   return (
     (lifePathLoveData as unknown as LifePathLoveDataType)[reverseKey] || null
   );
+}
+
+export function calculateUnionNumber(
+  lifePath1: number,
+  lifePath2: number
+): number {
+  const sum = lifePath1 + lifePath2;
+  return reduceToSingleDigit(sum, true);
+}
+
+function getUnionNumberDetail(unionNumber: number): UnionNumberDetail | null {
+  const key = unionNumber.toString();
+  return (unionNumberData as unknown as UnionNumberDataType)[key] || null;
 }
 
 function computeHeuristicScore(detail: LifePathLoveDetail | null): number {
@@ -137,6 +158,10 @@ function calculateLoveCompatibility(
   const lifePath1 = calculateLifePathNumber(person1.birthDate);
   const lifePath2 = calculateLifePathNumber(person2.birthDate);
 
+  // Calculer le nombre d'union
+  const unionNumber = calculateUnionNumber(lifePath1, lifePath2);
+  const unionDetail = getUnionNumberDetail(unionNumber);
+
   const detail = getLoveDetailForLifePaths(lifePath1, lifePath2);
 
   if (!detail) {
@@ -164,6 +189,10 @@ function calculateLoveCompatibility(
       strengths: [],
       challenges: [],
       recommendations: [],
+      unionNumber: {
+        unionNumber,
+        detail: unionDetail,
+      },
     };
   }
 
@@ -198,5 +227,9 @@ function calculateLoveCompatibility(
     strengths,
     challenges,
     recommendations,
+    unionNumber: {
+      unionNumber,
+      detail: unionDetail,
+    },
   };
 }

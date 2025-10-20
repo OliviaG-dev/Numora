@@ -34,6 +34,7 @@ import sephirothNumberData from "./arbreDeVie/sephirothNumberData.json";
 import pathsData from "./arbreDeVie/pathsData.json";
 import pathsNumberData from "./arbreDeVie/pathsNumberData.json";
 import lifePathLoveData from "./numerology/Compatibility/Love/LifePathLoveData.json";
+import unionNumberData from "./numerology/Compatibility/Love/UnionNumberData.json";
 
 // Import des fonctions utilitaires pour les calculs
 import { reduceToSingleDigit } from "../utils/numerology/utils";
@@ -70,6 +71,7 @@ export {
   pathsData,
   pathsNumberData,
   lifePathLoveData,
+  unionNumberData,
 };
 
 // ===== ALIAS POUR COMPATIBILITÉ =====
@@ -477,6 +479,22 @@ export interface LifePathLoveDetail {
 
 export interface LifePathLoveData {
   [compatibilityKey: string]: LifePathLoveDetail;
+}
+
+/**
+ * Interface pour les données de nombre d'union
+ */
+export interface UnionNumberDetail {
+  title: string;
+  keywords: string[];
+  description: string;
+  strengths: string;
+  challenges: string;
+  advice: string;
+}
+
+export interface UnionNumberData {
+  [unionNumber: string]: UnionNumberDetail;
 }
 
 // ===== ALIAS POUR COMPATIBILITÉ =====

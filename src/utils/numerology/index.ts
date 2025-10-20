@@ -63,6 +63,7 @@ export {
 // ===== EXPORTS DES CALCULS DE COMPATIBILITÉ =====
 export {
   calculateCompatibility,
+  calculateUnionNumber,
   type RelationshipType,
   type PersonInfo,
   type CompatibilityDetail,

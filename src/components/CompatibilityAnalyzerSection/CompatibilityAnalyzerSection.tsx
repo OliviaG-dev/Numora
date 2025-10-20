@@ -43,7 +43,7 @@ const CompatibilityAnalyzerSection: React.FC<
     birthDate: "",
   });
   const [relationshipType, setRelationshipType] =
-    useState<RelationshipType>("friendship");
+    useState<RelationshipType>("love");
   const [analysisResult, setAnalysisResult] =
     useState<CompatibilityResult | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -211,75 +211,79 @@ const CompatibilityAnalyzerSection: React.FC<
           <div className="form-group">
             <label>Type de relation :</label>
             <div className="relationship-buttons">
-              {Object.entries(compatibilityData.relationshipTypes).map(
-                ([key, type]) => {
-                  const typeData = type as RelationshipTypeData;
-                  return (
-                    <button
-                      key={key}
-                      className={`relationship-button ${
-                        relationshipType === key ? "active" : ""
-                      }`}
-                      onClick={() =>
-                        handleRelationshipChange(key as RelationshipType)
-                      }
+              {["friendship", "love", "work"].map((key) => {
+                const typeData = compatibilityData.relationshipTypes[
+                  key as keyof typeof compatibilityData.relationshipTypes
+                ] as RelationshipTypeData;
+                return (
+                  <button
+                    key={key}
+                    className={`relationship-button relationship-button-${key} ${
+                      relationshipType === key ? "active" : ""
+                    }`}
+                    onClick={() =>
+                      handleRelationshipChange(key as RelationshipType)
+                    }
+                  >
+                    <span
+                      className={`relationship-icon relationship-icon-${key}`}
                     >
-                      <span className="relationship-icon">
-                        {typeData.icon === "heart" ? (
-                          <svg
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
-                            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z" />
-                          </svg>
-                        ) : typeData.icon === "friendship" ? (
-                          <svg
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
-                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                            <circle cx="9" cy="7" r="4" />
-                            <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                          </svg>
-                        ) : (
-                          <svg
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
-                            <path d="M3 7V5a2 2 0 0 1 2-2h2" />
-                            <path d="M17 3h2a2 2 0 0 1 2 2v2" />
-                            <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
-                            <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
-                            <rect width="7" height="5" x="9" y="12" rx="1" />
-                          </svg>
-                        )}
-                      </span>
-                      <span className="relationship-label">
-                        {typeData.label}
-                      </span>
-                    </button>
-                  );
-                }
-              )}
+                      {typeData.icon === "heart" ? (
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z" />
+                        </svg>
+                      ) : typeData.icon === "friendship" ? (
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                          <circle cx="9" cy="7" r="4" />
+                          <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                        </svg>
+                      ) : (
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+                          <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+                          <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+                          <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+                          <rect width="7" height="5" x="9" y="12" rx="1" />
+                        </svg>
+                      )}
+                    </span>
+                    <span
+                      className={`relationship-label relationship-label-${key}`}
+                    >
+                      {typeData.label}
+                    </span>
+                  </button>
+                );
+              })}
             </div>
           </div>
 
@@ -558,7 +562,48 @@ const CompatibilityAnalyzerSection: React.FC<
                 </div>
                 <div className="love-compatibility-detail">
                   <div className="compatibility-description-section">
-                    <h4>Compatibilité des Chemins de Vie</h4>
+                    <div className="title-with-tooltip">
+                      <h4>Compatibilité des Chemins de Vie</h4>
+                      <div className="tooltip">
+                        <span className="tooltip-icon">
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <circle
+                              cx="12"
+                              cy="12"
+                              r="10"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              fill="none"
+                            />
+                            <path
+                              d="M12 16V12"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                            />
+                            <circle cx="12" cy="8" r="1" fill="currentColor" />
+                          </svg>
+                        </span>
+                        <div className="tooltip-content">
+                          <p>
+                            La compatibilité des chemins de vie révèle comment
+                            vos destins numérologiques s'harmonisent.
+                          </p>
+                          <p>
+                            Chaque chemin de vie reflète votre mission et vos
+                            défis personnels. Cette analyse révèle les forces et
+                            défis de votre relation basés sur les vibrations
+                            numérologiques de vos dates de naissance.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                     <div className="compatibility-description">
                       <p>
                         {
@@ -568,7 +613,290 @@ const CompatibilityAnalyzerSection: React.FC<
                       </p>
                     </div>
                   </div>
+
+                  {/* Forces et Défis - sur la même ligne */}
+                  <div className="forces-challenges-container">
+                    {/* Forces */}
+                    {analysisResult.strengths.length > 0 && (
+                      <div className="love-analysis-section strengths-section-love">
+                        <h3>
+                          <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            style={{
+                              marginRight: "8px",
+                              verticalAlign: "middle",
+                            }}
+                          >
+                            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z" />
+                          </svg>
+                          Forces de cette relation amoureuse
+                        </h3>
+                        <div className="love-analysis-content">
+                          {analysisResult.strengths.map((strength, index) => (
+                            <div
+                              key={index}
+                              className="analysis-item strengths-item"
+                            >
+                              <p>{strength}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Défis */}
+                    {analysisResult.challenges.length > 0 && (
+                      <div className="love-analysis-section challenges-section-love">
+                        <h3>
+                          <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            style={{
+                              marginRight: "8px",
+                              verticalAlign: "middle",
+                            }}
+                          >
+                            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+                            <path d="M12 9v4" />
+                            <path d="M12 17h.01" />
+                          </svg>
+                          Points d'attention dans votre couple
+                        </h3>
+                        <div className="love-analysis-content">
+                          {analysisResult.challenges.map((challenge, index) => (
+                            <div
+                              key={index}
+                              className="analysis-item challenges-item"
+                            >
+                              <p>{challenge}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Recommandations */}
+                  {analysisResult.recommendations.length > 0 && (
+                    <div className="love-analysis-section recommendations-section-love">
+                      <h3>
+                        <svg
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          style={{
+                            marginRight: "8px",
+                            verticalAlign: "middle",
+                          }}
+                        >
+                          <path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1z" />
+                          <path d="M12 2C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7z" />
+                        </svg>
+                        Conseils pour votre relation
+                      </h3>
+                      <div className="love-analysis-content">
+                        {analysisResult.recommendations.map(
+                          (recommendation, index) => (
+                            <div
+                              key={index}
+                              className="analysis-item recommendation-item"
+                            >
+                              <p>{recommendation}</p>
+                            </div>
+                          )
+                        )}
+                      </div>
+                    </div>
+                  )}
                 </div>
+
+                {/* Section Nombre d'Union */}
+                {analysisResult.unionNumber &&
+                  analysisResult.unionNumber.detail && (
+                    <div className="love-compatibility-detail">
+                      <div className="compatibility-description-section">
+                        <div className="union-number-header">
+                          <div className="title-with-tooltip">
+                            <h4>Nombre d'Union</h4>
+                            <div className="tooltip">
+                              <span className="tooltip-icon">
+                                <svg
+                                  width="16"
+                                  height="16"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <circle
+                                    cx="12"
+                                    cy="12"
+                                    r="10"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    fill="none"
+                                  />
+                                  <path
+                                    d="M12 16V12"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                  />
+                                  <circle
+                                    cx="12"
+                                    cy="8"
+                                    r="1"
+                                    fill="currentColor"
+                                  />
+                                </svg>
+                              </span>
+                              <div className="tooltip-content">
+                                <p>
+                                  Le nombre d'union est le résultat de
+                                  l'addition de vos deux chemins de vie, réduit
+                                  à un chiffre de 1 à 9, 11, 22 ou 33.
+                                </p>
+                                <p>
+                                  Ce nombre révèle l'essence énergétique de
+                                  votre couple et les vibrations particulières
+                                  qui unissent votre relation. Il indique le
+                                  type d'énergie que vous créez ensemble.
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="union-number-badge-container">
+                            <div className="number-badge union-number-badge">
+                              {analysisResult.unionNumber.unionNumber}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="compatibility-description">
+                          <h5 className="union-title">
+                            {analysisResult.unionNumber.detail.title}
+                          </h5>
+                          <p>{analysisResult.unionNumber.detail.description}</p>
+                        </div>
+                      </div>
+
+                      {/* Forces et Défis de l'union - sur la même ligne */}
+                      <div className="forces-challenges-container">
+                        {/* Forces de l'union */}
+                        {analysisResult.unionNumber.detail.strengths && (
+                          <div className="love-analysis-section strengths-section-love">
+                            <h3>
+                              <svg
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                style={{
+                                  marginRight: "8px",
+                                  verticalAlign: "middle",
+                                }}
+                              >
+                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z" />
+                              </svg>
+                              Forces de cette relation amoureuse
+                            </h3>
+                            <div className="love-analysis-content">
+                              <div className="analysis-item strengths-item">
+                                <p>
+                                  {analysisResult.unionNumber.detail.strengths}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Défis de l'union */}
+                        {analysisResult.unionNumber.detail.challenges && (
+                          <div className="love-analysis-section challenges-section-love">
+                            <h3>
+                              <svg
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                style={{
+                                  marginRight: "8px",
+                                  verticalAlign: "middle",
+                                }}
+                              >
+                                <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+                                <path d="M12 9v4" />
+                                <path d="M12 17h.01" />
+                              </svg>
+                              Points d'attention dans votre couple
+                            </h3>
+                            <div className="love-analysis-content">
+                              <div className="analysis-item challenges-item">
+                                <p>
+                                  {analysisResult.unionNumber.detail.challenges}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Conseil pour l'union */}
+                      {analysisResult.unionNumber.detail.advice && (
+                        <div className="love-analysis-section recommendations-section-love">
+                          <h3>
+                            <svg
+                              width="20"
+                              height="20"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              style={{
+                                marginRight: "8px",
+                                verticalAlign: "middle",
+                              }}
+                            >
+                              <path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1z" />
+                              <path d="M12 2C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7z" />
+                            </svg>
+                            Conseils pour votre relation
+                          </h3>
+                          <div className="love-analysis-content">
+                            <div className="analysis-item recommendation-item">
+                              <p>{analysisResult.unionNumber.detail.advice}</p>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
               </div>
             ) : (
               <div className="compatibility-details">
@@ -604,112 +932,6 @@ const CompatibilityAnalyzerSection: React.FC<
                   </div>
                 </div>
               </div>
-            )}
-
-            {/* Forces, défis et recommandations pour l'amour */}
-            {relationshipType === "love" && (
-              <>
-                {/* Forces */}
-                {analysisResult.strengths.length > 0 && (
-                  <div className="love-analysis-section strengths-section-love">
-                    <h3>
-                      <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        style={{ marginRight: "8px", verticalAlign: "middle" }}
-                      >
-                        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z" />
-                      </svg>
-                      Forces de cette relation amoureuse
-                    </h3>
-                    <div className="love-analysis-content">
-                      {analysisResult.strengths.map((strength, index) => (
-                        <div
-                          key={index}
-                          className="analysis-item strengths-item"
-                        >
-                          <p>{strength}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* Défis */}
-                {analysisResult.challenges.length > 0 && (
-                  <div className="love-analysis-section challenges-section-love">
-                    <h3>
-                      <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        style={{ marginRight: "8px", verticalAlign: "middle" }}
-                      >
-                        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
-                        <path d="M12 9v4" />
-                        <path d="M12 17h.01" />
-                      </svg>
-                      Points d'attention dans votre couple
-                    </h3>
-                    <div className="love-analysis-content">
-                      {analysisResult.challenges.map((challenge, index) => (
-                        <div
-                          key={index}
-                          className="analysis-item challenges-item"
-                        >
-                          <p>{challenge}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* Recommandations */}
-                {analysisResult.recommendations.length > 0 && (
-                  <div className="love-analysis-section recommendations-section-love">
-                    <h3>
-                      <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        style={{ marginRight: "8px", verticalAlign: "middle" }}
-                      >
-                        <path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1z" />
-                        <path d="M12 2C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7z" />
-                      </svg>
-                      Conseils pour votre relation
-                    </h3>
-                    <div className="love-analysis-content">
-                      {analysisResult.recommendations.map(
-                        (recommendation, index) => (
-                          <div
-                            key={index}
-                            className="analysis-item recommendation-item"
-                          >
-                            <p>{recommendation}</p>
-                          </div>
-                        )
-                      )}
-                    </div>
-                  </div>
-                )}
-              </>
             )}
 
             {/* Forces et défis pour les autres types */}
