@@ -414,6 +414,299 @@ const LoveTab: React.FC<CompatibilityTabProps> = ({
           )}
         </div>
       )}
+
+      {/* Section Nombres d'Expression */}
+      {analysisResult.expressionNumbers &&
+        analysisResult.expressionNumbers.detail && (
+          <div className="love-compatibility-detail expression-section">
+            <div className="compatibility-description-section">
+              <div className="expression-number-header">
+                <div className="title-with-tooltip">
+                  <h4>Compatibilité des Nombres d'Expression</h4>
+                  <div className="tooltip">
+                    <span className="tooltip-icon">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <circle
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          fill="none"
+                        />
+                        <path
+                          d="M12 16V12"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                        />
+                        <circle cx="12" cy="8" r="1" fill="currentColor" />
+                      </svg>
+                    </span>
+                    <div className="tooltip-content">
+                      <p>
+                        Les nombres d'expression révèlent comment vous
+                        communiquez et vous exprimez au quotidien.
+                      </p>
+                      <p>
+                        Calculés à partir de vos noms complets, ils montrent
+                        votre style de communication et comment vous
+                        interagissez dans votre relation.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="expression-badges-container">
+                  <div className="expression-badge-wrapper">
+                    <div className="number-badge expression-badge">
+                      {analysisResult.expressionNumbers.expression1}
+                    </div>
+                    <span className="badge-label">
+                      {formatName(person1.firstGivenName)}
+                    </span>
+                  </div>
+                  <div className="expression-separator">
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z" />
+                    </svg>
+                  </div>
+                  <div className="expression-badge-wrapper">
+                    <div className="number-badge expression-badge">
+                      {analysisResult.expressionNumbers.expression2}
+                    </div>
+                    <span className="badge-label">
+                      {formatName(person2.firstGivenName)}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="expression-theme">
+                <h5 className="expression-title">
+                  {analysisResult.expressionNumbers.detail.relation_theme}
+                </h5>
+                <div className="vibration-tag">
+                  {analysisResult.expressionNumbers.detail.vibration}
+                </div>
+                <div className="connection-type-tag">
+                  {analysisResult.expressionNumbers.detail.connection_type}
+                </div>
+              </div>
+
+              <div className="compatibility-description">
+                <p>
+                  {
+                    analysisResult.expressionNumbers.detail.dynamic
+                      .how_they_connect
+                  }
+                </p>
+              </div>
+            </div>
+
+            {/* Dynamique de la relation */}
+            <div className="expression-dynamics">
+              <div className="dynamic-card">
+                <div className="dynamic-icon">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                  </svg>
+                </div>
+                <h4>Langage émotionnel</h4>
+                <p>
+                  {
+                    analysisResult.expressionNumbers.detail.dynamic
+                      .emotional_language
+                  }
+                </p>
+              </div>
+
+              <div className="dynamic-card">
+                <div className="dynamic-icon">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                    <path d="M2 17l10 5 10-5" />
+                    <path d="M2 12l10 5 10-5" />
+                  </svg>
+                </div>
+                <h4>Chimie relationnelle</h4>
+                <p>
+                  {analysisResult.expressionNumbers.detail.dynamic.chemistry}
+                </p>
+              </div>
+
+              <div className="dynamic-card">
+                <div className="dynamic-icon">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                  </svg>
+                </div>
+                <h4>Potentiel de croissance</h4>
+                <p>
+                  {
+                    analysisResult.expressionNumbers.detail.dynamic
+                      .growth_potential
+                  }
+                </p>
+              </div>
+            </div>
+
+            {/* Forces et Défis de l'expression */}
+            <div className="forces-challenges-container">
+              {analysisResult.expressionNumbers.detail.strengths &&
+                analysisResult.expressionNumbers.detail.strengths.length >
+                  0 && (
+                  <div className="love-analysis-section strengths-section-love">
+                    <h3>
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        style={{
+                          marginRight: "8px",
+                          verticalAlign: "middle",
+                        }}
+                      >
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                      </svg>
+                      Forces de votre expression commune
+                    </h3>
+                    <div className="love-analysis-content">
+                      {analysisResult.expressionNumbers.detail.strengths.map(
+                        (strength, index) => (
+                          <div
+                            key={index}
+                            className="analysis-item strengths-item"
+                          >
+                            <p>{strength}</p>
+                          </div>
+                        )
+                      )}
+                    </div>
+                  </div>
+                )}
+
+              {analysisResult.expressionNumbers.detail.challenges &&
+                analysisResult.expressionNumbers.detail.challenges.length >
+                  0 && (
+                  <div className="love-analysis-section challenges-section-love">
+                    <h3>
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        style={{
+                          marginRight: "8px",
+                          verticalAlign: "middle",
+                        }}
+                      >
+                        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+                        <path d="M12 9v4" />
+                        <path d="M12 17h.01" />
+                      </svg>
+                      Défis de communication
+                    </h3>
+                    <div className="love-analysis-content">
+                      {analysisResult.expressionNumbers.detail.challenges.map(
+                        (challenge, index) => (
+                          <div
+                            key={index}
+                            className="analysis-item challenges-item"
+                          >
+                            <p>{challenge}</p>
+                          </div>
+                        )
+                      )}
+                    </div>
+                  </div>
+                )}
+            </div>
+
+            {/* Conseil pour l'expression */}
+            {analysisResult.expressionNumbers.detail.tips_for_balance && (
+              <div className="love-analysis-section recommendations-section-love">
+                <h3>
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    style={{
+                      marginRight: "8px",
+                      verticalAlign: "middle",
+                    }}
+                  >
+                    <path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1z" />
+                    <path d="M12 2C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7z" />
+                  </svg>
+                  Conseils pour équilibrer votre communication
+                </h3>
+                <div className="love-analysis-content">
+                  <div className="analysis-item recommendation-item">
+                    <p>
+                      {analysisResult.expressionNumbers.detail.tips_for_balance}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
     </div>
   );
 };

@@ -35,6 +35,7 @@ import pathsData from "./arbreDeVie/pathsData.json";
 import pathsNumberData from "./arbreDeVie/pathsNumberData.json";
 import lifePathLoveData from "./numerology/Compatibility/Love/LifePathLoveData.json";
 import unionNumberData from "./numerology/Compatibility/Love/UnionNumberData.json";
+import expressionNumberLoveData from "./numerology/Compatibility/Love/ExpressionNumberLoveData.json";
 
 // Import des fonctions utilitaires pour les calculs
 import { reduceToSingleDigit } from "../utils/numerology/utils";
@@ -72,6 +73,7 @@ export {
   pathsNumberData,
   lifePathLoveData,
   unionNumberData,
+  expressionNumberLoveData,
 };
 
 // ===== ALIAS POUR COMPATIBILITÉ =====
@@ -495,6 +497,33 @@ export interface UnionNumberDetail {
 
 export interface UnionNumberData {
   [unionNumber: string]: UnionNumberDetail;
+}
+
+/**
+ * Interface pour les dynamiques de compatibilité d'expression
+ */
+export interface ExpressionCompatibilityDynamic {
+  how_they_connect: string;
+  emotional_language: string;
+  chemistry: string;
+  growth_potential: string;
+}
+
+/**
+ * Interface pour les données de compatibilité amoureuse basée sur les nombres d'expression
+ */
+export interface ExpressionNumberLoveDetail {
+  relation_theme: string;
+  vibration: string;
+  connection_type: string;
+  dynamic: ExpressionCompatibilityDynamic;
+  strengths: string[];
+  challenges: string[];
+  tips_for_balance: string;
+}
+
+export interface ExpressionNumberLoveData {
+  [compatibilityKey: string]: ExpressionNumberLoveDetail;
 }
 
 // ===== ALIAS POUR COMPATIBILITÉ =====

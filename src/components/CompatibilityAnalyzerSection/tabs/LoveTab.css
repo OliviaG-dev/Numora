@@ -327,6 +327,160 @@
   border-left-color: var(--secondary-gold);
 }
 
+/* Section Nombres d'Expression */
+.expression-section {
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.03) 0%,
+    rgba(99, 102, 241, 0.02) 100%
+  );
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.expression-number-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.expression-badges-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.expression-badge-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.expression-badge {
+  background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+}
+
+.badge-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary-purple);
+  text-transform: capitalize;
+}
+
+.expression-separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.1),
+    rgba(99, 102, 241, 0.1)
+  );
+  border: 2px solid rgba(139, 92, 246, 0.3);
+}
+
+.expression-separator svg {
+  width: 20px;
+  height: 20px;
+  color: var(--primary-purple);
+}
+
+.expression-theme {
+  text-align: center;
+  margin: 2rem 0 1.5rem 0;
+}
+
+.expression-title {
+  color: var(--primary-purple);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  letter-spacing: 0.3px;
+}
+
+.vibration-tag,
+.connection-type-tag {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  margin: 0.25rem;
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--primary-purple);
+}
+
+.vibration-tag {
+  background: linear-gradient(
+    135deg,
+    rgba(212, 175, 55, 0.1),
+    rgba(248, 229, 160, 0.1)
+  );
+  border-color: rgba(212, 175, 55, 0.3);
+  color: var(--secondary-gold);
+}
+
+.expression-dynamics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.dynamic-card {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 1.25rem;
+  border: 1px solid var(--bg-tertiary);
+  transition: all 0.3s ease;
+}
+
+.dynamic-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.15);
+  border-color: rgba(139, 92, 246, 0.4);
+}
+
+.dynamic-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.1),
+    rgba(99, 102, 241, 0.1)
+  );
+  margin-bottom: 0.75rem;
+}
+
+.dynamic-icon svg {
+  color: var(--primary-purple);
+}
+
+.dynamic-card h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem 0;
+  color: var(--primary-purple);
+}
+
+.dynamic-card p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
 /* Responsive styles */
 @media (max-width: 768px) {
   .love-analysis-header {
@@ -365,5 +519,22 @@
     font-size: 1rem;
     line-height: 1.6;
   }
-}
 
+  .expression-dynamics {
+    grid-template-columns: 1fr;
+  }
+
+  .expression-badges-container {
+    gap: 1rem;
+  }
+
+  .expression-title {
+    font-size: 1.2rem;
+  }
+
+  .vibration-tag,
+  .connection-type-tag {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
