@@ -1236,3 +1236,8 @@
     gap: 0.8rem;
   }
 }
+
+/* Contenu des résultats */
+.tab-content {
+  margin-top: 2rem;
+}
