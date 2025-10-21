@@ -1,0 +1,369 @@
+/* ===== LOVE TAB STYLES ===== */
+
+.love-compatibility-tab {
+  width: 100%;
+}
+
+/* En-tête élégant pour l'analyse d'amour */
+.love-analysis-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+  padding: 2.5rem 2rem;
+  background: var(--bg-secondary);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  border: 1px solid var(--bg-tertiary);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.person-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  transition: transform 0.3s ease;
+}
+
+.person-info:hover {
+  transform: translateY(-2px);
+}
+
+.person-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-purple);
+  text-transform: capitalize;
+}
+
+/* Styles pour les badges numériques */
+.number-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.life-path-badge {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.union-number-badge {
+  background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
+}
+
+.vs-separator {
+  flex: 2;
+  text-align: center;
+  padding: 0 2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.vs-separator svg {
+  color: var(--secondary-gold);
+  transition: transform 0.3s ease;
+}
+
+.vs-separator:hover svg {
+  transform: scale(1.1);
+}
+
+.vs-separator h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  color: var(--secondary-gold);
+  font-weight: 600;
+}
+
+/* Styles pour l'analyse d'amour */
+.love-compatibility-detail {
+  background: var(--bg-primary);
+  border-radius: 16px;
+  padding: 2rem;
+  border: 1px solid var(--bg-tertiary);
+  margin-bottom: 1.5rem;
+}
+
+.compatibility-description-section h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  color: var(--primary-purple);
+}
+
+.compatibility-description {
+  position: relative;
+  margin: 1.5rem 0;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(
+    135deg,
+    rgba(212, 175, 55, 0.03) 0%,
+    rgba(248, 229, 160, 0.02) 50%,
+    rgba(212, 175, 55, 0.03) 100%
+  );
+  border-radius: 16px;
+  border-left: 3px solid var(--secondary-gold);
+  backdrop-filter: blur(10px);
+}
+
+.compatibility-description::before {
+  content: "\201C";
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  font-size: 3rem;
+  font-family: "Georgia", serif;
+  color: var(--secondary-gold);
+  opacity: 0.3;
+  line-height: 1;
+}
+
+.compatibility-description::after {
+  content: "\201D";
+  position: absolute;
+  bottom: 0.5rem;
+  right: 1rem;
+  font-size: 3rem;
+  font-family: "Georgia", serif;
+  color: var(--secondary-gold);
+  opacity: 0.3;
+  line-height: 1;
+}
+
+.compatibility-description p {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin: 0;
+  font-weight: 300;
+  font-style: italic;
+  position: relative;
+  z-index: 1;
+  text-align: justify;
+  letter-spacing: 0.3px;
+}
+
+/* Styles pour la section Nombre d'Union */
+.union-number-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.union-number-badge-container {
+  display: flex;
+  align-items: center;
+}
+
+.union-number-badge-container h4 {
+  margin: 0;
+  color: var(--primary-purple);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.union-title {
+  color: transparent;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0 1.5rem 0;
+  text-align: center;
+  background: linear-gradient(
+    135deg,
+    #d4af37 0%,
+    #f8e5a0 25%,
+    #d4af37 50%,
+    #f4d03f 75%,
+    #d4af37 100%
+  );
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-family: "Cinzel", "Georgia", serif;
+  animation: union-gradient 3s ease-in-out infinite;
+}
+
+.union-title::before {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #d4af37 20%,
+    #f8e5a0 50%,
+    #d4af37 80%,
+    transparent 100%
+  );
+  border-radius: 1px;
+}
+
+.union-title::after {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 1px;
+  background: #d4af37;
+  opacity: 0.6;
+  border-radius: 1px;
+}
+
+@keyframes union-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.union-description {
+  color: var(--text-primary);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0 0 1rem 0;
+}
+
+/* Container pour Forces et Défis sur la même ligne */
+.forces-challenges-container {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.forces-challenges-container .love-analysis-section {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.love-analysis-section {
+  background: var(--bg-primary);
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid var(--bg-tertiary);
+  margin-bottom: 1.5rem;
+}
+
+.love-analysis-section h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  color: var(--primary-purple);
+  display: flex;
+  align-items: center;
+}
+
+.love-analysis-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.analysis-item {
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  padding: 1rem;
+  border-left: 4px solid var(--primary-purple);
+}
+
+.analysis-item p {
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Styles spécifiques pour les couleurs logiques */
+.strengths-section-love h3 {
+  color: #10b981 !important; /* Vert pour les forces */
+}
+
+.strengths-section-love .analysis-item {
+  border-left-color: #10b981 !important;
+}
+
+.challenges-section-love h3 {
+  color: #ef4444 !important; /* Rouge pour les points d'attention */
+}
+
+.challenges-section-love .analysis-item {
+  border-left-color: #ef4444 !important;
+}
+
+.recommendations-section-love h3 {
+  color: var(--secondary-gold) !important; /* Or pour les conseils */
+}
+
+.recommendation-item {
+  border-left-color: var(--secondary-gold);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .love-analysis-header {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+    padding: 2rem 1.5rem;
+  }
+
+  .person-info {
+    gap: 0.75rem;
+  }
+
+  .person-info.left,
+  .person-info.right {
+    text-align: center;
+  }
+
+  .vs-separator {
+    padding: 0;
+    order: -1; /* Met le titre en premier sur mobile */
+    gap: 0.5rem;
+  }
+
+  .forces-challenges-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .compatibility-description {
+    padding: 1rem 1.5rem;
+    margin: 1rem 0;
+  }
+
+  .compatibility-description p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+

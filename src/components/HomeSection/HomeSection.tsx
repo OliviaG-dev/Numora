@@ -11,11 +11,7 @@ const HomeSection: React.FC<HomeSectionProps> = ({ onNavigate }) => {
     <section className="home">
       <div className="home-content">
         <h1 className="home-title">
-          <img
-            src="/logo.png"
-            alt="Numora Logo"
-            className="home-logo"
-          />
+          <img src="/logo.png" alt="Numora Logo" className="home-logo" />
           Numora
         </h1>
         <p className="home-subtitle">Chaque nombre raconte ton histoire.</p>
@@ -76,6 +72,22 @@ const HomeSection: React.FC<HomeSectionProps> = ({ onNavigate }) => {
               onClick={() => onNavigate("dateAnalyzer")}
             >
               Analyser une date
+            </button>
+          </div>
+
+          <div className="analyzer-card compatibility-card">
+            <h3>Compatibilité</h3>
+            <p>
+              Découvrez votre compatibilité numérologique avec une autre
+              personne, que ce soit en amitié, en amour ou en collaboration
+              professionnelle. Explorez les harmonies et défis de votre
+              relation.
+            </p>
+            <button
+              className="analyzer-button"
+              onClick={() => onNavigate("compatibilityAnalyzer")}
+            >
+              Analyser compatibilité
             </button>
           </div>
         </div>

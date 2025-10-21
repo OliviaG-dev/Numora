@@ -11,7 +11,8 @@ export type PageType =
   | "readingDetail"
   | "dateAnalyzer"
   | "nameAnalyzer"
-  | "dailyVibration";
+  | "dailyVibration"
+  | "compatibilityAnalyzer";
 
 export interface ReadingData {
   readingName: string;

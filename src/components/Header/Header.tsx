@@ -65,6 +65,10 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
     onNavigate("dailyVibration");
   };
 
+  const handleCompatibilityAnalyzer = () => {
+    onNavigate("compatibilityAnalyzer");
+  };
+
   return (
     <header className="header">
       <div className="header-container">
@@ -127,6 +131,16 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                     }}
                   >
                     Analyse de Nom
+                  </a>
+                  <a
+                    href="#"
+                    className="dropdown-link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleCompatibilityAnalyzer();
+                    }}
+                  >
+                    Compatibilité
                   </a>
                 </div>
               </div>
@@ -357,6 +371,18 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                     }}
                   >
                     Analyse de Nom
+                  </a>
+                  <a
+                    href="#"
+                    className="mobile-submenu-link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleCompatibilityAnalyzer();
+                      toggleMenu();
+                      setIsAnalysisMenuOpen(false);
+                    }}
+                  >
+                    Compatibilité
                   </a>
                 </div>
               </div>

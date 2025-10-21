@@ -10,6 +10,7 @@ import ReadingDetail from "./pages/ReadingDetail/ReadingDetail";
 import DateAnalyzer from "./pages/DateAnalyzer/DateAnalyzer";
 import NameAnalyzer from "./pages/NameAnalyzer/NameAnalyzer";
 import DailyVibration from "./pages/DailyVibration/DailyVibration";
+import CompatibilityAnalyzer from "./pages/CompatibilityAnalyzer/CompatibilityAnalyzer";
 import type { PageType, ReadingData } from "./types/navigation";
 
 function App() {
@@ -50,6 +51,9 @@ function App() {
       )}
       {currentPage === "dailyVibration" && (
         <DailyVibration onNavigate={navigateToPage} />
+      )}
+      {currentPage === "compatibilityAnalyzer" && (
+        <CompatibilityAnalyzer onNavigate={navigateToPage} />
       )}
     </>
   );

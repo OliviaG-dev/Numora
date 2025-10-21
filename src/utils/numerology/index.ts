@@ -60,6 +60,17 @@ export {
   analyzeBusinessName,
 } from "./business";
 
+// ===== EXPORTS DES CALCULS DE COMPATIBILITÉ =====
+export {
+  calculateCompatibility,
+  calculateUnionNumber,
+  type RelationshipType,
+  type PersonInfo,
+  type CompatibilityDetail,
+  type CompatibilityBreakdown,
+  type CompatibilityResult,
+} from "./compatibility";
+
 // ===== ALIAS POUR COMPATIBILITÉ =====
 // Ces alias maintiennent la compatibilité avec l'ancienne API
 import { calculateLifePathNumber } from "./core";
