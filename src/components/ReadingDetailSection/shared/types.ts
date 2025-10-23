@@ -15,6 +15,7 @@ export interface NumerologyResults {
   lifePath: { number: number; info: any };
   expression: { number: number; info: any };
   realisation: { number: number; info: any };
+  heartNumber: { number: number; info: any };
   soulUrge: { number: number; info: string[] | undefined };
   personality: { number: number; info: string[] | undefined };
   birthday: { number: number; info: string[] | undefined };

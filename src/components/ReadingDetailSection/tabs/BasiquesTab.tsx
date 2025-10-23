@@ -286,7 +286,7 @@ const BasiquesTab: React.FC<TabProps> = ({ numerologyResults }) => {
                   : ce que tu es appelé à construire, manifester et accomplir
                   dans le monde matériel.
                 </p>
-                <p>C’est comme le résumé du film de ta vie.</p>
+                <p>C'est comme le résumé du film de ta vie.</p>
                 <p>
                   il montre comment ton potentiel intérieur (ton essence, ton
                   cœur, ton mental) se concrétise dans la réalité.
@@ -325,6 +325,89 @@ const BasiquesTab: React.FC<TabProps> = ({ numerologyResults }) => {
               <div className="detail-item">
                 <h4>Mission</h4>
                 <p>{numerologyResults.realisation.info.mission}</p>
+              </div>
+            </div>
+          </div>
+        )}
+      </section>
+
+      {/* Nombre du Cœur */}
+      <section className="numerology-section heart-number">
+        <div className="section-header">
+          <div className="title-with-tooltip">
+            <h3>Nombre du Cœur</h3>
+            <div className="tooltip">
+              <span className="tooltip-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <path
+                    d="M12 16V12"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                  <circle cx="12" cy="8" r="1" fill="currentColor" />
+                </svg>
+              </span>
+              <div className="tooltip-content">
+                <p>
+                  Le nombre du cœur révèle tes besoins émotionnels profonds et
+                  ton langage de l'amour.
+                </p>
+                <p>
+                  Il indique comment tu ressens, aimes et exprimes tes émotions
+                  dans les relations.
+                </p>
+                <p>
+                  C'est la voix de ton cœur qui guide tes désirs affectifs et
+                  tes besoins relationnels.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="number-badge heart-number-badge">
+            {numerologyResults.heartNumber.number}
+          </div>
+        </div>
+        {numerologyResults.heartNumber.info && (
+          <div className="section-content">
+            <h3>Essence émotionnelle</h3>
+            <p className="description">
+              {numerologyResults.heartNumber.info.essence}
+            </p>
+            <div className="details-grid">
+              <div className="detail-item">
+                <h4>Besoins Émotionnels</h4>
+                <ul style={{ margin: 0, paddingLeft: "1.2rem" }}>
+                  {numerologyResults.heartNumber.info.emotional_needs.map(
+                    (need: string, index: number) => (
+                      <li key={index} style={{ marginBottom: "0.5rem" }}>
+                        {need}
+                      </li>
+                    )
+                  )}
+                </ul>
+              </div>
+              <div className="detail-item">
+                <h4>Langage de l'Amour</h4>
+                <p>{numerologyResults.heartNumber.info.love_language}</p>
+              </div>
+              <div className="detail-item">
+                <h4>Défi Émotionnel</h4>
+                <p>{numerologyResults.heartNumber.info.emotional_challenge}</p>
               </div>
             </div>
           </div>

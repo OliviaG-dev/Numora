@@ -5,6 +5,7 @@ import {
   calculateLifePathNumber,
   calculateExpressionNumber,
   calculateRealisationNumber,
+  calculateHeartNumber,
   calculateSoulUrgeNumber,
   calculatePersonalityNumber,
   calculateBirthdayNumber,
@@ -26,6 +27,7 @@ import {
   lifePathData,
   expressionData,
   getRealisationNumberData,
+  heartNumberPersonalData,
   soulUrgeData,
   personalityData,
   birthdayData,
@@ -37,6 +39,7 @@ import type {
   LifePathDetail,
   ExpressionDetail,
   RealisationNumberDetail,
+  HeartNumberPersonalDetail,
   LifeCycleDetail,
   RealizationPeriodDetail,
   PersonelCycleDetail,
@@ -61,6 +64,10 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
     lifePath: { number: number; info: LifePathDetail | undefined };
     expression: { number: number; info: ExpressionDetail | undefined };
     realisation: { number: number; info: RealisationNumberDetail | undefined };
+    heartNumber: {
+      number: number;
+      info: HeartNumberPersonalDetail | undefined;
+    };
     soulUrge: { number: number; info: string[] | undefined };
     personality: { number: number; info: string[] | undefined };
     birthday: { number: number; info: string[] | undefined };
@@ -169,6 +176,10 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
       const realisationNumber = calculateRealisationNumber(
         lifePathNumber + expressionNumber
       );
+
+      // Calcul du nombre du cœur (Heart Number)
+      const heartNumber = calculateHeartNumber(fullName);
+
       const birthdayNumber = calculateBirthdayNumber(day);
       const challengeNumbers = calculateChallengeNumbers(day, month, year);
       const lifeCyclesNumbers = calculateLifeCycles(day, month, year);
@@ -198,6 +209,10 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
           expressionNumber.toString() as keyof typeof expressionData
         ];
       const realisationInfo = getRealisationNumberData(realisationNumber);
+      const heartNumberInfo =
+        heartNumberPersonalData[
+          heartNumber.toString() as keyof typeof heartNumberPersonalData
+        ];
       const soulUrgeInfo =
         soulUrgeData[soulUrgeNumber.toString() as keyof typeof soulUrgeData];
       const personalityInfo =
@@ -265,6 +280,10 @@ const ReadingDetailSection: React.FC<ReadingDetailSectionProps> = ({
         realisation: {
           number: realisationNumber,
           info: realisationInfo || undefined,
+        },
+        heartNumber: {
+          number: heartNumber,
+          info: heartNumberInfo,
         },
         soulUrge: {
           number: soulUrgeNumber,
