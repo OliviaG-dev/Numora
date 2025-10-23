@@ -1,10 +1,17 @@
 import { reduceToSingleDigit, validateDateString } from "./utils";
-import { lifePathLoveData, unionNumberData } from "../../data";
+import { calculateExpressionNumber } from "./core";
+import {
+  lifePathLoveData,
+  unionNumberData,
+  expressionNumberLoveData,
+} from "../../data";
 import type {
   LifePathLoveData as LifePathLoveDataType,
   LifePathLoveDetail,
   UnionNumberData as UnionNumberDataType,
   UnionNumberDetail,
+  ExpressionNumberLoveData as ExpressionNumberLoveDataType,
+  ExpressionNumberLoveDetail,
 } from "../../data";
 
 export type RelationshipType = "love" | "friendship" | "work";
@@ -34,6 +41,12 @@ export interface UnionNumberResult {
   detail: UnionNumberDetail | null;
 }
 
+export interface ExpressionNumberResult {
+  expression1: number;
+  expression2: number;
+  detail: ExpressionNumberLoveDetail | null;
+}
+
 export interface CompatibilityResult {
   overallScore: number;
   compatibility: CompatibilityBreakdown;
@@ -41,6 +54,7 @@ export interface CompatibilityResult {
   challenges: string[];
   recommendations: string[];
   unionNumber?: UnionNumberResult; // Optionnel pour maintenir la compatibilité
+  expressionNumbers?: ExpressionNumberResult; // Nouvelle analyse des nombres d'expression
 }
 
 export function calculateLifePathNumber(birthDate: string): number {
@@ -84,6 +98,24 @@ function getLoveDetailForLifePaths(
   );
 }
 
+function getExpressionLoveDetail(
+  n1: number,
+  n2: number
+): ExpressionNumberLoveDetail | null {
+  const key = buildPairKey(n1, n2);
+  const data = (
+    expressionNumberLoveData as unknown as ExpressionNumberLoveDataType
+  )[key];
+  if (data) return data;
+  // Par sécurité, essaye l'ordre inverse
+  const reverseKey = `${n2}-${n1}`;
+  return (
+    (expressionNumberLoveData as unknown as ExpressionNumberLoveDataType)[
+      reverseKey
+    ] || null
+  );
+}
+
 export function calculateUnionNumber(
   lifePath1: number,
   lifePath2: number
@@ -112,6 +144,46 @@ function computeHeuristicScore(detail: LifePathLoveDetail | null): number {
   if (score < 30) score = 30;
   if (score > 90) score = 90;
   return score;
+}
+
+function computeExpressionScore(
+  detail: ExpressionNumberLoveDetail | null
+): number {
+  if (!detail) return 50;
+  // Heuristique pour les nombres d'expression
+  let score = 70;
+  const text = `${detail.strengths.join(" ")} ${detail.challenges.join(" ")} ${
+    detail.dynamic.chemistry
+  }`.toLowerCase();
+
+  // Mots négatifs
+  if (
+    /(conflit|tension|jalousie|domination|instabilité|rigidité|compétition)/.test(
+      text
+    )
+  )
+    score -= 10;
+
+  // Mots positifs
+  if (
+    /(complémentarité|harmonie|équilibre|soutien|passion|créativité)/.test(text)
+  )
+    score += 5;
+
+  if (score < 30) score = 30;
+  if (score > 90) score = 90;
+  return score;
+}
+
+function buildFullName(person: PersonInfo): string {
+  const names = [
+    person.firstGivenName,
+    person.secondGivenName,
+    person.thirdGivenName,
+    person.familyName,
+  ].filter((name) => name && name.trim() !== "");
+
+  return names.join(" ");
 }
 
 export function calculateCompatibility(
@@ -155,6 +227,7 @@ function calculateLoveCompatibility(
   person1: PersonInfo,
   person2: PersonInfo
 ): CompatibilityResult {
+  // Calcul des Chemins de Vie
   const lifePath1 = calculateLifePathNumber(person1.birthDate);
   const lifePath2 = calculateLifePathNumber(person2.birthDate);
 
@@ -162,11 +235,28 @@ function calculateLoveCompatibility(
   const unionNumber = calculateUnionNumber(lifePath1, lifePath2);
   const unionDetail = getUnionNumberDetail(unionNumber);
 
-  const detail = getLoveDetailForLifePaths(lifePath1, lifePath2);
+  // Récupérer les détails de compatibilité Life Path
+  const lifePathDetail = getLoveDetailForLifePaths(lifePath1, lifePath2);
 
-  if (!detail) {
+  // Calcul des Nombres d'Expression
+  const fullName1 = buildFullName(person1);
+  const fullName2 = buildFullName(person2);
+  const expression1 = calculateExpressionNumber(fullName1);
+  const expression2 = calculateExpressionNumber(fullName2);
+
+  // Récupérer les détails de compatibilité Expression
+  const expressionDetail = getExpressionLoveDetail(expression1, expression2);
+
+  // Calculer les scores
+  const lifePathScore = computeHeuristicScore(lifePathDetail);
+  const expressionScore = computeExpressionScore(expressionDetail);
+
+  // Score global pondéré : 60% Life Path + 40% Expression
+  const overallScore = Math.round(lifePathScore * 0.6 + expressionScore * 0.4);
+
+  if (!lifePathDetail) {
     return {
-      overallScore: 50,
+      overallScore: expressionScore || 50,
       compatibility: {
         lifePathCompatibility: {
           score: 50,
@@ -174,8 +264,10 @@ function calculateLoveCompatibility(
             "Données indisponibles pour cette combinaison de chemins de vie.",
         },
         expressionCompatibility: {
-          score: 0,
-          description: "À venir.",
+          score: expressionScore,
+          description:
+            expressionDetail?.dynamic.how_they_connect ||
+            "Données indisponibles.",
         },
         soulUrgeCompatibility: {
           score: 0,
@@ -186,42 +278,50 @@ function calculateLoveCompatibility(
           description: "À venir.",
         },
       },
-      strengths: [],
-      challenges: [],
-      recommendations: [],
+      strengths: expressionDetail?.strengths || [],
+      challenges: expressionDetail?.challenges || [],
+      recommendations: expressionDetail?.tips_for_balance
+        ? [expressionDetail.tips_for_balance]
+        : [],
       unionNumber: {
         unionNumber,
         detail: unionDetail,
       },
+      expressionNumbers: {
+        expression1,
+        expression2,
+        detail: expressionDetail,
+      },
     };
   }
 
-  // Calculer le score basé sur la structure des données
-  const score = computeHeuristicScore(detail);
-
   // Structurer les données selon le format attendu
-  const strengths = detail.strengths ? [detail.strengths] : [];
-  const challenges = detail.challenges ? [detail.challenges] : [];
-  const recommendations = detail.advice ? [detail.advice] : [];
+  const strengths = lifePathDetail.strengths ? [lifePathDetail.strengths] : [];
+  const challenges = lifePathDetail.challenges
+    ? [lifePathDetail.challenges]
+    : [];
+  const recommendations = lifePathDetail.advice ? [lifePathDetail.advice] : [];
 
   return {
-    overallScore: score,
+    overallScore,
     compatibility: {
       lifePathCompatibility: {
-        score: score,
-        description: detail.description,
+        score: lifePathScore,
+        description: lifePathDetail.description,
       },
       expressionCompatibility: {
-        score: 0,
-        description: "Analyse Expression : À venir",
+        score: expressionScore,
+        description:
+          expressionDetail?.dynamic.how_they_connect ||
+          "Données indisponibles pour cette combinaison.",
       },
       soulUrgeCompatibility: {
         score: 0,
-        description: "Analyse Âme : À venir",
+        description: "À venir.",
       },
       personalityCompatibility: {
         score: 0,
-        description: "Analyse Personnalité : À venir",
+        description: "À venir.",
       },
     },
     strengths,
@@ -230,6 +330,11 @@ function calculateLoveCompatibility(
     unionNumber: {
       unionNumber,
       detail: unionDetail,
+    },
+    expressionNumbers: {
+      expression1,
+      expression2,
+      detail: expressionDetail,
     },
   };
 }

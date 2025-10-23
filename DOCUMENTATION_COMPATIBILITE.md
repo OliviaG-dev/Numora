@@ -233,7 +233,7 @@ Pour chaque combinaison de chemins de vie (1-1, 1-2, 1-3, etc.), nous avons des 
 
 Pour chaque nombre d'union possible (1 à 9, 11, 22, 33), nous avons :
 
-- **Titre** : Nom symbolique de l'union
+- **Titre** : Nom symbolique de l'union (affiché avec un style doré animé)
 - **Mots-clés** : 3 caractéristiques principales
 - **Description** : Explication de l'énergie du couple
 - **Forces** : Points forts de cette union
@@ -252,6 +252,22 @@ Pour chaque nombre d'union possible (1 à 9, 11, 22, 33), nous avons :
   "advice": "Aimez avec équilibre : donnez sans vous oublier."
 }
 ```
+
+#### 3. Compatibilité des Nombres d'Expression ✨
+
+**Nouvelle fonctionnalité !** Pour chaque combinaison de nombres d'expression, nous avons :
+
+- **Thème de relation** : Titre symbolique (affiché avec un style doré animé)
+- **Vibration** : Type d'énergie de la relation
+- **Type de connexion** : Nature du lien
+- **Dynamique** : Comment ils se connectent
+  - `how_they_connect` : Description de la connexion
+  - `emotional_language` : Langage émotionnel partagé
+  - `chemistry` : Chimie relationnelle
+  - `growth_potential` : Potentiel de croissance
+- **Forces** : Points forts de communication
+- **Défis** : Défis de communication
+- **Conseils** : Tips pour équilibrer la communication
 
 ### Relations Amitié et Travail 🚧
 
@@ -545,6 +561,176 @@ Une relation de complémentarité où le 2 apporte la douceur et le 8 la force. 
 
 ---
 
+## 🎨 Design et Interface Utilisateur
+
+### LoveTab - Onglet Amour
+
+L'onglet d'analyse amoureuse a été conçu avec une attention particulière aux détails visuels et à l'expérience utilisateur.
+
+#### En-têtes harmonisés
+
+Tous les en-têtes de sections utilisent le même design élégant :
+
+- **Style** : Fond semi-transparent avec effet de flou (`backdrop-filter: blur(20px)`)
+- **Bordures** : Arrondies (24px) avec ombre portée subtile
+- **Layout** : Disposition symétrique avec informations des deux personnes de chaque côté
+- **Séparateur central** : Icône de cœur avec titre de la section
+- **Effet hover** : Animation de lift (`translateY(-2px)`) sur les infos des personnes
+
+**Sections avec en-tête harmonisé :**
+
+1. Compatibilité des Chemins de Vie (en haut de page)
+2. Compatibilité des Nombres d'Expression
+
+#### Badges numériques
+
+Les badges affichent les nombres numérologiques avec des styles spécifiques :
+
+- **Chemins de Vie** : Gradient violet (`#667eea` → `#764ba2`)
+- **Nombres d'Union** : Gradient rouge/rose (`#e11d48` → `#be123c`)
+- **Nombres d'Expression** : Gradient violet/indigo (`#8b5cf6` → `#6366f1`)
+
+Tous les badges ont :
+
+- Taille : 60px × 60px
+- Forme : Cercle parfait
+- Ombre portée pour effet de profondeur
+- Text-shadow pour meilleure lisibilité
+
+#### Titres dorés animés (`.golden-title`)
+
+Les titres des sections Nombre d'Union et Nombres d'Expression partagent un style doré magnifique :
+
+```css
+.golden-title {
+  /* Gradient doré animé */
+  background: linear-gradient(
+    135deg,
+    #d4af37 0%,
+    #f8e5a0 25%,
+    #d4af37 50%,
+    #f4d03f 75%,
+    #d4af37 100%
+  );
+  background-size: 300% auto;
+  animation: union-gradient 3s ease-in-out infinite;
+
+  /* Lignes décoratives */
+  &::before,
+  &::after {
+    /* Lignes dorées sous le titre */
+  }
+
+  /* Typographie élégante */
+  font-family: "Cinzel", "Georgia", serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+```
+
+#### Sections de contenu
+
+Toutes les sections utilisent la classe `.love-compatibility-detail` :
+
+```css
+.love-compatibility-detail {
+  background: var(--bg-primary);
+  border-radius: 16px;
+  padding: 2rem;
+  border: 1px solid var(--bg-tertiary);
+  margin-bottom: 5rem; /* Espacement généreux entre sections */
+}
+```
+
+#### Descriptions avec style de citation
+
+Les descriptions importantes utilisent `.compatibility-description` :
+
+- **Fond** : Gradient doré subtil avec effet de transparence
+- **Bordure gauche** : 3px doré pour accentuation
+- **Guillemets décoratifs** : Pseudo-éléments `::before` et `::after` avec guillemets typographiques
+- **Typographie** : Police italique, taille augmentée (1.1rem)
+- **Alignement** : Justifié pour un aspect professionnel
+
+#### Forces, Défis et Conseils
+
+Système de couleurs logique pour les analyses :
+
+| Type         | Couleur                      | Icône       | Utilisation                 |
+| ------------ | ---------------------------- | ----------- | --------------------------- |
+| **Forces**   | Vert (`#10b981`)             | ❤️ Cœur     | Points forts de la relation |
+| **Défis**    | Rouge (`#ef4444`)            | ⚠️ Triangle | Points d'attention          |
+| **Conseils** | Or (`var(--secondary-gold)`) | 💡 Ampoule  | Recommandations             |
+
+Chaque item est présenté dans une carte avec :
+
+- Fond secondaire
+- Bordure gauche colorée (4px)
+- Padding généreux (1rem)
+- Border-radius (8px)
+
+#### Cartes dynamiques (Expression)
+
+Les trois cartes dynamiques (Langage émotionnel, Chimie relationnelle, Potentiel de croissance) sont centrées :
+
+```css
+.dynamic-card {
+  /* Layout centré */
+  text-align: center;
+
+  /* Icône centrée */
+  .dynamic-icon {
+    margin: 0 auto 0.75rem auto;
+    /* Cercle avec gradient violet */
+  }
+
+  /* Effet hover élégant */
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.15);
+  }
+}
+```
+
+#### Tags de vibration et connexion
+
+Les tags affichent les caractéristiques de la relation :
+
+```css
+.expression-tags {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+.vibration-tag {
+  /* Fond doré */
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), ...);
+  border-color: rgba(212, 175, 55, 0.3);
+  color: var(--secondary-gold);
+}
+
+.connection-type-tag {
+  /* Fond violet */
+  background: rgba(139, 92, 246, 0.1);
+  border-color: rgba(139, 92, 246, 0.3);
+  color: var(--primary-purple);
+}
+```
+
+#### Responsive Design
+
+Sur mobile (< 768px) :
+
+- **En-têtes** : Passent en disposition verticale
+- **Séparateur** : Déplacé en première position (`order: -1`)
+- **Cartes** : Grid passe à 1 colonne
+- **Forces/Défis** : Container flex devient vertical
+- **Padding** : Réduit pour optimiser l'espace
+
+---
+
 ## 🏗️ Architecture technique
 
 ### Fichiers principaux
@@ -554,11 +740,12 @@ src/
 ├── components/
 │   └── CompatibilityAnalyzerSection/
 │       ├── CompatibilityAnalyzerSection.tsx    # Composant principal
-│       ├── CompatibilityAnalyzerSection.css    # Styles
+│       ├── CompatibilityAnalyzerSection.css    # Styles globaux
 │       ├── tabs/
-│       │   ├── LoveTab.tsx                     # Onglet Amour
-│       │   ├── FriendshipTab.tsx               # Onglet Amitié
-│       │   └── WorkTab.tsx                     # Onglet Travail
+│       │   ├── LoveTab.tsx                     # Onglet Amour ✅
+│       │   ├── LoveTab.css                     # Styles spécifiques Amour
+│       │   ├── FriendshipTab.tsx               # Onglet Amitié 🚧
+│       │   └── WorkTab.tsx                     # Onglet Travail 🚧
 │       └── shared/
 │           └── types.ts                         # Types partagés
 │
@@ -573,8 +760,9 @@ src/
             ├── compatibilityData.json           # Métadonnées
             ├── relationshipTypes.json           # Types de relations
             └── Love/
-                ├── LifePathLoveData.json        # Compatibilité des chemins de vie
-                └── UnionNumberData.json         # Données des nombres d'union
+                ├── LifePathLoveData.json        # Compatibilité chemins de vie
+                ├── UnionNumberData.json         # Données nombres d'union
+                └── ExpressionNumberData.json    # Compatibilité expressions ✨
 ```
 
 ### Flux de traitement
@@ -762,6 +950,30 @@ Pour toute question sur cette fonctionnalité ou pour signaler un bug, veuillez 
 
 ---
 
-**Version de la documentation :** 1.0  
+**Version de la documentation :** 2.0  
 **Dernière mise à jour :** Octobre 2025  
 **Auteur :** Équipe Numora
+
+### Changements de la version 2.0
+
+✨ **Nouvelles fonctionnalités :**
+
+- Ajout de l'analyse des Nombres d'Expression
+- En-têtes de sections harmonisés avec design élégant
+- Classe CSS commune `.golden-title` pour les titres dorés animés
+- Cartes dynamiques centrées pour l'analyse d'expression
+- Tags de vibration et type de connexion
+
+🎨 **Améliorations UI :**
+
+- Espacement généreux entre sections (5rem)
+- Badges numériques avec gradients spécifiques
+- Effet hover sur les cartes et en-têtes
+- Design responsive optimisé
+- Guillemets décoratifs dans les descriptions
+
+🔧 **Optimisations techniques :**
+
+- Réutilisation des classes CSS pour cohérence
+- Structure harmonisée entre toutes les sections
+- Meilleure organisation du code CSS

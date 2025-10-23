@@ -11,7 +11,7 @@ interface HomeProps {
 
 const Home: React.FC<HomeProps> = ({ onNavigate }) => {
   return (
-    <div className="home">
+    <div className="home-page">
       <NumerologyBackground />
       <Header onNavigate={onNavigate} />
       <HomeSection onNavigate={onNavigate} />
