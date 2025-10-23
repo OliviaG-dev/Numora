@@ -714,6 +714,261 @@ const LoveTab: React.FC<CompatibilityTabProps> = ({
             </div>
           </>
         )}
+
+      {/* Section Nombres du Cœur */}
+      {analysisResult.heartNumbers && analysisResult.heartNumbers.detail && (
+        <>
+          {/* En-tête avec badges du cœur */}
+          <div className="love-analysis-header">
+            <div className="person-info">
+              <div className="person-name">
+                {formatName(person1.firstGivenName)}
+              </div>
+              <div className="number-badge heart-number-love-badge">
+                {analysisResult.heartNumbers.heart1}
+              </div>
+            </div>
+            <div className="vs-separator">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                style={{ opacity: 0.8 }}
+              >
+                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z" />
+              </svg>
+              <h3>Compatibilité des Cœurs</h3>
+            </div>
+            <div className="person-info">
+              <div className="person-name">
+                {formatName(person2.firstGivenName)}
+              </div>
+              <div className="number-badge heart-number-love-badge">
+                {analysisResult.heartNumbers.heart2}
+              </div>
+            </div>
+          </div>
+
+          <div className="love-compatibility-detail">
+            <div className="compatibility-description-section">
+              <div className="title-with-tooltip">
+                <h4>Compatibilité des Nombres du Cœur</h4>
+                <div className="tooltip">
+                  <span className="tooltip-icon">
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        fill="none"
+                      />
+                      <path
+                        d="M12 16V12"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                      <circle cx="12" cy="8" r="1" fill="currentColor" />
+                    </svg>
+                  </span>
+                  <div className="tooltip-content">
+                    <p>
+                      Les nombres du cœur révèlent vos besoins émotionnels
+                      profonds et votre langage de l'amour.
+                    </p>
+                    <p>
+                      Calculés à partir des voyelles de vos noms, ils montrent
+                      comment vous aimez, ce dont vous avez besoin
+                      émotionnellement, et votre style affectif naturel.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="compatibility-description">
+                <h5 className="golden-title">
+                  {analysisResult.heartNumbers.detail.emotional_theme}
+                </h5>
+                <p>{analysisResult.heartNumbers.detail.connection_style}</p>
+              </div>
+
+              {/* Besoins émotionnels des deux partenaires */}
+              <div className="expression-dynamics">
+                <div className="dynamic-card">
+                  <div className="dynamic-icon">
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z" />
+                    </svg>
+                  </div>
+                  <h4>{formatName(person1.firstGivenName)} a besoin de</h4>
+                  <p>
+                    {
+                      analysisResult.heartNumbers.detail.emotional_needs
+                        .partner_1
+                    }
+                  </p>
+                </div>
+
+                <div className="dynamic-card">
+                  <div className="dynamic-icon">
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z" />
+                    </svg>
+                  </div>
+                  <h4>{formatName(person2.firstGivenName)} a besoin de</h4>
+                  <p>
+                    {
+                      analysisResult.heartNumbers.detail.emotional_needs
+                        .partner_2
+                    }
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Forces et Défis émotionnels */}
+            <div className="forces-challenges-container">
+              {analysisResult.heartNumbers.detail.strengths &&
+                analysisResult.heartNumbers.detail.strengths.length > 0 && (
+                  <div className="love-analysis-section strengths-section-love">
+                    <h3>
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        style={{
+                          marginRight: "8px",
+                          verticalAlign: "middle",
+                        }}
+                      >
+                        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z" />
+                      </svg>
+                      Forces de votre connexion émotionnelle
+                    </h3>
+                    <div className="love-analysis-content">
+                      {analysisResult.heartNumbers.detail.strengths.map(
+                        (strength, index) => (
+                          <div
+                            key={index}
+                            className="analysis-item strengths-item"
+                          >
+                            <p>{strength}</p>
+                          </div>
+                        )
+                      )}
+                    </div>
+                  </div>
+                )}
+
+              {analysisResult.heartNumbers.detail.challenges &&
+                analysisResult.heartNumbers.detail.challenges.length > 0 && (
+                  <div className="love-analysis-section challenges-section-love">
+                    <h3>
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        style={{
+                          marginRight: "8px",
+                          verticalAlign: "middle",
+                        }}
+                      >
+                        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+                        <path d="M12 9v4" />
+                        <path d="M12 17h.01" />
+                      </svg>
+                      Défis émotionnels
+                    </h3>
+                    <div className="love-analysis-content">
+                      {analysisResult.heartNumbers.detail.challenges.map(
+                        (challenge, index) => (
+                          <div
+                            key={index}
+                            className="analysis-item challenges-item"
+                          >
+                            <p>{challenge}</p>
+                          </div>
+                        )
+                      )}
+                    </div>
+                  </div>
+                )}
+            </div>
+
+            {/* Conseil pour la croissance émotionnelle */}
+            {analysisResult.heartNumbers.detail.growth_advice && (
+              <div className="love-analysis-section recommendations-section-love">
+                <h3>
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    style={{
+                      marginRight: "8px",
+                      verticalAlign: "middle",
+                    }}
+                  >
+                    <path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1z" />
+                    <path d="M12 2C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7z" />
+                  </svg>
+                  Conseils pour votre évolution émotionnelle
+                </h3>
+                <div className="love-analysis-content">
+                  <div className="analysis-item recommendation-item">
+                    <p>{analysisResult.heartNumbers.detail.growth_advice}</p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 };

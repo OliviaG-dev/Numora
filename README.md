@@ -48,6 +48,7 @@
 - [x] **Chemin de Vie** - Calcul automatique à partir de la date de naissance
 - [x] **Nombre d'Expression** - Calcul à partir du nom complet
 - [x] **Nombre de Réalisation** - Calcul basé sur Chemin de Vie + Expression
+- [x] **Nombre du Cœur** - Révèle les besoins émotionnels et le langage de l'amour
 - [x] **Nombre de l'Âme** - Calcul des voyelles du nom
 - [x] **Nombre de Personnalité** - Calcul des consonnes du nom
 - [x] **Jour de Naissance** - Calcul du jour de naissance
@@ -117,11 +118,22 @@
 - [x] **Gestion des Doublons** - Explication de la signature numérologique unique
 - [x] **Icône personnalisée** - Représentation des 10 Sephiroth dans le menu de navigation
 
+### 💕 **Analyse de Compatibilité** ✅
+
+- [x] **Compatibilité Amoureuse** - Analyse complète basée sur la numérologie
+- [x] **Chemins de Vie** - Compatibilité des missions de vie
+- [x] **Nombre d'Union** - Énergie vibratoire du couple
+- [x] **Nombres d'Expression** - Compatibilité de communication
+- [x] **Nombres du Cœur** - Compatibilité émotionnelle et besoins affectifs
+- [x] **Forces & Défis** - Points forts et défis de la relation
+- [x] **Conseils personnalisés** - Recommandations pour harmoniser la relation
+- [x] **Interface élégante** - Design avec badges colorés et cartes dynamiques
+
 ### 🔮 **Fonctionnalités à venir** 🚧
 
 - [ ] **Sauvegarde Supabase** - Stockage persistant des lectures créées
 - [ ] **Rapports PDF** - Génération de profils numérologiques complets
-- [ ] **Compatibilité** - Tests d'harmonie entre personnes
+- [ ] **Compatibilité Amitié/Travail** - Extension des analyses de compatibilité
 - [ ] **Partage** - Export et partage des résultats
 - [ ] **Historique** - Suivi des lectures précédentes
 - [ ] **Notifications** - Rappels et insights personnalisés
@@ -471,22 +483,32 @@ Le projet suit une **architecture modulaire avancée** organisée en couches :
 - [x] **Blur discret** - Effets de transparence subtils et élégants
 - [x] **Ombres raffinées** - Effets de profondeur ajustés pour plus de légèreté
 - [x] **Nombre de Réalisation** - Nouveau calcul basé sur Chemin de Vie + Expression
+- [x] **Nombre du Cœur** - Besoins émotionnels et langage de l'amour (personnel & compatibilité)
 
-### Version 0.5.0 🚧 **EN COURS**
+### Version 0.5.0 ✅ **TERMINÉE**
+
+- [x] **Compatibilité Amoureuse** - Analyse complète de compatibilité entre deux personnes
+- [x] **Nombre d'Union** - Calcul et interprétation de l'union du couple
+- [x] **Compatibilité d'Expression** - Analyse de la communication du couple
+- [x] **Compatibilité du Cœur** - Analyse des besoins émotionnels du couple
+- [x] **Interface dédiée** - Onglets Amour, Amitié, Travail
+- [x] **Design élégant** - Badges, cartes dynamiques et sections structurées
+
+### Version 0.6.0 🚧 **EN COURS**
 
 - [ ] **Sauvegarde Supabase** - Stockage persistant des lectures
 - [ ] **Rapports PDF** - Génération de profils détaillés
 - [ ] **Historique** - Suivi des lectures précédentes
 - [ ] **Export/Partage** - Fonctionnalités de partage social
 
-### Version 0.6.0 📋 **PLANIFIÉE**
+### Version 0.7.0 📋 **PLANIFIÉE**
 
-- [ ] **Compatibilité** - Tests d'harmonie entre personnes
-- [ ] **Cycles de vie** - Analyse des années personnelles
+- [ ] **Cycles de vie détaillés** - Analyse approfondie des années personnelles
 - [ ] **Notifications** - Rappels et insights personnalisés
 - [ ] **API avancée** - Endpoints pour intégrations tierces
+- [ ] **Compatibilité Amitié/Travail** - Extensions des analyses
 
-### Version 0.7.0 🔮 **FUTURE**
+### Version 0.8.0 🔮 **FUTURE**
 
 - [ ] **Paiements** - Fonctionnalités premium
 - [ ] **Mobile App** - Application mobile native
