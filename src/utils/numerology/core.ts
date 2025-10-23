@@ -173,3 +173,54 @@ export function calculateRealisationNumber(
   // Réduction du nombre si demandée
   return reduce ? reduceToSingleDigit(number) : number;
 }
+
+/**
+ * Calcule le Nombre du Cœur (Heart Number)
+ * Le nombre du cœur révèle les besoins émotionnels profonds, le langage de l'amour
+ * et les désirs du cœur. Il est calculé en utilisant uniquement les voyelles du nom complet
+ * avec une correspondance numérologique spécifique.
+ *
+ * @param fullName - Nom complet (prénoms + nom de famille)
+ * @param reduce - Si true, réduit le nombre à un chiffre (défaut: true)
+ * @returns Le Nombre du Cœur (1-9, 11, 22, ou 33)
+ *
+ * @example
+ * calculateHeartNumber("Marie Dupont") // Calcule selon les voyelles A, I, E, U, O
+ */
+export function calculateHeartNumber(
+  fullName: string,
+  reduce: boolean = true
+): number {
+  // Validation du nom
+  validateName(fullName);
+
+  // Tableau de correspondance spécifique pour les voyelles du Nombre du Cœur
+  const vowelsMap: Record<string, number> = {
+    A: 1,
+    E: 5,
+    I: 9,
+    O: 6,
+    U: 3,
+    Y: 7, // Y est considéré comme voyelle dans certains contextes
+  };
+
+  // Normalisation et nettoyage du nom
+  const cleanName = fullName
+    .toUpperCase()
+    .normalize("NFD") // Décompose les caractères accentués
+    .replace(/[\u0300-\u036f]/g, "") // Supprime les accents
+    .replace(/[^A-Z]/g, ""); // Garde uniquement les lettres
+
+  // Extraction des voyelles et calcul
+  const vowels = cleanName.split("").filter((letter) => vowelsMap[letter]);
+
+  if (vowels.length === 0) {
+    throw new Error("Aucune voyelle trouvée dans le nom");
+  }
+
+  // Calcul de la somme
+  const total = vowels.reduce((sum, letter) => sum + vowelsMap[letter], 0);
+
+  // Réduction du nombre si demandée
+  return reduce ? reduceToSingleDigit(total) : total;
+}

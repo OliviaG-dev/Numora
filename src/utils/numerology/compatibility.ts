@@ -1,9 +1,10 @@
 import { reduceToSingleDigit, validateDateString } from "./utils";
-import { calculateExpressionNumber } from "./core";
+import { calculateExpressionNumber, calculateHeartNumber } from "./core";
 import {
   lifePathLoveData,
   unionNumberData,
   expressionNumberLoveData,
+  numberHeartData,
 } from "../../data";
 import type {
   LifePathLoveData as LifePathLoveDataType,
@@ -12,6 +13,8 @@ import type {
   UnionNumberDetail,
   ExpressionNumberLoveData as ExpressionNumberLoveDataType,
   ExpressionNumberLoveDetail,
+  NumberHeartData as NumberHeartDataType,
+  NumberHeartDetail,
 } from "../../data";
 
 export type RelationshipType = "love" | "friendship" | "work";
@@ -47,6 +50,12 @@ export interface ExpressionNumberResult {
   detail: ExpressionNumberLoveDetail | null;
 }
 
+export interface HeartNumberResult {
+  heart1: number;
+  heart2: number;
+  detail: NumberHeartDetail | null;
+}
+
 export interface CompatibilityResult {
   overallScore: number;
   compatibility: CompatibilityBreakdown;
@@ -55,6 +64,7 @@ export interface CompatibilityResult {
   recommendations: string[];
   unionNumber?: UnionNumberResult; // Optionnel pour maintenir la compatibilité
   expressionNumbers?: ExpressionNumberResult; // Nouvelle analyse des nombres d'expression
+  heartNumbers?: HeartNumberResult; // Analyse des nombres du cœur
 }
 
 export function calculateLifePathNumber(birthDate: string): number {
@@ -113,6 +123,20 @@ function getExpressionLoveDetail(
     (expressionNumberLoveData as unknown as ExpressionNumberLoveDataType)[
       reverseKey
     ] || null
+  );
+}
+
+function getHeartNumberDetail(
+  n1: number,
+  n2: number
+): NumberHeartDetail | null {
+  const key = buildPairKey(n1, n2);
+  const data = (numberHeartData as unknown as NumberHeartDataType)[key];
+  if (data) return data;
+  // Par sécurité, essaye l'ordre inverse
+  const reverseKey = `${n2}-${n1}`;
+  return (
+    (numberHeartData as unknown as NumberHeartDataType)[reverseKey] || null
   );
 }
 
@@ -247,6 +271,13 @@ function calculateLoveCompatibility(
   // Récupérer les détails de compatibilité Expression
   const expressionDetail = getExpressionLoveDetail(expression1, expression2);
 
+  // Calcul des Nombres du Cœur
+  const heart1 = calculateHeartNumber(fullName1);
+  const heart2 = calculateHeartNumber(fullName2);
+
+  // Récupérer les détails de compatibilité du Cœur
+  const heartDetail = getHeartNumberDetail(heart1, heart2);
+
   // Calculer les scores
   const lifePathScore = computeHeuristicScore(lifePathDetail);
   const expressionScore = computeExpressionScore(expressionDetail);
@@ -292,6 +323,11 @@ function calculateLoveCompatibility(
         expression2,
         detail: expressionDetail,
       },
+      heartNumbers: {
+        heart1,
+        heart2,
+        detail: heartDetail,
+      },
     };
   }
 
@@ -335,6 +371,11 @@ function calculateLoveCompatibility(
       expression1,
       expression2,
       detail: expressionDetail,
+    },
+    heartNumbers: {
+      heart1,
+      heart2,
+      detail: heartDetail,
     },
   };
 }

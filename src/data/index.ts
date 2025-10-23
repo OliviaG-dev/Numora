@@ -10,6 +10,7 @@ import challengeData from "./numerology/Basique/ChallengeData.json";
 import soulUrgeData from "./numerology/Basique/SoulUrgeData.json";
 import personalityData from "./numerology/Basique/PersonalityData.json";
 import birthdayData from "./numerology/Basique/BirthdayData.json";
+import heartNumberPersonalData from "./numerology/Basique/HeartNumberPersonalData.json";
 import realisationNumberData from "./numerology/Basique/RealisationNumber.json";
 import lifeCycleData from "./numerology/Dates/LifeCycleData.json";
 import realizationPeriodData from "./numerology/Dates/RealizationPeriodData.json";
@@ -36,6 +37,7 @@ import pathsNumberData from "./arbreDeVie/pathsNumberData.json";
 import lifePathLoveData from "./numerology/Compatibility/Love/LifePathLoveData.json";
 import unionNumberData from "./numerology/Compatibility/Love/UnionNumberData.json";
 import expressionNumberLoveData from "./numerology/Compatibility/Love/ExpressionNumberLoveData.json";
+import numberHeartData from "./numerology/Compatibility/Love/NumberHeartData.json";
 
 // Import des fonctions utilitaires pour les calculs
 import { reduceToSingleDigit } from "../utils/numerology/utils";
@@ -48,6 +50,7 @@ export {
   soulUrgeData,
   personalityData,
   birthdayData,
+  heartNumberPersonalData,
   realisationNumberData,
   lifeCycleData,
   realizationPeriodData,
@@ -74,6 +77,7 @@ export {
   lifePathLoveData,
   unionNumberData,
   expressionNumberLoveData,
+  numberHeartData,
 };
 
 // ===== ALIAS POUR COMPATIBILITÉ =====
@@ -166,6 +170,20 @@ export interface PersonalityData {
 
 export interface BirthdayData {
   [key: string]: string[];
+}
+
+/**
+ * Données personnelles du Nombre du Cœur (Heart Number) par nombre
+ */
+export interface HeartNumberPersonalDetail {
+  essence: string;
+  emotional_needs: string[];
+  love_language: string;
+  emotional_challenge: string;
+}
+
+export interface HeartNumberPersonalData {
+  [numberKey: string]: HeartNumberPersonalDetail;
 }
 
 export interface RealisationNumberData {
@@ -524,6 +542,25 @@ export interface ExpressionNumberLoveDetail {
 
 export interface ExpressionNumberLoveData {
   [compatibilityKey: string]: ExpressionNumberLoveDetail;
+}
+
+/**
+ * Interface pour les données de compatibilité amoureuse basée sur le Nombre du Cœur
+ */
+export interface NumberHeartDetail {
+  emotional_theme: string;
+  connection_style: string;
+  emotional_needs: {
+    partner_1: string;
+    partner_2: string;
+  };
+  strengths: string[];
+  challenges: string[];
+  growth_advice: string;
+}
+
+export interface NumberHeartData {
+  [compatibilityKey: string]: NumberHeartDetail;
 }
 
 // ===== ALIAS POUR COMPATIBILITÉ =====

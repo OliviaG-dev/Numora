@@ -17,6 +17,7 @@ export {
   calculatePersonalityNumber,
   calculateBirthdayNumber,
   calculateRealisationNumber,
+  calculateHeartNumber,
 } from "./core";
 
 // ===== EXPORTS DES DÉFIS ET CYCLES =====
@@ -77,7 +78,11 @@ import { calculateLifePathNumber } from "./core";
 import { calculateExpressionNumber } from "./core";
 import { calculateSoulUrgeNumber } from "./core";
 import { calculatePersonalityNumber } from "./core";
-import { calculateBirthdayNumber, calculateRealisationNumber } from "./core";
+import {
+  calculateBirthdayNumber,
+  calculateRealisationNumber,
+  calculateHeartNumber,
+} from "./core";
 import { calculateChallengeNumbers } from "./challenges";
 import { calculateLifeCycles } from "./challenges";
 import { calculateRealizationPeriods } from "./challenges";
@@ -93,6 +98,7 @@ export { calculateSoulUrgeNumber as calculateSoulUrge };
 export { calculatePersonalityNumber as calculatePersonality };
 export { calculateBirthdayNumber as calculateBirthday };
 export { calculateRealisationNumber as calculateRealisation };
+export { calculateHeartNumber as calculateHeart };
 export { calculateChallengeNumbers as calculateChallenges };
 export { calculateLifeCycles as calculateCycles };
 export { calculateRealizationPeriods as calculatePinacles };
