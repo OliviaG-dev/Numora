@@ -518,7 +518,6 @@ const CompatibilityAnalyzerSection: React.FC<
                   person2={person2}
                   analysisResult={analysisResult}
                   relationshipType={relationshipType}
-                  getScoreLevel={getScoreLevel}
                 />
               )}
               {relationshipType === "work" && (

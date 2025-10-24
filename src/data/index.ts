@@ -38,6 +38,7 @@ import lifePathLoveData from "./numerology/Compatibility/Love/LifePathLoveData.j
 import unionNumberData from "./numerology/Compatibility/Love/UnionNumberData.json";
 import expressionNumberLoveData from "./numerology/Compatibility/Love/ExpressionNumberLoveData.json";
 import numberHeartData from "./numerology/Compatibility/Love/NumberHeartData.json";
+import lifePathFriendsData from "./numerology/Compatibility/Friends/LifePathFriendsData.json";
 
 // Import des fonctions utilitaires pour les calculs
 import { reduceToSingleDigit } from "../utils/numerology/utils";
@@ -78,6 +79,7 @@ export {
   unionNumberData,
   expressionNumberLoveData,
   numberHeartData,
+  lifePathFriendsData,
 };
 
 // ===== ALIAS POUR COMPATIBILITÉ =====
@@ -561,6 +563,26 @@ export interface NumberHeartDetail {
 
 export interface NumberHeartData {
   [compatibilityKey: string]: NumberHeartDetail;
+}
+
+/**
+ * Interface pour les données de compatibilité amicale basée sur le Life Path
+ */
+export interface LifePathFriendsDetail {
+  title: string;
+  relation_role: string;
+  vibration: string;
+  long_description: string;
+  support: {
+    [key: string]: string;
+  };
+  strengths: string[];
+  challenge: string;
+  growth_advice: string;
+}
+
+export interface LifePathFriendsData {
+  [compatibilityKey: string]: LifePathFriendsDetail;
 }
 
 // ===== ALIAS POUR COMPATIBILITÉ =====
