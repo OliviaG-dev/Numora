@@ -4,278 +4,474 @@
   width: 100%;
 }
 
-/* Score global */
-.compatibility-score {
-  background: var(--bg-primary);
-  border-radius: 20px;
-  padding: 2rem;
+/* En-tête élégant pour l'analyse d'amitié */
+.friendship-analysis-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+  padding: 2.5rem 2rem;
+  background: var(--bg-secondary);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
   border: 1px solid var(--bg-tertiary);
-  margin-bottom: 2rem;
-  text-align: center;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
-.score-header {
+.person-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  transition: transform 0.3s ease;
+}
+
+.person-info:hover {
+  transform: translateY(-2px);
+}
+
+.person-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-purple);
+  text-transform: capitalize;
+}
+
+/* Styles pour les badges numériques */
+.number-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.life-path-badge {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.vs-separator {
+  flex: 2;
+  text-align: center;
+  padding: 0 2rem;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
 }
 
-.score-badge {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  font-weight: 700;
-  color: white;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  background: linear-gradient(
-    135deg,
-    var(--primary-purple),
-    var(--primary-purple-light)
-  );
+.vs-separator svg {
+  color: var(--secondary-gold);
+  transition: transform 0.3s ease;
 }
 
-.score-header h3 {
+.vs-separator:hover svg {
+  transform: scale(1.1);
+}
+
+.vs-separator h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  color: var(--secondary-gold);
+  font-weight: 600;
+}
+
+/* No Data Message */
+.no-data-message {
+  background: var(--bg-primary);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  border: 1px solid var(--bg-tertiary);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.no-data-message svg {
+  color: var(--text-secondary);
+  opacity: 0.5;
+}
+
+.no-data-message h3 {
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--text-primary);
   margin: 0;
 }
 
-.score-header p {
+.no-data-message p {
   color: var(--text-secondary);
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1.6;
   margin: 0;
-  max-width: 400px;
+  max-width: 500px;
 }
 
-/* Détails de compatibilité */
-.compatibility-details {
+/* Friendship Insights Section */
+.friendship-insights {
+  background: var(--bg-primary);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid var(--bg-tertiary);
   margin-bottom: 2rem;
 }
 
-.compatibility-details h3 {
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: var(--primary-purple);
-  margin: 0 0 1.5rem 0;
+.friendship-header {
   text-align: center;
+  margin-bottom: 2rem;
 }
 
-.compatibility-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+.friendship-header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-purple);
+  margin: 0 0 1rem 0;
+  line-height: 1.3;
 }
 
-.compatibility-item {
-  background: var(--bg-primary);
+.friendship-meta {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.relation-role,
+.vibration {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  border: 1px solid var(--bg-tertiary);
+}
+
+.relation-role svg,
+.vibration svg {
+  color: var(--primary-purple);
+}
+
+.friendship-description {
+  background: var(--bg-secondary);
   border-radius: 16px;
   padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-left: 4px solid var(--primary-purple);
+}
+
+.friendship-description p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+/* Mutual Support Section */
+.mutual-support {
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
   border: 1px solid var(--bg-tertiary);
+}
+
+.mutual-support h3 {
+  color: var(--primary-purple);
+  margin: 0 0 1.5rem 0;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.support-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.support-item {
+  background: var(--bg-primary);
+  border-radius: 12px;
+  padding: 1rem;
+  border: 1px solid var(--bg-tertiary);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   transition: all 0.3s ease;
 }
 
-.compatibility-item:hover {
+.support-item:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.2);
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.15);
 }
 
-.compatibility-item h4 {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin: 0 0 1rem 0;
-  color: var(--primary-purple);
+.support-icon {
+  flex-shrink: 0;
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(139, 92, 246, 0.3));
+  transition: transform 0.3s ease;
 }
 
-/* Barres de score */
-.compatibility-score-bar {
-  position: relative;
-  background: var(--bg-tertiary);
-  border-radius: 8px;
-  height: 12px;
-  margin: 1rem 0;
-  overflow: hidden;
+.support-item:hover .support-icon {
+  transform: scale(1.1) rotate(15deg);
 }
 
-.score-fill {
-  height: 100%;
-  border-radius: 8px;
-  transition: width 0.8s ease;
-  position: relative;
-}
-
-.score-fill::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.3),
-    transparent
-  );
-  animation: shimmer 2s infinite;
-}
-
-@keyframes shimmer {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-.score-text {
-  position: absolute;
-  right: 8px;
-  top: -25px;
-  font-size: 0.9rem;
-  font-weight: 600;
+.support-item p {
   color: var(--text-primary);
-}
-
-.compatibility-item p {
-  color: var(--text-secondary);
   font-size: 0.95rem;
-  line-height: 1.5;
+  line-height: 1.4;
   margin: 0;
+  flex: 1;
+  padding-top: 1px;
 }
 
-/* Forces et défis */
-.strengths-challenges {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
-
-.strengths-section,
-.challenges-section {
-  background: var(--bg-primary);
+/* Friendship Strengths */
+.friendship-strengths {
+  background: var(--bg-secondary);
   border-radius: 16px;
   padding: 1.5rem;
+  margin-bottom: 2rem;
   border: 1px solid var(--bg-tertiary);
 }
 
-.strengths-section h3 {
+.friendship-strengths h3 {
   color: #10b981;
-  margin: 0 0 1rem 0;
-  font-size: 1.2rem;
+  margin: 0 0 1.5rem 0;
+  font-size: 1.3rem;
   display: flex;
   align-items: center;
+  gap: 0.5rem;
 }
 
-.challenges-section h3 {
-  color: #ef4444;
-  margin: 0 0 1rem 0;
-  font-size: 1.2rem;
+.strengths-tags {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
-.strengths-section ul,
-.challenges-section ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.strength-tag {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+  transition: all 0.3s ease;
 }
 
-.strengths-section li,
-.challenges-section li {
-  padding: 0.5rem 0;
-  color: var(--text-primary);
-  border-bottom: 1px solid var(--bg-tertiary);
+.strength-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
 }
 
-.strengths-section li:last-child,
-.challenges-section li:last-child {
-  border-bottom: none;
-}
-
-.strengths-section li::before {
-  content: "✓";
-  color: #10b981;
-  font-weight: bold;
-  margin-right: 0.5rem;
-}
-
-.challenges-section li::before {
-  content: "⚠";
-  color: #ef4444;
-  font-weight: bold;
-  margin-right: 0.5rem;
-}
-
-/* Recommandations */
-.recommendations {
-  background: var(--bg-primary);
+/* Friendship Challenge */
+.friendship-challenge {
+  background: var(--bg-secondary);
   border-radius: 16px;
   padding: 1.5rem;
-  border: 1px solid var(--bg-tertiary);
   margin-bottom: 2rem;
+  border: 1px solid var(--bg-tertiary);
+  border-left: 4px solid #ef4444;
 }
 
-.recommendations h3 {
-  color: var(--secondary-gold);
+.friendship-challenge h3 {
+  color: #ef4444;
   margin: 0 0 1rem 0;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   display: flex;
   align-items: center;
+  gap: 0.5rem;
 }
 
-.recommendations ul {
-  list-style: none;
-  padding: 0;
+.friendship-challenge p {
+  color: var(--text-primary);
+  font-size: 1rem;
+  line-height: 1.6;
   margin: 0;
 }
 
-.recommendations li {
-  padding: 0.5rem 0;
-  color: var(--text-primary);
-  border-bottom: 1px solid var(--bg-tertiary);
+/* Growth Advice */
+.growth-advice {
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.1),
+    rgba(236, 72, 153, 0.1)
+  );
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border: 2px solid var(--secondary-gold);
 }
 
-.recommendations li:last-child {
-  border-bottom: none;
-}
-
-.recommendations li::before {
-  content: "•";
+.growth-advice h3 {
   color: var(--secondary-gold);
-  font-weight: bold;
-  margin-right: 0.5rem;
+  margin: 0 0 1rem 0;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.growth-advice p {
+  color: var(--text-primary);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin: 0;
+  font-weight: 500;
 }
 
 /* Responsive styles */
 @media (max-width: 768px) {
-  .compatibility-score {
+  .friendship-analysis-header {
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .person-info {
+    width: 100%;
+  }
+
+  .person-name {
+    font-size: 1.3rem;
+  }
+
+  .number-badge {
+    width: 50px;
+    height: 50px;
+    font-size: 1.3rem;
+  }
+
+  .vs-separator {
+    padding: 1rem 0;
+  }
+
+  .vs-separator h3 {
+    font-size: 1.2rem;
+  }
+
+  .vs-separator svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .no-data-message {
+    padding: 2rem 1.5rem;
+  }
+
+  .no-data-message svg {
+    width: 48px;
+    height: 48px;
+  }
+
+  .no-data-message h3 {
+    font-size: 1.3rem;
+  }
+
+  .friendship-insights {
     padding: 1.5rem;
   }
 
-  .score-badge {
-    width: 100px;
-    height: 100px;
+  .friendship-header h2 {
     font-size: 1.5rem;
   }
 
-  .strengths-challenges {
-    grid-template-columns: 1fr;
+  .friendship-meta {
     gap: 1rem;
   }
 
-  .compatibility-grid {
+  .relation-role,
+  .vibration {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .support-grid {
     grid-template-columns: 1fr;
+  }
+
+  .friendship-strengths h3,
+  .friendship-challenge h3,
+  .growth-advice h3,
+  .mutual-support h3 {
+    font-size: 1.1rem;
+  }
+
+  .strengths-tags {
+    gap: 0.5rem;
+  }
+
+  .strength-tag {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
   }
 }
 
+@media (max-width: 480px) {
+  .friendship-analysis-header {
+    padding: 1.5rem 1rem;
+    gap: 1rem;
+  }
+
+  .person-name {
+    font-size: 1.1rem;
+  }
+
+  .number-badge {
+    width: 45px;
+    height: 45px;
+    font-size: 1.2rem;
+  }
+
+  .vs-separator h3 {
+    font-size: 1rem;
+  }
+
+  .vs-separator svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .friendship-insights {
+    padding: 1rem;
+  }
+
+  .friendship-header h2 {
+    font-size: 1.3rem;
+  }
+
+  .friendship-meta {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .relation-role,
+  .vibration {
+    justify-content: center;
+  }
+
+  .friendship-description,
+  .mutual-support,
+  .friendship-strengths,
+  .friendship-challenge,
+  .growth-advice {
+    padding: 1rem;
+  }
+}
