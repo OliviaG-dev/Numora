@@ -21,15 +21,15 @@ const FriendshipTab: React.FC<CompatibilityTabProps> = ({
   const friendshipCompatibility: FriendshipCompatibilityResult | null =
     useMemo(() => {
       if (!person1.birthDate || !person2.birthDate) {
-        return null;
-      }
+      return null;
+    }
 
-      try {
+    try {
         return calculateFriendshipCompatibility(person1, person2);
-      } catch (error) {
-        console.error("Error calculating friendship compatibility:", error);
-        return null;
-      }
+    } catch (error) {
+      console.error("Error calculating friendship compatibility:", error);
+      return null;
+    }
     }, [person1, person2]);
 
   const lifePathFriendship = friendshipCompatibility?.lifePathFriendship;
@@ -218,33 +218,33 @@ const FriendshipTab: React.FC<CompatibilityTabProps> = ({
           {/* Forces de l'amitié */}
           {lifePathFriendship.strengths &&
             lifePathFriendship.strengths.length > 0 && (
-              <div className="friendship-strengths">
-                <h3>
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                    <path d="M2 17l10 5 10-5" />
-                    <path d="M2 12l10 5 10-5" />
-                  </svg>
-                  Forces de cette amitié
-                </h3>
-                <div className="strengths-tags">
+            <div className="friendship-strengths">
+              <h3>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                  <path d="M2 12l10 5 10-5" />
+                </svg>
+                Forces de cette amitié
+              </h3>
+              <div className="strengths-tags">
                   {lifePathFriendship.strengths.map((strength, index) => (
-                    <span key={index} className="strength-tag">
-                      {strength}
-                    </span>
-                  ))}
-                </div>
+                  <span key={index} className="strength-tag">
+                    {strength}
+                  </span>
+                ))}
               </div>
-            )}
+            </div>
+          )}
 
           {/* Défi principal */}
           {lifePathFriendship.challenge && (
