@@ -5,6 +5,8 @@ import {
   unionNumberData,
   expressionNumberLoveData,
   numberHeartData,
+  lifePathFriendsData,
+  expressionNumberFriendsData,
 } from "../../data";
 import type {
   LifePathLoveData as LifePathLoveDataType,
@@ -15,6 +17,10 @@ import type {
   ExpressionNumberLoveDetail,
   NumberHeartData as NumberHeartDataType,
   NumberHeartDetail,
+  LifePathFriendsData as LifePathFriendsDataType,
+  LifePathFriendsDetail,
+  ExpressionNumberFriendsData as ExpressionNumberFriendsDataType,
+  ExpressionNumberFriendsDetail,
 } from "../../data";
 
 export type RelationshipType = "love" | "friendship" | "work";
@@ -56,6 +62,17 @@ export interface HeartNumberResult {
   detail: NumberHeartDetail | null;
 }
 
+export interface ExpressionNumberFriendsResult {
+  expression1: number;
+  expression2: number;
+  detail: ExpressionNumberFriendsDetail | null;
+}
+
+export interface FriendshipCompatibilityResult {
+  lifePathFriendship: LifePathFriendsDetail | null;
+  expressionFriendship: ExpressionNumberFriendsResult | null;
+}
+
 export interface CompatibilityResult {
   overallScore: number;
   compatibility: CompatibilityBreakdown;
@@ -65,6 +82,7 @@ export interface CompatibilityResult {
   unionNumber?: UnionNumberResult; // Optionnel pour maintenir la compatibilité
   expressionNumbers?: ExpressionNumberResult; // Nouvelle analyse des nombres d'expression
   heartNumbers?: HeartNumberResult; // Analyse des nombres du cœur
+  friendshipCompatibility?: FriendshipCompatibilityResult; // Nouvelle compatibilité amicale
 }
 
 export function calculateLifePathNumber(birthDate: string): number {
@@ -140,6 +158,39 @@ function getHeartNumberDetail(
   );
 }
 
+function getLifePathFriendsDetail(
+  n1: number,
+  n2: number
+): LifePathFriendsDetail | null {
+  const key = buildPairKey(n1, n2);
+  const data = (lifePathFriendsData as unknown as LifePathFriendsDataType)[key];
+  if (data) return data;
+  // Par sécurité, essaye l'ordre inverse
+  const reverseKey = `${n2}-${n1}`;
+  return (
+    (lifePathFriendsData as unknown as LifePathFriendsDataType)[reverseKey] ||
+    null
+  );
+}
+
+function getExpressionFriendsDetail(
+  n1: number,
+  n2: number
+): ExpressionNumberFriendsDetail | null {
+  const key = buildPairKey(n1, n2);
+  const data = (
+    expressionNumberFriendsData as unknown as ExpressionNumberFriendsDataType
+  )[key];
+  if (data) return data;
+  // Par sécurité, essaye l'ordre inverse
+  const reverseKey = `${n2}-${n1}`;
+  return (
+    (expressionNumberFriendsData as unknown as ExpressionNumberFriendsDataType)[
+      reverseKey
+    ] || null
+  );
+}
+
 export function calculateUnionNumber(
   lifePath1: number,
   lifePath2: number
@@ -210,6 +261,39 @@ function buildFullName(person: PersonInfo): string {
   return names.join(" ");
 }
 
+export function calculateFriendshipCompatibility(
+  person1: PersonInfo,
+  person2: PersonInfo
+): FriendshipCompatibilityResult {
+  // Calcul des Chemins de Vie
+  const lifePath1 = calculateLifePathNumber(person1.birthDate);
+  const lifePath2 = calculateLifePathNumber(person2.birthDate);
+
+  // Récupérer les détails de compatibilité amicale Life Path
+  const lifePathFriendship = getLifePathFriendsDetail(lifePath1, lifePath2);
+
+  // Calcul des Nombres d'Expression
+  const fullName1 = buildFullName(person1);
+  const fullName2 = buildFullName(person2);
+  const expression1 = calculateExpressionNumber(fullName1);
+  const expression2 = calculateExpressionNumber(fullName2);
+
+  // Récupérer les détails de compatibilité amicale Expression Number
+  const expressionFriendshipDetail = getExpressionFriendsDetail(
+    expression1,
+    expression2
+  );
+
+  return {
+    lifePathFriendship,
+    expressionFriendship: {
+      expression1,
+      expression2,
+      detail: expressionFriendshipDetail,
+    },
+  };
+}
+
 export function calculateCompatibility(
   person1: PersonInfo,
   person2: PersonInfo,
@@ -217,6 +301,10 @@ export function calculateCompatibility(
 ): CompatibilityResult {
   if (relationshipType === "love") {
     return calculateLoveCompatibility(person1, person2);
+  }
+
+  if (relationshipType === "friendship") {
+    return calculateFriendshipCompatibilityResult(person1, person2);
   }
 
   // Pour les autres types de relations, retourner un placeholder
@@ -244,6 +332,63 @@ export function calculateCompatibility(
     strengths: [],
     challenges: [],
     recommendations: [],
+  };
+}
+
+function calculateFriendshipCompatibilityResult(
+  person1: PersonInfo,
+  person2: PersonInfo
+): CompatibilityResult {
+  const friendshipData = calculateFriendshipCompatibility(person1, person2);
+
+  // Calculer un score basé sur les données disponibles
+  let score = 70;
+  if (friendshipData.expressionFriendship?.detail) {
+    const ratings =
+      friendshipData.expressionFriendship.detail.friendship_vibe_rating;
+    score = Math.round(
+      ((ratings.fun +
+        ratings.trust +
+        ratings.deep_connection +
+        ratings.adventure) /
+        4) *
+        10
+    );
+  }
+
+  return {
+    overallScore: score,
+    compatibility: {
+      lifePathCompatibility: {
+        score: friendshipData.lifePathFriendship ? 75 : 50,
+        description:
+          friendshipData.lifePathFriendship?.long_description ||
+          "Données non disponibles",
+      },
+      expressionCompatibility: {
+        score,
+        description:
+          friendshipData.expressionFriendship?.detail?.tagline ||
+          "Données non disponibles",
+      },
+      soulUrgeCompatibility: {
+        score: 0,
+        description: "À venir.",
+      },
+      personalityCompatibility: {
+        score: 0,
+        description: "À venir.",
+      },
+    },
+    strengths:
+      friendshipData.expressionFriendship?.detail?.why_they_click || [],
+    challenges:
+      friendshipData.expressionFriendship?.detail?.friction_points || [],
+    recommendations: friendshipData.expressionFriendship?.detail
+      ?.keep_the_magic_alive
+      ? [friendshipData.expressionFriendship.detail.keep_the_magic_alive]
+      : [],
+    friendshipCompatibility: friendshipData,
   };
 }
 
