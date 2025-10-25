@@ -39,6 +39,7 @@ import unionNumberData from "./numerology/Compatibility/Love/UnionNumberData.jso
 import expressionNumberLoveData from "./numerology/Compatibility/Love/ExpressionNumberLoveData.json";
 import numberHeartData from "./numerology/Compatibility/Love/NumberHeartData.json";
 import lifePathFriendsData from "./numerology/Compatibility/Friends/LifePathFriendsData.json";
+import expressionNumberFriendsData from "./numerology/Compatibility/Friends/ExpressionNumberFriendsData.json";
 
 // Import des fonctions utilitaires pour les calculs
 import { reduceToSingleDigit } from "../utils/numerology/utils";
@@ -80,6 +81,7 @@ export {
   expressionNumberLoveData,
   numberHeartData,
   lifePathFriendsData,
+  expressionNumberFriendsData,
 };
 
 // ===== ALIAS POUR COMPATIBILITÉ =====
@@ -583,6 +585,37 @@ export interface LifePathFriendsDetail {
 
 export interface LifePathFriendsData {
   [compatibilityKey: string]: LifePathFriendsDetail;
+}
+
+/**
+ * Interface pour les ratings de compatibilité amicale basée sur les nombres d'expression
+ */
+export interface FriendshipVibeRating {
+  fun: number;
+  trust: number;
+  deep_connection: number;
+  adventure: number;
+}
+
+/**
+ * Interface pour les données de compatibilité amicale basée sur les nombres d'expression
+ */
+export interface ExpressionNumberFriendsDetail {
+  friendship_type: string;
+  vibe: string;
+  tagline: string;
+  why_they_click: string[];
+  what_they_love_doing: string[];
+  friction_points: string[];
+  friendship_superpower: string;
+  friendship_vibe_rating: FriendshipVibeRating;
+  best_activities: string[];
+  anthem: string;
+  keep_the_magic_alive: string;
+}
+
+export interface ExpressionNumberFriendsData {
+  [compatibilityKey: string]: ExpressionNumberFriendsDetail;
 }
 
 // ===== ALIAS POUR COMPATIBILITÉ =====
